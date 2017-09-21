@@ -50,7 +50,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -60,6 +60,67 @@
 </header>
       <div class="outer">
         <section id="main">
+  
+    <article id="post-nginx-proxy" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/09/21/nginx-proxy/" class="article-date">
+  <time datetime="2017-09-21T12:47:02.000Z" itemprop="datePublished">2017-09-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/21/nginx-proxy/">使用nginx制作全代理</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>编译nginx,编译脚本:</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">./configure \</div><div class="line">--prefix=/data0/nginx/ \</div><div class="line">--with-stream \</div><div class="line">--with-http_ssl_module  \</div><div class="line">--with-stream_ssl_module \</div><div class="line">make -j4</div><div class="line">make install</div></pre></td></tr></table></figure>
+<ul>
+<li>主nginx配置文件：</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">http &#123;</div><div class="line">	resolver 10.212.0.43  valid=3600s;</div><div class="line"></div><div class="line">	include       mime.types;</div><div class="line">	default_type  application/octet-stream;</div><div class="line"></div><div class="line">	log_format  main  '$remote_addr $http_host - $remote_user [$time_local] "$request" '</div><div class="line">		'$status $body_bytes_sent "$http_referer" '</div><div class="line">		'"$http_user_agent" "$http_x_forwarded_for"';</div><div class="line">	sendfile        on; </div><div class="line">	keepalive_timeout  65; </div><div class="line">	gzip  on; </div><div class="line">	include vhost/*.conf;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>http代理比较简单:</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span>vhost/proxy.conf</div><div class="line">server &#123;</div><div class="line">	listen  80;</div><div class="line">	error_log logs/proxy_err.log;</div><div class="line">	access_log logs/proxy_ac.log main;</div><div class="line">	</div><div class="line">	location / &#123; </div><div class="line">		proxy_pass http://$http_host;</div><div class="line">		proxy_set_header X-RealIP $remote_addr;</div><div class="line">		proxy_set_header Host $http_host;</div><div class="line">	&#125;   </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><p>https代理:<br>生成证书:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">openssl genrsa -des3 -out common.key 1024</div><div class="line">openssl req -new -key common.key -out common.csr</div><div class="line">openssl rsa -in common.key -out common_nopwd.key</div><div class="line">openssl x509 -req -days 365 -in common.csr -signkey common_nopwd.key -out common.crt</div><div class="line">echo "ssl on;"</div><div class="line">echo "ssl_certificate ssl/common.crt;"</div><div class="line">echo "ssl_certificate_key ssl/common_nopwd.key;"</div></pre></td></tr></table></figure>
+</li>
+<li><p>配置https代理:</p>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">	listen  443;</div><div class="line">	error_log logs/proxy_ssl_err.log;</div><div class="line">	access_log logs/proxy_ssl_ac.log main;</div><div class="line">	</div><div class="line">	ssl on;</div><div class="line">	ssl_certificate ssl/common.crt;</div><div class="line">	ssl_certificate_key ssl/common_nopwd.key;</div><div class="line">	</div><div class="line">	location / &#123; </div><div class="line">		proxy_pass https://$http_host;</div><div class="line">		proxy_set_header Host $http_host;</div><div class="line">	&#125;   </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>最后一步，你绑定需要的hosts就可以把当前nginx机器伪装成需要访问的主机。当前nginx主机通过resolver 来解析需要访问的域名对应的ip<br>然后，去访问该ip端口对应的数据返回给浏览器。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/09/21/nginx-proxy/" data-id="cj7ugmine0001yccesvur0yjb" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx-linux/">nginx,linux</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
   
     <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -99,7 +160,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/09/21/hello-world/" data-id="cj7ug8mld0004gdce1pbmdxso" class="article-share-link">Delen</a>
+      <a data-url="http://yoursite.com/2017/09/21/hello-world/" data-id="cj7ugmint0008ycces2vufpde" class="article-share-link">Share</a>
       
       
     </footer>
@@ -151,7 +212,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/03/07/centos7升级gcc到4-9-3/" data-id="cj7ug8ml20000gdcejjns623g" class="article-share-link">Delen</a>
+      <a data-url="http://yoursite.com/2017/03/07/centos7升级gcc到4-9-3/" data-id="cj7ugmina0000ycceowko077o" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/centos7/">centos7</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gcc/">gcc</a></li></ul>
@@ -215,49 +276,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/03/07/supervisor安装配置使用/" data-id="cj7ug8mlf0005gdcebwj0ypr4" class="article-share-link">Delen</a>
+      <a data-url="http://yoursite.com/2017/03/07/supervisor安装配置使用/" data-id="cj7ugminv000ayccebzs3asa9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pip/">pip</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/supervisor/">supervisor</a></li></ul>
 
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-安全牛的免费课" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/03/06/安全牛的免费课/" class="article-date">
-  <time datetime="2017-03-06T08:05:00.000Z" itemprop="datePublished">2017-03-06</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/06/安全牛的免费课/">安全牛的免费课程</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>安全牛的免费课程:<br><a href="http://edu.aqniu.com/course/2188" target="_blank" rel="external">Deep Edge</a><br><a href="http://edu.aqniu.com/course/2059" target="_blank" rel="external">SFDC Security</a><br><a href="http://edu.aqniu.com/course/2058" target="_blank" rel="external">SFDC -移动安全</a><br><a href="http://edu.aqniu.com/course/2057" target="_blank" rel="external">SFDC -服务安全</a><br><a href="http://edu.aqniu.com/course/2056" target="_blank" rel="external">SFDC -项目安全开发</a><br><a href="http://edu.aqniu.com/course/2030" target="_blank" rel="external">安全需要简单的交付</a><br><a href="http://edu.aqniu.com/course/2029" target="_blank" rel="external">加大持续检测和快速响应投入</a><br><a href="http://edu.aqniu.com/course/2028" target="_blank" rel="external">可视是安全的基础</a><br><a href="http://edu.aqniu.com/course/2024" target="_blank" rel="external">身份认证</a><br><a href="http://edu.aqniu.com/course/1852" target="_blank" rel="external">TDA</a><br><a href="http://edu.aqniu.com/course/1850" target="_blank" rel="external">OfficeScan</a><br><a href="http://edu.aqniu.com/course/1020" target="_blank" rel="external">Kali Linux 安装配置和优化</a><br><a href="http://edu.aqniu.com/course/959" target="_blank" rel="external">TCSP</a><br><a href="http://edu.aqniu.com/course/353" target="_blank" rel="external">网络异常行为分析</a><br><a href="http://edu.aqniu.com/course/347" target="_blank" rel="external">IT风险控制</a><br><a href="http://edu.aqniu.com/course/340" target="_blank" rel="external">威胁情报峰会</a><br><a href="http://edu.aqniu.com/course/190" target="_blank" rel="external">云安全实践</a><br><a href="http://edu.aqniu.com/course/189" target="_blank" rel="external">威胁情报</a><br><a href="http://edu.aqniu.com/course/188" target="_blank" rel="external">大数据分析</a><br><a href="http://edu.aqniu.com/course/187" target="_blank" rel="external">安全产业创新</a><br><a href="http://edu.aqniu.com/course/186" target="_blank" rel="external">物联网安全</a><br><a href="http://edu.aqniu.com/course/185" target="_blank" rel="external">网络安全法律</a><br><a href="http://edu.aqniu.com/course/184" target="_blank" rel="external">移动终端攻防</a><br><a href="http://edu.aqniu.com/course/183" target="_blank" rel="external">互联网+安全管理</a><br><a href="http://edu.aqniu.com/course/182" target="_blank" rel="external">云计算虚拟化</a><br><a href="http://edu.aqniu.com/course/181" target="_blank" rel="external">APT与新威胁</a><br><a href="http://edu.aqniu.com/course/180" target="_blank" rel="external">电子取证</a><br><a href="http://edu.aqniu.com/course/179" target="_blank" rel="external">网络空间安全</a><br><a href="http://edu.aqniu.com/course/178" target="_blank" rel="external">漏洞与源码分析</a><br><a href="http://edu.aqniu.com/course/140" target="_blank" rel="external">SQLMAP基础</a><br><a href="http://edu.aqniu.com/course/129" target="_blank" rel="external">WebSP</a><br><a href="http://edu.aqniu.com/course/126" target="_blank" rel="external">Metasploit应用</a><br><a href="http://edu.aqniu.com/course/120" target="_blank" rel="external">金山终端安全</a><br><a href="http://edu.aqniu.com/course/104" target="_blank" rel="external">山石HCSP认证</a><br><a href="http://edu.aqniu.com/course/103" target="_blank" rel="external">山石HCSA认证</a><br><a href="http://edu.aqniu.com/course/101" target="_blank" rel="external">防火墙实验指南</a><br><a href="http://edu.aqniu.com/course/100" target="_blank" rel="external">防火墙功能演示</a><br><a href="http://edu.aqniu.com/course/81" target="_blank" rel="external">第三方支付风险</a><br><a href="http://edu.aqniu.com/course/78" target="_blank" rel="external">提升安全意识</a><br><a href="http://edu.aqniu.com/course/44" target="_blank" rel="external">RSA Archer-SecOps</a><br><a href="http://edu.aqniu.com/course/41" target="_blank" rel="external">GRC安全合规治理平台</a><br><a href="http://edu.aqniu.com/course/40" target="_blank" rel="external">Zmap 、Nmap</a><br><a href="http://edu.aqniu.com/course/39" target="_blank" rel="external">安全工具-Snort</a><br><a href="http://edu.aqniu.com/course/35" target="_blank" rel="external">基于漏洞的安全开发管理</a><br><a href="http://edu.aqniu.com/course/33" target="_blank" rel="external">CISA证书申请指导</a></p>
-<h2 id="获取脚本"><a href="#获取脚本" class="headerlink" title="获取脚本"></a>获取脚本</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#coding=utf-8</span></div><div class="line"><span class="keyword">import</span> requests</div><div class="line"><span class="keyword">from</span> pyquery <span class="keyword">import</span> PyQuery <span class="keyword">as</span> PQ</div><div class="line"></div><div class="line">urls = [ <span class="string">"http://edu.aqniu.com/course/explore?page=%d"</span> % (page) <span class="keyword">for</span> page <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">11</span>)]</div><div class="line"></div><div class="line"><span class="keyword">print</span> <span class="string">"安全牛的免费课程:"</span></div><div class="line"></div><div class="line"><span class="keyword">for</span> url <span class="keyword">in</span> urls:</div><div class="line">    content = requests.get(url).text</div><div class="line">    dom = PQ(content)</div><div class="line">    items = dom.find(<span class="string">"div.course-item"</span>)</div><div class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> items:</div><div class="line">        title = PQ(item).find(<span class="string">"div.title"</span>).text()</div><div class="line">        price = PQ(item).find(<span class="string">"span.price"</span>).text().encode(<span class="string">"utf-8"</span>)</div><div class="line">        link = <span class="string">"http://edu.aqniu.com"</span> + PQ(item).find(<span class="string">"div.course-img a"</span>).attr(<span class="string">"href"</span>)</div><div class="line"></div><div class="line">        <span class="keyword">if</span> <span class="string">"免费"</span> == price:</div><div class="line">            <span class="keyword">print</span> <span class="string">"[%s](%s)"</span> % (title.encode(<span class="string">"utf-8"</span>),link)</div><div class="line"></div><div class="line"><span class="keyword">print</span> <span class="string">"## 获取脚本"</span></div><div class="line"><span class="keyword">print</span> <span class="string">"```python"</span></div><div class="line"><span class="keyword">print</span> open(<span class="string">"find_free_security.py"</span>,<span class="string">"r"</span>).read()</div><div class="line"><span class="keyword">print</span> <span class="string">"```"</span></div></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/03/06/安全牛的免费课/" data-id="cj7ug8mlg0006gdced7wafr1v" class="article-share-link">Delen</a>
-      
-      
     </footer>
   </div>
   
@@ -279,9 +302,9 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Labels</h3>
+    <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos7/">centos7</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gcc/">gcc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pip/">pip</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/supervisor/">supervisor</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos7/">centos7</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gcc/">gcc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx-linux/">nginx,linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pip/">pip</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/supervisor/">supervisor</a></li></ul>
     </div>
   </div>
 
@@ -291,14 +314,14 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/centos7/" style="font-size: 10px;">centos7</a> <a href="/tags/gcc/" style="font-size: 10px;">gcc</a> <a href="/tags/pip/" style="font-size: 10px;">pip</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/supervisor/" style="font-size: 10px;">supervisor</a>
+      <a href="/tags/centos7/" style="font-size: 10px;">centos7</a> <a href="/tags/gcc/" style="font-size: 10px;">gcc</a> <a href="/tags/nginx-linux/" style="font-size: 10px;">nginx,linux</a> <a href="/tags/pip/" style="font-size: 10px;">pip</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/supervisor/" style="font-size: 10px;">supervisor</a>
     </div>
   </div>
 
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archieven</h3>
+    <h3 class="widget-title">Archives</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
     </div>
@@ -308,9 +331,13 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recente berichten</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/09/21/nginx-proxy/">使用nginx制作全代理</a>
+          </li>
         
           <li>
             <a href="/2017/09/21/hello-world/">从头到尾搭建hexo博客</a>
@@ -326,10 +353,6 @@
         
           <li>
             <a href="/2017/03/06/安全牛的免费课/">安全牛的免费课程</a>
-          </li>
-        
-          <li>
-            <a href="/2017/03/03/ubuntu-下-adb-No-Such-file/">ubuntu 下 adb No Such file</a>
           </li>
         
       </ul>
