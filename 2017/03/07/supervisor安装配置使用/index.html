@@ -205,7 +205,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -215,7 +215,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -289,7 +289,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-07T08:57:50+08:00">
                 2017-03-07
@@ -330,7 +330,7 @@
 
       
         <ol>
-<li>安装supervisor<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> yum install python-setuptools</div><div class="line"><span class="meta">$</span> easy_install pip</div><div class="line"><span class="meta">$</span> pip install supervisor</div></pre></td></tr></table></figure>
+<li>安装supervisor<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> yum install python-setuptools</span></div><div class="line"><span class="meta">$</span><span class="bash"> easy_install pip</span></div><div class="line"><span class="meta">$</span><span class="bash"> pip install supervisor</span></div></pre></td></tr></table></figure>
 </li>
 </ol>
 <p>这个工具分为两个命令:</p>
@@ -340,19 +340,19 @@
 </ul>
 <ol>
 <li><p>生成配置文件:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> echo_supervisord_conf &gt; /etc/supervisord.conf</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> echo_supervisord_conf &gt; /etc/supervisord.conf</span></div></pre></td></tr></table></figure>
 </li>
 <li><p>修改配置文件:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">[program:mobsf]</div><div class="line">;process_name = %(program_name)s-%(process_num)d  </div><div class="line">;numprocs = 5</div><div class="line">command = python /data0/Mobile-Security-Framework-MobSF/manage.py runserver 0.0.0.0:8000</div><div class="line">user = root</div><div class="line">autostart = true</div><div class="line">autorestart = true</div><div class="line">startsecs = 5</div><div class="line">stderr_logfile = /data0/Mobile-Security-Framework-MobSF/logs/run/error.log</div><div class="line">stdout_logfile = /data0/Mobile-Security-Framework-MobSF/logs/run/stdout.log</div></pre></td></tr></table></figure>
 </li>
 <li><p>启动命令:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> supervisord -c /etc/supervisord.conf</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> supervisord -c /etc/supervisord.conf</span></div></pre></td></tr></table></figure>
 </li>
 <li><p>查看状态:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> supervisorctl status</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> supervisorctl status</span></div></pre></td></tr></table></figure>
 </li>
 <li><p>修改supervisord.conf以后，重载:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> supervisorctl reload</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> supervisorctl reload</span></div></pre></td></tr></table></figure>
 </li>
 </ol>
 
@@ -470,7 +470,7 @@
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
                 <span class="site-state-item-count">6</span>
-                <span class="site-state-item-name">Artikel</span>
+                <span class="site-state-item-name">posts</span>
               </a>
             </div>
           
@@ -483,7 +483,7 @@
             <div class="site-state-item site-state-tags">
               
                 <span class="site-state-item-count">7</span>
-                <span class="site-state-item-name">Tags</span>
+                <span class="site-state-item-name">tags</span>
               
             </div>
           
@@ -533,7 +533,7 @@
 
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
