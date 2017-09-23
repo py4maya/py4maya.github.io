@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="nginx,linux,proxy," />
+  <meta name="keywords" content="hello," />
 
 
 
@@ -94,18 +94,18 @@
 
 
 
-<meta name="description" content="编译nginx,编译脚本:  1234567./configure \--prefix=/data0/nginx/ \--with-stream \--with-http_ssl_module  \--with-stream_ssl_module \make -j4make install  主nginx配置文件：  1234567891011121314http &amp;#123;	resolver">
-<meta name="keywords" content="nginx,linux,proxy">
+<meta name="description" content="安装hexo安装nodejs,npm1$ npm install -g hexo 有的时候，需要在命令前，添加sudo 创建博客目录,并cd到对应的目录123$ mkdir blog $ cd `pwd`/blog$ pwd 生成对应的页面文件1$ hexo generate 查看更多: 生成页面 部署到github1$ hexo deploy 有时候会报错:ERROR Deployer not">
+<meta name="keywords" content="hello">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用nginx制作全代理">
-<meta property="og:url" content="https://xsec.7ever.cn/2017/09/21/nginx-proxy/index.html">
+<meta property="og:title" content="从头到尾搭建hexo博客">
+<meta property="og:url" content="https://xsec.7ever.cn/2017/03/07/hello-world/index.html">
 <meta property="og:site_name" content="Simple Xsec World">
-<meta property="og:description" content="编译nginx,编译脚本:  1234567./configure \--prefix=/data0/nginx/ \--with-stream \--with-http_ssl_module  \--with-stream_ssl_module \make -j4make install  主nginx配置文件：  1234567891011121314http &amp;#123;	resolver">
+<meta property="og:description" content="安装hexo安装nodejs,npm1$ npm install -g hexo 有的时候，需要在命令前，添加sudo 创建博客目录,并cd到对应的目录123$ mkdir blog $ cd `pwd`/blog$ pwd 生成对应的页面文件1$ hexo generate 查看更多: 生成页面 部署到github1$ hexo deploy 有时候会报错:ERROR Deployer not">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-23T02:07:36.000Z">
+<meta property="og:updated_time" content="2017-09-23T02:08:17.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用nginx制作全代理">
-<meta name="twitter:description" content="编译nginx,编译脚本:  1234567./configure \--prefix=/data0/nginx/ \--with-stream \--with-http_ssl_module  \--with-stream_ssl_module \make -j4make install  主nginx配置文件：  1234567891011121314http &amp;#123;	resolver">
+<meta name="twitter:title" content="从头到尾搭建hexo博客">
+<meta name="twitter:description" content="安装hexo安装nodejs,npm1$ npm install -g hexo 有的时候，需要在命令前，添加sudo 创建博客目录,并cd到对应的目录123$ mkdir blog $ cd `pwd`/blog$ pwd 生成对应的页面文件1$ hexo generate 查看更多: 生成页面 部署到github1$ hexo deploy 有时候会报错:ERROR Deployer not">
 
 
 
@@ -134,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="https://xsec.7ever.cn/2017/09/21/nginx-proxy/"/>
+  <link rel="canonical" href="https://xsec.7ever.cn/2017/03/07/hello-world/"/>
 
 
 
 
 
-  <title>使用nginx制作全代理 | Simple Xsec World</title>
+  <title>从头到尾搭建hexo博客 | Simple Xsec World</title>
   
 
 
@@ -283,7 +283,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2017/09/21/nginx-proxy/">
+    <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2017/03/07/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xingyue">
@@ -300,7 +300,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">使用nginx制作全代理</h1>
+          <h1 class="post-title" itemprop="name headline">从头到尾搭建hexo博客</h1>
         
 
         <div class="post-meta">
@@ -312,8 +312,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-21T20:47:02+08:00">
-                2017-09-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-07T16:54:31+08:00">
+                2017-03-07
               </time>
             
 
@@ -372,29 +372,18 @@
       
 
       
-        <ul>
-<li>编译nginx,编译脚本:</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">./configure \</div><div class="line">--prefix=/data0/nginx/ \</div><div class="line">--with-stream \</div><div class="line">--with-http_ssl_module  \</div><div class="line">--with-stream_ssl_module \</div><div class="line">make -j4</div><div class="line">make install</div></pre></td></tr></table></figure>
-<ul>
-<li>主nginx配置文件：</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">http &#123;</div><div class="line">	resolver 10.212.0.43  valid=3600s;</div><div class="line"></div><div class="line">	include       mime.types;</div><div class="line">	default_type  application/octet-stream;</div><div class="line"></div><div class="line">	log_format  main  '$remote_addr $http_host - $remote_user [$time_local] "$request" '</div><div class="line">		'$status $body_bytes_sent "$http_referer" '</div><div class="line">		'"$http_user_agent" "$http_x_forwarded_for"';</div><div class="line">	sendfile        on; </div><div class="line">	keepalive_timeout  65; </div><div class="line">	gzip  on; </div><div class="line">	include vhost/*.conf;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>http代理比较简单:</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span>vhost/proxy.conf</div><div class="line">server &#123;</div><div class="line">	listen  80;</div><div class="line">	error_log logs/proxy_err.log;</div><div class="line">	access_log logs/proxy_ac.log main;</div><div class="line">	</div><div class="line">	location / &#123; </div><div class="line">		proxy_pass http://$http_host;</div><div class="line">		proxy_set_header X-RealIP $remote_addr;</div><div class="line">		proxy_set_header Host $http_host;</div><div class="line">	&#125;   </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li><p>https代理:<br>生成证书:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">openssl genrsa -des3 -out common.key 1024</div><div class="line">openssl req -new -key common.key -out common.csr</div><div class="line">openssl rsa -in common.key -out common_nopwd.key</div><div class="line">openssl x509 -req -days 365 -in common.csr -signkey common_nopwd.key -out common.crt</div><div class="line">echo "ssl on;"</div><div class="line">echo "ssl_certificate ssl/common.crt;"</div><div class="line">echo "ssl_certificate_key ssl/common_nopwd.key;"</div></pre></td></tr></table></figure>
-</li>
-<li><p>配置https代理:</p>
-</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">	listen  443;</div><div class="line">	error_log logs/proxy_ssl_err.log;</div><div class="line">	access_log logs/proxy_ssl_ac.log main;</div><div class="line">	</div><div class="line">	ssl on;</div><div class="line">	ssl_certificate ssl/common.crt;</div><div class="line">	ssl_certificate_key ssl/common_nopwd.key;</div><div class="line">	</div><div class="line">	location / &#123; </div><div class="line">		proxy_pass https://$http_host;</div><div class="line">		proxy_set_header Host $http_host;</div><div class="line">	&#125;   </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>最后一步，你绑定需要的hosts就可以把当前nginx机器伪装成需要访问的主机。当前nginx主机通过resolver 来解析需要访问的域名对应的ip<br>然后，去访问该ip端口对应的数据返回给浏览器。</li>
-</ul>
+        <h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2><h3 id="安装nodejs-npm"><a href="#安装nodejs-npm" class="headerlink" title="安装nodejs,npm"></a>安装nodejs,npm</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install -g hexo</div></pre></td></tr></table></figure>
+<p>有的时候，需要在命令前，添加sudo</p>
+<h3 id="创建博客目录-并cd到对应的目录"><a href="#创建博客目录-并cd到对应的目录" class="headerlink" title="创建博客目录,并cd到对应的目录"></a>创建博客目录,并cd到对应的目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ mkdir blog </div><div class="line">$ <span class="built_in">cd</span> `<span class="built_in">pwd</span>`/blog</div><div class="line">$ <span class="built_in">pwd</span></div></pre></td></tr></table></figure>
+<h3 id="生成对应的页面文件"><a href="#生成对应的页面文件" class="headerlink" title="生成对应的页面文件"></a>生成对应的页面文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
+<p>查看更多: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">生成页面</a></p>
+<h3 id="部署到github"><a href="#部署到github" class="headerlink" title="部署到github"></a>部署到github</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<p>有时候会报错:ERROR Deployer not found: github<br>解决办法如下,运行如下命令:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install hexo-deployer-git --save</div></pre></td></tr></table></figure>
+<h3 id="生成新的文章"><a href="#生成新的文章" class="headerlink" title="生成新的文章:"></a>生成新的文章:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new &lt;layout&gt; &lt;title&gt;</div></pre></td></tr></table></figure>
+<p>其中layout的值为: post, page, draft 或者其他的内容</p>
+<p>当修改内容以后，需要调用以下命令，重新生成，重新部署:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo g &amp;&amp; hexo d</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -412,11 +401,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/nginx/" rel="tag"># nginx</a>
-          
-            <a href="/tags/linux/" rel="tag"># linux</a>
-          
-            <a href="/tags/proxy/" rel="tag"># proxy</a>
+            <a href="/tags/hello/" rel="tag"># hello</a>
           
         </div>
       
@@ -429,8 +414,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/07/centos7升级gcc到4-9-3/" rel="next" title="centos7升级gcc到4.9.3">
-                <i class="fa fa-chevron-left"></i> centos7升级gcc到4.9.3
+              <a href="/2017/03/07/supervisor安装配置使用/" rel="next" title="supervisor安装配置使用">
+                <i class="fa fa-chevron-left"></i> supervisor安装配置使用
               </a>
             
           </div>
@@ -439,8 +424,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/09/22/xcode-use-cocoapods/" rel="prev" title="xcode 使用cocoapods">
-                xcode 使用cocoapods <i class="fa fa-chevron-right"></i>
+              <a href="/2017/03/07/centos7升级gcc到4-9-3/" rel="prev" title="centos7升级gcc到4.9.3">
+                centos7升级gcc到4.9.3 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -493,8 +478,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -556,6 +550,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装hexo"><span class="nav-number">1.</span> <span class="nav-text">安装hexo</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装nodejs-npm"><span class="nav-number">1.1.</span> <span class="nav-text">安装nodejs,npm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建博客目录-并cd到对应的目录"><span class="nav-number">1.2.</span> <span class="nav-text">创建博客目录,并cd到对应的目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成对应的页面文件"><span class="nav-number">1.3.</span> <span class="nav-text">生成对应的页面文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#部署到github"><span class="nav-number">1.4.</span> <span class="nav-text">部署到github</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成新的文章"><span class="nav-number">1.5.</span> <span class="nav-text">生成新的文章:</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
