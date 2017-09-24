@@ -10,7 +10,7 @@
   <id>https://xsec.7ever.cn/</id>
   
   <author>
-    <name>_Xingying</name>
+    <name>Xingyue</name>
     
   </author>
   
@@ -72,9 +72,9 @@
     
       <category term="nginx" scheme="https://xsec.7ever.cn/tags/nginx/"/>
     
-      <category term="proxy" scheme="https://xsec.7ever.cn/tags/proxy/"/>
-    
       <category term="stream" scheme="https://xsec.7ever.cn/tags/stream/"/>
+    
+      <category term="proxy" scheme="https://xsec.7ever.cn/tags/proxy/"/>
     
   </entry>
   
@@ -136,9 +136,39 @@
     
       <category term="nginx" scheme="https://xsec.7ever.cn/tags/nginx/"/>
     
+      <category term="proxy" scheme="https://xsec.7ever.cn/tags/proxy/"/>
+    
       <category term="linux" scheme="https://xsec.7ever.cn/tags/linux/"/>
     
-      <category term="proxy" scheme="https://xsec.7ever.cn/tags/proxy/"/>
+  </entry>
+  
+  <entry>
+    <title>centos7升级gcc到4.9.3</title>
+    <link href="https://xsec.7ever.cn/2017/03/07/centos7%E5%8D%87%E7%BA%A7gcc%E5%88%B04-9-3/"/>
+    <id>https://xsec.7ever.cn/2017/03/07/centos7升级gcc到4-9-3/</id>
+    <published>2017-03-07T08:54:31.000Z</published>
+    <updated>2017-09-23T02:08:33.000Z</updated>
+    
+    <content type="html"><![CDATA[<ol><li>下载源代码:</li></ol><p>从<a href="https://gcc.gnu.org/mirrors.html" target="_blank" rel="external">https://gcc.gnu.org/mirrors.html</a>选择一个相对快的镜像库,我选择的是<br><a href="http://www.netgull.com/gcc/releases/" target="_blank" rel="external">http://www.netgull.com/gcc/releases/</a></p><ol><li>下载必要库:</li></ol><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> ./contrib/download_prerequisites</div></pre></td></tr></table></figure><ol><li><p>编译依赖c++</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> yum install gcc-c++</div></pre></td></tr></table></figure></li><li><p>创建安装文件编译目录:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> mkdir objdir  &amp;&amp; cd objdir</div><div class="line"><span class="meta">$</span> ../configure --enable-languages=c,c++ --disable-multilib</div><div class="line"><span class="meta">$</span> make </div><div class="line"><span class="meta">$</span> make install</div></pre></td></tr></table></figure></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;ol&gt;
+&lt;li&gt;下载源代码:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;从&lt;a href=&quot;https://gcc.gnu.org/mirrors.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://gcc.gnu.org/mirrors.html&lt;/a
+      
+    
+    </summary>
+    
+      <category term="系统" scheme="https://xsec.7ever.cn/categories/%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+      <category term="gcc" scheme="https://xsec.7ever.cn/tags/gcc/"/>
+    
+      <category term="centos7" scheme="https://xsec.7ever.cn/tags/centos7/"/>
     
   </entry>
   
@@ -164,36 +194,6 @@
     
     
       <category term="hello" scheme="https://xsec.7ever.cn/tags/hello/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>centos7升级gcc到4.9.3</title>
-    <link href="https://xsec.7ever.cn/2017/03/07/centos7%E5%8D%87%E7%BA%A7gcc%E5%88%B04-9-3/"/>
-    <id>https://xsec.7ever.cn/2017/03/07/centos7升级gcc到4-9-3/</id>
-    <published>2017-03-07T08:54:31.000Z</published>
-    <updated>2017-09-23T02:08:33.000Z</updated>
-    
-    <content type="html"><![CDATA[<ol><li>下载源代码:</li></ol><p>从<a href="https://gcc.gnu.org/mirrors.html" target="_blank" rel="external">https://gcc.gnu.org/mirrors.html</a>选择一个相对快的镜像库,我选择的是<br><a href="http://www.netgull.com/gcc/releases/" target="_blank" rel="external">http://www.netgull.com/gcc/releases/</a></p><ol><li>下载必要库:</li></ol><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> ./contrib/download_prerequisites</span></div></pre></td></tr></table></figure><ol><li><p>编译依赖c++</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> yum install gcc-c++</span></div></pre></td></tr></table></figure></li><li><p>创建安装文件编译目录:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> mkdir objdir  &amp;&amp; <span class="built_in">cd</span> objdir</span></div><div class="line"><span class="meta">$</span><span class="bash"> ../configure --<span class="built_in">enable</span>-languages=c,c++ --<span class="built_in">disable</span>-multilib</span></div><div class="line"><span class="meta">$</span><span class="bash"> make </span></div><div class="line"><span class="meta">$</span><span class="bash"> make install</span></div></pre></td></tr></table></figure></li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;ol&gt;
-&lt;li&gt;下载源代码:&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;从&lt;a href=&quot;https://gcc.gnu.org/mirrors.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://gcc.gnu.org/mirrors.html&lt;/a
-      
-    
-    </summary>
-    
-      <category term="系统" scheme="https://xsec.7ever.cn/categories/%E7%B3%BB%E7%BB%9F/"/>
-    
-    
-      <category term="gcc" scheme="https://xsec.7ever.cn/tags/gcc/"/>
-    
-      <category term="centos7" scheme="https://xsec.7ever.cn/tags/centos7/"/>
     
   </entry>
   
