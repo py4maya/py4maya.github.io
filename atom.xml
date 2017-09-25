@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xsec.7ever.cn/"/>
-  <updated>2017-09-25T03:33:50.000Z</updated>
+  <updated>2017-09-25T06:35:40.000Z</updated>
   <id>https://xsec.7ever.cn/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://xsec.7ever.cn/2017/09/25/echo-with-color/"/>
     <id>https://xsec.7ever.cn/2017/09/25/echo-with-color/</id>
     <published>2017-09-25T03:24:22.000Z</published>
-    <updated>2017-09-25T03:33:50.000Z</updated>
+    <updated>2017-09-25T06:35:40.000Z</updated>
     
     <content type="html"><![CDATA[<p>输出以下的格式 \033[显示方式;前景色;背景色m</p><p>各颜色编码说明：</p><table><thead><tr><th>前景色</th><th>背景色</th><th>颜色</th></tr></thead><tbody><tr><td>  30</td><td>40</td><td>黑色</td></tr><tr><td>  31</td><td>41</td><td>红色</td></tr><tr><td>  32</td><td>42</td><td>绿色</td></tr><tr><td>  33</td><td>43</td><td>黃色</td></tr><tr><td>  34</td><td>44</td><td>蓝色</td></tr><tr><td>  35</td><td>45</td><td>紫红色</td></tr><tr><td>  36</td><td>46</td><td>青蓝色</td></tr><tr><td>  37</td><td>47</td><td>白色</td></tr></tbody></table><p>几种不通的显示方式:</p><table><thead><tr><th>显示方式</th><th>意义</th></tr></thead><tbody><tr><td>0</td><td>终端默认设置</td></tr><tr><td>1</td><td>高亮显示</td></tr><tr><td>4</td><td>使用下划线</td></tr><tr><td>5</td><td>闪烁</td></tr><tr><td>7</td><td>反白显示</td></tr><tr><td>8</td><td>不可见</td></tr></tbody></table><p>几种输出的例子:</p><ul><li>\033[1;31;40m<br> 1-高亮显示 31-前景色红色  40-背景色黑色</li><li>\033[0m<br> 采用终端默认设置，即取消颜色设置</li></ul>]]></content>
     
@@ -50,6 +50,8 @@
     
     
       <category term="echo" scheme="https://xsec.7ever.cn/tags/echo/"/>
+    
+      <category term="shell" scheme="https://xsec.7ever.cn/tags/shell/"/>
     
   </entry>
   
@@ -109,9 +111,9 @@
     
       <category term="nginx" scheme="https://xsec.7ever.cn/tags/nginx/"/>
     
-      <category term="stream" scheme="https://xsec.7ever.cn/tags/stream/"/>
-    
       <category term="proxy" scheme="https://xsec.7ever.cn/tags/proxy/"/>
+    
+      <category term="stream" scheme="https://xsec.7ever.cn/tags/stream/"/>
     
   </entry>
   
@@ -154,7 +156,7 @@
     <published>2017-09-21T12:47:02.000Z</published>
     <updated>2017-09-23T02:07:36.000Z</updated>
     
-    <content type="html"><![CDATA[<ul><li>编译nginx,编译脚本:</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">./configure \</div><div class="line">--prefix=/data0/nginx/ \</div><div class="line">--with-stream \</div><div class="line">--with-http_ssl_module  \</div><div class="line">--with-stream_ssl_module \</div><div class="line">make -j4</div><div class="line">make install</div></pre></td></tr></table></figure><ul><li>主nginx配置文件：</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">http &#123;</div><div class="line">resolver 10.212.0.43  valid=3600s;</div><div class="line"></div><div class="line">include       mime.types;</div><div class="line">default_type  application/octet-stream;</div><div class="line"></div><div class="line">log_format  main  '$remote_addr $http_host - $remote_user [$time_local] "$request" '</div><div class="line">'$status $body_bytes_sent "$http_referer" '</div><div class="line">'"$http_user_agent" "$http_x_forwarded_for"';</div><div class="line">sendfile        on; </div><div class="line">keepalive_timeout  65; </div><div class="line">gzip  on; </div><div class="line">include vhost/*.conf;</div><div class="line">&#125;</div></pre></td></tr></table></figure><ul><li>http代理比较简单:</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash">vhost/proxy.conf</span></div><div class="line">server &#123;</div><div class="line">listen  80;</div><div class="line">error_log logs/proxy_err.log;</div><div class="line">access_log logs/proxy_ac.log main;</div><div class="line"></div><div class="line">location / &#123; </div><div class="line">proxy_pass http://$http_host;</div><div class="line">proxy_set_header X-RealIP $remote_addr;</div><div class="line">proxy_set_header Host $http_host;</div><div class="line">&#125;   </div><div class="line">&#125;</div></pre></td></tr></table></figure><ul><li><p>https代理:<br>生成证书:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">openssl genrsa -des3 -out common.key 1024</div><div class="line">openssl req -new -key common.key -out common.csr</div><div class="line">openssl rsa -in common.key -out common_nopwd.key</div><div class="line">openssl x509 -req -days 365 -in common.csr -signkey common_nopwd.key -out common.crt</div><div class="line">echo "ssl on;"</div><div class="line">echo "ssl_certificate ssl/common.crt;"</div><div class="line">echo "ssl_certificate_key ssl/common_nopwd.key;"</div></pre></td></tr></table></figure></li><li><p>配置https代理:</p></li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">listen  443;</div><div class="line">error_log logs/proxy_ssl_err.log;</div><div class="line">access_log logs/proxy_ssl_ac.log main;</div><div class="line"></div><div class="line">ssl on;</div><div class="line">ssl_certificate ssl/common.crt;</div><div class="line">ssl_certificate_key ssl/common_nopwd.key;</div><div class="line"></div><div class="line">location / &#123; </div><div class="line">proxy_pass https://$http_host;</div><div class="line">proxy_set_header Host $http_host;</div><div class="line">&#125;   </div><div class="line">&#125;</div></pre></td></tr></table></figure><ul><li>最后一步，你绑定需要的hosts就可以把当前nginx机器伪装成需要访问的主机。当前nginx主机通过resolver 来解析需要访问的域名对应的ip<br>然后，去访问该ip端口对应的数据返回给浏览器。</li></ul>]]></content>
+    <content type="html"><![CDATA[<ul><li>编译nginx,编译脚本:</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">./configure \</div><div class="line">--prefix=/data0/nginx/ \</div><div class="line">--with-stream \</div><div class="line">--with-http_ssl_module  \</div><div class="line">--with-stream_ssl_module \</div><div class="line">make -j4</div><div class="line">make install</div></pre></td></tr></table></figure><ul><li>主nginx配置文件：</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">http &#123;</div><div class="line">resolver 10.212.0.43  valid=3600s;</div><div class="line"></div><div class="line">include       mime.types;</div><div class="line">default_type  application/octet-stream;</div><div class="line"></div><div class="line">log_format  main  '$remote_addr $http_host - $remote_user [$time_local] "$request" '</div><div class="line">'$status $body_bytes_sent "$http_referer" '</div><div class="line">'"$http_user_agent" "$http_x_forwarded_for"';</div><div class="line">sendfile        on; </div><div class="line">keepalive_timeout  65; </div><div class="line">gzip  on; </div><div class="line">include vhost/*.conf;</div><div class="line">&#125;</div></pre></td></tr></table></figure><ul><li>http代理比较简单:</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span>vhost/proxy.conf</div><div class="line">server &#123;</div><div class="line">listen  80;</div><div class="line">error_log logs/proxy_err.log;</div><div class="line">access_log logs/proxy_ac.log main;</div><div class="line"></div><div class="line">location / &#123; </div><div class="line">proxy_pass http://$http_host;</div><div class="line">proxy_set_header X-RealIP $remote_addr;</div><div class="line">proxy_set_header Host $http_host;</div><div class="line">&#125;   </div><div class="line">&#125;</div></pre></td></tr></table></figure><ul><li><p>https代理:<br>生成证书:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">openssl genrsa -des3 -out common.key 1024</div><div class="line">openssl req -new -key common.key -out common.csr</div><div class="line">openssl rsa -in common.key -out common_nopwd.key</div><div class="line">openssl x509 -req -days 365 -in common.csr -signkey common_nopwd.key -out common.crt</div><div class="line">echo "ssl on;"</div><div class="line">echo "ssl_certificate ssl/common.crt;"</div><div class="line">echo "ssl_certificate_key ssl/common_nopwd.key;"</div></pre></td></tr></table></figure></li><li><p>配置https代理:</p></li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">listen  443;</div><div class="line">error_log logs/proxy_ssl_err.log;</div><div class="line">access_log logs/proxy_ssl_ac.log main;</div><div class="line"></div><div class="line">ssl on;</div><div class="line">ssl_certificate ssl/common.crt;</div><div class="line">ssl_certificate_key ssl/common_nopwd.key;</div><div class="line"></div><div class="line">location / &#123; </div><div class="line">proxy_pass https://$http_host;</div><div class="line">proxy_set_header Host $http_host;</div><div class="line">&#125;   </div><div class="line">&#125;</div></pre></td></tr></table></figure><ul><li>最后一步，你绑定需要的hosts就可以把当前nginx机器伪装成需要访问的主机。当前nginx主机通过resolver 来解析需要访问的域名对应的ip<br>然后，去访问该ip端口对应的数据返回给浏览器。</li></ul>]]></content>
     
     <summary type="html">
     
@@ -173,9 +175,39 @@
     
       <category term="nginx" scheme="https://xsec.7ever.cn/tags/nginx/"/>
     
+      <category term="linux" scheme="https://xsec.7ever.cn/tags/linux/"/>
+    
       <category term="proxy" scheme="https://xsec.7ever.cn/tags/proxy/"/>
     
-      <category term="linux" scheme="https://xsec.7ever.cn/tags/linux/"/>
+  </entry>
+  
+  <entry>
+    <title>centos7升级gcc到4.9.3</title>
+    <link href="https://xsec.7ever.cn/2017/03/07/centos7%E5%8D%87%E7%BA%A7gcc%E5%88%B04-9-3/"/>
+    <id>https://xsec.7ever.cn/2017/03/07/centos7升级gcc到4-9-3/</id>
+    <published>2017-03-07T08:54:31.000Z</published>
+    <updated>2017-09-23T02:08:33.000Z</updated>
+    
+    <content type="html"><![CDATA[<ol><li>下载源代码:</li></ol><p>从<a href="https://gcc.gnu.org/mirrors.html" target="_blank" rel="external">https://gcc.gnu.org/mirrors.html</a>选择一个相对快的镜像库,我选择的是<br><a href="http://www.netgull.com/gcc/releases/" target="_blank" rel="external">http://www.netgull.com/gcc/releases/</a></p><ol><li>下载必要库:</li></ol><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> ./contrib/download_prerequisites</div></pre></td></tr></table></figure><ol><li><p>编译依赖c++</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> yum install gcc-c++</div></pre></td></tr></table></figure></li><li><p>创建安装文件编译目录:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> mkdir objdir  &amp;&amp; cd objdir</div><div class="line"><span class="meta">$</span> ../configure --enable-languages=c,c++ --disable-multilib</div><div class="line"><span class="meta">$</span> make </div><div class="line"><span class="meta">$</span> make install</div></pre></td></tr></table></figure></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;ol&gt;
+&lt;li&gt;下载源代码:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;从&lt;a href=&quot;https://gcc.gnu.org/mirrors.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://gcc.gnu.org/mirrors.html&lt;/a
+      
+    
+    </summary>
+    
+      <category term="系统" scheme="https://xsec.7ever.cn/categories/%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+      <category term="gcc" scheme="https://xsec.7ever.cn/tags/gcc/"/>
+    
+      <category term="centos7" scheme="https://xsec.7ever.cn/tags/centos7/"/>
     
   </entry>
   
@@ -201,36 +233,6 @@
     
     
       <category term="hello" scheme="https://xsec.7ever.cn/tags/hello/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>centos7升级gcc到4.9.3</title>
-    <link href="https://xsec.7ever.cn/2017/03/07/centos7%E5%8D%87%E7%BA%A7gcc%E5%88%B04-9-3/"/>
-    <id>https://xsec.7ever.cn/2017/03/07/centos7升级gcc到4-9-3/</id>
-    <published>2017-03-07T08:54:31.000Z</published>
-    <updated>2017-09-23T02:08:33.000Z</updated>
-    
-    <content type="html"><![CDATA[<ol><li>下载源代码:</li></ol><p>从<a href="https://gcc.gnu.org/mirrors.html" target="_blank" rel="external">https://gcc.gnu.org/mirrors.html</a>选择一个相对快的镜像库,我选择的是<br><a href="http://www.netgull.com/gcc/releases/" target="_blank" rel="external">http://www.netgull.com/gcc/releases/</a></p><ol><li>下载必要库:</li></ol><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> ./contrib/download_prerequisites</span></div></pre></td></tr></table></figure><ol><li><p>编译依赖c++</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> yum install gcc-c++</span></div></pre></td></tr></table></figure></li><li><p>创建安装文件编译目录:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> mkdir objdir  &amp;&amp; <span class="built_in">cd</span> objdir</span></div><div class="line"><span class="meta">$</span><span class="bash"> ../configure --<span class="built_in">enable</span>-languages=c,c++ --<span class="built_in">disable</span>-multilib</span></div><div class="line"><span class="meta">$</span><span class="bash"> make </span></div><div class="line"><span class="meta">$</span><span class="bash"> make install</span></div></pre></td></tr></table></figure></li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;ol&gt;
-&lt;li&gt;下载源代码:&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;从&lt;a href=&quot;https://gcc.gnu.org/mirrors.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://gcc.gnu.org/mirrors.html&lt;/a
-      
-    
-    </summary>
-    
-      <category term="系统" scheme="https://xsec.7ever.cn/categories/%E7%B3%BB%E7%BB%9F/"/>
-    
-    
-      <category term="gcc" scheme="https://xsec.7ever.cn/tags/gcc/"/>
-    
-      <category term="centos7" scheme="https://xsec.7ever.cn/tags/centos7/"/>
     
   </entry>
   
