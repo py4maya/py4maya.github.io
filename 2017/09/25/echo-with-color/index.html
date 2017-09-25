@@ -96,18 +96,18 @@
 
 
 
-<meta name="description" content="输出以下的格式 \033[显示方式;前景色;背景色m 各颜色编码说明： 前景色            背景色           颜色30                40              黑色31                41              红色32                42              绿色33                43">
+<meta name="description" content="输出以下的格式 \033[显示方式;前景色;背景色m 各颜色编码说明：    前景色 背景色 颜色       30 40 黑色     31 41 红色     32 42 绿色     33 43 黃色     34 44 蓝色     35 45 紫红色     36 46 青蓝色     37 47 白色    几种不通的显示方式:    显示方式 意义     0 终端默认设置   1">
 <meta name="keywords" content="echo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="终端输出带颜色的字符">
 <meta property="og:url" content="https://xsec.7ever.cn/2017/09/25/echo-with-color/index.html">
 <meta property="og:site_name" content="Simple Xsec World">
-<meta property="og:description" content="输出以下的格式 \033[显示方式;前景色;背景色m 各颜色编码说明： 前景色            背景色           颜色30                40              黑色31                41              红色32                42              绿色33                43">
+<meta property="og:description" content="输出以下的格式 \033[显示方式;前景色;背景色m 各颜色编码说明：    前景色 背景色 颜色       30 40 黑色     31 41 红色     32 42 绿色     33 43 黃色     34 44 蓝色     35 45 紫红色     36 46 青蓝色     37 47 白色    几种不通的显示方式:    显示方式 意义     0 终端默认设置   1">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-25T03:26:52.000Z">
+<meta property="og:updated_time" content="2017-09-25T03:33:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="终端输出带颜色的字符">
-<meta name="twitter:description" content="输出以下的格式 \033[显示方式;前景色;背景色m 各颜色编码说明： 前景色            背景色           颜色30                40              黑色31                41              红色32                42              绿色33                43">
+<meta name="twitter:description" content="输出以下的格式 \033[显示方式;前景色;背景色m 各颜色编码说明：    前景色 背景色 颜色       30 40 黑色     31 41 红色     32 42 绿色     33 43 黃色     34 44 蓝色     35 45 紫红色     36 46 青蓝色     37 47 白色    几种不通的显示方式:    显示方式 意义     0 终端默认设置   1">
 
 
 
@@ -386,13 +386,96 @@
       
         <p>输出以下的格式 \033[显示方式;前景色;背景色m</p>
 <p>各颜色编码说明：</p>
-<h2 id="前景色-背景色-颜色"><a href="#前景色-背景色-颜色" class="headerlink" title="前景色            背景色           颜色"></a>前景色            背景色           颜色</h2><p>30                40              黑色<br>31                41              红色<br>32                42              绿色<br>33                43              黃色<br>34                44              蓝色<br>35                45              紫红色<br>36                46              青蓝色<br>37                47              白色</p>
-<p>集中不通的显示方式:</p>
-<h2 id="显示方式-意义"><a href="#显示方式-意义" class="headerlink" title="显示方式           意义"></a>显示方式           意义</h2><p>0                终端默认设置<br>1                高亮显示<br>4                使用下划线<br>5                闪烁<br>7                反白显示<br>8                不可见</p>
+<table>
+<thead>
+<tr>
+<th>前景色</th>
+<th>背景色</th>
+<th>颜色</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>  30</td>
+<td>40</td>
+<td>黑色</td>
+</tr>
+<tr>
+<td>  31</td>
+<td>41</td>
+<td>红色</td>
+</tr>
+<tr>
+<td>  32</td>
+<td>42</td>
+<td>绿色</td>
+</tr>
+<tr>
+<td>  33</td>
+<td>43</td>
+<td>黃色</td>
+</tr>
+<tr>
+<td>  34</td>
+<td>44</td>
+<td>蓝色</td>
+</tr>
+<tr>
+<td>  35</td>
+<td>45</td>
+<td>紫红色</td>
+</tr>
+<tr>
+<td>  36</td>
+<td>46</td>
+<td>青蓝色</td>
+</tr>
+<tr>
+<td>  37</td>
+<td>47</td>
+<td>白色</td>
+</tr>
+</tbody>
+</table>
+<p>几种不通的显示方式:</p>
+<table>
+<thead>
+<tr>
+<th>显示方式</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>终端默认设置</td>
+</tr>
+<tr>
+<td>1</td>
+<td>高亮显示</td>
+</tr>
+<tr>
+<td>4</td>
+<td>使用下划线</td>
+</tr>
+<tr>
+<td>5</td>
+<td>闪烁</td>
+</tr>
+<tr>
+<td>7</td>
+<td>反白显示</td>
+</tr>
+<tr>
+<td>8</td>
+<td>不可见</td>
+</tr>
+</tbody>
+</table>
 <p>几种输出的例子:</p>
 <ul>
-<li>\033[1;31;40m    1-高亮显示 31-前景色红色  40-背景色黑色</li>
-<li>\033[0m          采用终端默认设置，即取消颜色设置</li>
+<li>\033[1;31;40m<br> 1-高亮显示 31-前景色红色  40-背景色黑色</li>
+<li>\033[0m<br> 采用终端默认设置，即取消颜色设置</li>
 </ul>
 
       
@@ -526,17 +609,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -619,22 +693,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前景色-背景色-颜色"><span class="nav-number">1.</span> <span class="nav-text">前景色            背景色           颜色</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#显示方式-意义"><span class="nav-number">2.</span> <span class="nav-text">显示方式           意义</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       

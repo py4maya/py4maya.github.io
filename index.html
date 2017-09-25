@@ -387,13 +387,96 @@
           
             <p>输出以下的格式 \033[显示方式;前景色;背景色m</p>
 <p>各颜色编码说明：</p>
-<h2 id="前景色-背景色-颜色"><a href="#前景色-背景色-颜色" class="headerlink" title="前景色            背景色           颜色"></a>前景色            背景色           颜色</h2><p>30                40              黑色<br>31                41              红色<br>32                42              绿色<br>33                43              黃色<br>34                44              蓝色<br>35                45              紫红色<br>36                46              青蓝色<br>37                47              白色</p>
-<p>集中不通的显示方式:</p>
-<h2 id="显示方式-意义"><a href="#显示方式-意义" class="headerlink" title="显示方式           意义"></a>显示方式           意义</h2><p>0                终端默认设置<br>1                高亮显示<br>4                使用下划线<br>5                闪烁<br>7                反白显示<br>8                不可见</p>
+<table>
+<thead>
+<tr>
+<th>前景色</th>
+<th>背景色</th>
+<th>颜色</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>  30</td>
+<td>40</td>
+<td>黑色</td>
+</tr>
+<tr>
+<td>  31</td>
+<td>41</td>
+<td>红色</td>
+</tr>
+<tr>
+<td>  32</td>
+<td>42</td>
+<td>绿色</td>
+</tr>
+<tr>
+<td>  33</td>
+<td>43</td>
+<td>黃色</td>
+</tr>
+<tr>
+<td>  34</td>
+<td>44</td>
+<td>蓝色</td>
+</tr>
+<tr>
+<td>  35</td>
+<td>45</td>
+<td>紫红色</td>
+</tr>
+<tr>
+<td>  36</td>
+<td>46</td>
+<td>青蓝色</td>
+</tr>
+<tr>
+<td>  37</td>
+<td>47</td>
+<td>白色</td>
+</tr>
+</tbody>
+</table>
+<p>几种不通的显示方式:</p>
+<table>
+<thead>
+<tr>
+<th>显示方式</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>终端默认设置</td>
+</tr>
+<tr>
+<td>1</td>
+<td>高亮显示</td>
+</tr>
+<tr>
+<td>4</td>
+<td>使用下划线</td>
+</tr>
+<tr>
+<td>5</td>
+<td>闪烁</td>
+</tr>
+<tr>
+<td>7</td>
+<td>反白显示</td>
+</tr>
+<tr>
+<td>8</td>
+<td>不可见</td>
+</tr>
+</tbody>
+</table>
 <p>几种输出的例子:</p>
 <ul>
-<li>\033[1;31;40m    1-高亮显示 31-前景色红色  40-背景色黑色</li>
-<li>\033[0m          采用终端默认设置，即取消颜色设置</li>
+<li>\033[1;31;40m<br> 1-高亮显示 31-前景色红色  40-背景色黑色</li>
+<li>\033[0m<br> 采用终端默认设置，即取消颜色设置</li>
 </ul>
 
           
@@ -1011,7 +1094,7 @@
 <ul>
 <li>http代理比较简单:</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span>vhost/proxy.conf</div><div class="line">server &#123;</div><div class="line">	listen  80;</div><div class="line">	error_log logs/proxy_err.log;</div><div class="line">	access_log logs/proxy_ac.log main;</div><div class="line">	</div><div class="line">	location / &#123; </div><div class="line">		proxy_pass http://$http_host;</div><div class="line">		proxy_set_header X-RealIP $remote_addr;</div><div class="line">		proxy_set_header Host $http_host;</div><div class="line">	&#125;   </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash">vhost/proxy.conf</span></div><div class="line">server &#123;</div><div class="line">	listen  80;</div><div class="line">	error_log logs/proxy_err.log;</div><div class="line">	access_log logs/proxy_ac.log main;</div><div class="line">	</div><div class="line">	location / &#123; </div><div class="line">		proxy_pass http://$http_host;</div><div class="line">		proxy_set_header X-RealIP $remote_addr;</div><div class="line">		proxy_set_header Host $http_host;</div><div class="line">	&#125;   </div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <ul>
 <li><p>https代理:<br>生成证书:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">openssl genrsa -des3 -out common.key 1024</div><div class="line">openssl req -new -key common.key -out common.csr</div><div class="line">openssl rsa -in common.key -out common_nopwd.key</div><div class="line">openssl x509 -req -days 365 -in common.csr -signkey common_nopwd.key -out common.crt</div><div class="line">echo "ssl on;"</div><div class="line">echo "ssl_certificate ssl/common.crt;"</div><div class="line">echo "ssl_certificate_key ssl/common_nopwd.key;"</div></pre></td></tr></table></figure>
