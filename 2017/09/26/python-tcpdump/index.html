@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="xsec 网络安全相关的开发工作.可能涉及必要的扫描，监控，修复等。" />
+  <meta name="keywords" content="python,tcpdump,pcap," />
 
 
 
@@ -96,13 +96,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Simple Xsec World">
-<meta property="og:url" content="https://xsec.7ever.cn/archives/2017/page/2/index.html">
+<meta name="description" content="libcap-devel 及 pypcap 安装12$ yum install libpcap-devel $ pip install pypcap 简单的抓取80端口的数据包:1234567891011121314#coding=utf-8import pcapimport dpktpc = pcap.pcap(&apos;eth0&apos;)pc.setfilter(&apos;tcp port 80&apos;)for ptim">
+<meta name="keywords" content="python,tcpdump,pcap">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用python的pcap模块构建tcpdump系统">
+<meta property="og:url" content="https://xsec.7ever.cn/2017/09/26/python-tcpdump/index.html">
 <meta property="og:site_name" content="Simple Xsec World">
+<meta property="og:description" content="libcap-devel 及 pypcap 安装12$ yum install libpcap-devel $ pip install pypcap 简单的抓取80端口的数据包:1234567891011121314#coding=utf-8import pcapimport dpktpc = pcap.pcap(&apos;eth0&apos;)pc.setfilter(&apos;tcp port 80&apos;)for ptim">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-09-26T02:59:01.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Simple Xsec World">
+<meta name="twitter:title" content="使用python的pcap模块构建tcpdump系统">
+<meta name="twitter:description" content="libcap-devel 及 pypcap 安装12$ yum install libpcap-devel $ pip install pypcap 简单的抓取80端口的数据包:1234567891011121314#coding=utf-8import pcapimport dpktpc = pcap.pcap(&apos;eth0&apos;)pc.setfilter(&apos;tcp port 80&apos;)for ptim">
 
 
 
@@ -131,13 +136,13 @@
 
 
 
-  <link rel="canonical" href="https://xsec.7ever.cn/archives/2017/page/2/"/>
+  <link rel="canonical" href="https://xsec.7ever.cn/2017/09/26/python-tcpdump/"/>
 
 
 
 
 
-  <title>归档 | Simple Xsec World</title>
+  <title>使用python的pcap模块构建tcpdump系统 | Simple Xsec World</title>
   
 
 
@@ -162,7 +167,7 @@
     
   
 
-  <div class="container sidebar-position-right  page-archive  ">
+  <div class="container sidebar-position-right page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -276,226 +281,222 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2017/09/26/python-tcpdump/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xingyue">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Simple Xsec World">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">使用python的pcap模块构建tcpdump系统</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-26T10:17:43+08:00">
+                2017-09-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-        嗯..! 目前共计 11 篇日志。 继续努力。
-      </span>
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
 
-      
-
-        
-        
-        
-
-        
+                
+                
+              
+            </span>
           
-          <div class="collection-title">
-            <h2 class="archive-year motion-element" id="archive-year-2017">2017</h2>
-          </div>
-        
-        
 
-        
+          
+            
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/09/21/nginx-proxy/" itemprop="url">
-              
-                <span itemprop="name">使用nginx制作全代理</span>
-              
-            </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-09-21T20:47:02+08:00"
-              content="2017-09-21" >
-          09-21
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+          
 
+        </div>
+      </header>
+    
 
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/07/hello-world/" itemprop="url">
-              
-                <span itemprop="name">从头到尾搭建hexo博客</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-07T16:54:31+08:00"
-              content="2017-03-07" >
-          03-07
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/07/centos7升级gcc到4-9-3/" itemprop="url">
-              
-                <span itemprop="name">centos7升级gcc到4.9.3</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-07T16:54:31+08:00"
-              content="2017-03-07" >
-          03-07
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <p>libcap-devel 及 pypcap 安装<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> yum install libpcap-devel </span></div><div class="line"><span class="meta">$</span><span class="bash"> pip install pypcap</span></div></pre></td></tr></table></figure></p>
+<p>简单的抓取80端口的数据包:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#coding=utf-8</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> pcap</div><div class="line"><span class="keyword">import</span> dpkt</div><div class="line"></div><div class="line">pc = pcap.pcap(<span class="string">'eth0'</span>)</div><div class="line"></div><div class="line">pc.setfilter(<span class="string">'tcp port 80'</span>)</div><div class="line"><span class="keyword">for</span> ptime,pdata <span class="keyword">in</span> pc:</div><div class="line">	frame = dpkt.ethernet.Ethernet(pdata)</div><div class="line">	ip = <span class="string">'%d.%d.%d.%d'</span> % tuple(map(ord,list(frame.data.dst)))</div><div class="line">	transfer = frame.data.data.__class__.__name__</div><div class="line">	<span class="keyword">print</span> ip,transfer</div><div class="line">	<span class="keyword">print</span> frame.data.data</div></pre></td></tr></table></figure></p>
+<p>数据分析的几个关键点:</p>
+<ul>
+<li>pcap.pcap的参数网卡name 一般是ech0</li>
+<li>pc.setfilter 数据包的过滤器,比如 tcp port 80 , udp port 53 filter语法遵循<a href="/bpf/">bpf语法</a></li>
+<li>解析成frame frame = dpkt.ethernet.Ethernet(pdata) 数据的原内容放在frame.data.data中</li>
+</ul>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/07/supervisor安装配置使用/" itemprop="url">
-              
-                <span itemprop="name">supervisor安装配置使用</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-07T08:57:50+08:00"
-              content="2017-03-07" >
-          03-07
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/06/安全牛的免费课/" itemprop="url">
-              
-                <span itemprop="name">安全牛的免费课程</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-06T16:05:00+08:00"
-              content="2017-03-06" >
-          03-06
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>博主很辛苦，求打赏</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat_pay.jpg" alt="Xingyue WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Xingyue
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://xsec.7ever.cn/2017/09/26/python-tcpdump/" title="使用python的pcap模块构建tcpdump系统">https://xsec.7ever.cn/2017/09/26/python-tcpdump/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+            <a href="/tags/tcpdump/" rel="tag"># tcpdump</a>
+          
+            <a href="/tags/pcap/" rel="tag"># pcap</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/25/echo-with-color/" rel="next" title="终端输出带颜色的字符">
+                <i class="fa fa-chevron-left"></i> 终端输出带颜色的字符
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/2017/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/archives/2017/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/2017/page/3/">3</a><a class="extend next" rel="next" href="/archives/2017/page/3/"><i class="fa fa-angle-right"></i></a>
-  </nav>
+  </article>
 
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -503,6 +504,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -720,11 +725,9 @@
   
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
 
 
   

@@ -96,13 +96,17 @@
 
 
 
+<meta name="description" content="Berkeley Packet Filter (BPF) syntaxThe expression consists of one or more primitives. Primitives usually consist of an id (name or number) preceded by one or more qualifiers.  There are three differen">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Simple Xsec World">
-<meta property="og:url" content="https://xsec.7ever.cn/archives/2017/page/2/index.html">
+<meta property="og:title" content="bpf 语法">
+<meta property="og:url" content="https://xsec.7ever.cn/bpf/index.html">
 <meta property="og:site_name" content="Simple Xsec World">
+<meta property="og:description" content="Berkeley Packet Filter (BPF) syntaxThe expression consists of one or more primitives. Primitives usually consist of an id (name or number) preceded by one or more qualifiers.  There are three differen">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-09-26T02:57:10.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Simple Xsec World">
+<meta name="twitter:title" content="bpf 语法">
+<meta name="twitter:description" content="Berkeley Packet Filter (BPF) syntaxThe expression consists of one or more primitives. Primitives usually consist of an id (name or number) preceded by one or more qualifiers.  There are three differen">
 
 
 
@@ -131,13 +135,13 @@
 
 
 
-  <link rel="canonical" href="https://xsec.7ever.cn/archives/2017/page/2/"/>
+  <link rel="canonical" href="https://xsec.7ever.cn/bpf/"/>
 
 
 
 
 
-  <title>归档 | Simple Xsec World</title>
+  <title>bpf 语法 | Simple Xsec World</title>
   
 
 
@@ -162,7 +166,7 @@
     
   
 
-  <div class="container sidebar-position-right  page-archive  ">
+  <div class="container sidebar-position-right page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -276,226 +280,44 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
 
-      <span class="archive-page-counter">
-        
-        
-        
-          
-        
-        嗯..! 目前共计 11 篇日志。 继续努力。
-      </span>
+	<h1 class="post-title" itemprop="name headline">bpf 语法</h1>
+
+
+
+</header>
 
       
+      
+      
+      <div class="post-body">
+        
+        
+          <h3 id="Berkeley-Packet-Filter-BPF-syntax"><a href="#Berkeley-Packet-Filter-BPF-syntax" class="headerlink" title="Berkeley Packet Filter (BPF) syntax"></a>Berkeley Packet Filter (BPF) syntax</h3><p>The <em>expression</em> consists of one or more <em>primitives</em>. Primitives usually consist of an <em>id</em> (name or number) preceded by one or more qualifiers.  There are three different kinds of qualifier:</p>
+<h4 id="type"><a href="#type" class="headerlink" title="type"></a>type</h4><p>qualifiers say what kind of thing the id name or number refers to.  Possible types are <em>host</em> ,  <em>net</em>  , <em>port</em>, and <em>portrange</em> .<br>E.g., <code>host foo&#39;,</code>net 128.3’, <code>port 20&#39;,</code>portrange 6000-6008’.<br>If there is no type qualifier, <em>host</em> is assumed.</p>
+<h4 id="dir"><a href="#dir" class="headerlink" title="dir"></a>dir</h4><p>qualifiers specify a particular transfer direction to and/or from <em>id</em> .  Possible directions are <em>src</em> , <em>dst</em>  , <em>src or dist</em> and <em>src and</em> <em>dst</em>  .<br>E.g., <code>src foo&#39;,</code>dst net 128.3’, `src or dst port ftp-data’.<br>If there is no dir qualifier, src or dst is assumed.</p>
+<p>For some link layers, such as SLIP and the <code>cooked&#39;&#39; Linux capture mode
+used for the</code>any’’ device and for some other device types, the *inbound and <b>outbound</b> qualifiers can be used to specify a desired direction.</p>
+<h4 id="proto"><a href="#proto" class="headerlink" title="proto"></a>proto</h4><p>qualifiers restrict the match to a particular protocol.<br>Possible<br>protos are: <b>ether</b>, <b>fddi</b>, <b>tr</b>, <b>wlan</b>, <b>ip</b>, <b>ip6</b>, <b>arp</b>, <b>rarp</b>, <b>decnet</b>, <b>tcp</b> and <b>udp</b>.<br>E.g., <code>ether src foo&#39;,</code>arp net 128.3’, <code>tcp port 21&#39;,</code>udp portrange 7000-7009’.<br>If there is no proto qualifier, all protocols consistent with the type are assumed.</p>
+<p>E.g., <code>src foo&#39; means</code>(ip or arp or rarp) src foo’<br>(except the latter is not legal syntax), <code>net bar&#39; means</code>(ip or<br>arp or rarp) net bar’ and <code>port 53&#39; means</code>(tcp or udp) port 53’.</p>
+<p><a href="http://biot.com/capstats/bpf.html" target="_blank" rel="external">bpf详细介绍</a></p>
 
         
-        
-        
-
-        
-          
-          <div class="collection-title">
-            <h2 class="archive-year motion-element" id="archive-year-2017">2017</h2>
-          </div>
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/09/21/nginx-proxy/" itemprop="url">
-              
-                <span itemprop="name">使用nginx制作全代理</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-09-21T20:47:02+08:00"
-              content="2017-09-21" >
-          09-21
-        </time>
       </div>
-
-    </header>
-  </article>
-
-
-
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/07/hello-world/" itemprop="url">
-              
-                <span itemprop="name">从头到尾搭建hexo博客</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-07T16:54:31+08:00"
-              content="2017-03-07" >
-          03-07
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/07/centos7升级gcc到4-9-3/" itemprop="url">
-              
-                <span itemprop="name">centos7升级gcc到4.9.3</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-07T16:54:31+08:00"
-              content="2017-03-07" >
-          03-07
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/07/supervisor安装配置使用/" itemprop="url">
-              
-                <span itemprop="name">supervisor安装配置使用</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-07T08:57:50+08:00"
-              content="2017-03-07" >
-          03-07
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/06/安全牛的免费课/" itemprop="url">
-              
-                <span itemprop="name">安全牛的免费课程</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-06T16:05:00+08:00"
-              content="2017-03-06" >
-          03-06
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
   </div>
-  
-  
-  
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/2017/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/archives/2017/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/2017/page/3/">3</a><a class="extend next" rel="next" href="/archives/2017/page/3/"><i class="fa fa-angle-right"></i></a>
-  </nav>
-
-
 
 
           </div>
@@ -503,6 +325,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -523,8 +349,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -607,6 +442,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Berkeley-Packet-Filter-BPF-syntax"><span class="nav-number">1.</span> <span class="nav-text">Berkeley Packet Filter (BPF) syntax</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#type"><span class="nav-number">1.1.</span> <span class="nav-text">type</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#dir"><span class="nav-number">1.2.</span> <span class="nav-text">dir</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#proto"><span class="nav-number">1.3.</span> <span class="nav-text">proto</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -720,12 +571,10 @@
   
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
 
+  
 
   
 
