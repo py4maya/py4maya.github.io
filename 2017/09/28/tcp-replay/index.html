@@ -96,18 +96,18 @@
 
 
 
-<meta name="description" content="centos 安装:12$ yum install epel-release $ yum install tcpreplay 使用tcpdump 抓取数据,及查看数据包命令:12$ tcpdump -vv  -i eth1 host 192.168.1.123 -w test.cap$ tcpdump -r test.cap 使用tcpprep提前解析数据:1$ tcpprep -i test.c">
+<meta name="description" content="注，仅供参考，不要使用在生产环境中centos 安装:12$ yum install epel-release $ yum install tcpreplay 使用tcpdump 抓取数据,及查看数据包命令:12$ tcpdump -vv  -i eth1 host 192.168.1.123 -w test.cap$ tcpdump -r test.cap 使用tcpprep提前解析数据:1$">
 <meta name="keywords" content="tcpdump,tcpreplay,centos">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用tcpreplay系列命令做流量转发">
 <meta property="og:url" content="https://xsec.7ever.cn/2017/09/28/tcp-replay/index.html">
 <meta property="og:site_name" content="Simple Xsec World">
-<meta property="og:description" content="centos 安装:12$ yum install epel-release $ yum install tcpreplay 使用tcpdump 抓取数据,及查看数据包命令:12$ tcpdump -vv  -i eth1 host 192.168.1.123 -w test.cap$ tcpdump -r test.cap 使用tcpprep提前解析数据:1$ tcpprep -i test.c">
+<meta property="og:description" content="注，仅供参考，不要使用在生产环境中centos 安装:12$ yum install epel-release $ yum install tcpreplay 使用tcpdump 抓取数据,及查看数据包命令:12$ tcpdump -vv  -i eth1 host 192.168.1.123 -w test.cap$ tcpdump -r test.cap 使用tcpprep提前解析数据:1$">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-29T01:52:38.000Z">
+<meta property="og:updated_time" content="2017-09-29T03:20:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用tcpreplay系列命令做流量转发">
-<meta name="twitter:description" content="centos 安装:12$ yum install epel-release $ yum install tcpreplay 使用tcpdump 抓取数据,及查看数据包命令:12$ tcpdump -vv  -i eth1 host 192.168.1.123 -w test.cap$ tcpdump -r test.cap 使用tcpprep提前解析数据:1$ tcpprep -i test.c">
+<meta name="twitter:description" content="注，仅供参考，不要使用在生产环境中centos 安装:12$ yum install epel-release $ yum install tcpreplay 使用tcpdump 抓取数据,及查看数据包命令:12$ tcpdump -vv  -i eth1 host 192.168.1.123 -w test.cap$ tcpdump -r test.cap 使用tcpprep提前解析数据:1$">
 
 
 
@@ -374,11 +374,11 @@
       
 
       
-        <p>centos 安装:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> yum install epel-release </div><div class="line"><span class="meta">$</span> yum install tcpreplay</div></pre></td></tr></table></figure></p>
-<p>使用tcpdump 抓取数据,及查看数据包命令:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> tcpdump -vv  -i eth1 host 192.168.1.123 -w test.cap</div><div class="line"><span class="meta">$</span> tcpdump -r test.cap</div></pre></td></tr></table></figure></p>
-<p>使用tcpprep提前解析数据:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> tcpprep -i test.cap -a client -o test.cache</div></pre></td></tr></table></figure></p>
-<p>使用tcprewrite改写数据:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> tcprewrite --endpoints=10.210.128.63:10.210.3.100  -i test.cap -c test.cache -o rewrite.cap</div></pre></td></tr></table></figure></p>
-<p>使用tcpreplay重放数据:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> tcpreplay -c test.cache -i lo -I eth0 to3.100.cap</div></pre></td></tr></table></figure></p>
+        <h2 id="注，仅供参考，不要使用在生产环境中"><a href="#注，仅供参考，不要使用在生产环境中" class="headerlink" title="注，仅供参考，不要使用在生产环境中"></a>注，仅供参考，不要使用在生产环境中</h2><p>centos 安装:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> yum install epel-release </span></div><div class="line"><span class="meta">$</span><span class="bash"> yum install tcpreplay</span></div></pre></td></tr></table></figure></p>
+<p>使用tcpdump 抓取数据,及查看数据包命令:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> tcpdump -vv  -i eth1 host 192.168.1.123 -w test.cap</span></div><div class="line"><span class="meta">$</span><span class="bash"> tcpdump -r test.cap</span></div></pre></td></tr></table></figure></p>
+<p>使用tcpprep提前解析数据:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> tcpprep -i test.cap -a client -o test.cache</span></div></pre></td></tr></table></figure></p>
+<p>使用tcprewrite改写数据:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> tcprewrite --endpoints=10.210.128.63:10.210.3.100  -i test.cap -c test.cache -o rewrite.cap</span></div></pre></td></tr></table></figure></p>
+<p>使用tcpreplay重放数据:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> tcpreplay -c test.cache -i lo -I eth0 to3.100.cap</span></div></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -515,8 +515,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -603,6 +612,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#注，仅供参考，不要使用在生产环境中"><span class="nav-number">1.</span> <span class="nav-text">注，仅供参考，不要使用在生产环境中</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
