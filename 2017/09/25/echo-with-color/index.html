@@ -96,18 +96,18 @@
 
 
 
-<meta name="description" content="输出以下的格式 \033[显示方式;前景色;背景色m 各颜色编码说明：    前景色 背景色 颜色       30 40 黑色     31 41 红色     32 42 绿色     33 43 黃色     34 44 蓝色     35 45 紫红色     36 46 青蓝色     37 47 白色    几种不通的显示方式:    显示方式 意义     0 终端默认设置   1">
+<meta name="description" content="输出以下的格式 \033[背景色;前景色;显示方式m 各颜色编码说明：    前景色 背景色 颜色       30 40 黑色     31 41 红色     32 42 绿色     33 43 黃色     34 44 蓝色     35 45 紫红色     36 46 青蓝色     37 47 白色     37 0 当前背景    几种不通的显示方式:    显示方式 意义">
 <meta name="keywords" content="echo,shell">
 <meta property="og:type" content="article">
 <meta property="og:title" content="终端输出带颜色的字符">
 <meta property="og:url" content="https://xsec.7ever.cn/2017/09/25/echo-with-color/index.html">
 <meta property="og:site_name" content="Simple Xsec World">
-<meta property="og:description" content="输出以下的格式 \033[显示方式;前景色;背景色m 各颜色编码说明：    前景色 背景色 颜色       30 40 黑色     31 41 红色     32 42 绿色     33 43 黃色     34 44 蓝色     35 45 紫红色     36 46 青蓝色     37 47 白色    几种不通的显示方式:    显示方式 意义     0 终端默认设置   1">
+<meta property="og:description" content="输出以下的格式 \033[背景色;前景色;显示方式m 各颜色编码说明：    前景色 背景色 颜色       30 40 黑色     31 41 红色     32 42 绿色     33 43 黃色     34 44 蓝色     35 45 紫红色     36 46 青蓝色     37 47 白色     37 0 当前背景    几种不通的显示方式:    显示方式 意义">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-25T06:35:40.000Z">
+<meta property="og:updated_time" content="2017-10-01T03:19:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="终端输出带颜色的字符">
-<meta name="twitter:description" content="输出以下的格式 \033[显示方式;前景色;背景色m 各颜色编码说明：    前景色 背景色 颜色       30 40 黑色     31 41 红色     32 42 绿色     33 43 黃色     34 44 蓝色     35 45 紫红色     36 46 青蓝色     37 47 白色    几种不通的显示方式:    显示方式 意义     0 终端默认设置   1">
+<meta name="twitter:description" content="输出以下的格式 \033[背景色;前景色;显示方式m 各颜色编码说明：    前景色 背景色 颜色       30 40 黑色     31 41 红色     32 42 绿色     33 43 黃色     34 44 蓝色     35 45 紫红色     36 46 青蓝色     37 47 白色     37 0 当前背景    几种不通的显示方式:    显示方式 意义">
 
 
 
@@ -374,7 +374,7 @@
       
 
       
-        <p>输出以下的格式 \033[显示方式;前景色;背景色m</p>
+        <p>输出以下的格式 \033[背景色;前景色;显示方式m</p>
 <p>各颜色编码说明：</p>
 <table>
 <thead>
@@ -425,6 +425,11 @@
 <td>47</td>
 <td>白色</td>
 </tr>
+<tr>
+<td>  37</td>
+<td>0</td>
+<td>当前背景</td>
+</tr>
 </tbody>
 </table>
 <p>几种不通的显示方式:</p>
@@ -464,7 +469,14 @@
 </table>
 <p>几种输出的例子:</p>
 <ul>
-<li>\033[1;31;40m<br> 1-高亮显示 31-前景色红色  40-背景色黑色</li>
+<li><p>\033[0;31;1m<br> 0 当前背景,31红色,1 高亮显示</p>
+</li>
+<li><p>\033[0;32;1m<br> 0 当前背景,32绿色,1 高亮显示</p>
+</li>
+<li><p>\033[0;31;5m<br> 0 当前背景,31红色,5 闪烁显示</p>
+</li>
+</ul>
+<ul>
 <li>\033[0m<br> 采用终端默认设置，即取消颜色设置</li>
 </ul>
 
