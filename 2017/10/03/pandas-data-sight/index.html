@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="nginx,linux,proxy," />
+  <meta name="keywords" content="pandas,python,pip," />
 
 
 
@@ -96,18 +96,18 @@
 
 
 
-<meta name="description" content="编译nginx,编译脚本:  1234567./configure \--prefix=/data0/nginx/ \--with-stream \--with-http_ssl_module  \--with-stream_ssl_module \make -j4make install  主nginx配置文件：  1234567891011121314http &amp;#123;	resolver">
-<meta name="keywords" content="nginx,linux,proxy">
+<meta name="description" content="安装:1$ pip install pandas 安装完成，系统中会包含三个包:numpy, pytz, pandas,主要使用的pandas,numpy 是一个扩展的数组 引入类库:123import pandas as pdimport numpy as npfrom pandas import Series, DataFrame Series 一个hash索引的数组，比普通的dict，map">
+<meta name="keywords" content="pandas,python,pip">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用nginx制作全代理">
-<meta property="og:url" content="https://xsec.7ever.cn/2017/09/21/nginx-proxy/index.html">
+<meta property="og:title" content="使用pandas做数据分析">
+<meta property="og:url" content="https://xsec.7ever.cn/2017/10/03/pandas-data-sight/index.html">
 <meta property="og:site_name" content="Simple Xsec World">
-<meta property="og:description" content="编译nginx,编译脚本:  1234567./configure \--prefix=/data0/nginx/ \--with-stream \--with-http_ssl_module  \--with-stream_ssl_module \make -j4make install  主nginx配置文件：  1234567891011121314http &amp;#123;	resolver">
+<meta property="og:description" content="安装:1$ pip install pandas 安装完成，系统中会包含三个包:numpy, pytz, pandas,主要使用的pandas,numpy 是一个扩展的数组 引入类库:123import pandas as pdimport numpy as npfrom pandas import Series, DataFrame Series 一个hash索引的数组，比普通的dict，map">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-23T02:07:36.000Z">
+<meta property="og:updated_time" content="2017-10-03T01:18:08.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用nginx制作全代理">
-<meta name="twitter:description" content="编译nginx,编译脚本:  1234567./configure \--prefix=/data0/nginx/ \--with-stream \--with-http_ssl_module  \--with-stream_ssl_module \make -j4make install  主nginx配置文件：  1234567891011121314http &amp;#123;	resolver">
+<meta name="twitter:title" content="使用pandas做数据分析">
+<meta name="twitter:description" content="安装:1$ pip install pandas 安装完成，系统中会包含三个包:numpy, pytz, pandas,主要使用的pandas,numpy 是一个扩展的数组 引入类库:123import pandas as pdimport numpy as npfrom pandas import Series, DataFrame Series 一个hash索引的数组，比普通的dict，map">
 
 
 
@@ -136,13 +136,13 @@
 
 
 
-  <link rel="canonical" href="https://xsec.7ever.cn/2017/09/21/nginx-proxy/"/>
+  <link rel="canonical" href="https://xsec.7ever.cn/2017/10/03/pandas-data-sight/"/>
 
 
 
 
 
-  <title>使用nginx制作全代理 | Simple Xsec World</title>
+  <title>使用pandas做数据分析 | Simple Xsec World</title>
   
 
 
@@ -285,7 +285,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2017/09/21/nginx-proxy/">
+    <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2017/10/03/pandas-data-sight/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xingyue">
@@ -302,7 +302,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">使用nginx制作全代理</h1>
+          <h1 class="post-title" itemprop="name headline">使用pandas做数据分析</h1>
         
 
         <div class="post-meta">
@@ -314,8 +314,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-21T20:47:02+08:00">
-                2017-09-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-03T09:01:58+08:00">
+                2017-10-03
               </time>
             
 
@@ -337,8 +337,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/系统/" itemprop="url" rel="index">
-                    <span itemprop="name">系统</span>
+                  <a href="/categories/数据分析/" itemprop="url" rel="index">
+                    <span itemprop="name">数据分析</span>
                   </a>
                 </span>
 
@@ -374,30 +374,13 @@
       
 
       
-        <ul>
-<li>编译nginx,编译脚本:</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">./configure \</div><div class="line">--prefix=/data0/nginx/ \</div><div class="line">--with-stream \</div><div class="line">--with-http_ssl_module  \</div><div class="line">--with-stream_ssl_module \</div><div class="line">make -j4</div><div class="line">make install</div></pre></td></tr></table></figure>
-<ul>
-<li>主nginx配置文件：</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">http &#123;</div><div class="line">	resolver 10.212.0.43  valid=3600s;</div><div class="line"></div><div class="line">	include       mime.types;</div><div class="line">	default_type  application/octet-stream;</div><div class="line"></div><div class="line">	log_format  main  '$remote_addr $http_host - $remote_user [$time_local] "$request" '</div><div class="line">		'$status $body_bytes_sent "$http_referer" '</div><div class="line">		'"$http_user_agent" "$http_x_forwarded_for"';</div><div class="line">	sendfile        on; </div><div class="line">	keepalive_timeout  65; </div><div class="line">	gzip  on; </div><div class="line">	include vhost/*.conf;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>http代理比较简单:</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span>vhost/proxy.conf</div><div class="line">server &#123;</div><div class="line">	listen  80;</div><div class="line">	error_log logs/proxy_err.log;</div><div class="line">	access_log logs/proxy_ac.log main;</div><div class="line">	</div><div class="line">	location / &#123; </div><div class="line">		proxy_pass http://$http_host;</div><div class="line">		proxy_set_header X-RealIP $remote_addr;</div><div class="line">		proxy_set_header Host $http_host;</div><div class="line">	&#125;   </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li><p>https代理:<br>生成证书:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">openssl genrsa -des3 -out common.key 1024</div><div class="line">openssl req -new -key common.key -out common.csr</div><div class="line">openssl rsa -in common.key -out common_nopwd.key</div><div class="line">openssl x509 -req -days 365 -in common.csr -signkey common_nopwd.key -out common.crt</div><div class="line">echo "ssl on;"</div><div class="line">echo "ssl_certificate ssl/common.crt;"</div><div class="line">echo "ssl_certificate_key ssl/common_nopwd.key;"</div></pre></td></tr></table></figure>
-</li>
-<li><p>配置https代理:</p>
-</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">	listen  443;</div><div class="line">	error_log logs/proxy_ssl_err.log;</div><div class="line">	access_log logs/proxy_ssl_ac.log main;</div><div class="line">	</div><div class="line">	ssl on;</div><div class="line">	ssl_certificate ssl/common.crt;</div><div class="line">	ssl_certificate_key ssl/common_nopwd.key;</div><div class="line">	</div><div class="line">	location / &#123; </div><div class="line">		proxy_pass https://$http_host;</div><div class="line">		proxy_set_header Host $http_host;</div><div class="line">	&#125;   </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>最后一步，你绑定需要的hosts就可以把当前nginx机器伪装成需要访问的主机。当前nginx主机通过resolver 来解析需要访问的域名对应的ip<br>然后，去访问该ip端口对应的数据返回给浏览器。</li>
-</ul>
-
+        <h4 id="安装"><a href="#安装" class="headerlink" title="安装:"></a>安装:</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> pip install pandas</div></pre></td></tr></table></figure>
+<p>安装完成，系统中会包含三个包:numpy, pytz, pandas,主要使用的pandas,numpy 是一个扩展的数组</p>
+<h4 id="引入类库"><a href="#引入类库" class="headerlink" title="引入类库:"></a>引入类库:</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">from</span> pandas <span class="keyword">import</span> Series, DataFrame</div></pre></td></tr></table></figure>
+<h4 id="Series-一个hash索引的数组，比普通的dict，map-计算更方便快捷"><a href="#Series-一个hash索引的数组，比普通的dict，map-计算更方便快捷" class="headerlink" title="Series 一个hash索引的数组，比普通的dict，map 计算更方便快捷:"></a>Series 一个hash索引的数组，比普通的dict，map 计算更方便快捷:</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#初始化</span></div><div class="line">ser = Series([<span class="number">6</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">9</span>,<span class="number">2</span>],index=[<span class="string">'A'</span>,<span class="string">'B'</span>,<span class="string">'C'</span>,<span class="string">'D'</span>,<span class="string">'E'</span>])</div></pre></td></tr></table></figure>
+<p>将得到一个以A,B,C,D,E为键，值为6,5,4,9,2的数组</p>
+<h5 id="计算"><a href="#计算" class="headerlink" title="计算"></a>计算</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">nser = ser[ser &lt; <span class="number">5</span>] <span class="comment">#将得到小于5的数组</span></div><div class="line">nser = nser + <span class="number">10</span> <span class="comment">#将所有的值都添加10</span></div><div class="line">nser = nser &lt; <span class="number">10</span> <span class="comment">#转成boolean</span></div><div class="line"><span class="string">'A'</span> <span class="keyword">in</span> nser <span class="comment">#判断包含关系</span></div><div class="line">A = Series([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>])</div><div class="line">B = Series([<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>])</div><div class="line">C = A + B <span class="comment">#相加</span></div></pre></td></tr></table></figure>
+<h4 id="二维检索计算的基本单位DataFrame"><a href="#二维检索计算的基本单位DataFrame" class="headerlink" title="二维检索计算的基本单位DataFrame"></a>二维检索计算的基本单位DataFrame</h4>
       
     </div>
     
@@ -441,7 +424,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://xsec.7ever.cn/2017/09/21/nginx-proxy/" title="使用nginx制作全代理">https://xsec.7ever.cn/2017/09/21/nginx-proxy/</a>
+    <a href="https://xsec.7ever.cn/2017/10/03/pandas-data-sight/" title="使用pandas做数据分析">https://xsec.7ever.cn/2017/10/03/pandas-data-sight/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -456,11 +439,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/nginx/" rel="tag"># nginx</a>
+            <a href="/tags/pandas/" rel="tag"># pandas</a>
           
-            <a href="/tags/linux/" rel="tag"># linux</a>
+            <a href="/tags/python/" rel="tag"># python</a>
           
-            <a href="/tags/proxy/" rel="tag"># proxy</a>
+            <a href="/tags/pip/" rel="tag"># pip</a>
           
         </div>
       
@@ -473,8 +456,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/07/hello-world/" rel="next" title="从头到尾搭建hexo博客">
-                <i class="fa fa-chevron-left"></i> 从头到尾搭建hexo博客
+              <a href="/2017/09/28/tcp-replay/" rel="next" title="使用tcpreplay系列命令做流量转发">
+                <i class="fa fa-chevron-left"></i> 使用tcpreplay系列命令做流量转发
               </a>
             
           </div>
@@ -482,10 +465,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/09/22/xcode-use-cocoapods/" rel="prev" title="xcode 使用cocoapods">
-                xcode 使用cocoapods <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -537,8 +516,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -625,6 +613,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#引入类库"><span class="nav-number">2.</span> <span class="nav-text">引入类库:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Series-一个hash索引的数组，比普通的dict，map-计算更方便快捷"><span class="nav-number">3.</span> <span class="nav-text">Series 一个hash索引的数组，比普通的dict，map 计算更方便快捷:</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#计算"><span class="nav-number">3.1.</span> <span class="nav-text">计算</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二维检索计算的基本单位DataFrame"><span class="nav-number">4.</span> <span class="nav-text">二维检索计算的基本单位DataFrame</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
