@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xsec.7ever.cn/"/>
-  <updated>2017-10-04T07:09:32.000Z</updated>
+  <updated>2017-10-05T08:33:34.000Z</updated>
   <id>https://xsec.7ever.cn/</id>
   
   <author>
@@ -17,13 +17,38 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>pip配置可用的其他更新源</title>
+    <link href="https://xsec.7ever.cn/2017/10/05/pip-aliyun-https/"/>
+    <id>https://xsec.7ever.cn/2017/10/05/pip-aliyun-https/</id>
+    <published>2017-10-05T08:28:26.000Z</published>
+    <updated>2017-10-05T08:33:34.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>创建当前用户目录下的.pip子目录(~/.pip/),创建文本文件:<em>pip.conf</em>，写入内容为:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[global]</div><div class="line">trusted-host=mirrors.aliyun.com</div><div class="line">index-url=http://mirrors.aliyun.com/pypi/simple/</div></pre></td></tr></table></figure></p><hr><h2 id="注意-一定要在当前用户目录下创建对应的文件"><a href="#注意-一定要在当前用户目录下创建对应的文件" class="headerlink" title=" 注意 一定要在当前用户目录下创建对应的文件"></a> <em>注意</em> 一定要在当前用户目录下创建对应的文件</h2>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;创建当前用户目录下的.pip子目录(~/.pip/),创建文本文件:&lt;em&gt;pip.conf&lt;/em&gt;，写入内容为:&lt;br&gt;&lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div cla
+      
+    
+    </summary>
+    
+      <category term="开发" scheme="https://xsec.7ever.cn/categories/%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="pip" scheme="https://xsec.7ever.cn/tags/pip/"/>
+    
+  </entry>
+  
+  <entry>
     <title>使用pandas做数据分析</title>
     <link href="https://xsec.7ever.cn/2017/10/03/pandas-data-sight/"/>
     <id>https://xsec.7ever.cn/2017/10/03/pandas-data-sight/</id>
     <published>2017-10-03T01:01:58.000Z</published>
-    <updated>2017-10-04T07:09:32.000Z</updated>
+    <updated>2017-10-04T07:19:41.000Z</updated>
     
-    <content type="html"><![CDATA[<h4 id="安装"><a href="#安装" class="headerlink" title="安装:"></a>安装:</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> pip install pandas</div></pre></td></tr></table></figure><p>安装完成，系统中会包含三个包:numpy, pytz, pandas,主要使用的pandas,numpy 是一个扩展的数组</p><h4 id="引入类库"><a href="#引入类库" class="headerlink" title="引入类库:"></a>引入类库:</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">from</span> pandas <span class="keyword">import</span> Series, DataFrame</div></pre></td></tr></table></figure><h4 id="Series-一个hash索引的数组，比普通的dict，map-计算更方便快捷"><a href="#Series-一个hash索引的数组，比普通的dict，map-计算更方便快捷" class="headerlink" title="Series 一个hash索引的数组，比普通的dict，map 计算更方便快捷:"></a>Series 一个hash索引的数组，比普通的dict，map 计算更方便快捷:</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#初始化</span></div><div class="line">ser = Series([<span class="number">6</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">9</span>,<span class="number">2</span>],index=[<span class="string">'A'</span>,<span class="string">'B'</span>,<span class="string">'C'</span>,<span class="string">'D'</span>,<span class="string">'E'</span>])</div></pre></td></tr></table></figure><p>将得到一个以A,B,C,D,E为键，值为6,5,4,9,2的数组</p><h5 id="计算"><a href="#计算" class="headerlink" title="计算"></a>计算</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">nser = ser[ser &lt; <span class="number">5</span>] <span class="comment">#将得到小于5的数组</span></div><div class="line">nser = nser + <span class="number">10</span> <span class="comment">#将所有的值都添加10</span></div><div class="line">nser = nser &lt; <span class="number">10</span> <span class="comment">#转成boolean</span></div><div class="line"><span class="string">'A'</span> <span class="keyword">in</span> nser <span class="comment">#判断包含关系</span></div><div class="line">A = Series([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>])</div><div class="line">B = Series([<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>])</div><div class="line">C = A + B <span class="comment">#相加</span></div></pre></td></tr></table></figure><h4 id="二维检索计算的基本单位DataFrame"><a href="#二维检索计算的基本单位DataFrame" class="headerlink" title="二维检索计算的基本单位DataFrame"></a>二维检索计算的基本单位DataFrame</h4><h5 id="数据加载构成DataFrame"><a href="#数据加载构成DataFrame" class="headerlink" title="数据加载构成DataFrame"></a>数据加载构成DataFrame</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">df=pd.read_csv(<span class="string">"/Users/vbabu/Documents/personal/MyGitWork/csv/mls-salaries-2016.csv"</span>)</div><div class="line">df=pd.read_json(<span class="string">"/Users/vbabu/Documents/personal/MyGitWork/csv/mls-salaries-2016.json"</span>)</div></pre></td></tr></table></figure><h5 id="获取头，尾的数据"><a href="#获取头，尾的数据" class="headerlink" title="获取头，尾的数据:"></a>获取头，尾的数据:</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">df.head(count)</div><div class="line">df.tail(count)</div><div class="line">df.info() <span class="comment">#获取DataFrame的相关存储设置</span></div><div class="line">df[<span class="string">'index_name'</span>].head(count) <span class="comment"># 获取某一列的头数据</span></div><div class="line">df[<span class="string">'new_name'</span>] = df[new_name + <span class="number">10</span>] <span class="comment">#添加新列，并且赋值</span></div><div class="line"><span class="keyword">del</span> df[<span class="string">'name'</span>] <span class="comment">#删除列</span></div></pre></td></tr></table></figure><h5 id="简单计算"><a href="#简单计算" class="headerlink" title="简单计算:"></a>简单计算:</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">df.sum(axis=<span class="number">1</span>)</div><div class="line">df.sum(axis=<span class="number">0</span>)</div><div class="line">df.groupby([<span class="string">'name'</span>]).count().sort_values().head() <span class="comment">#相当于graylog里边的quick values</span></div></pre></td></tr></table></figure><h5 id="数据删减"><a href="#数据删减" class="headerlink" title="数据删减"></a>数据删减</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">dframe.drop(<span class="string">'B'</span>) <span class="comment">#删除数据</span></div><div class="line">dframe.append([]) <span class="comment">#添加数据</span></div></pre></td></tr></table></figure><h5 id="数据排序"><a href="#数据排序" class="headerlink" title="数据排序:"></a>数据排序:</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">df.sort_values(ascending=<span class="keyword">True</span>|<span class="keyword">False</span>)</div></pre></td></tr></table></figure><p><a href="https://kanoki.org/2017/07/16/pandas-in-a-nutshell/#Selecting-Index" target="_blank" rel="external">数据翻译来源https://kanoki.org/2017/07/16/pandas-in-a-nutshell/#Selecting-Index</a></p>]]></content>
+    <content type="html"><![CDATA[<h4 id="安装"><a href="#安装" class="headerlink" title="安装:"></a>安装:</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> pip install pandas</span></div></pre></td></tr></table></figure><p>安装完成，系统中会包含三个包:numpy, pytz, pandas,主要使用的pandas,numpy 是一个扩展的数组</p><h4 id="引入类库"><a href="#引入类库" class="headerlink" title="引入类库:"></a>引入类库:</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">from</span> pandas <span class="keyword">import</span> Series, DataFrame</div></pre></td></tr></table></figure><h4 id="Series-一个hash索引的数组，比普通的dict，map-计算更方便快捷"><a href="#Series-一个hash索引的数组，比普通的dict，map-计算更方便快捷" class="headerlink" title="Series 一个hash索引的数组，比普通的dict，map 计算更方便快捷:"></a>Series 一个hash索引的数组，比普通的dict，map 计算更方便快捷:</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#初始化</span></div><div class="line">ser = Series([<span class="number">6</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">9</span>,<span class="number">2</span>],index=[<span class="string">'A'</span>,<span class="string">'B'</span>,<span class="string">'C'</span>,<span class="string">'D'</span>,<span class="string">'E'</span>])</div></pre></td></tr></table></figure><p>将得到一个以A,B,C,D,E为键，值为6,5,4,9,2的数组</p><h5 id="计算"><a href="#计算" class="headerlink" title="计算"></a>计算</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">nser = ser[ser &lt; <span class="number">5</span>] <span class="comment">#将得到小于5的数组</span></div><div class="line">nser = nser + <span class="number">10</span> <span class="comment">#将所有的值都添加10</span></div><div class="line">nser = nser &lt; <span class="number">10</span> <span class="comment">#转成boolean</span></div><div class="line"><span class="string">'A'</span> <span class="keyword">in</span> nser <span class="comment">#判断包含关系</span></div><div class="line">A = Series([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>])</div><div class="line">B = Series([<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>])</div><div class="line">C = A + B <span class="comment">#相加</span></div></pre></td></tr></table></figure><h4 id="二维检索计算的基本单位DataFrame"><a href="#二维检索计算的基本单位DataFrame" class="headerlink" title="二维检索计算的基本单位DataFrame"></a>二维检索计算的基本单位DataFrame</h4><h5 id="数据加载构成DataFrame"><a href="#数据加载构成DataFrame" class="headerlink" title="数据加载构成DataFrame"></a>数据加载构成DataFrame</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">df=pd.read_csv(<span class="string">"/Users/vbabu/Documents/personal/MyGitWork/csv/mls-salaries-2016.csv"</span>)</div><div class="line">df=pd.read_json(<span class="string">"/Users/vbabu/Documents/personal/MyGitWork/csv/mls-salaries-2016.json"</span>)</div></pre></td></tr></table></figure><h5 id="获取头，尾的数据"><a href="#获取头，尾的数据" class="headerlink" title="获取头，尾的数据:"></a>获取头，尾的数据:</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">df.head(count)</div><div class="line">df.tail(count)</div><div class="line">df.info() <span class="comment">#获取DataFrame的相关存储设置</span></div><div class="line">df[<span class="string">'index_name'</span>].head(count) <span class="comment"># 获取某一列的头数据</span></div><div class="line">df[<span class="string">'new_name'</span>] = df[new_name + <span class="number">10</span>] <span class="comment">#添加新列，并且赋值</span></div><div class="line"><span class="keyword">del</span> df[<span class="string">'name'</span>] <span class="comment">#删除列</span></div><div class="line">df.fillna(<span class="string">'5'</span>) <span class="comment">#填充null的数据</span></div></pre></td></tr></table></figure><h5 id="简单计算"><a href="#简单计算" class="headerlink" title="简单计算:"></a>简单计算:</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">df.sum(axis=<span class="number">1</span>)</div><div class="line">df.sum(axis=<span class="number">0</span>)</div><div class="line">df.min(axis=<span class="number">0</span>) <span class="comment">#求最小值</span></div><div class="line">df.max(axis=<span class="number">0</span>) <span class="comment">#求最小值</span></div><div class="line">df.groupby([<span class="string">'name'</span>]).count().sort_values().head() <span class="comment">#相当于graylog里边的quick values</span></div></pre></td></tr></table></figure><h5 id="数据删减"><a href="#数据删减" class="headerlink" title="数据删减"></a>数据删减</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">dframe.drop(<span class="string">'B'</span>) <span class="comment">#删除数据</span></div><div class="line">dframe.append([]) <span class="comment">#添加数据</span></div><div class="line">df = dframe[ <span class="string">'B'</span> &gt; <span class="number">10</span>] <span class="comment">#数据筛选</span></div></pre></td></tr></table></figure><h5 id="数据排序"><a href="#数据排序" class="headerlink" title="数据排序:"></a>数据排序:</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">df.sort_values(ascending=<span class="keyword">True</span>|<span class="keyword">False</span>)</div></pre></td></tr></table></figure><p><a href="https://kanoki.org/2017/07/16/pandas-in-a-nutshell/#Selecting-Index" target="_blank" rel="external">数据翻译来源https://kanoki.org/2017/07/16/pandas-in-a-nutshell/#Selecting-Index</a></p>]]></content>
     
     <summary type="html">
     
@@ -37,11 +62,11 @@
       <category term="数据分析" scheme="https://xsec.7ever.cn/categories/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"/>
     
     
+      <category term="pip" scheme="https://xsec.7ever.cn/tags/pip/"/>
+    
       <category term="pandas" scheme="https://xsec.7ever.cn/tags/pandas/"/>
     
       <category term="python" scheme="https://xsec.7ever.cn/tags/python/"/>
-    
-      <category term="pip" scheme="https://xsec.7ever.cn/tags/pip/"/>
     
   </entry>
   
@@ -66,9 +91,9 @@
       <category term="系统" scheme="https://xsec.7ever.cn/categories/%E7%B3%BB%E7%BB%9F/"/>
     
     
-      <category term="tcpreplay" scheme="https://xsec.7ever.cn/tags/tcpreplay/"/>
-    
       <category term="tcpdump" scheme="https://xsec.7ever.cn/tags/tcpdump/"/>
+    
+      <category term="tcpreplay" scheme="https://xsec.7ever.cn/tags/tcpreplay/"/>
     
       <category term="centos" scheme="https://xsec.7ever.cn/tags/centos/"/>
     
@@ -269,6 +294,36 @@
   </entry>
   
   <entry>
+    <title>centos7升级gcc到4.9.3</title>
+    <link href="https://xsec.7ever.cn/2017/03/07/centos7%E5%8D%87%E7%BA%A7gcc%E5%88%B04-9-3/"/>
+    <id>https://xsec.7ever.cn/2017/03/07/centos7升级gcc到4-9-3/</id>
+    <published>2017-03-07T08:54:31.000Z</published>
+    <updated>2017-09-23T02:08:33.000Z</updated>
+    
+    <content type="html"><![CDATA[<ol><li>下载源代码:</li></ol><p>从<a href="https://gcc.gnu.org/mirrors.html" target="_blank" rel="external">https://gcc.gnu.org/mirrors.html</a>选择一个相对快的镜像库,我选择的是<br><a href="http://www.netgull.com/gcc/releases/" target="_blank" rel="external">http://www.netgull.com/gcc/releases/</a></p><ol><li>下载必要库:</li></ol><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> ./contrib/download_prerequisites</span></div></pre></td></tr></table></figure><ol><li><p>编译依赖c++</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> yum install gcc-c++</span></div></pre></td></tr></table></figure></li><li><p>创建安装文件编译目录:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> mkdir objdir  &amp;&amp; <span class="built_in">cd</span> objdir</span></div><div class="line"><span class="meta">$</span><span class="bash"> ../configure --<span class="built_in">enable</span>-languages=c,c++ --<span class="built_in">disable</span>-multilib</span></div><div class="line"><span class="meta">$</span><span class="bash"> make </span></div><div class="line"><span class="meta">$</span><span class="bash"> make install</span></div></pre></td></tr></table></figure></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;ol&gt;
+&lt;li&gt;下载源代码:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;从&lt;a href=&quot;https://gcc.gnu.org/mirrors.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://gcc.gnu.org/mirrors.html&lt;/a
+      
+    
+    </summary>
+    
+      <category term="系统" scheme="https://xsec.7ever.cn/categories/%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+      <category term="gcc" scheme="https://xsec.7ever.cn/tags/gcc/"/>
+    
+      <category term="centos7" scheme="https://xsec.7ever.cn/tags/centos7/"/>
+    
+  </entry>
+  
+  <entry>
     <title>从头到尾搭建hexo博客</title>
     <link href="https://xsec.7ever.cn/2017/03/07/hello-world/"/>
     <id>https://xsec.7ever.cn/2017/03/07/hello-world/</id>
@@ -294,36 +349,6 @@
   </entry>
   
   <entry>
-    <title>centos7升级gcc到4.9.3</title>
-    <link href="https://xsec.7ever.cn/2017/03/07/centos7%E5%8D%87%E7%BA%A7gcc%E5%88%B04-9-3/"/>
-    <id>https://xsec.7ever.cn/2017/03/07/centos7升级gcc到4-9-3/</id>
-    <published>2017-03-07T08:54:31.000Z</published>
-    <updated>2017-09-23T02:08:33.000Z</updated>
-    
-    <content type="html"><![CDATA[<ol><li>下载源代码:</li></ol><p>从<a href="https://gcc.gnu.org/mirrors.html" target="_blank" rel="external">https://gcc.gnu.org/mirrors.html</a>选择一个相对快的镜像库,我选择的是<br><a href="http://www.netgull.com/gcc/releases/" target="_blank" rel="external">http://www.netgull.com/gcc/releases/</a></p><ol><li>下载必要库:</li></ol><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> ./contrib/download_prerequisites</div></pre></td></tr></table></figure><ol><li><p>编译依赖c++</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> yum install gcc-c++</div></pre></td></tr></table></figure></li><li><p>创建安装文件编译目录:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> mkdir objdir  &amp;&amp; cd objdir</div><div class="line"><span class="meta">$</span> ../configure --enable-languages=c,c++ --disable-multilib</div><div class="line"><span class="meta">$</span> make </div><div class="line"><span class="meta">$</span> make install</div></pre></td></tr></table></figure></li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;ol&gt;
-&lt;li&gt;下载源代码:&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;从&lt;a href=&quot;https://gcc.gnu.org/mirrors.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://gcc.gnu.org/mirrors.html&lt;/a
-      
-    
-    </summary>
-    
-      <category term="系统" scheme="https://xsec.7ever.cn/categories/%E7%B3%BB%E7%BB%9F/"/>
-    
-    
-      <category term="gcc" scheme="https://xsec.7ever.cn/tags/gcc/"/>
-    
-      <category term="centos7" scheme="https://xsec.7ever.cn/tags/centos7/"/>
-    
-  </entry>
-  
-  <entry>
     <title>supervisor安装配置使用</title>
     <link href="https://xsec.7ever.cn/2017/03/07/supervisor%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8/"/>
     <id>https://xsec.7ever.cn/2017/03/07/supervisor安装配置使用/</id>
@@ -345,9 +370,9 @@
       <category term="系统" scheme="https://xsec.7ever.cn/categories/%E7%B3%BB%E7%BB%9F/"/>
     
     
-      <category term="python" scheme="https://xsec.7ever.cn/tags/python/"/>
-    
       <category term="pip" scheme="https://xsec.7ever.cn/tags/pip/"/>
+    
+      <category term="python" scheme="https://xsec.7ever.cn/tags/python/"/>
     
       <category term="supervisor" scheme="https://xsec.7ever.cn/tags/supervisor/"/>
     
