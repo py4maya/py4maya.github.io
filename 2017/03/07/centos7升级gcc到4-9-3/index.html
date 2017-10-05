@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="gcc,centos7," />
+  <meta name="keywords" content="centos7,gcc," />
 
 
 
@@ -97,7 +97,7 @@
 
 
 <meta name="description" content="下载源代码:  从https://gcc.gnu.org/mirrors.html选择一个相对快的镜像库,我选择的是http://www.netgull.com/gcc/releases/  下载必要库:  1$ ./contrib/download_prerequisites  编译依赖c++ 1$ yum install gcc-c++  创建安装文件编译目录: 1234$ mkdir ob">
-<meta name="keywords" content="gcc,centos7">
+<meta name="keywords" content="centos7,gcc">
 <meta property="og:type" content="article">
 <meta property="og:title" content="centos7升级gcc到4.9.3">
 <meta property="og:url" content="https://xsec.7ever.cn/2017/03/07/centos7升级gcc到4-9-3/index.html">
@@ -381,13 +381,13 @@
 <ol>
 <li>下载必要库:</li>
 </ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> ./contrib/download_prerequisites</span></div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> ./contrib/download_prerequisites</div></pre></td></tr></table></figure>
 <ol>
 <li><p>编译依赖c++</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> yum install gcc-c++</span></div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> yum install gcc-c++</div></pre></td></tr></table></figure>
 </li>
 <li><p>创建安装文件编译目录:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> mkdir objdir  &amp;&amp; <span class="built_in">cd</span> objdir</span></div><div class="line"><span class="meta">$</span><span class="bash"> ../configure --<span class="built_in">enable</span>-languages=c,c++ --<span class="built_in">disable</span>-multilib</span></div><div class="line"><span class="meta">$</span><span class="bash"> make </span></div><div class="line"><span class="meta">$</span><span class="bash"> make install</span></div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> mkdir objdir  &amp;&amp; cd objdir</div><div class="line"><span class="meta">$</span> ../configure --enable-languages=c,c++ --disable-multilib</div><div class="line"><span class="meta">$</span> make </div><div class="line"><span class="meta">$</span> make install</div></pre></td></tr></table></figure>
 </li>
 </ol>
 
@@ -449,9 +449,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/gcc/" rel="tag"># gcc</a>
-          
             <a href="/tags/centos7/" rel="tag"># centos7</a>
+          
+            <a href="/tags/gcc/" rel="tag"># gcc</a>
           
         </div>
       
@@ -464,8 +464,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/07/hello-world/" rel="next" title="从头到尾搭建hexo博客">
-                <i class="fa fa-chevron-left"></i> 从头到尾搭建hexo博客
+              <a href="/2017/03/07/supervisor安装配置使用/" rel="next" title="supervisor安装配置使用">
+                <i class="fa fa-chevron-left"></i> supervisor安装配置使用
               </a>
             
           </div>
@@ -474,8 +474,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/09/21/nginx-proxy/" rel="prev" title="使用nginx制作全代理">
-                使用nginx制作全代理 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/03/07/hello-world/" rel="prev" title="从头到尾搭建hexo博客">
+                从头到尾搭建hexo博客 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -544,7 +544,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -566,7 +566,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-count">27</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -592,7 +592,7 @@
 
         
         
-          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
             <div class="links-of-blogroll-title">
               <i class="fa  fa-fw fa-globe"></i>
               友情链接

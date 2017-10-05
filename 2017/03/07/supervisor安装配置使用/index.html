@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="pip,python,supervisor," />
+  <meta name="keywords" content="python,pip,supervisor," />
 
 
 
@@ -97,14 +97,14 @@
 
 
 <meta name="description" content="安装supervisor123$ yum install python-setuptools$ easy_install pip$ pip install supervisor   这个工具分为两个命令:  supervisord : supervisor的服务器端部分，启动supervisor就是运行这个命令 supervisorctl：启动supervisor的命令行窗口。   生成配置文件">
-<meta name="keywords" content="pip,python,supervisor">
+<meta name="keywords" content="python,pip,supervisor">
 <meta property="og:type" content="article">
 <meta property="og:title" content="supervisor安装配置使用">
 <meta property="og:url" content="https://xsec.7ever.cn/2017/03/07/supervisor安装配置使用/index.html">
 <meta property="og:site_name" content="Simple Xsec World">
 <meta property="og:description" content="安装supervisor123$ yum install python-setuptools$ easy_install pip$ pip install supervisor   这个工具分为两个命令:  supervisord : supervisor的服务器端部分，启动supervisor就是运行这个命令 supervisorctl：启动supervisor的命令行窗口。   生成配置文件">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-23T02:07:41.000Z">
+<meta property="og:updated_time" content="2017-10-05T08:51:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="supervisor安装配置使用">
 <meta name="twitter:description" content="安装supervisor123$ yum install python-setuptools$ easy_install pip$ pip install supervisor   这个工具分为两个命令:  supervisord : supervisor的服务器端部分，启动supervisor就是运行这个命令 supervisorctl：启动supervisor的命令行窗口。   生成配置文件">
@@ -388,7 +388,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> echo_supervisord_conf &gt; /etc/supervisord.conf</span></div></pre></td></tr></table></figure>
 </li>
 <li><p>修改配置文件:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">[program:mobsf]</div><div class="line">;process_name = %(program_name)s-%(process_num)d  </div><div class="line">;numprocs = 5</div><div class="line">command = python /data0/Mobile-Security-Framework-MobSF/manage.py runserver 0.0.0.0:8000</div><div class="line">user = root</div><div class="line">autostart = true</div><div class="line">autorestart = true</div><div class="line">startsecs = 5</div><div class="line">stderr_logfile = /data0/Mobile-Security-Framework-MobSF/logs/run/error.log</div><div class="line">stdout_logfile = /data0/Mobile-Security-Framework-MobSF/logs/run/stdout.log</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">[program:mobsf]</div><div class="line">;process_name = %(program_name)s-%(process_num)d  </div><div class="line">;numprocs = 5</div><div class="line">;command = python /data0/Mobile-Security-Framework-MobSF/manage.py --port=30%(process_num)02d 根据进程设置端口</div><div class="line">command = python /data0/Mobile-Security-Framework-MobSF/manage.py runserver 0.0.0.0:8000</div><div class="line">user = root</div><div class="line">autostart = true</div><div class="line">autorestart = true</div><div class="line">startsecs = 5</div><div class="line">stderr_logfile = /data0/Mobile-Security-Framework-MobSF/logs/run/error.log</div><div class="line">stdout_logfile = /data0/Mobile-Security-Framework-MobSF/logs/run/stdout.log</div><div class="line">; 标准输入，标准输出配置文件大小</div><div class="line">stdout_logfile_maxbytes = 200MB</div><div class="line">stdout_logfile_backups = 50</div><div class="line">stderr_logfile_maxbytes = 200MB</div><div class="line">stderr_logfile_backups = 10</div></pre></td></tr></table></figure>
 </li>
 <li><p>启动命令:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> supervisord -c /etc/supervisord.conf</span></div></pre></td></tr></table></figure>
@@ -459,9 +459,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/pip/" rel="tag"># pip</a>
-          
             <a href="/tags/python/" rel="tag"># python</a>
+          
+            <a href="/tags/pip/" rel="tag"># pip</a>
           
             <a href="/tags/supervisor/" rel="tag"># supervisor</a>
           
@@ -486,8 +486,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/03/07/hello-world/" rel="prev" title="从头到尾搭建hexo博客">
-                从头到尾搭建hexo博客 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/03/07/centos7升级gcc到4-9-3/" rel="prev" title="centos7升级gcc到4.9.3">
+                centos7升级gcc到4.9.3 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -556,7 +556,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -578,7 +578,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-count">27</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -604,7 +604,7 @@
 
         
         
-          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
             <div class="links-of-blogroll-title">
               <i class="fa  fa-fw fa-globe"></i>
               友情链接

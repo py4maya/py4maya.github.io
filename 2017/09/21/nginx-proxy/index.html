@@ -385,7 +385,7 @@
 <ul>
 <li>http代理比较简单:</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span>vhost/proxy.conf</div><div class="line">server &#123;</div><div class="line">	listen  80;</div><div class="line">	error_log logs/proxy_err.log;</div><div class="line">	access_log logs/proxy_ac.log main;</div><div class="line">	</div><div class="line">	location / &#123; </div><div class="line">		proxy_pass http://$http_host;</div><div class="line">		proxy_set_header X-RealIP $remote_addr;</div><div class="line">		proxy_set_header Host $http_host;</div><div class="line">	&#125;   </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash">vhost/proxy.conf</span></div><div class="line">server &#123;</div><div class="line">	listen  80;</div><div class="line">	error_log logs/proxy_err.log;</div><div class="line">	access_log logs/proxy_ac.log main;</div><div class="line">	</div><div class="line">	location / &#123; </div><div class="line">		proxy_pass http://$http_host;</div><div class="line">		proxy_set_header X-RealIP $remote_addr;</div><div class="line">		proxy_set_header Host $http_host;</div><div class="line">	&#125;   </div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <ul>
 <li><p>https代理:<br>生成证书:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">openssl genrsa -des3 -out common.key 1024</div><div class="line">openssl req -new -key common.key -out common.csr</div><div class="line">openssl rsa -in common.key -out common_nopwd.key</div><div class="line">openssl x509 -req -days 365 -in common.csr -signkey common_nopwd.key -out common.crt</div><div class="line">echo "ssl on;"</div><div class="line">echo "ssl_certificate ssl/common.crt;"</div><div class="line">echo "ssl_certificate_key ssl/common_nopwd.key;"</div></pre></td></tr></table></figure>
@@ -473,8 +473,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/07/centos7升级gcc到4-9-3/" rel="next" title="centos7升级gcc到4.9.3">
-                <i class="fa fa-chevron-left"></i> centos7升级gcc到4.9.3
+              <a href="/2017/03/07/hello-world/" rel="next" title="从头到尾搭建hexo博客">
+                <i class="fa fa-chevron-left"></i> 从头到尾搭建hexo博客
               </a>
             
           </div>
@@ -553,7 +553,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -575,7 +575,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-count">27</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -601,7 +601,7 @@
 
         
         
-          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
             <div class="links-of-blogroll-title">
               <i class="fa  fa-fw fa-globe"></i>
               友情链接
