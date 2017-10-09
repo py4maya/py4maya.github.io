@@ -376,8 +376,13 @@
         
           
             <p>关键点:</p>
-<p>fseek 可以把当前文件指针移动到当前文件的末尾.<br>关键代码:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">with</span> open(<span class="string">'test.txt'</span>) <span class="keyword">as</span> f:</div><div class="line">    f.seek(<span class="number">0</span>,<span class="number">2</span>)</div><div class="line">    <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">        last_pos = f.tell()</div><div class="line">        line = f.readline()</div><div class="line">        <span class="keyword">if</span> line:</div><div class="line">            <span class="keyword">print</span> line</div></pre></td></tr></table></figure>
+<ul>
+<li>打开指定文件</li>
+<li>每隔一段时间尝试readline ，有内容print , 否则sleep </li>
+<li>移动文件指针到文件末尾</li>
+</ul>
+<p>关键代码:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">import</span> sys</div><div class="line"></div><div class="line">fname = sys.argv[<span class="number">1</span>]</div><div class="line"></div><div class="line"><span class="keyword">print</span> file(fname)[<span class="number">-10</span>:]</div><div class="line"></div><div class="line"><span class="keyword">with</span> open(fname) <span class="keyword">as</span> f:</div><div class="line">    f.seek(<span class="number">0</span>,<span class="number">2</span>)</div><div class="line">    <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">        last_pos = f.tell()</div><div class="line">        line = f.readline()</div><div class="line">        <span class="keyword">if</span> line:</div><div class="line">            <span class="keyword">print</span> line</div></pre></td></tr></table></figure>
 
           
         
