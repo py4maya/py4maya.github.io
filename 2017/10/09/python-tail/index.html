@@ -96,18 +96,18 @@
 
 
 
-<meta name="description" content="关键点:  打开指定文件 每隔一段时间尝试readline ，有内容print , 否则sleep  移动文件指针到文件末尾  关键代码: 1234567891011121314import sysfname = sys.argv[1]print file(fname)[-10:]with open(fname) as f:    f.seek(0,2)    while True:">
+<meta name="description" content="关键点:  打开指定文件 每隔一段时间尝试readline ，有内容print , 否则sleep  移动文件指针到文件末尾  关键代码: 1234567891011121314151617181920#coding=utf-8import sysimport timefname = &apos;a.log&apos;last_pos = 0while True:	with open(fname,&apos;r&apos;) as f:">
 <meta name="keywords" content="python,tail">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用python实现tail">
 <meta property="og:url" content="https://xsec.7ever.cn/2017/10/09/python-tail/index.html">
 <meta property="og:site_name" content="Simple Xsec World">
-<meta property="og:description" content="关键点:  打开指定文件 每隔一段时间尝试readline ，有内容print , 否则sleep  移动文件指针到文件末尾  关键代码: 1234567891011121314import sysfname = sys.argv[1]print file(fname)[-10:]with open(fname) as f:    f.seek(0,2)    while True:">
+<meta property="og:description" content="关键点:  打开指定文件 每隔一段时间尝试readline ，有内容print , 否则sleep  移动文件指针到文件末尾  关键代码: 1234567891011121314151617181920#coding=utf-8import sysimport timefname = &apos;a.log&apos;last_pos = 0while True:	with open(fname,&apos;r&apos;) as f:">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-09T10:44:50.000Z">
+<meta property="og:updated_time" content="2017-10-11T06:26:42.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用python实现tail">
-<meta name="twitter:description" content="关键点:  打开指定文件 每隔一段时间尝试readline ，有内容print , 否则sleep  移动文件指针到文件末尾  关键代码: 1234567891011121314import sysfname = sys.argv[1]print file(fname)[-10:]with open(fname) as f:    f.seek(0,2)    while True:">
+<meta name="twitter:description" content="关键点:  打开指定文件 每隔一段时间尝试readline ，有内容print , 否则sleep  移动文件指针到文件末尾  关键代码: 1234567891011121314151617181920#coding=utf-8import sysimport timefname = &apos;a.log&apos;last_pos = 0while True:	with open(fname,&apos;r&apos;) as f:">
 
 
 
@@ -381,7 +381,7 @@
 <li>移动文件指针到文件末尾</li>
 </ul>
 <p>关键代码:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">import</span> sys</div><div class="line"></div><div class="line">fname = sys.argv[<span class="number">1</span>]</div><div class="line"></div><div class="line"><span class="keyword">print</span> file(fname)[<span class="number">-10</span>:]</div><div class="line"></div><div class="line"><span class="keyword">with</span> open(fname) <span class="keyword">as</span> f:</div><div class="line">    f.seek(<span class="number">0</span>,<span class="number">2</span>)</div><div class="line">    <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">        last_pos = f.tell()</div><div class="line">        line = f.readline()</div><div class="line">        <span class="keyword">if</span> line:</div><div class="line">            <span class="keyword">print</span> line</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#coding=utf-8</span></div><div class="line"><span class="keyword">import</span> sys</div><div class="line"><span class="keyword">import</span> time</div><div class="line"></div><div class="line">fname = <span class="string">'a.log'</span></div><div class="line">last_pos = <span class="number">0</span></div><div class="line"></div><div class="line"><span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line"></div><div class="line">	<span class="keyword">with</span> open(fname,<span class="string">'r'</span>) <span class="keyword">as</span> f:</div><div class="line">		f.seek(last_pos)</div><div class="line"></div><div class="line">		line = f.readline()</div><div class="line">		<span class="keyword">print</span> line</div><div class="line">		<span class="keyword">if</span> <span class="keyword">not</span> line:</div><div class="line">			<span class="keyword">print</span> line.strip()</div><div class="line"></div><div class="line">		last_pos = f.tell()</div><div class="line"></div><div class="line">	time.sleep(<span class="number">1</span>)</div></pre></td></tr></table></figure>
 
       
     </div>
