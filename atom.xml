@@ -39,11 +39,11 @@
       <category term="开发" scheme="https://xsec.7ever.cn/categories/%E5%BC%80%E5%8F%91/"/>
     
     
+      <category term="hello" scheme="https://xsec.7ever.cn/tags/hello/"/>
+    
       <category term="ios" scheme="https://xsec.7ever.cn/tags/ios/"/>
     
       <category term="oc" scheme="https://xsec.7ever.cn/tags/oc/"/>
-    
-      <category term="hello" scheme="https://xsec.7ever.cn/tags/hello/"/>
     
       <category term="pods" scheme="https://xsec.7ever.cn/tags/pods/"/>
     
@@ -54,9 +54,9 @@
     <link href="https://xsec.7ever.cn/2017/10/09/python-tail/"/>
     <id>https://xsec.7ever.cn/2017/10/09/python-tail/</id>
     <published>2017-10-09T10:38:58.000Z</published>
-    <updated>2017-10-11T06:26:42.000Z</updated>
+    <updated>2017-10-12T01:29:57.000Z</updated>
     
-    <content type="html"><![CDATA[<p>关键点:</p><ul><li>打开指定文件</li><li>每隔一段时间尝试readline ，有内容print , 否则sleep </li><li>移动文件指针到文件末尾</li></ul><p>关键代码:</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#coding=utf-8</span></div><div class="line"><span class="keyword">import</span> sys</div><div class="line"><span class="keyword">import</span> time</div><div class="line"></div><div class="line">fname = <span class="string">'a.log'</span></div><div class="line">last_pos = <span class="number">0</span></div><div class="line"></div><div class="line"><span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line"></div><div class="line"><span class="keyword">with</span> open(fname,<span class="string">'r'</span>) <span class="keyword">as</span> f:</div><div class="line">f.seek(last_pos)</div><div class="line"></div><div class="line">line = f.readline()</div><div class="line"><span class="keyword">print</span> line</div><div class="line"><span class="keyword">if</span> <span class="keyword">not</span> line:</div><div class="line"><span class="keyword">print</span> line.strip()</div><div class="line"></div><div class="line">last_pos = f.tell()</div><div class="line"></div><div class="line">time.sleep(<span class="number">1</span>)</div></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<p>关键点:</p><ul><li>打开指定文件</li><li>每隔一段时间尝试readline ，有内容print , 否则sleep </li><li>移动文件指针到文件末尾</li></ul><p>关键代码:</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">#coding=utf-8</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> sys</div><div class="line"><span class="keyword">import</span> time</div><div class="line"><span class="keyword">import</span> re</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">watchFile</span><span class="params">(fname,**kwargs)</span> :</span></div><div class="line"></div><div class="line"><span class="string">"""</span></div><div class="line"><span class="string">watchFile(fname,delay=1,reg=False,handler=None,last_pos=0,last_size=0)</span></div><div class="line"><span class="string">用来监控文件的变化，可能有少量的数据缺失</span></div><div class="line"><span class="string">"""</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">echoHandler</span><span class="params">(items)</span>:</span></div><div class="line"><span class="keyword">print</span> items</div><div class="line"></div><div class="line">offset,where = kwargs.get(<span class="string">'last_pos'</span>,(<span class="number">0</span>,<span class="number">2</span>))</div><div class="line">last_size = kwargs.get(<span class="string">'last_size'</span>,<span class="number">0</span>)</div><div class="line">handler = kwargs.get(<span class="string">'handler'</span>,echoHandler)</div><div class="line">delay = kwargs.get(<span class="string">'delay'</span>,<span class="number">1</span>)</div><div class="line">reg = kwargs.get(<span class="string">'reg'</span>,<span class="keyword">False</span>)</div><div class="line">last_pos = <span class="number">0</span></div><div class="line"></div><div class="line"><span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line"><span class="keyword">try</span> :</div><div class="line"><span class="keyword">with</span> open(fname,<span class="string">'r'</span>) <span class="keyword">as</span> f:</div><div class="line"><span class="keyword">if</span> last_pos == <span class="number">0</span> :</div><div class="line">f.seek(offset,where)</div><div class="line"><span class="keyword">else</span> :</div><div class="line">f.seek(last_pos)</div><div class="line">line = f.readline()</div><div class="line"><span class="keyword">if</span> line != <span class="keyword">None</span> <span class="keyword">and</span> line != <span class="string">''</span>: </div><div class="line"><span class="keyword">if</span> reg != <span class="keyword">False</span> :</div><div class="line">items = reg.findall(line)</div><div class="line"><span class="keyword">else</span> :</div><div class="line">items = [line.strip()]</div><div class="line"><span class="keyword">if</span> len(items) != <span class="number">0</span> :</div><div class="line">handler(items)</div><div class="line">n_pos = f.tell()</div><div class="line">last_pos = n_pos</div><div class="line">f.seek(<span class="number">0</span>,<span class="number">2</span>)</div><div class="line">file_size = f.tell()</div><div class="line"><span class="keyword">if</span> file_size &lt; last_size :</div><div class="line">last_pos = <span class="number">0</span></div><div class="line">last_size = file_size</div><div class="line"><span class="keyword">except</span> Exception,e:</div><div class="line"><span class="keyword">pass</span></div><div class="line">time.sleep(delay)</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span> :</div><div class="line"><span class="keyword">if</span> len(sys.argv) &lt; <span class="number">2</span> :</div><div class="line"><span class="keyword">print</span> <span class="string">"python -u tail.py &lt;file&gt;"</span></div><div class="line">exit()</div><div class="line">fname = sys.argv[<span class="number">1</span>]</div><div class="line">reg_ = re.compile(<span class="string">"(error)|(disconnect)|(blocked)"</span>)</div><div class="line">watchFile(fname,reg=reg_)</div></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
@@ -311,9 +311,9 @@
       <category term="开发" scheme="https://xsec.7ever.cn/categories/%E5%BC%80%E5%8F%91/"/>
     
     
-      <category term="python" scheme="https://xsec.7ever.cn/tags/python/"/>
-    
       <category term="proxy" scheme="https://xsec.7ever.cn/tags/proxy/"/>
+    
+      <category term="python" scheme="https://xsec.7ever.cn/tags/python/"/>
     
       <category term="dns" scheme="https://xsec.7ever.cn/tags/dns/"/>
     
@@ -342,9 +342,9 @@
     
       <category term="nginx" scheme="https://xsec.7ever.cn/tags/nginx/"/>
     
-      <category term="stream" scheme="https://xsec.7ever.cn/tags/stream/"/>
-    
       <category term="proxy" scheme="https://xsec.7ever.cn/tags/proxy/"/>
+    
+      <category term="stream" scheme="https://xsec.7ever.cn/tags/stream/"/>
     
   </entry>
   
@@ -372,9 +372,9 @@
       <category term="开发" scheme="https://xsec.7ever.cn/categories/%E5%BC%80%E5%8F%91/"/>
     
     
-      <category term="xcode" scheme="https://xsec.7ever.cn/tags/xcode/"/>
-    
       <category term="pods" scheme="https://xsec.7ever.cn/tags/pods/"/>
+    
+      <category term="xcode" scheme="https://xsec.7ever.cn/tags/xcode/"/>
     
       <category term="brew" scheme="https://xsec.7ever.cn/tags/brew/"/>
     
@@ -406,9 +406,34 @@
     
       <category term="nginx" scheme="https://xsec.7ever.cn/tags/nginx/"/>
     
+      <category term="linux" scheme="https://xsec.7ever.cn/tags/linux/"/>
+    
       <category term="proxy" scheme="https://xsec.7ever.cn/tags/proxy/"/>
     
-      <category term="linux" scheme="https://xsec.7ever.cn/tags/linux/"/>
+  </entry>
+  
+  <entry>
+    <title>从头到尾搭建hexo博客</title>
+    <link href="https://xsec.7ever.cn/2017/03/07/hello-world/"/>
+    <id>https://xsec.7ever.cn/2017/03/07/hello-world/</id>
+    <published>2017-03-07T08:54:31.000Z</published>
+    <updated>2017-09-23T02:08:17.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2><h3 id="安装nodejs-npm"><a href="#安装nodejs-npm" class="headerlink" title="安装nodejs,npm"></a>安装nodejs,npm</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install -g hexo</div></pre></td></tr></table></figure><p>有的时候，需要在命令前，添加sudo</p><h3 id="创建博客目录-并cd到对应的目录"><a href="#创建博客目录-并cd到对应的目录" class="headerlink" title="创建博客目录,并cd到对应的目录"></a>创建博客目录,并cd到对应的目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ mkdir blog </div><div class="line">$ <span class="built_in">cd</span> `<span class="built_in">pwd</span>`/blog</div><div class="line">$ <span class="built_in">pwd</span></div></pre></td></tr></table></figure><h3 id="生成对应的页面文件"><a href="#生成对应的页面文件" class="headerlink" title="生成对应的页面文件"></a>生成对应的页面文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure><p>查看更多: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">生成页面</a></p><h3 id="部署到github"><a href="#部署到github" class="headerlink" title="部署到github"></a>部署到github</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure><p>有时候会报错:ERROR Deployer not found: github<br>解决办法如下,运行如下命令:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install hexo-deployer-git --save</div></pre></td></tr></table></figure><h3 id="生成新的文章"><a href="#生成新的文章" class="headerlink" title="生成新的文章:"></a>生成新的文章:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new &lt;layout&gt; &lt;title&gt;</div></pre></td></tr></table></figure><p>其中layout的值为: post, page, draft 或者其他的内容</p><p>当修改内容以后，需要调用以下命令，重新生成，重新部署:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo g &amp;&amp; hexo d</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;安装hexo&quot;&gt;&lt;a href=&quot;#安装hexo&quot; class=&quot;headerlink&quot; title=&quot;安装hexo&quot;&gt;&lt;/a&gt;安装hexo&lt;/h2&gt;&lt;h3 id=&quot;安装nodejs-npm&quot;&gt;&lt;a href=&quot;#安装nodejs-npm&quot; class=&quot;head
+      
+    
+    </summary>
+    
+      <category term="系统" scheme="https://xsec.7ever.cn/categories/%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+      <category term="hello" scheme="https://xsec.7ever.cn/tags/hello/"/>
     
   </entry>
   
@@ -439,31 +464,6 @@
       <category term="centos7" scheme="https://xsec.7ever.cn/tags/centos7/"/>
     
       <category term="gcc" scheme="https://xsec.7ever.cn/tags/gcc/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>从头到尾搭建hexo博客</title>
-    <link href="https://xsec.7ever.cn/2017/03/07/hello-world/"/>
-    <id>https://xsec.7ever.cn/2017/03/07/hello-world/</id>
-    <published>2017-03-07T08:54:31.000Z</published>
-    <updated>2017-09-23T02:08:17.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2><h3 id="安装nodejs-npm"><a href="#安装nodejs-npm" class="headerlink" title="安装nodejs,npm"></a>安装nodejs,npm</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install -g hexo</div></pre></td></tr></table></figure><p>有的时候，需要在命令前，添加sudo</p><h3 id="创建博客目录-并cd到对应的目录"><a href="#创建博客目录-并cd到对应的目录" class="headerlink" title="创建博客目录,并cd到对应的目录"></a>创建博客目录,并cd到对应的目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ mkdir blog </div><div class="line">$ <span class="built_in">cd</span> `<span class="built_in">pwd</span>`/blog</div><div class="line">$ <span class="built_in">pwd</span></div></pre></td></tr></table></figure><h3 id="生成对应的页面文件"><a href="#生成对应的页面文件" class="headerlink" title="生成对应的页面文件"></a>生成对应的页面文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure><p>查看更多: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">生成页面</a></p><h3 id="部署到github"><a href="#部署到github" class="headerlink" title="部署到github"></a>部署到github</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure><p>有时候会报错:ERROR Deployer not found: github<br>解决办法如下,运行如下命令:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install hexo-deployer-git --save</div></pre></td></tr></table></figure><h3 id="生成新的文章"><a href="#生成新的文章" class="headerlink" title="生成新的文章:"></a>生成新的文章:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new &lt;layout&gt; &lt;title&gt;</div></pre></td></tr></table></figure><p>其中layout的值为: post, page, draft 或者其他的内容</p><p>当修改内容以后，需要调用以下命令，重新生成，重新部署:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo g &amp;&amp; hexo d</div></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;安装hexo&quot;&gt;&lt;a href=&quot;#安装hexo&quot; class=&quot;headerlink&quot; title=&quot;安装hexo&quot;&gt;&lt;/a&gt;安装hexo&lt;/h2&gt;&lt;h3 id=&quot;安装nodejs-npm&quot;&gt;&lt;a href=&quot;#安装nodejs-npm&quot; class=&quot;head
-      
-    
-    </summary>
-    
-      <category term="系统" scheme="https://xsec.7ever.cn/categories/%E7%B3%BB%E7%BB%9F/"/>
-    
-    
-      <category term="hello" scheme="https://xsec.7ever.cn/tags/hello/"/>
     
   </entry>
   
