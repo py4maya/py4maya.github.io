@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xsec.7ever.cn/"/>
-  <updated>2017-10-13T06:16:33.000Z</updated>
+  <updated>2017-10-13T07:28:14.000Z</updated>
   <id>https://xsec.7ever.cn/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="https://xsec.7ever.cn/2017/10/13/nginx-lua-see-http/"/>
     <id>https://xsec.7ever.cn/2017/10/13/nginx-lua-see-http/</id>
     <published>2017-10-13T06:05:54.000Z</published>
-    <updated>2017-10-13T06:16:33.000Z</updated>
+    <updated>2017-10-13T07:28:14.000Z</updated>
     
-    <content type="html"><![CDATA[<p>原由:查看一个proxy系统客户端的请求内容，该系统为nginx proxy 搭建。</p><p>方案:</p><ul><li>部署新的nginx </li><li>内容请求部分添加lua 拦截请求</li><li>根据nginx lua api 分离http(s) 的请求内容</li></ul><p>编译nginx时需要添加lua支持:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">./configure --prefix=/data0/nginx/ \</div><div class="line">--with-stream \</div><div class="line">--with-http_ssl_module \</div><div class="line">--with-stream_ssl_module \</div><div class="line">--with-ld-opt=-Wl,-rpath,/data0/luajit/lib \</div><div class="line">--add-module=../lua-nginx-module</div></pre></td></tr></table></figure><p>配置正常的nginx模块,添加lua解析:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line"></div><div class="line">listen 80;</div><div class="line">location / &#123;</div><div class="line"> access_by_lua_file /data0/nginx/conf/vhost/access.lua;</div><div class="line"> proxy_pass http://$http_host;</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p><p>lua的内容:<br><figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">ngx.req.read_body()</div><div class="line"></div><div class="line"><span class="keyword">local</span> ip = ngx.var.remote_addr</div><div class="line"><span class="keyword">local</span> logfile = <span class="built_in">io</span>.<span class="built_in">open</span>(<span class="string">"/tmp/data.log"</span>,<span class="string">"a"</span>);</div><div class="line"></div><div class="line"><span class="keyword">local</span> method = ngx.req.get_method()</div><div class="line"><span class="keyword">local</span> body = ngx.req.get_body_data()</div><div class="line"></div><div class="line">logfile:<span class="built_in">write</span>(<span class="string">"\n ============================  "</span> .. method .. <span class="string">" ========================== "</span> .. <span class="string">"\n"</span>)</div><div class="line">logfile:<span class="built_in">write</span>(ngx.req.raw_header() .. <span class="string">"\n"</span>)</div><div class="line">logfile:<span class="built_in">write</span>(body ..  <span class="string">"\n"</span>)</div><div class="line"></div><div class="line"></div><div class="line">logfile:<span class="built_in">flush</span>()</div><div class="line">logfile:<span class="built_in">close</span>()</div></pre></td></tr></table></figure></p>]]></content>
+    <content type="html"><![CDATA[<p>原由:查看一个proxy系统客户端的请求内容，该系统为nginx proxy 搭建。</p><p>方案:</p><ul><li>部署新的nginx </li><li>内容请求部分添加lua 拦截请求</li><li>根据nginx lua api 分离http(s) 的请求内容</li></ul><p>编译nginx时需要添加lua支持:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">./configure --prefix=/data0/nginx/ \</div><div class="line">--with-stream \</div><div class="line">--with-http_ssl_module \</div><div class="line">--with-stream_ssl_module \</div><div class="line">--with-ld-opt=-Wl,-rpath,/data0/luajit/lib \</div><div class="line">--add-module=../lua-nginx-module</div></pre></td></tr></table></figure><p>配置正常的nginx模块,添加lua解析:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line"></div><div class="line">listen 80;</div><div class="line">location / &#123;</div><div class="line"> access_by_lua_file /data0/nginx/conf/vhost/access.lua;</div><div class="line"> proxy_pass http://$http_host;</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p><p>lua的内容:<br><figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">ngx.req.read_body()</div><div class="line"></div><div class="line"><span class="keyword">local</span> ip = ngx.var.remote_addr</div><div class="line"><span class="keyword">local</span> logfile = <span class="built_in">io</span>.<span class="built_in">open</span>(<span class="string">"/tmp/data.log"</span>,<span class="string">"a"</span>);</div><div class="line"></div><div class="line"><span class="keyword">local</span> method = ngx.req.get_method()</div><div class="line"><span class="keyword">local</span> body = ngx.req.get_body_data()</div><div class="line"></div><div class="line"><span class="keyword">if</span> (body == <span class="literal">nil</span>)</div><div class="line"><span class="keyword">then</span></div><div class="line">    body = <span class="string">''</span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line">logfile:<span class="built_in">write</span>(<span class="string">"\n ============================  "</span> .. method .. <span class="string">" ========================== "</span> .. <span class="string">"\n"</span>)</div><div class="line">logfile:<span class="built_in">write</span>(ngx.req.raw_header() .. <span class="string">"\n"</span>)</div><div class="line">logfile:<span class="built_in">write</span>(body ..  <span class="string">"\n"</span>)</div><div class="line"></div><div class="line"></div><div class="line">logfile:<span class="built_in">flush</span>()</div><div class="line">logfile:<span class="built_in">close</span>()</div></pre></td></tr></table></figure></p>]]></content>
     
     <summary type="html">
     
@@ -447,6 +447,31 @@
   </entry>
   
   <entry>
+    <title>从头到尾搭建hexo博客</title>
+    <link href="https://xsec.7ever.cn/2017/03/07/hello-world/"/>
+    <id>https://xsec.7ever.cn/2017/03/07/hello-world/</id>
+    <published>2017-03-07T08:54:31.000Z</published>
+    <updated>2017-09-23T02:08:17.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2><h3 id="安装nodejs-npm"><a href="#安装nodejs-npm" class="headerlink" title="安装nodejs,npm"></a>安装nodejs,npm</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install -g hexo</div></pre></td></tr></table></figure><p>有的时候，需要在命令前，添加sudo</p><h3 id="创建博客目录-并cd到对应的目录"><a href="#创建博客目录-并cd到对应的目录" class="headerlink" title="创建博客目录,并cd到对应的目录"></a>创建博客目录,并cd到对应的目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ mkdir blog </div><div class="line">$ <span class="built_in">cd</span> `<span class="built_in">pwd</span>`/blog</div><div class="line">$ <span class="built_in">pwd</span></div></pre></td></tr></table></figure><h3 id="生成对应的页面文件"><a href="#生成对应的页面文件" class="headerlink" title="生成对应的页面文件"></a>生成对应的页面文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure><p>查看更多: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">生成页面</a></p><h3 id="部署到github"><a href="#部署到github" class="headerlink" title="部署到github"></a>部署到github</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure><p>有时候会报错:ERROR Deployer not found: github<br>解决办法如下,运行如下命令:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install hexo-deployer-git --save</div></pre></td></tr></table></figure><h3 id="生成新的文章"><a href="#生成新的文章" class="headerlink" title="生成新的文章:"></a>生成新的文章:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new &lt;layout&gt; &lt;title&gt;</div></pre></td></tr></table></figure><p>其中layout的值为: post, page, draft 或者其他的内容</p><p>当修改内容以后，需要调用以下命令，重新生成，重新部署:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo g &amp;&amp; hexo d</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;安装hexo&quot;&gt;&lt;a href=&quot;#安装hexo&quot; class=&quot;headerlink&quot; title=&quot;安装hexo&quot;&gt;&lt;/a&gt;安装hexo&lt;/h2&gt;&lt;h3 id=&quot;安装nodejs-npm&quot;&gt;&lt;a href=&quot;#安装nodejs-npm&quot; class=&quot;head
+      
+    
+    </summary>
+    
+      <category term="系统" scheme="https://xsec.7ever.cn/categories/%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+      <category term="hello" scheme="https://xsec.7ever.cn/tags/hello/"/>
+    
+  </entry>
+  
+  <entry>
     <title>centos7升级gcc到4.9.3</title>
     <link href="https://xsec.7ever.cn/2017/03/07/centos7%E5%8D%87%E7%BA%A7gcc%E5%88%B04-9-3/"/>
     <id>https://xsec.7ever.cn/2017/03/07/centos7升级gcc到4-9-3/</id>
@@ -470,34 +495,9 @@
       <category term="系统" scheme="https://xsec.7ever.cn/categories/%E7%B3%BB%E7%BB%9F/"/>
     
     
-      <category term="centos7" scheme="https://xsec.7ever.cn/tags/centos7/"/>
-    
       <category term="gcc" scheme="https://xsec.7ever.cn/tags/gcc/"/>
     
-  </entry>
-  
-  <entry>
-    <title>从头到尾搭建hexo博客</title>
-    <link href="https://xsec.7ever.cn/2017/03/07/hello-world/"/>
-    <id>https://xsec.7ever.cn/2017/03/07/hello-world/</id>
-    <published>2017-03-07T08:54:31.000Z</published>
-    <updated>2017-09-23T02:08:17.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2><h3 id="安装nodejs-npm"><a href="#安装nodejs-npm" class="headerlink" title="安装nodejs,npm"></a>安装nodejs,npm</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install -g hexo</div></pre></td></tr></table></figure><p>有的时候，需要在命令前，添加sudo</p><h3 id="创建博客目录-并cd到对应的目录"><a href="#创建博客目录-并cd到对应的目录" class="headerlink" title="创建博客目录,并cd到对应的目录"></a>创建博客目录,并cd到对应的目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ mkdir blog </div><div class="line">$ <span class="built_in">cd</span> `<span class="built_in">pwd</span>`/blog</div><div class="line">$ <span class="built_in">pwd</span></div></pre></td></tr></table></figure><h3 id="生成对应的页面文件"><a href="#生成对应的页面文件" class="headerlink" title="生成对应的页面文件"></a>生成对应的页面文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure><p>查看更多: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">生成页面</a></p><h3 id="部署到github"><a href="#部署到github" class="headerlink" title="部署到github"></a>部署到github</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure><p>有时候会报错:ERROR Deployer not found: github<br>解决办法如下,运行如下命令:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install hexo-deployer-git --save</div></pre></td></tr></table></figure><h3 id="生成新的文章"><a href="#生成新的文章" class="headerlink" title="生成新的文章:"></a>生成新的文章:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new &lt;layout&gt; &lt;title&gt;</div></pre></td></tr></table></figure><p>其中layout的值为: post, page, draft 或者其他的内容</p><p>当修改内容以后，需要调用以下命令，重新生成，重新部署:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo g &amp;&amp; hexo d</div></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;安装hexo&quot;&gt;&lt;a href=&quot;#安装hexo&quot; class=&quot;headerlink&quot; title=&quot;安装hexo&quot;&gt;&lt;/a&gt;安装hexo&lt;/h2&gt;&lt;h3 id=&quot;安装nodejs-npm&quot;&gt;&lt;a href=&quot;#安装nodejs-npm&quot; class=&quot;head
-      
-    
-    </summary>
-    
-      <category term="系统" scheme="https://xsec.7ever.cn/categories/%E7%B3%BB%E7%BB%9F/"/>
-    
-    
-      <category term="hello" scheme="https://xsec.7ever.cn/tags/hello/"/>
+      <category term="centos7" scheme="https://xsec.7ever.cn/tags/centos7/"/>
     
   </entry>
   
