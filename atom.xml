@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xsec.7ever.cn/"/>
-  <updated>2017-10-13T07:28:14.000Z</updated>
+  <updated>2017-10-28T09:50:23.000Z</updated>
   <id>https://xsec.7ever.cn/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ios UIView 基本操作</title>
+    <link href="https://xsec.7ever.cn/2017/10/28/ios-uiview/"/>
+    <id>https://xsec.7ever.cn/2017/10/28/ios-uiview/</id>
+    <published>2017-10-28T09:44:54.000Z</published>
+    <updated>2017-10-28T09:50:23.000Z</updated>
+    
+    <content type="html"><![CDATA[<h5 id="简单的知识点"><a href="#简单的知识点" class="headerlink" title="简单的知识点:"></a>简单的知识点:</h5><ul><li>获取屏幕尺寸 : [UIScreen mainScreen].bounds.size </li><li>bounds 和 frame 的区别, bounds 又叫做线宽，x,y 永远为0 </li><li>UIView 可以设置不同的tag属性，建议唯一 , 父视图的 viewWithTag 方法可以获取到指定tag的UIView</li><li>层级关系: bringSubviewToFront UIView 移动到最前, sendSubviewToBack , UIView 移动到最下层</li><li>exchangeSubviewAtIndex 可以用来交换不同层的组件</li><li>遍历子视图 subviews 可以获取到一个NSArray 其中成员都是UIView </li></ul><h5 id="实例代码"><a href="#实例代码" class="headerlink" title="实例代码:"></a>实例代码:</h5><hr><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//UIView 坐标根据父视图来设置，</span></div><div class="line">  <span class="comment">//距离上下左右各为x像素的UIView</span></div><div class="line">  <span class="comment">//其中20 为顶部的状态栏</span></div><div class="line">  <span class="comment">//frame bounds 区别 bounds中x,y永远为0</span></div><div class="line">  <span class="comment">//center 取view的中心点 x,y</span></div><div class="line">  <span class="comment">//通过获取父视图，设置背景</span></div><div class="line">  CGRect screen = [UIScreen mainScreen].bounds;</div><div class="line">  NSInteger x = <span class="number">20</span>;</div><div class="line">  CGPoint center = self.view.center;</div><div class="line">  UIView *xv = [[UIView alloc]initWithFrame:CGRectMake(x, x + <span class="number">20</span> , screen.size.width - x * <span class="number">2</span>   , screen.size.height - x * <span class="number">2</span> - <span class="number">20</span> )];</div><div class="line">  xv.backgroundColor = [UIColor blueColor];</div><div class="line">  xv.tag = <span class="number">0</span>;</div><div class="line"></div><div class="line">  NSLog(@<span class="string">" center is  : %f , %f "</span>,center.x,center.y);</div><div class="line">  </div><div class="line">  [self.view addSubview:xv];</div><div class="line">  </div><div class="line">  UIView *superView = xv.superview;</div><div class="line">  superView.backgroundColor = [UIColor blackColor];</div><div class="line">  </div><div class="line">  <span class="comment">//遍历子视图，根据不同类型设置不同操作</span></div><div class="line">  NSArray *childViews = [self.view subviews];</div><div class="line">  <span class="keyword">for</span> (UIView *sub in childViews) &#123;</div><div class="line">      <span class="keyword">switch</span> (sub.tag) &#123;</div><div class="line">          <span class="keyword">case</span> <span class="number">0</span>:</div><div class="line">              NSLog(@<span class="string">"type 0 view"</span>);</div><div class="line">              <span class="keyword">break</span>;</div><div class="line">          <span class="keyword">default</span>:</div><div class="line">              NSLog(@<span class="string">"no type view"</span>);</div><div class="line">              <span class="keyword">break</span>;</div><div class="line">      &#125;</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  <span class="comment">//通过tag 获取view</span></div><div class="line">  UIView *v = [self.view viewWithTag:<span class="number">1</span>];</div><div class="line">  <span class="keyword">if</span>(v) &#123;</div><div class="line">      v.backgroundColor = [UIColor greenColor];</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  <span class="comment">//交换不同层的组件</span></div><div class="line">  [self.view exchangeSubviewAtIndex:<span class="number">2</span> withSubviewAtIndex:<span class="number">3</span>];</div><div class="line">  <span class="comment">//指定层添加组件,可以添加到最上边，最下边</span></div><div class="line">  [self.view insertSubview:v atIndex:<span class="number">10</span>];</div><div class="line">  </div><div class="line">  <span class="comment">//移到最底层</span></div><div class="line">  [self.view sendSubviewToBack:v];</div><div class="line">  <span class="comment">//移动到最顶层</span></div><div class="line">  [self.view bringSubviewToFront:v];</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h5 id=&quot;简单的知识点&quot;&gt;&lt;a href=&quot;#简单的知识点&quot; class=&quot;headerlink&quot; title=&quot;简单的知识点:&quot;&gt;&lt;/a&gt;简单的知识点:&lt;/h5&gt;&lt;ul&gt;
+&lt;li&gt;获取屏幕尺寸 : [UIScreen mainScreen].bounds.size &lt;/l
+      
+    
+    </summary>
+    
+      <category term="开发" scheme="https://xsec.7ever.cn/categories/%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="UIView" scheme="https://xsec.7ever.cn/tags/UIView/"/>
+    
+      <category term="ios" scheme="https://xsec.7ever.cn/tags/ios/"/>
+    
+  </entry>
   
   <entry>
     <title>使用lua查看http(s)中的请求内容</title>
@@ -73,9 +101,9 @@
       <category term="开发" scheme="https://xsec.7ever.cn/categories/%E5%BC%80%E5%8F%91/"/>
     
     
-      <category term="hello" scheme="https://xsec.7ever.cn/tags/hello/"/>
-    
       <category term="ios" scheme="https://xsec.7ever.cn/tags/ios/"/>
+    
+      <category term="hello" scheme="https://xsec.7ever.cn/tags/hello/"/>
     
       <category term="oc" scheme="https://xsec.7ever.cn/tags/oc/"/>
     
@@ -447,6 +475,31 @@
   </entry>
   
   <entry>
+    <title>从头到尾搭建hexo博客</title>
+    <link href="https://xsec.7ever.cn/2017/03/07/hello-world/"/>
+    <id>https://xsec.7ever.cn/2017/03/07/hello-world/</id>
+    <published>2017-03-07T08:54:31.000Z</published>
+    <updated>2017-09-23T02:08:17.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2><h3 id="安装nodejs-npm"><a href="#安装nodejs-npm" class="headerlink" title="安装nodejs,npm"></a>安装nodejs,npm</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install -g hexo</div></pre></td></tr></table></figure><p>有的时候，需要在命令前，添加sudo</p><h3 id="创建博客目录-并cd到对应的目录"><a href="#创建博客目录-并cd到对应的目录" class="headerlink" title="创建博客目录,并cd到对应的目录"></a>创建博客目录,并cd到对应的目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ mkdir blog </div><div class="line">$ <span class="built_in">cd</span> `<span class="built_in">pwd</span>`/blog</div><div class="line">$ <span class="built_in">pwd</span></div></pre></td></tr></table></figure><h3 id="生成对应的页面文件"><a href="#生成对应的页面文件" class="headerlink" title="生成对应的页面文件"></a>生成对应的页面文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure><p>查看更多: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">生成页面</a></p><h3 id="部署到github"><a href="#部署到github" class="headerlink" title="部署到github"></a>部署到github</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure><p>有时候会报错:ERROR Deployer not found: github<br>解决办法如下,运行如下命令:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install hexo-deployer-git --save</div></pre></td></tr></table></figure><h3 id="生成新的文章"><a href="#生成新的文章" class="headerlink" title="生成新的文章:"></a>生成新的文章:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new &lt;layout&gt; &lt;title&gt;</div></pre></td></tr></table></figure><p>其中layout的值为: post, page, draft 或者其他的内容</p><p>当修改内容以后，需要调用以下命令，重新生成，重新部署:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo g &amp;&amp; hexo d</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;安装hexo&quot;&gt;&lt;a href=&quot;#安装hexo&quot; class=&quot;headerlink&quot; title=&quot;安装hexo&quot;&gt;&lt;/a&gt;安装hexo&lt;/h2&gt;&lt;h3 id=&quot;安装nodejs-npm&quot;&gt;&lt;a href=&quot;#安装nodejs-npm&quot; class=&quot;head
+      
+    
+    </summary>
+    
+      <category term="系统" scheme="https://xsec.7ever.cn/categories/%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+      <category term="hello" scheme="https://xsec.7ever.cn/tags/hello/"/>
+    
+  </entry>
+  
+  <entry>
     <title>centos7升级gcc到4.9.3</title>
     <link href="https://xsec.7ever.cn/2017/03/07/centos7%E5%8D%87%E7%BA%A7gcc%E5%88%B04-9-3/"/>
     <id>https://xsec.7ever.cn/2017/03/07/centos7升级gcc到4-9-3/</id>
@@ -470,34 +523,9 @@
       <category term="系统" scheme="https://xsec.7ever.cn/categories/%E7%B3%BB%E7%BB%9F/"/>
     
     
-      <category term="centos7" scheme="https://xsec.7ever.cn/tags/centos7/"/>
-    
       <category term="gcc" scheme="https://xsec.7ever.cn/tags/gcc/"/>
     
-  </entry>
-  
-  <entry>
-    <title>从头到尾搭建hexo博客</title>
-    <link href="https://xsec.7ever.cn/2017/03/07/hello-world/"/>
-    <id>https://xsec.7ever.cn/2017/03/07/hello-world/</id>
-    <published>2017-03-07T08:54:31.000Z</published>
-    <updated>2017-09-23T02:08:17.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2><h3 id="安装nodejs-npm"><a href="#安装nodejs-npm" class="headerlink" title="安装nodejs,npm"></a>安装nodejs,npm</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install -g hexo</div></pre></td></tr></table></figure><p>有的时候，需要在命令前，添加sudo</p><h3 id="创建博客目录-并cd到对应的目录"><a href="#创建博客目录-并cd到对应的目录" class="headerlink" title="创建博客目录,并cd到对应的目录"></a>创建博客目录,并cd到对应的目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ mkdir blog </div><div class="line">$ <span class="built_in">cd</span> `<span class="built_in">pwd</span>`/blog</div><div class="line">$ <span class="built_in">pwd</span></div></pre></td></tr></table></figure><h3 id="生成对应的页面文件"><a href="#生成对应的页面文件" class="headerlink" title="生成对应的页面文件"></a>生成对应的页面文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure><p>查看更多: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">生成页面</a></p><h3 id="部署到github"><a href="#部署到github" class="headerlink" title="部署到github"></a>部署到github</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure><p>有时候会报错:ERROR Deployer not found: github<br>解决办法如下,运行如下命令:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install hexo-deployer-git --save</div></pre></td></tr></table></figure><h3 id="生成新的文章"><a href="#生成新的文章" class="headerlink" title="生成新的文章:"></a>生成新的文章:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new &lt;layout&gt; &lt;title&gt;</div></pre></td></tr></table></figure><p>其中layout的值为: post, page, draft 或者其他的内容</p><p>当修改内容以后，需要调用以下命令，重新生成，重新部署:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo g &amp;&amp; hexo d</div></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;安装hexo&quot;&gt;&lt;a href=&quot;#安装hexo&quot; class=&quot;headerlink&quot; title=&quot;安装hexo&quot;&gt;&lt;/a&gt;安装hexo&lt;/h2&gt;&lt;h3 id=&quot;安装nodejs-npm&quot;&gt;&lt;a href=&quot;#安装nodejs-npm&quot; class=&quot;head
-      
-    
-    </summary>
-    
-      <category term="系统" scheme="https://xsec.7ever.cn/categories/%E7%B3%BB%E7%BB%9F/"/>
-    
-    
-      <category term="hello" scheme="https://xsec.7ever.cn/tags/hello/"/>
+      <category term="centos7" scheme="https://xsec.7ever.cn/tags/centos7/"/>
     
   </entry>
   
