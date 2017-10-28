@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="centos7," />
+  <meta name="keywords" content="ios,UILabel," />
 
 
 
@@ -96,18 +96,18 @@
 
 
 
-<meta name="description" content="配置文件 /etc/sysconfig/network-scripts/ifcfg-xxxxx :12345678910111213141516BOOTPROTO=&quot;static&quot; #dhcp改为static   ONBOOT=&quot;yes&quot; #开机启用本配置  IPADDR=192.168.7.106 #静态IP  GATEWAY=192.168.7.1 #默认网关  NETMASK=255.255">
-<meta name="keywords" content="centos7">
+<meta name="description" content="UIColor 相关, RGB 模式中,各个值的范围是0~1 , clearColor 为透明色 文本对齐方式, label 的 textAlignment 属性，值为 NSTextAlignmentCenter  多行显示文本 numberOfLines 设置文本显示的行数, 0|-1 为不控制显示行数,行数多少 不会超过label的高度 自动计算文本所占的宽高， 用字符串的 sizeWith">
+<meta name="keywords" content="ios,UILabel">
 <meta property="og:type" content="article">
-<meta property="og:title" content="centos7固定ip">
-<meta property="og:url" content="https://xsec.7ever.cn/2017/10/05/centos7-fix-ipaddress/index.html">
+<meta property="og:title" content="ios UILabel 使用">
+<meta property="og:url" content="https://xsec.7ever.cn/2017/10/28/ios-uilabel/index.html">
 <meta property="og:site_name" content="Simple Xsec World">
-<meta property="og:description" content="配置文件 /etc/sysconfig/network-scripts/ifcfg-xxxxx :12345678910111213141516BOOTPROTO=&quot;static&quot; #dhcp改为static   ONBOOT=&quot;yes&quot; #开机启用本配置  IPADDR=192.168.7.106 #静态IP  GATEWAY=192.168.7.1 #默认网关  NETMASK=255.255">
+<meta property="og:description" content="UIColor 相关, RGB 模式中,各个值的范围是0~1 , clearColor 为透明色 文本对齐方式, label 的 textAlignment 属性，值为 NSTextAlignmentCenter  多行显示文本 numberOfLines 设置文本显示的行数, 0|-1 为不控制显示行数,行数多少 不会超过label的高度 自动计算文本所占的宽高， 用字符串的 sizeWith">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-05T08:58:29.000Z">
+<meta property="og:updated_time" content="2017-10-28T11:14:29.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="centos7固定ip">
-<meta name="twitter:description" content="配置文件 /etc/sysconfig/network-scripts/ifcfg-xxxxx :12345678910111213141516BOOTPROTO=&quot;static&quot; #dhcp改为static   ONBOOT=&quot;yes&quot; #开机启用本配置  IPADDR=192.168.7.106 #静态IP  GATEWAY=192.168.7.1 #默认网关  NETMASK=255.255">
+<meta name="twitter:title" content="ios UILabel 使用">
+<meta name="twitter:description" content="UIColor 相关, RGB 模式中,各个值的范围是0~1 , clearColor 为透明色 文本对齐方式, label 的 textAlignment 属性，值为 NSTextAlignmentCenter  多行显示文本 numberOfLines 设置文本显示的行数, 0|-1 为不控制显示行数,行数多少 不会超过label的高度 自动计算文本所占的宽高， 用字符串的 sizeWith">
 
 
 
@@ -136,13 +136,13 @@
 
 
 
-  <link rel="canonical" href="https://xsec.7ever.cn/2017/10/05/centos7-fix-ipaddress/"/>
+  <link rel="canonical" href="https://xsec.7ever.cn/2017/10/28/ios-uilabel/"/>
 
 
 
 
 
-  <title>centos7固定ip | Simple Xsec World</title>
+  <title>ios UILabel 使用 | Simple Xsec World</title>
   
 
 
@@ -285,7 +285,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2017/10/05/centos7-fix-ipaddress/">
+    <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2017/10/28/ios-uilabel/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xingyue">
@@ -302,7 +302,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">centos7固定ip</h1>
+          <h1 class="post-title" itemprop="name headline">ios UILabel 使用</h1>
         
 
         <div class="post-meta">
@@ -314,8 +314,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-05T16:55:14+08:00">
-                2017-10-05
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-28T19:10:51+08:00">
+                2017-10-28
               </time>
             
 
@@ -337,8 +337,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/系统/" itemprop="url" rel="index">
-                    <span itemprop="name">系统</span>
+                  <a href="/categories/开发/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
                   </a>
                 </span>
 
@@ -374,7 +374,13 @@
       
 
       
-        <p>配置文件 /etc/sysconfig/network-scripts/ifcfg-xxxxx :<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">BOOTPROTO="static" #dhcp改为static   </div><div class="line">ONBOOT="yes" #开机启用本配置  </div><div class="line">IPADDR=192.168.7.106 #静态IP  </div><div class="line">GATEWAY=192.168.7.1 #默认网关  </div><div class="line">NETMASK=255.255.255.0 #子网掩码  </div><div class="line">DNS1=192.168.7.1 #DNS 配置  </div><div class="line"></div><div class="line"></div><div class="line"><span class="meta">#</span>#修改为:</div><div class="line">BOOTPROTO=static</div><div class="line">IPADDR=192.168.122.216</div><div class="line">GATEWAY=192.168.122.1</div><div class="line">NETMASK=255.255.255.0</div><div class="line">DNS1=192.168.122.1 </div><div class="line">DNS2=192.168.122.2</div></pre></td></tr></table></figure></p>
+        <ul>
+<li>UIColor 相关, RGB 模式中,各个值的范围是0~1 , clearColor 为透明色</li>
+<li>文本对齐方式, label 的 textAlignment 属性，值为 NSTextAlignmentCenter </li>
+<li>多行显示文本 numberOfLines 设置文本显示的行数, 0|-1 为不控制显示行数,行数多少 不会超过label的高度</li>
+<li>自动计算文本所占的宽高， 用字符串的 sizeWithFont 方法</li>
+</ul>
+<h5 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码 :"></a>示例代码 :</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//尺寸，颜色 clearColor 为透明色</span></div><div class="line">   <span class="comment">//对齐方式设置label的textAlignment 值为  NSTextAlignmentCenter ,</span></div><div class="line">   <span class="comment">//colorWithRed用RGB的方式设置颜色，注：R,G,B,alpha的值都是0~1</span></div><div class="line">   <span class="comment">//字体设置，设置UIFont的特殊值</span></div><div class="line">   CGRect xsize = [UIScreen mainScreen].bounds;</div><div class="line">   UILabel *l = [[UILabel alloc]initWithFrame:CGRectMake(<span class="number">20</span>, <span class="number">50</span> , xsize.size.width - <span class="number">40</span> , <span class="number">30</span> )];</div><div class="line">   l.backgroundColor = [UIColor clearColor];</div><div class="line">   l.text = @<span class="string">"Hello This is Big World!"</span>;</div><div class="line">   l.textColor = [UIColor colorWithRed:<span class="number">0.8</span> green:<span class="number">0</span> blue:<span class="number">0</span> alpha:<span class="number">1</span>];</div><div class="line">   l.textAlignment = NSTextAlignmentCenter;</div><div class="line">   l.font = [UIFont systemFontOfSize:<span class="number">18</span>];</div><div class="line">   </div><div class="line">   l.shadowColor = [UIColor greenColor];</div><div class="line">   l.shadowOffset = CGSizeMake(<span class="number">0</span>, <span class="number">1</span>);</div><div class="line">   </div><div class="line">   UILabel *bl = [[UILabel alloc]initWithFrame:CGRectMake(<span class="number">20</span>, <span class="number">100</span>, xsize.size.width - <span class="number">40</span>, <span class="number">200</span>)];</div><div class="line">   bl.text = @<span class="string">"      这是一个特别长的文字这是一个特别长的文字这是一个特别长的文字这是一个特别长的文字这是一个特别长的文字这是一个特别长的文字这是一个特别长的文字这是一个特别长的文字这是一个特别长的文字这是一个特别长的文字这是一个特别长的文字这是一个特别长的文字这是一个特别长的文字这是一个特别长的文字这是一个特别长的文字这是一个特别长的文字这是一个特别长的文字这是一个特别长的文字"</span>;</div><div class="line">   </div><div class="line">   <span class="comment">//显示行数，0 或者 -1 不设置</span></div><div class="line">   bl.numberOfLines = <span class="number">0</span>;</div><div class="line">   </div><div class="line">   <span class="comment">//计算文字所占的size</span></div><div class="line">   CGSize textSize = [bl.text sizeWithFont:bl.font constrainedToSize:CGSizeMake(xsize.size.width - <span class="number">40</span>, <span class="number">50000</span>)];</div><div class="line">   bl.frame = CGRectMake(<span class="number">20</span>, <span class="number">100</span>, textSize.width, textSize.height);</div><div class="line"></div><div class="line"></div><div class="line">   </div><div class="line">   [self.view addSubview:bl];</div><div class="line">   [self.view addSubview:l];</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -419,7 +425,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://xsec.7ever.cn/2017/10/05/centos7-fix-ipaddress/" title="centos7固定ip">https://xsec.7ever.cn/2017/10/05/centos7-fix-ipaddress/</a>
+    <a href="https://xsec.7ever.cn/2017/10/28/ios-uilabel/" title="ios UILabel 使用">https://xsec.7ever.cn/2017/10/28/ios-uilabel/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -434,7 +440,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/centos7/" rel="tag"># centos7</a>
+            <a href="/tags/ios/" rel="tag"># ios</a>
+          
+            <a href="/tags/UILabel/" rel="tag"># UILabel</a>
           
         </div>
       
@@ -447,8 +455,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/05/pip-aliyun-https/" rel="next" title="pip配置可用的其他更新源">
-                <i class="fa fa-chevron-left"></i> pip配置可用的其他更新源
+              <a href="/2017/10/28/ios-uiview/" rel="next" title="ios UIView 基本操作">
+                <i class="fa fa-chevron-left"></i> ios UIView 基本操作
               </a>
             
           </div>
@@ -456,10 +464,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/10/05/expect-ssh-login/" rel="prev" title="expect 脚本自动登录ssh服务器">
-                expect 脚本自动登录ssh服务器 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -511,8 +515,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -599,6 +612,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#示例代码"><span class="nav-number">1.</span> <span class="nav-text">示例代码 :</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
