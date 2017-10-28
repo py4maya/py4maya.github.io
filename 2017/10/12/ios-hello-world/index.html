@@ -96,18 +96,18 @@
 
 
 
-<meta name="description" content="手写UI需要删除项目设置中的Storyboard配置: General -&amp;gt; Deployment Info -&amp;gt; Main interface 中保持为空 AppDelegate.m中设置window及显示主ViewController: 1234567self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen]">
+<meta name="description" content="手写UI需要删除项目设置中的Storyboard配置: General -&amp;gt; Deployment Info -&amp;gt; Main interface 中保持为空 AppDelegate.m中设置window及显示主ViewController: 12345_window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bound">
 <meta name="keywords" content="hello,ios,oc,pods">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ios hello world">
 <meta property="og:url" content="https://xsec.7ever.cn/2017/10/12/ios-hello-world/index.html">
 <meta property="og:site_name" content="Simple Xsec World">
-<meta property="og:description" content="手写UI需要删除项目设置中的Storyboard配置: General -&amp;gt; Deployment Info -&amp;gt; Main interface 中保持为空 AppDelegate.m中设置window及显示主ViewController: 1234567self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen]">
+<meta property="og:description" content="手写UI需要删除项目设置中的Storyboard配置: General -&amp;gt; Deployment Info -&amp;gt; Main interface 中保持为空 AppDelegate.m中设置window及显示主ViewController: 12345_window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bound">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-12T01:28:09.000Z">
+<meta property="og:updated_time" content="2017-10-28T08:47:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ios hello world">
-<meta name="twitter:description" content="手写UI需要删除项目设置中的Storyboard配置: General -&amp;gt; Deployment Info -&amp;gt; Main interface 中保持为空 AppDelegate.m中设置window及显示主ViewController: 1234567self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen]">
+<meta name="twitter:description" content="手写UI需要删除项目设置中的Storyboard配置: General -&amp;gt; Deployment Info -&amp;gt; Main interface 中保持为空 AppDelegate.m中设置window及显示主ViewController: 12345_window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bound">
 
 
 
@@ -377,7 +377,7 @@
         <p>手写UI需要删除项目设置中的Storyboard配置:</p>
 <p>General -&gt; Deployment Info -&gt; Main interface 中保持为空</p>
 <p>AppDelegate.m中设置window及显示主ViewController:</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];</div><div class="line">  self.window.backgroundColor = [UIColor whiteColor];</div><div class="line">  </div><div class="line">  UIViewController *mainController = [[ViewController alloc]init];</div><div class="line">  self.window.rootViewController = mainController;</div><div class="line">  [self.window makeKeyAndVisible];</div></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">_window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];</div><div class="line">_window.backgroundColor = [UIColor whiteColor];</div><div class="line">UIViewController *mainController = [[ViewController alloc]init];</div><div class="line">_window.rootViewController = mainController;</div><div class="line">[_window makeKeyAndVisible];</div></pre></td></tr></table></figure>
 <p>注：需要在AppDelegate.h中引入ViewController.h </p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#import <span class="meta-string">"ViewController.h"</span></span></div></pre></td></tr></table></figure>
 <p>在ViewController中加载所需的UI 组件:</p>
