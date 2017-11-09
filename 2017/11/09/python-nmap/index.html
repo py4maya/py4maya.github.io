@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="hello," />
+  <meta name="keywords" content="python,nmap," />
 
 
 
@@ -96,18 +96,18 @@
 
 
 
-<meta name="description" content="安装hexo安装nodejs,npm1$ npm install -g hexo 有的时候，需要在命令前，添加sudo 创建博客目录,并cd到对应的目录123$ mkdir blog $ cd `pwd`/blog$ pwd 生成对应的页面文件1$ hexo generate 查看更多: 生成页面 部署到github1$ hexo deploy 有时候会报错:ERROR Deployer not">
-<meta name="keywords" content="hello">
+<meta name="description" content="nmap 安装123yum install nmapeasy_install pippip install python-nmap 扫描脚本1234567891011121314151617181920212223#coding=utf-8import jsonimport nmapnm = nmap.PortScanner()ret = nm.scan(&apos;----&apos;,&apos;22&apos;)next_ips">
+<meta name="keywords" content="python,nmap">
 <meta property="og:type" content="article">
-<meta property="og:title" content="从头到尾搭建hexo博客">
-<meta property="og:url" content="https://xsec.7ever.cn/2017/03/07/hello-world/index.html">
+<meta property="og:title" content="python nmap 库的简单实用">
+<meta property="og:url" content="https://xsec.7ever.cn/2017/11/09/python-nmap/index.html">
 <meta property="og:site_name" content="Simple Xsec World">
-<meta property="og:description" content="安装hexo安装nodejs,npm1$ npm install -g hexo 有的时候，需要在命令前，添加sudo 创建博客目录,并cd到对应的目录123$ mkdir blog $ cd `pwd`/blog$ pwd 生成对应的页面文件1$ hexo generate 查看更多: 生成页面 部署到github1$ hexo deploy 有时候会报错:ERROR Deployer not">
+<meta property="og:description" content="nmap 安装123yum install nmapeasy_install pippip install python-nmap 扫描脚本1234567891011121314151617181920212223#coding=utf-8import jsonimport nmapnm = nmap.PortScanner()ret = nm.scan(&apos;----&apos;,&apos;22&apos;)next_ips">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-23T02:08:17.000Z">
+<meta property="og:updated_time" content="2017-11-09T07:45:32.421Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="从头到尾搭建hexo博客">
-<meta name="twitter:description" content="安装hexo安装nodejs,npm1$ npm install -g hexo 有的时候，需要在命令前，添加sudo 创建博客目录,并cd到对应的目录123$ mkdir blog $ cd `pwd`/blog$ pwd 生成对应的页面文件1$ hexo generate 查看更多: 生成页面 部署到github1$ hexo deploy 有时候会报错:ERROR Deployer not">
+<meta name="twitter:title" content="python nmap 库的简单实用">
+<meta name="twitter:description" content="nmap 安装123yum install nmapeasy_install pippip install python-nmap 扫描脚本1234567891011121314151617181920212223#coding=utf-8import jsonimport nmapnm = nmap.PortScanner()ret = nm.scan(&apos;----&apos;,&apos;22&apos;)next_ips">
 
 
 
@@ -136,13 +136,13 @@
 
 
 
-  <link rel="canonical" href="https://xsec.7ever.cn/2017/03/07/hello-world/"/>
+  <link rel="canonical" href="https://xsec.7ever.cn/2017/11/09/python-nmap/"/>
 
 
 
 
 
-  <title>从头到尾搭建hexo博客 | Simple Xsec World</title>
+  <title>python nmap 库的简单实用 | Simple Xsec World</title>
   
 
 
@@ -285,7 +285,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2017/03/07/hello-world/">
+    <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2017/11/09/python-nmap/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xingyue">
@@ -302,7 +302,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">从头到尾搭建hexo博客</h1>
+          <h1 class="post-title" itemprop="name headline">python nmap 库的简单实用</h1>
         
 
         <div class="post-meta">
@@ -314,8 +314,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-07T16:54:31+08:00">
-                2017-03-07
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-09T15:06:18+08:00">
+                2017-11-09
               </time>
             
 
@@ -337,8 +337,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/系统/" itemprop="url" rel="index">
-                    <span itemprop="name">系统</span>
+                  <a href="/categories/安全开发/" itemprop="url" rel="index">
+                    <span itemprop="name">安全开发</span>
                   </a>
                 </span>
 
@@ -374,18 +374,8 @@
       
 
       
-        <h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2><h3 id="安装nodejs-npm"><a href="#安装nodejs-npm" class="headerlink" title="安装nodejs,npm"></a>安装nodejs,npm</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install -g hexo</div></pre></td></tr></table></figure>
-<p>有的时候，需要在命令前，添加sudo</p>
-<h3 id="创建博客目录-并cd到对应的目录"><a href="#创建博客目录-并cd到对应的目录" class="headerlink" title="创建博客目录,并cd到对应的目录"></a>创建博客目录,并cd到对应的目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ mkdir blog </div><div class="line">$ <span class="built_in">cd</span> `<span class="built_in">pwd</span>`/blog</div><div class="line">$ <span class="built_in">pwd</span></div></pre></td></tr></table></figure>
-<h3 id="生成对应的页面文件"><a href="#生成对应的页面文件" class="headerlink" title="生成对应的页面文件"></a>生成对应的页面文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>查看更多: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">生成页面</a></p>
-<h3 id="部署到github"><a href="#部署到github" class="headerlink" title="部署到github"></a>部署到github</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>有时候会报错:ERROR Deployer not found: github<br>解决办法如下,运行如下命令:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install hexo-deployer-git --save</div></pre></td></tr></table></figure>
-<h3 id="生成新的文章"><a href="#生成新的文章" class="headerlink" title="生成新的文章:"></a>生成新的文章:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new &lt;layout&gt; &lt;title&gt;</div></pre></td></tr></table></figure>
-<p>其中layout的值为: post, page, draft 或者其他的内容</p>
-<p>当修改内容以后，需要调用以下命令，重新生成，重新部署:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo g &amp;&amp; hexo d</div></pre></td></tr></table></figure>
+        <h6 id="nmap-安装"><a href="#nmap-安装" class="headerlink" title="nmap 安装"></a>nmap 安装</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">yum install nmap</div><div class="line">easy_install pip</div><div class="line">pip install python-nmap</div></pre></td></tr></table></figure>
+<h5 id="扫描脚本"><a href="#扫描脚本" class="headerlink" title="扫描脚本"></a>扫描脚本</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#coding=utf-8</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> json</div><div class="line"><span class="keyword">import</span> nmap</div><div class="line"></div><div class="line">nm = nmap.PortScanner()</div><div class="line">ret = nm.scan(<span class="string">'----'</span>,<span class="string">'22'</span>)</div><div class="line"></div><div class="line">next_ips = []</div><div class="line"><span class="keyword">for</span> ip <span class="keyword">in</span> ret[<span class="string">'scan'</span>] :</div><div class="line">	status = ret[<span class="string">'scan'</span>][ip][<span class="string">'tcp'</span>][<span class="number">22</span>][<span class="string">'state'</span>]</div><div class="line">	<span class="keyword">if</span> status == <span class="string">'open'</span> :</div><div class="line">		next_ips.append(ip)</div><div class="line"></div><div class="line"><span class="keyword">for</span> ip <span class="keyword">in</span> next_ips :</div><div class="line">	<span class="keyword">print</span> <span class="string">"-----"</span></div><div class="line">	<span class="keyword">print</span> ip</div><div class="line">	ret = nm.scan(ip,<span class="string">'0-65535'</span>)</div><div class="line">	<span class="keyword">for</span> port <span class="keyword">in</span> ret[<span class="string">'scan'</span>][ip][<span class="string">'tcp'</span>] :</div><div class="line">		x = ret[<span class="string">'scan'</span>][ip][<span class="string">'tcp'</span>][port]</div><div class="line">		<span class="keyword">if</span> x.get(<span class="string">'state'</span>) == <span class="string">'open'</span> :</div><div class="line">			<span class="comment">## x 是这样一个dict : &#123;"product": "", "state": "open", "version": "", "name": "ssh", "conf": "10", "extrainfo": "protocol 2.0", "reason": "syn-ack", "cpe": ""&#125;</span></div><div class="line">			<span class="keyword">print</span> json.dumps(x)</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -430,7 +420,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://xsec.7ever.cn/2017/03/07/hello-world/" title="从头到尾搭建hexo博客">https://xsec.7ever.cn/2017/03/07/hello-world/</a>
+    <a href="https://xsec.7ever.cn/2017/11/09/python-nmap/" title="python nmap 库的简单实用">https://xsec.7ever.cn/2017/11/09/python-nmap/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -445,7 +435,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/hello/" rel="tag"># hello</a>
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+            <a href="/tags/nmap/" rel="tag"># nmap</a>
           
         </div>
       
@@ -458,8 +450,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/07/supervisor安装配置使用/" rel="next" title="supervisor安装配置使用">
-                <i class="fa fa-chevron-left"></i> supervisor安装配置使用
+              <a href="/2017/10/28/ios-uiiamgeview/" rel="next" title="ios 通过UIImageView 显示图片">
+                <i class="fa fa-chevron-left"></i> ios 通过UIImageView 显示图片
               </a>
             
           </div>
@@ -467,10 +459,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/03/07/centos7升级gcc到4-9-3/" rel="prev" title="centos7升级gcc到4.9.3">
-                centos7升级gcc到4.9.3 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -629,7 +617,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装hexo"><span class="nav-number">1.</span> <span class="nav-text">安装hexo</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装nodejs-npm"><span class="nav-number">1.1.</span> <span class="nav-text">安装nodejs,npm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建博客目录-并cd到对应的目录"><span class="nav-number">1.2.</span> <span class="nav-text">创建博客目录,并cd到对应的目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成对应的页面文件"><span class="nav-number">1.3.</span> <span class="nav-text">生成对应的页面文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#部署到github"><span class="nav-number">1.4.</span> <span class="nav-text">部署到github</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成新的文章"><span class="nav-number">1.5.</span> <span class="nav-text">生成新的文章:</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#nmap-安装"><span class="nav-number">1.</span> <span class="nav-text">nmap 安装</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#扫描脚本"><span class="nav-number"></span> <span class="nav-text">扫描脚本</span></a></div>
             
 
           </div>

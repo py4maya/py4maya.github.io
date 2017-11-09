@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="nginx,proxy,linux," />
+  <meta name="keywords" content="nginx,linux,proxy," />
 
 
 
@@ -97,7 +97,7 @@
 
 
 <meta name="description" content="编译nginx,编译脚本:  1234567./configure \--prefix=/data0/nginx/ \--with-stream \--with-http_ssl_module  \--with-stream_ssl_module \make -j4make install  主nginx配置文件：  1234567891011121314http &amp;#123;	resolver">
-<meta name="keywords" content="nginx,proxy,linux">
+<meta name="keywords" content="nginx,linux,proxy">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用nginx制作全代理">
 <meta property="og:url" content="https://xsec.7ever.cn/2017/09/21/nginx-proxy/index.html">
@@ -385,7 +385,7 @@
 <ul>
 <li>http代理比较简单:</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span>vhost/proxy.conf</div><div class="line">server &#123;</div><div class="line">	listen  80;</div><div class="line">	error_log logs/proxy_err.log;</div><div class="line">	access_log logs/proxy_ac.log main;</div><div class="line">	</div><div class="line">	location / &#123; </div><div class="line">		proxy_pass http://$http_host;</div><div class="line">		proxy_set_header X-RealIP $remote_addr;</div><div class="line">		proxy_set_header Host $http_host;</div><div class="line"><span class="meta">		#</span>#使用body_filter_by_lua 来嵌入js脚本</div><div class="line">        body_filter_by_lua 'ngx.arg[1] = string.gsub(ngx.arg[1],"&lt;/body", "&lt;script src=\'http://logs.intra.sina.com.cn/js/s.watch.js\'&gt;&lt;/script&gt;&lt;/body")';</div><div class="line">5</div><div class="line">	&#125;   </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash">vhost/proxy.conf</span></div><div class="line">server &#123;</div><div class="line">	listen  80;</div><div class="line">	error_log logs/proxy_err.log;</div><div class="line">	access_log logs/proxy_ac.log main;</div><div class="line">	</div><div class="line">	location / &#123; </div><div class="line">		proxy_pass http://$http_host;</div><div class="line">		proxy_set_header X-RealIP $remote_addr;</div><div class="line">		proxy_set_header Host $http_host;</div><div class="line"><span class="meta">		#</span><span class="bash"><span class="comment">#使用body_filter_by_lua 来嵌入js脚本</span></span></div><div class="line">        body_filter_by_lua 'ngx.arg[1] = string.gsub(ngx.arg[1],"&lt;/body", "&lt;script src=\'http://logs.intra.sina.com.cn/js/s.watch.js\'&gt;&lt;/script&gt;&lt;/body")';</div><div class="line">5</div><div class="line">	&#125;   </div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <ul>
 <li><p>https代理:<br>生成证书:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">openssl genrsa -des3 -out common.key 1024</div><div class="line">openssl req -new -key common.key -out common.csr</div><div class="line">openssl rsa -in common.key -out common_nopwd.key</div><div class="line">openssl x509 -req -days 365 -in common.csr -signkey common_nopwd.key -out common.crt</div><div class="line">echo "ssl on;"</div><div class="line">echo "ssl_certificate ssl/common.crt;"</div><div class="line">echo "ssl_certificate_key ssl/common_nopwd.key;"</div></pre></td></tr></table></figure>
@@ -458,9 +458,9 @@
           
             <a href="/tags/nginx/" rel="tag"># nginx</a>
           
-            <a href="/tags/proxy/" rel="tag"># proxy</a>
-          
             <a href="/tags/linux/" rel="tag"># linux</a>
+          
+            <a href="/tags/proxy/" rel="tag"># proxy</a>
           
         </div>
       
@@ -473,8 +473,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/07/hello-world/" rel="next" title="从头到尾搭建hexo博客">
-                <i class="fa fa-chevron-left"></i> 从头到尾搭建hexo博客
+              <a href="/2017/03/07/centos7升级gcc到4-9-3/" rel="next" title="centos7升级gcc到4.9.3">
+                <i class="fa fa-chevron-left"></i> centos7升级gcc到4.9.3
               </a>
             
           </div>
@@ -553,7 +553,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -564,7 +564,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -575,7 +575,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-count">37</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xsec.7ever.cn/"/>
-  <updated>2017-10-28T11:27:00.000Z</updated>
+  <updated>2017-11-09T07:45:32.421Z</updated>
   <id>https://xsec.7ever.cn/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>python nmap 库的简单实用</title>
+    <link href="https://xsec.7ever.cn/2017/11/09/python-nmap/"/>
+    <id>https://xsec.7ever.cn/2017/11/09/python-nmap/</id>
+    <published>2017-11-09T07:06:18.000Z</published>
+    <updated>2017-11-09T07:45:32.421Z</updated>
+    
+    <content type="html"><![CDATA[<h6 id="nmap-安装"><a href="#nmap-安装" class="headerlink" title="nmap 安装"></a>nmap 安装</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">yum install nmap</div><div class="line">easy_install pip</div><div class="line">pip install python-nmap</div></pre></td></tr></table></figure><h5 id="扫描脚本"><a href="#扫描脚本" class="headerlink" title="扫描脚本"></a>扫描脚本</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#coding=utf-8</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> json</div><div class="line"><span class="keyword">import</span> nmap</div><div class="line"></div><div class="line">nm = nmap.PortScanner()</div><div class="line">ret = nm.scan(<span class="string">'----'</span>,<span class="string">'22'</span>)</div><div class="line"></div><div class="line">next_ips = []</div><div class="line"><span class="keyword">for</span> ip <span class="keyword">in</span> ret[<span class="string">'scan'</span>] :</div><div class="line">status = ret[<span class="string">'scan'</span>][ip][<span class="string">'tcp'</span>][<span class="number">22</span>][<span class="string">'state'</span>]</div><div class="line"><span class="keyword">if</span> status == <span class="string">'open'</span> :</div><div class="line">next_ips.append(ip)</div><div class="line"></div><div class="line"><span class="keyword">for</span> ip <span class="keyword">in</span> next_ips :</div><div class="line"><span class="keyword">print</span> <span class="string">"-----"</span></div><div class="line"><span class="keyword">print</span> ip</div><div class="line">ret = nm.scan(ip,<span class="string">'0-65535'</span>)</div><div class="line"><span class="keyword">for</span> port <span class="keyword">in</span> ret[<span class="string">'scan'</span>][ip][<span class="string">'tcp'</span>] :</div><div class="line">x = ret[<span class="string">'scan'</span>][ip][<span class="string">'tcp'</span>][port]</div><div class="line"><span class="keyword">if</span> x.get(<span class="string">'state'</span>) == <span class="string">'open'</span> :</div><div class="line"><span class="comment">## x 是这样一个dict : &#123;"product": "", "state": "open", "version": "", "name": "ssh", "conf": "10", "extrainfo": "protocol 2.0", "reason": "syn-ack", "cpe": ""&#125;</span></div><div class="line"><span class="keyword">print</span> json.dumps(x)</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h6 id=&quot;nmap-安装&quot;&gt;&lt;a href=&quot;#nmap-安装&quot; class=&quot;headerlink&quot; title=&quot;nmap 安装&quot;&gt;&lt;/a&gt;nmap 安装&lt;/h6&gt;&lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=
+      
+    
+    </summary>
+    
+      <category term="安全开发" scheme="https://xsec.7ever.cn/categories/%E5%AE%89%E5%85%A8%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="python" scheme="https://xsec.7ever.cn/tags/python/"/>
+    
+      <category term="nmap" scheme="https://xsec.7ever.cn/tags/nmap/"/>
+    
+  </entry>
   
   <entry>
     <title>ios 通过UIImageView 显示图片</title>
@@ -159,9 +186,9 @@
       <category term="开发" scheme="https://xsec.7ever.cn/categories/%E5%BC%80%E5%8F%91/"/>
     
     
-      <category term="ios" scheme="https://xsec.7ever.cn/tags/ios/"/>
-    
       <category term="hello" scheme="https://xsec.7ever.cn/tags/hello/"/>
+    
+      <category term="ios" scheme="https://xsec.7ever.cn/tags/ios/"/>
     
       <category term="oc" scheme="https://xsec.7ever.cn/tags/oc/"/>
     
@@ -210,7 +237,7 @@
     <published>2017-10-05T09:00:33.000Z</published>
     <updated>2017-10-07T13:49:49.000Z</updated>
     
-    <content type="html"><![CDATA[<p>配置如下的expect脚本:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span>!/usr/bin/expect</div><div class="line"></div><div class="line">set timeout 3600</div><div class="line"></div><div class="line">trap &#123;</div><div class="line"> set rows [stty rows]</div><div class="line"> set cols [stty columns]</div><div class="line"> stty rows $rows columns $cols &lt; $spawn_out(slave,name)</div><div class="line">&#125; WINCH</div><div class="line"></div><div class="line">set mode [lindex $argv 0]</div><div class="line"></div><div class="line">switch $mode &#123;</div><div class="line"></div><div class="line">"" &#123;</div><div class="line">set user xingyue</div><div class="line">set ip "ip1"</div><div class="line">set port 9022</div><div class="line">set auth key</div><div class="line">&#125;</div><div class="line"></div><div class="line">"mini" &#123;</div><div class="line">set user xingyue</div><div class="line">set ip "ip2"</div><div class="line">set pwd "your_pwd"</div><div class="line">set port 22</div><div class="line">set auth pwd</div><div class="line">&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">switch $auth &#123;</div><div class="line"></div><div class="line">"key" &#123;</div><div class="line">spawn ssh $user@$ip -p $port</div><div class="line">interact</div><div class="line">&#125;</div><div class="line"></div><div class="line">"pwd" &#123;</div><div class="line">spawn ssh $user@$ip -p $port</div><div class="line">expect "*password:"</div><div class="line">send "$pwd\r"</div><div class="line">interact</div><div class="line">&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>]]></content>
+    <content type="html"><![CDATA[<p>配置如下的expect脚本:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash">!/usr/bin/expect</span></div><div class="line"></div><div class="line">set timeout 3600</div><div class="line"></div><div class="line">trap &#123;</div><div class="line"> set rows [stty rows]</div><div class="line"> set cols [stty columns]</div><div class="line"> stty rows $rows columns $cols &lt; $spawn_out(slave,name)</div><div class="line">&#125; WINCH</div><div class="line"></div><div class="line">set mode [lindex $argv 0]</div><div class="line"></div><div class="line">switch $mode &#123;</div><div class="line"></div><div class="line">"" &#123;</div><div class="line">set user xingyue</div><div class="line">set ip "ip1"</div><div class="line">set port 9022</div><div class="line">set auth key</div><div class="line">&#125;</div><div class="line"></div><div class="line">"mini" &#123;</div><div class="line">set user xingyue</div><div class="line">set ip "ip2"</div><div class="line">set pwd "your_pwd"</div><div class="line">set port 22</div><div class="line">set auth pwd</div><div class="line">&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">switch $auth &#123;</div><div class="line"></div><div class="line">"key" &#123;</div><div class="line">spawn ssh $user@$ip -p $port</div><div class="line">interact</div><div class="line">&#125;</div><div class="line"></div><div class="line">"pwd" &#123;</div><div class="line">spawn ssh $user@$ip -p $port</div><div class="line">expect "*password:"</div><div class="line">send "$pwd\r"</div><div class="line">interact</div><div class="line">&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>]]></content>
     
     <summary type="html">
     
@@ -303,9 +330,9 @@
     
       <category term="pip" scheme="https://xsec.7ever.cn/tags/pip/"/>
     
-      <category term="pandas" scheme="https://xsec.7ever.cn/tags/pandas/"/>
-    
       <category term="python" scheme="https://xsec.7ever.cn/tags/python/"/>
+    
+      <category term="pandas" scheme="https://xsec.7ever.cn/tags/pandas/"/>
     
   </entry>
   
@@ -462,9 +489,9 @@
     
       <category term="nginx" scheme="https://xsec.7ever.cn/tags/nginx/"/>
     
-      <category term="stream" scheme="https://xsec.7ever.cn/tags/stream/"/>
-    
       <category term="proxy" scheme="https://xsec.7ever.cn/tags/proxy/"/>
+    
+      <category term="stream" scheme="https://xsec.7ever.cn/tags/stream/"/>
     
   </entry>
   
@@ -507,7 +534,7 @@
     <published>2017-09-21T12:47:02.000Z</published>
     <updated>2017-11-09T06:01:02.955Z</updated>
     
-    <content type="html"><![CDATA[<ul><li>编译nginx,编译脚本:</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">./configure \</div><div class="line">--prefix=/data0/nginx/ \</div><div class="line">--with-stream \</div><div class="line">--with-http_ssl_module  \</div><div class="line">--with-stream_ssl_module \</div><div class="line">make -j4</div><div class="line">make install</div></pre></td></tr></table></figure><ul><li>主nginx配置文件：</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">http &#123;</div><div class="line">resolver 10.212.0.43  valid=3600s;</div><div class="line"></div><div class="line">include       mime.types;</div><div class="line">default_type  application/octet-stream;</div><div class="line"></div><div class="line">log_format  main  '$remote_addr $http_host - $remote_user [$time_local] "$request" '</div><div class="line">'$status $body_bytes_sent "$http_referer" '</div><div class="line">'"$http_user_agent" "$http_x_forwarded_for"';</div><div class="line">sendfile        on; </div><div class="line">keepalive_timeout  65; </div><div class="line">gzip  on; </div><div class="line">include vhost/*.conf;</div><div class="line">&#125;</div></pre></td></tr></table></figure><ul><li>http代理比较简单:</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span>vhost/proxy.conf</div><div class="line">server &#123;</div><div class="line">listen  80;</div><div class="line">error_log logs/proxy_err.log;</div><div class="line">access_log logs/proxy_ac.log main;</div><div class="line"></div><div class="line">location / &#123; </div><div class="line">proxy_pass http://$http_host;</div><div class="line">proxy_set_header X-RealIP $remote_addr;</div><div class="line">proxy_set_header Host $http_host;</div><div class="line"><span class="meta">#</span>#使用body_filter_by_lua 来嵌入js脚本</div><div class="line">        body_filter_by_lua 'ngx.arg[1] = string.gsub(ngx.arg[1],"&lt;/body", "&lt;script src=\'http://logs.intra.sina.com.cn/js/s.watch.js\'&gt;&lt;/script&gt;&lt;/body")';</div><div class="line">5</div><div class="line">&#125;   </div><div class="line">&#125;</div></pre></td></tr></table></figure><ul><li><p>https代理:<br>生成证书:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">openssl genrsa -des3 -out common.key 1024</div><div class="line">openssl req -new -key common.key -out common.csr</div><div class="line">openssl rsa -in common.key -out common_nopwd.key</div><div class="line">openssl x509 -req -days 365 -in common.csr -signkey common_nopwd.key -out common.crt</div><div class="line">echo "ssl on;"</div><div class="line">echo "ssl_certificate ssl/common.crt;"</div><div class="line">echo "ssl_certificate_key ssl/common_nopwd.key;"</div></pre></td></tr></table></figure></li><li><p>配置https代理:</p></li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">listen  443;</div><div class="line">error_log logs/proxy_ssl_err.log;</div><div class="line">access_log logs/proxy_ssl_ac.log main;</div><div class="line"></div><div class="line">ssl on;</div><div class="line">ssl_certificate ssl/common.crt;</div><div class="line">ssl_certificate_key ssl/common_nopwd.key;</div><div class="line"></div><div class="line">location / &#123; </div><div class="line">proxy_pass https://$http_host;</div><div class="line">proxy_set_header Host $http_host;</div><div class="line">&#125;   </div><div class="line">&#125;</div></pre></td></tr></table></figure><ul><li>最后一步，你绑定需要的hosts就可以把当前nginx机器伪装成需要访问的主机。当前nginx主机通过resolver 来解析需要访问的域名对应的ip<br>然后，去访问该ip端口对应的数据返回给浏览器。</li></ul>]]></content>
+    <content type="html"><![CDATA[<ul><li>编译nginx,编译脚本:</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">./configure \</div><div class="line">--prefix=/data0/nginx/ \</div><div class="line">--with-stream \</div><div class="line">--with-http_ssl_module  \</div><div class="line">--with-stream_ssl_module \</div><div class="line">make -j4</div><div class="line">make install</div></pre></td></tr></table></figure><ul><li>主nginx配置文件：</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">http &#123;</div><div class="line">resolver 10.212.0.43  valid=3600s;</div><div class="line"></div><div class="line">include       mime.types;</div><div class="line">default_type  application/octet-stream;</div><div class="line"></div><div class="line">log_format  main  '$remote_addr $http_host - $remote_user [$time_local] "$request" '</div><div class="line">'$status $body_bytes_sent "$http_referer" '</div><div class="line">'"$http_user_agent" "$http_x_forwarded_for"';</div><div class="line">sendfile        on; </div><div class="line">keepalive_timeout  65; </div><div class="line">gzip  on; </div><div class="line">include vhost/*.conf;</div><div class="line">&#125;</div></pre></td></tr></table></figure><ul><li>http代理比较简单:</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash">vhost/proxy.conf</span></div><div class="line">server &#123;</div><div class="line">listen  80;</div><div class="line">error_log logs/proxy_err.log;</div><div class="line">access_log logs/proxy_ac.log main;</div><div class="line"></div><div class="line">location / &#123; </div><div class="line">proxy_pass http://$http_host;</div><div class="line">proxy_set_header X-RealIP $remote_addr;</div><div class="line">proxy_set_header Host $http_host;</div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment">#使用body_filter_by_lua 来嵌入js脚本</span></span></div><div class="line">        body_filter_by_lua 'ngx.arg[1] = string.gsub(ngx.arg[1],"&lt;/body", "&lt;script src=\'http://logs.intra.sina.com.cn/js/s.watch.js\'&gt;&lt;/script&gt;&lt;/body")';</div><div class="line">5</div><div class="line">&#125;   </div><div class="line">&#125;</div></pre></td></tr></table></figure><ul><li><p>https代理:<br>生成证书:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">openssl genrsa -des3 -out common.key 1024</div><div class="line">openssl req -new -key common.key -out common.csr</div><div class="line">openssl rsa -in common.key -out common_nopwd.key</div><div class="line">openssl x509 -req -days 365 -in common.csr -signkey common_nopwd.key -out common.crt</div><div class="line">echo "ssl on;"</div><div class="line">echo "ssl_certificate ssl/common.crt;"</div><div class="line">echo "ssl_certificate_key ssl/common_nopwd.key;"</div></pre></td></tr></table></figure></li><li><p>配置https代理:</p></li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">listen  443;</div><div class="line">error_log logs/proxy_ssl_err.log;</div><div class="line">access_log logs/proxy_ssl_ac.log main;</div><div class="line"></div><div class="line">ssl on;</div><div class="line">ssl_certificate ssl/common.crt;</div><div class="line">ssl_certificate_key ssl/common_nopwd.key;</div><div class="line"></div><div class="line">location / &#123; </div><div class="line">proxy_pass https://$http_host;</div><div class="line">proxy_set_header Host $http_host;</div><div class="line">&#125;   </div><div class="line">&#125;</div></pre></td></tr></table></figure><ul><li>最后一步，你绑定需要的hosts就可以把当前nginx机器伪装成需要访问的主机。当前nginx主机通过resolver 来解析需要访问的域名对应的ip<br>然后，去访问该ip端口对应的数据返回给浏览器。</li></ul>]]></content>
     
     <summary type="html">
     
@@ -526,9 +553,39 @@
     
       <category term="nginx" scheme="https://xsec.7ever.cn/tags/nginx/"/>
     
+      <category term="linux" scheme="https://xsec.7ever.cn/tags/linux/"/>
+    
       <category term="proxy" scheme="https://xsec.7ever.cn/tags/proxy/"/>
     
-      <category term="linux" scheme="https://xsec.7ever.cn/tags/linux/"/>
+  </entry>
+  
+  <entry>
+    <title>centos7升级gcc到4.9.3</title>
+    <link href="https://xsec.7ever.cn/2017/03/07/centos7%E5%8D%87%E7%BA%A7gcc%E5%88%B04-9-3/"/>
+    <id>https://xsec.7ever.cn/2017/03/07/centos7升级gcc到4-9-3/</id>
+    <published>2017-03-07T08:54:31.000Z</published>
+    <updated>2017-09-23T02:08:33.000Z</updated>
+    
+    <content type="html"><![CDATA[<ol><li>下载源代码:</li></ol><p>从<a href="https://gcc.gnu.org/mirrors.html" target="_blank" rel="external">https://gcc.gnu.org/mirrors.html</a>选择一个相对快的镜像库,我选择的是<br><a href="http://www.netgull.com/gcc/releases/" target="_blank" rel="external">http://www.netgull.com/gcc/releases/</a></p><ol><li>下载必要库:</li></ol><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> ./contrib/download_prerequisites</span></div></pre></td></tr></table></figure><ol><li><p>编译依赖c++</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> yum install gcc-c++</span></div></pre></td></tr></table></figure></li><li><p>创建安装文件编译目录:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> mkdir objdir  &amp;&amp; <span class="built_in">cd</span> objdir</span></div><div class="line"><span class="meta">$</span><span class="bash"> ../configure --<span class="built_in">enable</span>-languages=c,c++ --<span class="built_in">disable</span>-multilib</span></div><div class="line"><span class="meta">$</span><span class="bash"> make </span></div><div class="line"><span class="meta">$</span><span class="bash"> make install</span></div></pre></td></tr></table></figure></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;ol&gt;
+&lt;li&gt;下载源代码:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;从&lt;a href=&quot;https://gcc.gnu.org/mirrors.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://gcc.gnu.org/mirrors.html&lt;/a
+      
+    
+    </summary>
+    
+      <category term="系统" scheme="https://xsec.7ever.cn/categories/%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+      <category term="centos7" scheme="https://xsec.7ever.cn/tags/centos7/"/>
+    
+      <category term="gcc" scheme="https://xsec.7ever.cn/tags/gcc/"/>
     
   </entry>
   
@@ -554,66 +611,6 @@
     
     
       <category term="hello" scheme="https://xsec.7ever.cn/tags/hello/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>centos7升级gcc到4.9.3</title>
-    <link href="https://xsec.7ever.cn/2017/03/07/centos7%E5%8D%87%E7%BA%A7gcc%E5%88%B04-9-3/"/>
-    <id>https://xsec.7ever.cn/2017/03/07/centos7升级gcc到4-9-3/</id>
-    <published>2017-03-07T08:54:31.000Z</published>
-    <updated>2017-09-23T02:08:33.000Z</updated>
-    
-    <content type="html"><![CDATA[<ol><li>下载源代码:</li></ol><p>从<a href="https://gcc.gnu.org/mirrors.html" target="_blank" rel="external">https://gcc.gnu.org/mirrors.html</a>选择一个相对快的镜像库,我选择的是<br><a href="http://www.netgull.com/gcc/releases/" target="_blank" rel="external">http://www.netgull.com/gcc/releases/</a></p><ol><li>下载必要库:</li></ol><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> ./contrib/download_prerequisites</div></pre></td></tr></table></figure><ol><li><p>编译依赖c++</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> yum install gcc-c++</div></pre></td></tr></table></figure></li><li><p>创建安装文件编译目录:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> mkdir objdir  &amp;&amp; cd objdir</div><div class="line"><span class="meta">$</span> ../configure --enable-languages=c,c++ --disable-multilib</div><div class="line"><span class="meta">$</span> make </div><div class="line"><span class="meta">$</span> make install</div></pre></td></tr></table></figure></li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;ol&gt;
-&lt;li&gt;下载源代码:&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;从&lt;a href=&quot;https://gcc.gnu.org/mirrors.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://gcc.gnu.org/mirrors.html&lt;/a
-      
-    
-    </summary>
-    
-      <category term="系统" scheme="https://xsec.7ever.cn/categories/%E7%B3%BB%E7%BB%9F/"/>
-    
-    
-      <category term="centos7" scheme="https://xsec.7ever.cn/tags/centos7/"/>
-    
-      <category term="gcc" scheme="https://xsec.7ever.cn/tags/gcc/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>supervisor安装配置使用</title>
-    <link href="https://xsec.7ever.cn/2017/03/07/supervisor%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8/"/>
-    <id>https://xsec.7ever.cn/2017/03/07/supervisor安装配置使用/</id>
-    <published>2017-03-07T00:57:50.000Z</published>
-    <updated>2017-10-05T08:51:38.000Z</updated>
-    
-    <content type="html"><![CDATA[<ol><li>安装supervisor<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> yum install python-setuptools</span></div><div class="line"><span class="meta">$</span><span class="bash"> easy_install pip</span></div><div class="line"><span class="meta">$</span><span class="bash"> pip install supervisor</span></div></pre></td></tr></table></figure></li></ol><p>这个工具分为两个命令:</p><ul><li>supervisord : supervisor的服务器端部分，启动supervisor就是运行这个命令</li><li>supervisorctl：启动supervisor的命令行窗口。</li></ul><ol><li><p>生成配置文件:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> echo_supervisord_conf &gt; /etc/supervisord.conf</span></div></pre></td></tr></table></figure></li><li><p>修改配置文件:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">[program:mobsf]</div><div class="line">;process_name = %(program_name)s-%(process_num)d  </div><div class="line">;numprocs = 5</div><div class="line">;command = python /data0/Mobile-Security-Framework-MobSF/manage.py --port=30%(process_num)02d 根据进程设置端口</div><div class="line">command = python /data0/Mobile-Security-Framework-MobSF/manage.py runserver 0.0.0.0:8000</div><div class="line">user = root</div><div class="line">autostart = true</div><div class="line">autorestart = true</div><div class="line">startsecs = 5</div><div class="line">stderr_logfile = /data0/Mobile-Security-Framework-MobSF/logs/run/error.log</div><div class="line">stdout_logfile = /data0/Mobile-Security-Framework-MobSF/logs/run/stdout.log</div><div class="line">; 标准输入，标准输出配置文件大小</div><div class="line">stdout_logfile_maxbytes = 200MB</div><div class="line">stdout_logfile_backups = 50</div><div class="line">stderr_logfile_maxbytes = 200MB</div><div class="line">stderr_logfile_backups = 10</div></pre></td></tr></table></figure></li><li><p>启动命令:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> supervisord -c /etc/supervisord.conf</span></div></pre></td></tr></table></figure></li><li><p>查看状态:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> supervisorctl status</span></div></pre></td></tr></table></figure></li><li><p>修改supervisord.conf以后，重载:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> supervisorctl reload</span></div></pre></td></tr></table></figure></li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;ol&gt;
-&lt;li&gt;安装supervisor&lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;d
-      
-    
-    </summary>
-    
-      <category term="系统" scheme="https://xsec.7ever.cn/categories/%E7%B3%BB%E7%BB%9F/"/>
-    
-    
-      <category term="pip" scheme="https://xsec.7ever.cn/tags/pip/"/>
-    
-      <category term="python" scheme="https://xsec.7ever.cn/tags/python/"/>
-    
-      <category term="supervisor" scheme="https://xsec.7ever.cn/tags/supervisor/"/>
     
   </entry>
   
