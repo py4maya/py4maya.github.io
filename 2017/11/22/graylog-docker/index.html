@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="Simple Xsec World">
 <meta property="og:description" content="依赖于 docker-compose  12345678910111213141516171819version: &apos;2&apos;services:  mongo:    image: &quot;index.alauda.cn/library/mongo:3&quot;  elasticsearch:    image: &quot;index.alauda.cn/library/elasticsearch:2.3.2&quot;    co">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-22T03:11:11.664Z">
+<meta property="og:updated_time" content="2017-11-22T03:15:17.681Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="graylog 安装docker中">
 <meta name="twitter:description" content="依赖于 docker-compose  12345678910111213141516171819version: &apos;2&apos;services:  mongo:    image: &quot;index.alauda.cn/library/mongo:3&quot;  elasticsearch:    image: &quot;index.alauda.cn/library/elasticsearch:2.3.2&quot;    co">
@@ -378,6 +378,8 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">version: '2'</div><div class="line">services:</div><div class="line">  mongo:</div><div class="line">    image: "index.alauda.cn/library/mongo:3"</div><div class="line">  elasticsearch:</div><div class="line">    image: "index.alauda.cn/library/elasticsearch:2.3.2"</div><div class="line">    command: "elasticsearch -Des.cluster.name='graylog'"</div><div class="line">  graylog:</div><div class="line">    image: graylog2/server:2.1.0-1</div><div class="line">    environment:</div><div class="line">      GRAYLOG_PASSWORD_SECRET: somepasswordpepper</div><div class="line">      GRAYLOG_ROOT_PASSWORD_SHA2: 8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918</div><div class="line">      GRAYLOG_REST_TRANSPORT_URI: http://172.16.7.58:12900</div><div class="line">    depends_on:</div><div class="line">      - mongo</div><div class="line">      - elasticsearch</div><div class="line">    ports:</div><div class="line">      - "172.16.7.58:9002:9000"</div><div class="line">      - "172.16.7.58:12900:12900"</div></pre></td></tr></table></figure>
 <p>使用docker-compose启动服务:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker-compose up -d</div></pre></td></tr></table></figure>
+<p>注:在配置文件中修改graylog的默认用户名密码:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">$</span> echo -ne "admin" | sha256sum</div></pre></td></tr></table></figure>
 
       
     </div>
