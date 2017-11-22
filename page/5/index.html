@@ -282,6 +282,162 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2017/09/22/xcode-use-cocoapods/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xingyue">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Simple Xsec World">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/22/xcode-use-cocoapods/" itemprop="url">xcode 使用cocoapods</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-22T16:01:32+08:00">
+                2017-09-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li>安装cocoapods:</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">gem sources --remove https://rubygems.org/</div><div class="line">gem sources -a https://gems.ruby-china.org/</div><div class="line">gem sources -l</div><div class="line">sudo gem install cocoapods</div></pre></td></tr></table></figure>
+<ul>
+<li><p>新建xcode project sample 保存到 ~/Documents/samplle</p>
+</li>
+<li><p>新建Podfile 安装相应的库:</p>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash">Podfile:</span></div><div class="line">platform :ios, '7.0'</div><div class="line">target 'sample' do</div><div class="line">pod 'AFNetworking', '~&gt; 3.1.0'</div><div class="line">end</div></pre></td></tr></table></figure>
+<ul>
+<li>执行安装:</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd ~/Documents/sample</div><div class="line">pod install</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2017/09/21/nginx-proxy/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -910,149 +1066,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2017/03/06/安全牛的免费课/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xingyue">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Simple Xsec World">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/06/安全牛的免费课/" itemprop="url">安全牛的免费课程</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-06T16:05:00+08:00">
-                2017-03-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/开发/" itemprop="url" rel="index">
-                    <span itemprop="name">开发</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>安全牛的免费课程:<br><a href="http://edu.aqniu.com/course/2188" target="_blank" rel="external">Deep Edge</a><br><a href="http://edu.aqniu.com/course/2059" target="_blank" rel="external">SFDC Security</a><br><a href="http://edu.aqniu.com/course/2058" target="_blank" rel="external">SFDC -移动安全</a><br><a href="http://edu.aqniu.com/course/2057" target="_blank" rel="external">SFDC -服务安全</a><br><a href="http://edu.aqniu.com/course/2056" target="_blank" rel="external">SFDC -项目安全开发</a><br><a href="http://edu.aqniu.com/course/2030" target="_blank" rel="external">安全需要简单的交付</a><br><a href="http://edu.aqniu.com/course/2029" target="_blank" rel="external">加大持续检测和快速响应投入</a><br><a href="http://edu.aqniu.com/course/2028" target="_blank" rel="external">可视是安全的基础</a><br><a href="http://edu.aqniu.com/course/2024" target="_blank" rel="external">身份认证</a><br><a href="http://edu.aqniu.com/course/1852" target="_blank" rel="external">TDA</a><br><a href="http://edu.aqniu.com/course/1850" target="_blank" rel="external">OfficeScan</a><br><a href="http://edu.aqniu.com/course/1020" target="_blank" rel="external">Kali Linux 安装配置和优化</a><br><a href="http://edu.aqniu.com/course/959" target="_blank" rel="external">TCSP</a><br><a href="http://edu.aqniu.com/course/353" target="_blank" rel="external">网络异常行为分析</a><br><a href="http://edu.aqniu.com/course/347" target="_blank" rel="external">IT风险控制</a><br><a href="http://edu.aqniu.com/course/340" target="_blank" rel="external">威胁情报峰会</a><br><a href="http://edu.aqniu.com/course/190" target="_blank" rel="external">云安全实践</a><br><a href="http://edu.aqniu.com/course/189" target="_blank" rel="external">威胁情报</a><br><a href="http://edu.aqniu.com/course/188" target="_blank" rel="external">大数据分析</a><br><a href="http://edu.aqniu.com/course/187" target="_blank" rel="external">安全产业创新</a><br><a href="http://edu.aqniu.com/course/186" target="_blank" rel="external">物联网安全</a><br><a href="http://edu.aqniu.com/course/185" target="_blank" rel="external">网络安全法律</a><br><a href="http://edu.aqniu.com/course/184" target="_blank" rel="external">移动终端攻防</a><br><a href="http://edu.aqniu.com/course/183" target="_blank" rel="external">互联网+安全管理</a><br><a href="http://edu.aqniu.com/course/182" target="_blank" rel="external">云计算虚拟化</a><br><a href="http://edu.aqniu.com/course/181" target="_blank" rel="external">APT与新威胁</a><br><a href="http://edu.aqniu.com/course/180" target="_blank" rel="external">电子取证</a><br><a href="http://edu.aqniu.com/course/179" target="_blank" rel="external">网络空间安全</a><br><a href="http://edu.aqniu.com/course/178" target="_blank" rel="external">漏洞与源码分析</a><br><a href="http://edu.aqniu.com/course/140" target="_blank" rel="external">SQLMAP基础</a><br><a href="http://edu.aqniu.com/course/129" target="_blank" rel="external">WebSP</a><br><a href="http://edu.aqniu.com/course/126" target="_blank" rel="external">Metasploit应用</a><br><a href="http://edu.aqniu.com/course/120" target="_blank" rel="external">金山终端安全</a><br><a href="http://edu.aqniu.com/course/104" target="_blank" rel="external">山石HCSP认证</a><br><a href="http://edu.aqniu.com/course/103" target="_blank" rel="external">山石HCSA认证</a><br><a href="http://edu.aqniu.com/course/101" target="_blank" rel="external">防火墙实验指南</a><br><a href="http://edu.aqniu.com/course/100" target="_blank" rel="external">防火墙功能演示</a><br><a href="http://edu.aqniu.com/course/81" target="_blank" rel="external">第三方支付风险</a><br><a href="http://edu.aqniu.com/course/78" target="_blank" rel="external">提升安全意识</a><br><a href="http://edu.aqniu.com/course/44" target="_blank" rel="external">RSA Archer-SecOps</a><br><a href="http://edu.aqniu.com/course/41" target="_blank" rel="external">GRC安全合规治理平台</a><br><a href="http://edu.aqniu.com/course/40" target="_blank" rel="external">Zmap 、Nmap</a><br><a href="http://edu.aqniu.com/course/39" target="_blank" rel="external">安全工具-Snort</a><br><a href="http://edu.aqniu.com/course/35" target="_blank" rel="external">基于漏洞的安全开发管理</a><br><a href="http://edu.aqniu.com/course/33" target="_blank" rel="external">CISA证书申请指导</a></p>
-<h2 id="获取脚本"><a href="#获取脚本" class="headerlink" title="获取脚本"></a>获取脚本</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#coding=utf-8</span></div><div class="line"><span class="keyword">import</span> requests</div><div class="line"><span class="keyword">from</span> pyquery <span class="keyword">import</span> PyQuery <span class="keyword">as</span> PQ</div><div class="line"></div><div class="line">urls = [ <span class="string">"http://edu.aqniu.com/course/explore?page=%d"</span> % (page) <span class="keyword">for</span> page <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">11</span>)]</div><div class="line"></div><div class="line"><span class="keyword">print</span> <span class="string">"安全牛的免费课程:"</span></div><div class="line"></div><div class="line"><span class="keyword">for</span> url <span class="keyword">in</span> urls:</div><div class="line">    content = requests.get(url).text</div><div class="line">    dom = PQ(content)</div><div class="line">    items = dom.find(<span class="string">"div.course-item"</span>)</div><div class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> items:</div><div class="line">        title = PQ(item).find(<span class="string">"div.title"</span>).text()</div><div class="line">        price = PQ(item).find(<span class="string">"span.price"</span>).text().encode(<span class="string">"utf-8"</span>)</div><div class="line">        link = <span class="string">"http://edu.aqniu.com"</span> + PQ(item).find(<span class="string">"div.course-img a"</span>).attr(<span class="string">"href"</span>)</div><div class="line"></div><div class="line">        <span class="keyword">if</span> <span class="string">"免费"</span> == price:</div><div class="line">            <span class="keyword">print</span> <span class="string">"[%s](%s)"</span> % (title.encode(<span class="string">"utf-8"</span>),link)</div><div class="line"></div><div class="line"><span class="keyword">print</span> <span class="string">"## 获取脚本"</span></div><div class="line"><span class="keyword">print</span> <span class="string">"```python"</span></div><div class="line"><span class="keyword">print</span> open(<span class="string">"find_free_security.py"</span>,<span class="string">"r"</span>).read()</div><div class="line"><span class="keyword">print</span> <span class="string">"```"</span></div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1103,7 +1116,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-count">27</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1125,7 +1138,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">41</span>
+                <span class="site-state-item-count">42</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
