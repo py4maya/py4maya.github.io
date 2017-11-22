@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xsec.7ever.cn/"/>
-  <updated>2017-11-22T02:14:07.421Z</updated>
+  <updated>2017-11-22T03:11:11.664Z</updated>
   <id>https://xsec.7ever.cn/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>graylog 安装docker中</title>
+    <link href="https://xsec.7ever.cn/2017/11/22/graylog-docker/"/>
+    <id>https://xsec.7ever.cn/2017/11/22/graylog-docker/</id>
+    <published>2017-11-22T03:09:12.000Z</published>
+    <updated>2017-11-22T03:11:11.664Z</updated>
+    
+    <content type="html"><![CDATA[<p>依赖于 docker-compose </p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">version: '2'</div><div class="line">services:</div><div class="line">  mongo:</div><div class="line">    image: "index.alauda.cn/library/mongo:3"</div><div class="line">  elasticsearch:</div><div class="line">    image: "index.alauda.cn/library/elasticsearch:2.3.2"</div><div class="line">    command: "elasticsearch -Des.cluster.name='graylog'"</div><div class="line">  graylog:</div><div class="line">    image: graylog2/server:2.1.0-1</div><div class="line">    environment:</div><div class="line">      GRAYLOG_PASSWORD_SECRET: somepasswordpepper</div><div class="line">      GRAYLOG_ROOT_PASSWORD_SHA2: 8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918</div><div class="line">      GRAYLOG_REST_TRANSPORT_URI: http://172.16.7.58:12900</div><div class="line">    depends_on:</div><div class="line">      - mongo</div><div class="line">      - elasticsearch</div><div class="line">    ports:</div><div class="line">      - "172.16.7.58:9002:9000"</div><div class="line">      - "172.16.7.58:12900:12900"</div></pre></td></tr></table></figure><p>使用docker-compose启动服务:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker-compose up -d</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;依赖于 docker-compose &lt;/p&gt;
+&lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/
+      
+    
+    </summary>
+    
+      <category term="系统" scheme="https://xsec.7ever.cn/categories/%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+      <category term="docker" scheme="https://xsec.7ever.cn/tags/docker/"/>
+    
+      <category term="graylog" scheme="https://xsec.7ever.cn/tags/graylog/"/>
+    
+  </entry>
   
   <entry>
     <title>安装docker-compose</title>
@@ -78,7 +106,7 @@
     <published>2017-11-20T01:29:04.000Z</published>
     <updated>2017-11-20T01:34:08.037Z</updated>
     
-    <content type="html"><![CDATA[<ul><li>拉取脚本:</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> docker pull daocloud.io/daocloud/influxdb:latest</div></pre></td></tr></table></figure><ul><li>基础运行脚本</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">lip=172.16.7.1 ##只暴露端口给内网的IP</div><div class="line">name=influxdb</div><div class="line">port=" -p $lip:8086:8086 -p $lip:2003:2003 -p $lip:8083:8083 "</div><div class="line"></div><div class="line">docker run -it $&#123;port&#125; --name $&#123;name&#125;  daocloud.io/daocloud/influxdb</div></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<ul><li>拉取脚本:</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> docker pull daocloud.io/daocloud/influxdb:latest</span></div></pre></td></tr></table></figure><ul><li>基础运行脚本</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">lip=172.16.7.1 ##只暴露端口给内网的IP</div><div class="line">name=influxdb</div><div class="line">port=" -p $lip:8086:8086 -p $lip:2003:2003 -p $lip:8083:8083 "</div><div class="line"></div><div class="line">docker run -it $&#123;port&#125; --name $&#123;name&#125;  daocloud.io/daocloud/influxdb</div></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
@@ -298,13 +326,13 @@
       <category term="开发" scheme="https://xsec.7ever.cn/categories/%E5%BC%80%E5%8F%91/"/>
     
     
+      <category term="hello" scheme="https://xsec.7ever.cn/tags/hello/"/>
+    
       <category term="ios" scheme="https://xsec.7ever.cn/tags/ios/"/>
     
       <category term="oc" scheme="https://xsec.7ever.cn/tags/oc/"/>
     
       <category term="pods" scheme="https://xsec.7ever.cn/tags/pods/"/>
-    
-      <category term="hello" scheme="https://xsec.7ever.cn/tags/hello/"/>
     
   </entry>
   
@@ -349,7 +377,7 @@
     <published>2017-10-05T09:00:33.000Z</published>
     <updated>2017-10-07T13:49:49.000Z</updated>
     
-    <content type="html"><![CDATA[<p>配置如下的expect脚本:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span>!/usr/bin/expect</div><div class="line"></div><div class="line">set timeout 3600</div><div class="line"></div><div class="line">trap &#123;</div><div class="line"> set rows [stty rows]</div><div class="line"> set cols [stty columns]</div><div class="line"> stty rows $rows columns $cols &lt; $spawn_out(slave,name)</div><div class="line">&#125; WINCH</div><div class="line"></div><div class="line">set mode [lindex $argv 0]</div><div class="line"></div><div class="line">switch $mode &#123;</div><div class="line"></div><div class="line">"" &#123;</div><div class="line">set user xingyue</div><div class="line">set ip "ip1"</div><div class="line">set port 9022</div><div class="line">set auth key</div><div class="line">&#125;</div><div class="line"></div><div class="line">"mini" &#123;</div><div class="line">set user xingyue</div><div class="line">set ip "ip2"</div><div class="line">set pwd "your_pwd"</div><div class="line">set port 22</div><div class="line">set auth pwd</div><div class="line">&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">switch $auth &#123;</div><div class="line"></div><div class="line">"key" &#123;</div><div class="line">spawn ssh $user@$ip -p $port</div><div class="line">interact</div><div class="line">&#125;</div><div class="line"></div><div class="line">"pwd" &#123;</div><div class="line">spawn ssh $user@$ip -p $port</div><div class="line">expect "*password:"</div><div class="line">send "$pwd\r"</div><div class="line">interact</div><div class="line">&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>]]></content>
+    <content type="html"><![CDATA[<p>配置如下的expect脚本:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash">!/usr/bin/expect</span></div><div class="line"></div><div class="line">set timeout 3600</div><div class="line"></div><div class="line">trap &#123;</div><div class="line"> set rows [stty rows]</div><div class="line"> set cols [stty columns]</div><div class="line"> stty rows $rows columns $cols &lt; $spawn_out(slave,name)</div><div class="line">&#125; WINCH</div><div class="line"></div><div class="line">set mode [lindex $argv 0]</div><div class="line"></div><div class="line">switch $mode &#123;</div><div class="line"></div><div class="line">"" &#123;</div><div class="line">set user xingyue</div><div class="line">set ip "ip1"</div><div class="line">set port 9022</div><div class="line">set auth key</div><div class="line">&#125;</div><div class="line"></div><div class="line">"mini" &#123;</div><div class="line">set user xingyue</div><div class="line">set ip "ip2"</div><div class="line">set pwd "your_pwd"</div><div class="line">set port 22</div><div class="line">set auth pwd</div><div class="line">&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">switch $auth &#123;</div><div class="line"></div><div class="line">"key" &#123;</div><div class="line">spawn ssh $user@$ip -p $port</div><div class="line">interact</div><div class="line">&#125;</div><div class="line"></div><div class="line">"pwd" &#123;</div><div class="line">spawn ssh $user@$ip -p $port</div><div class="line">expect "*password:"</div><div class="line">send "$pwd\r"</div><div class="line">interact</div><div class="line">&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>]]></content>
     
     <summary type="html">
     
@@ -442,9 +470,9 @@
     
       <category term="pip" scheme="https://xsec.7ever.cn/tags/pip/"/>
     
-      <category term="python" scheme="https://xsec.7ever.cn/tags/python/"/>
-    
       <category term="pandas" scheme="https://xsec.7ever.cn/tags/pandas/"/>
+    
+      <category term="python" scheme="https://xsec.7ever.cn/tags/python/"/>
     
   </entry>
   
@@ -575,35 +603,6 @@
       <category term="python" scheme="https://xsec.7ever.cn/tags/python/"/>
     
       <category term="dns" scheme="https://xsec.7ever.cn/tags/dns/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>使用nginx做后端tcp,udp的proxy</title>
-    <link href="https://xsec.7ever.cn/2017/09/23/nginx-stream-proxy/"/>
-    <id>https://xsec.7ever.cn/2017/09/23/nginx-stream-proxy/</id>
-    <published>2017-09-22T23:51:16.000Z</published>
-    <updated>2017-09-23T02:08:35.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>安装参数:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">./configure \</div><div class="line">--prefix=/data1/mginx/ \</div><div class="line">--with-stream \</div><div class="line">--with-stream_realip_module \</div><div class="line">--with-stream_ssl_module \</div><div class="line">--without-http \</div><div class="line"></div><div class="line">make -j4</div><div class="line">make install</div></pre></td></tr></table></figure></p><p>stream的配置文件，在nginx主配置文件中添加容器stream<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">''''</div><div class="line">stream &#123;</div><div class="line">upstream sample_stream &#123;</div><div class="line">server 127.0.0.1:5800 max_fails=3 fail_timeout=5s;</div><div class="line">server 127.0.0.1:5801 max_fails=3 fail_timeout=5s;</div><div class="line">&#125;</div><div class="line"></div><div class="line">server &#123; </div><div class="line">listen 1812 ; # 可以用指定ip 或者指定协议,比如 listen 10.211.61.88 1812 ; 比如  listen 10.211.61.88 1812 udp;</div><div class="line">proxy_pass radius_upstream_onetime; #数据转发</div><div class="line">allow 10.210.12.17; #指定基于ip的访问控制</div><div class="line">deny all;</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">http&#123;</div><div class="line">&#125;</div><div class="line">''''</div></pre></td></tr></table></figure></p><p>stream 中可以添加lua控制，这样就可以方便的用lua编写tcp，udp 程序,在编译参数中添加stream_lua组件:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">--with-ld-opt="-Wl,-rpath,/data1/luajit/lib" \</div><div class="line">--add-module="../stream-lua-nginx-module" \</div></pre></td></tr></table></figure></p><p>设置stream中生成lua控制:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">content_by_lua_file /data1/code/lua/streams/echo.lua;</div></pre></td></tr></table></figure></p><p>lua脚本控制，配置一个echo协议，即输入什么返回什么:<br><figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">local</span> sock = <span class="built_in">assert</span>(ngx.req.socket(<span class="literal">true</span>))</div><div class="line"><span class="keyword">local</span> ip = ngx.var.remote_addr</div><div class="line"><span class="keyword">local</span> data </div><div class="line"></div><div class="line"><span class="keyword">while</span>(<span class="number">1</span> == <span class="number">1</span>)</div><div class="line"><span class="keyword">do</span></div><div class="line">data = sock:receive()  </div><div class="line">ngx.say(data)</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;安装参数:&lt;br&gt;&lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=
-      
-    
-    </summary>
-    
-      <category term="系统" scheme="https://xsec.7ever.cn/categories/%E7%B3%BB%E7%BB%9F/"/>
-    
-    
-      <category term="nginx" scheme="https://xsec.7ever.cn/tags/nginx/"/>
-    
-      <category term="proxy" scheme="https://xsec.7ever.cn/tags/proxy/"/>
-    
-      <category term="stream" scheme="https://xsec.7ever.cn/tags/stream/"/>
     
   </entry>
   
