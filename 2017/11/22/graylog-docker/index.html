@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="Simple Xsec World">
 <meta property="og:description" content="依赖于 docker-compose   创建储存graylog的目录:   12mkdir -p ./graylog/data/journalmkdir -p ./graylog/config  编写docker-compose.yml 1234567891011121314151617181920212223242526272829version: &apos;2&apos;services:  mongo:">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-23T06:08:16.934Z">
+<meta property="og:updated_time" content="2017-11-23T06:14:43.541Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="graylog 安装docker中">
 <meta name="twitter:description" content="依赖于 docker-compose   创建储存graylog的目录:   12mkdir -p ./graylog/data/journalmkdir -p ./graylog/config  编写docker-compose.yml 1234567891011121314151617181920212223242526272829version: &apos;2&apos;services:  mongo:">
@@ -394,7 +394,8 @@
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">$</span> echo -ne "admin" | sha256sum</div></pre></td></tr></table></figure>
 <ul>
-<li>从容器中copy出 graylog.conf 配置文件 到 ./graylog/config/graylog.conf  ，然后修改,重新启动</li>
+<li>从容器中copy出 graylog.conf 配置文件 到 ./graylog/config/graylog.conf  ，然后修改,重新启动<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker cp graylog_graylog_1:/usr/share/graylog/data/config graylog/</div></pre></td></tr></table></figure>
+</li>
 </ul>
 
       
