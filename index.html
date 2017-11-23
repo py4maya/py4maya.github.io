@@ -985,6 +985,7 @@
 </ul>
 <p>Dokcerfile 内容如下:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">FROM ubuntu</div><div class="line"></div><div class="line">RUN apt-get update -y &amp;&amp; apt-get install git -y &amp;&amp; apt-get install vim -y &amp;&amp; apt-get install gcc -y &amp;&amp; apt-get install automake -y &amp;&amp; apt-cache search make -y &amp;&amp; apt-get install make -y &amp;&amp; apt-get install pcre -y &amp;&amp; apt-get install libpcre -y &amp;&amp; apt-cache search pcre -y &amp;&amp; apt-get install libpcre3 -y &amp;&amp; apt-get install libpcre3-dev -y &amp;&amp; apt-get install zlib -y &amp;&amp; apt-cache search zlib -y &amp;&amp; apt-get install libghc-zlib-dev -y &amp;&amp; apt-cache search zlib -y &amp;&amp; apt-get install lua-zlib-dev -y &amp;&amp; apt-get install zlib1g-dev -y </div><div class="line"></div><div class="line">WROKDIR /root</div></pre></td></tr></table></figure></p>
 <p>最后运行 docker build . -t xbox 也可以生成对应的镜像</p>
+<p><em>注:默认的docker目录过于小， 建议修改启动参数中的   –graph=/var/lib/docker 到一个比较大的目录</em></p>
 
           
         
@@ -1092,7 +1093,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">43</span>
+                <span class="site-state-item-count">44</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
