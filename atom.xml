@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xsec.7ever.cn/"/>
-  <updated>2017-11-23T11:10:21.265Z</updated>
+  <updated>2017-12-02T08:19:37.693Z</updated>
   <id>https://xsec.7ever.cn/</id>
   
   <author>
@@ -15,6 +15,41 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>苹果系统下通过键盘快捷键运行shell</title>
+    <link href="https://xsec.7ever.cn/2017/12/02/osx-keyboard-run-shell/"/>
+    <id>https://xsec.7ever.cn/2017/12/02/osx-keyboard-run-shell/</id>
+    <published>2017-12-02T08:09:01.000Z</published>
+    <updated>2017-12-02T08:19:37.693Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li>创建系统服务<br>运行起automator ,<br>依次选择：文件-&gt;新建-&gt;服务<br>点开资源库-&gt;操作-&gt;运行Shell脚本或者其他脚本</li></ul><p>编写自己的脚本及运行环境</p><p>保存成对应的名字，比如sample service .</p><ul><li>绑定快捷键到系统服务:</li></ul><p>选择系统偏好设置，键盘，快捷键，服务，选择刚新创建的服务<br>添加适当的快捷键，<br>关闭该窗口就可以用该快捷键执行shell</p><ul><li>automator 创建的服务在 ~/Services 目录,可以自行删减</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;ul&gt;
+&lt;li&gt;创建系统服务&lt;br&gt;运行起automator ,&lt;br&gt;依次选择：文件-&amp;gt;新建-&amp;gt;服务&lt;br&gt;点开资源库-&amp;gt;操作-&amp;gt;运行Shell脚本或者其他脚本&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;编写自己的脚本及运行环境&lt;/p&gt;
+&lt;p&gt;保存成对应的名字，比如
+      
+    
+    </summary>
+    
+      <category term="系统" scheme="https://xsec.7ever.cn/categories/%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+      <category term="shell" scheme="https://xsec.7ever.cn/tags/shell/"/>
+    
+      <category term="osx" scheme="https://xsec.7ever.cn/tags/osx/"/>
+    
+      <category term="apple script" scheme="https://xsec.7ever.cn/tags/apple-script/"/>
+    
+      <category term="automator" scheme="https://xsec.7ever.cn/tags/automator/"/>
+    
+  </entry>
   
   <entry>
     <title>docker 容器中使用syslog-ng</title>
@@ -167,7 +202,7 @@
     <published>2017-11-10T13:11:02.000Z</published>
     <updated>2017-11-23T03:17:16.525Z</updated>
     
-    <content type="html"><![CDATA[<h5 id="前提，系统中已经包含docker，不管你是ubuntu系统或者centos系统。"><a href="#前提，系统中已经包含docker，不管你是ubuntu系统或者centos系统。" class="headerlink" title="前提，系统中已经包含docker，不管你是ubuntu系统或者centos系统。"></a>前提，系统中已经包含docker，不管你是ubuntu系统或者centos系统。</h5><ul><li>pull需要的系统,本实例中使用ubuntu</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker pull ubuntu</div></pre></td></tr></table></figure><ul><li><p>创建系统初始化脚本,其中包含了，如果对系统做了修改，保存相应的镜像:<br>绑定一两个需要对外服务的端口，注意，如果你的机器有公网IP,那么慎用0.0.0.0作为转换IP<br>友情提示,使用内网的IP地址监听</p><p>脚本会创建一个以$name为名字的镜像及容器<br>首次运行会提示不存在对应的容器，镜像等直接忽略就可以了</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span>!/bin/bash</div><div class="line"></div><div class="line">lip=172.16.7.57 ##只暴露端口给内网的IP</div><div class="line">name=xbox</div><div class="line">p=" -p $&#123;lip&#125;:8080:8080 -p $&#123;lip&#125;:9090:9090 -p &#123;$lip&#125;:5678:5678"</div><div class="line"></div><div class="line"></div><div class="line">docker commit $&#123;name&#125; $&#123;name&#125;</div><div class="line">docker stop $&#123;name&#125;</div><div class="line">docker rm $&#123;name&#125;</div><div class="line"></div><div class="line">docker run -it -p $&#123;lip&#125;:8080:8080 -p $&#123;lip&#125;:9090:9090 --name $&#123;name&#125; ubuntu /bin/bash</div><div class="line">docker start $&#123;name&#125;</div></pre></td></tr></table></figure></li><li><p>系统的进入脚本，相当于ssh 到对应的虚拟主机:<br>直接用-it 模式运行/bin/bash 就可以</p></li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span>!/bin/bash</div><div class="line">docker exec -it xbox /bin/bash</div></pre></td></tr></table></figure><ul><li>建议安装的脚本:</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">apt-get update</div><div class="line">apt-get install git</div><div class="line">apt-get install vim</div><div class="line">apt-get install gcc</div><div class="line">apt-get install automake</div><div class="line">apt-cache search make</div><div class="line">apt-get install make</div><div class="line">apt-get install pcre</div><div class="line">apt-get install libpcre</div><div class="line">apt-cache search pcre</div><div class="line">apt-get install libpcre3</div><div class="line">apt-get install libpcre3-dev</div><div class="line">apt-get install zlib</div><div class="line">apt-cache search zlib</div><div class="line">apt-get install libghc-zlib-dev</div><div class="line">apt-cache search zlib</div><div class="line">apt-get install lua-zlib-dev</div><div class="line">apt-get install zlib1g-dev</div></pre></td></tr></table></figure><ul><li>如果你乐意还可以用Dockerfile的方式创建一个基本镜像:</li></ul><p>Dokcerfile 内容如下:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">FROM ubuntu</div><div class="line"></div><div class="line">RUN apt-get update -y &amp;&amp; apt-get install git -y &amp;&amp; apt-get install vim -y &amp;&amp; apt-get install gcc -y &amp;&amp; apt-get install automake -y &amp;&amp; apt-cache search make -y &amp;&amp; apt-get install make -y &amp;&amp; apt-get install pcre -y &amp;&amp; apt-get install libpcre -y &amp;&amp; apt-cache search pcre -y &amp;&amp; apt-get install libpcre3 -y &amp;&amp; apt-get install libpcre3-dev -y &amp;&amp; apt-get install zlib -y &amp;&amp; apt-cache search zlib -y &amp;&amp; apt-get install libghc-zlib-dev -y &amp;&amp; apt-cache search zlib -y &amp;&amp; apt-get install lua-zlib-dev -y &amp;&amp; apt-get install zlib1g-dev -y </div><div class="line"></div><div class="line">WROKDIR /root</div></pre></td></tr></table></figure></p><p>最后运行 docker build . -t xbox 也可以生成对应的镜像</p><p><em>注:默认的docker目录过于小， 建议修改启动参数中的   –graph=/var/lib/docker 到一个比较大的目录</em></p>]]></content>
+    <content type="html"><![CDATA[<h5 id="前提，系统中已经包含docker，不管你是ubuntu系统或者centos系统。"><a href="#前提，系统中已经包含docker，不管你是ubuntu系统或者centos系统。" class="headerlink" title="前提，系统中已经包含docker，不管你是ubuntu系统或者centos系统。"></a>前提，系统中已经包含docker，不管你是ubuntu系统或者centos系统。</h5><ul><li>pull需要的系统,本实例中使用ubuntu</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker pull ubuntu</div></pre></td></tr></table></figure><ul><li><p>创建系统初始化脚本,其中包含了，如果对系统做了修改，保存相应的镜像:<br>绑定一两个需要对外服务的端口，注意，如果你的机器有公网IP,那么慎用0.0.0.0作为转换IP<br>友情提示,使用内网的IP地址监听</p><p>脚本会创建一个以$name为名字的镜像及容器<br>首次运行会提示不存在对应的容器，镜像等直接忽略就可以了</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></div><div class="line"></div><div class="line">lip=172.16.7.57 ##只暴露端口给内网的IP</div><div class="line">name=xbox</div><div class="line">p=" -p $&#123;lip&#125;:8080:8080 -p $&#123;lip&#125;:9090:9090 -p &#123;$lip&#125;:5678:5678"</div><div class="line"></div><div class="line"></div><div class="line">docker commit $&#123;name&#125; $&#123;name&#125;</div><div class="line">docker stop $&#123;name&#125;</div><div class="line">docker rm $&#123;name&#125;</div><div class="line"></div><div class="line">docker run -it -p $&#123;lip&#125;:8080:8080 -p $&#123;lip&#125;:9090:9090 --name $&#123;name&#125; ubuntu /bin/bash</div><div class="line">docker start $&#123;name&#125;</div></pre></td></tr></table></figure></li><li><p>系统的进入脚本，相当于ssh 到对应的虚拟主机:<br>直接用-it 模式运行/bin/bash 就可以</p></li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></div><div class="line">docker exec -it xbox /bin/bash</div></pre></td></tr></table></figure><ul><li>建议安装的脚本:</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">apt-get update</div><div class="line">apt-get install git</div><div class="line">apt-get install vim</div><div class="line">apt-get install gcc</div><div class="line">apt-get install automake</div><div class="line">apt-cache search make</div><div class="line">apt-get install make</div><div class="line">apt-get install pcre</div><div class="line">apt-get install libpcre</div><div class="line">apt-cache search pcre</div><div class="line">apt-get install libpcre3</div><div class="line">apt-get install libpcre3-dev</div><div class="line">apt-get install zlib</div><div class="line">apt-cache search zlib</div><div class="line">apt-get install libghc-zlib-dev</div><div class="line">apt-cache search zlib</div><div class="line">apt-get install lua-zlib-dev</div><div class="line">apt-get install zlib1g-dev</div></pre></td></tr></table></figure><ul><li>如果你乐意还可以用Dockerfile的方式创建一个基本镜像:</li></ul><p>Dokcerfile 内容如下:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">FROM ubuntu</div><div class="line"></div><div class="line">RUN apt-get update -y &amp;&amp; apt-get install git -y &amp;&amp; apt-get install vim -y &amp;&amp; apt-get install gcc -y &amp;&amp; apt-get install automake -y &amp;&amp; apt-cache search make -y &amp;&amp; apt-get install make -y &amp;&amp; apt-get install pcre -y &amp;&amp; apt-get install libpcre -y &amp;&amp; apt-cache search pcre -y &amp;&amp; apt-get install libpcre3 -y &amp;&amp; apt-get install libpcre3-dev -y &amp;&amp; apt-get install zlib -y &amp;&amp; apt-cache search zlib -y &amp;&amp; apt-get install libghc-zlib-dev -y &amp;&amp; apt-cache search zlib -y &amp;&amp; apt-get install lua-zlib-dev -y &amp;&amp; apt-get install zlib1g-dev -y </div><div class="line"></div><div class="line">WROKDIR /root</div></pre></td></tr></table></figure></p><p>最后运行 docker build . -t xbox 也可以生成对应的镜像</p><p><em>注:默认的docker目录过于小， 建议修改启动参数中的   –graph=/var/lib/docker 到一个比较大的目录</em></p>]]></content>
     
     <summary type="html">
     
@@ -410,7 +445,7 @@
     <published>2017-10-05T09:00:33.000Z</published>
     <updated>2017-10-07T13:49:49.000Z</updated>
     
-    <content type="html"><![CDATA[<p>配置如下的expect脚本:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash">!/usr/bin/expect</span></div><div class="line"></div><div class="line">set timeout 3600</div><div class="line"></div><div class="line">trap &#123;</div><div class="line"> set rows [stty rows]</div><div class="line"> set cols [stty columns]</div><div class="line"> stty rows $rows columns $cols &lt; $spawn_out(slave,name)</div><div class="line">&#125; WINCH</div><div class="line"></div><div class="line">set mode [lindex $argv 0]</div><div class="line"></div><div class="line">switch $mode &#123;</div><div class="line"></div><div class="line">"" &#123;</div><div class="line">set user xingyue</div><div class="line">set ip "ip1"</div><div class="line">set port 9022</div><div class="line">set auth key</div><div class="line">&#125;</div><div class="line"></div><div class="line">"mini" &#123;</div><div class="line">set user xingyue</div><div class="line">set ip "ip2"</div><div class="line">set pwd "your_pwd"</div><div class="line">set port 22</div><div class="line">set auth pwd</div><div class="line">&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">switch $auth &#123;</div><div class="line"></div><div class="line">"key" &#123;</div><div class="line">spawn ssh $user@$ip -p $port</div><div class="line">interact</div><div class="line">&#125;</div><div class="line"></div><div class="line">"pwd" &#123;</div><div class="line">spawn ssh $user@$ip -p $port</div><div class="line">expect "*password:"</div><div class="line">send "$pwd\r"</div><div class="line">interact</div><div class="line">&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>]]></content>
+    <content type="html"><![CDATA[<p>配置如下的expect脚本:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span>!/usr/bin/expect</div><div class="line"></div><div class="line">set timeout 3600</div><div class="line"></div><div class="line">trap &#123;</div><div class="line"> set rows [stty rows]</div><div class="line"> set cols [stty columns]</div><div class="line"> stty rows $rows columns $cols &lt; $spawn_out(slave,name)</div><div class="line">&#125; WINCH</div><div class="line"></div><div class="line">set mode [lindex $argv 0]</div><div class="line"></div><div class="line">switch $mode &#123;</div><div class="line"></div><div class="line">"" &#123;</div><div class="line">set user xingyue</div><div class="line">set ip "ip1"</div><div class="line">set port 9022</div><div class="line">set auth key</div><div class="line">&#125;</div><div class="line"></div><div class="line">"mini" &#123;</div><div class="line">set user xingyue</div><div class="line">set ip "ip2"</div><div class="line">set pwd "your_pwd"</div><div class="line">set port 22</div><div class="line">set auth pwd</div><div class="line">&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">switch $auth &#123;</div><div class="line"></div><div class="line">"key" &#123;</div><div class="line">spawn ssh $user@$ip -p $port</div><div class="line">interact</div><div class="line">&#125;</div><div class="line"></div><div class="line">"pwd" &#123;</div><div class="line">spawn ssh $user@$ip -p $port</div><div class="line">expect "*password:"</div><div class="line">send "$pwd\r"</div><div class="line">interact</div><div class="line">&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>]]></content>
     
     <summary type="html">
     
@@ -503,9 +538,9 @@
     
       <category term="pip" scheme="https://xsec.7ever.cn/tags/pip/"/>
     
-      <category term="python" scheme="https://xsec.7ever.cn/tags/python/"/>
-    
       <category term="pandas" scheme="https://xsec.7ever.cn/tags/pandas/"/>
+    
+      <category term="python" scheme="https://xsec.7ever.cn/tags/python/"/>
     
   </entry>
   
@@ -564,45 +599,6 @@
       <category term="tcpdump" scheme="https://xsec.7ever.cn/tags/tcpdump/"/>
     
       <category term="pcap" scheme="https://xsec.7ever.cn/tags/pcap/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>终端输出带颜色的字符</title>
-    <link href="https://xsec.7ever.cn/2017/09/25/echo-with-color/"/>
-    <id>https://xsec.7ever.cn/2017/09/25/echo-with-color/</id>
-    <published>2017-09-25T03:24:22.000Z</published>
-    <updated>2017-10-01T03:19:25.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>输出以下的格式 \033[背景色;前景色;显示方式m</p><p>各颜色编码说明：</p><table><thead><tr><th>前景色</th><th>背景色</th><th>颜色</th></tr></thead><tbody><tr><td>  30</td><td>40</td><td>黑色</td></tr><tr><td>  31</td><td>41</td><td>红色</td></tr><tr><td>  32</td><td>42</td><td>绿色</td></tr><tr><td>  33</td><td>43</td><td>黃色</td></tr><tr><td>  34</td><td>44</td><td>蓝色</td></tr><tr><td>  35</td><td>45</td><td>紫红色</td></tr><tr><td>  36</td><td>46</td><td>青蓝色</td></tr><tr><td>  37</td><td>47</td><td>白色</td></tr><tr><td>  37</td><td>0</td><td>当前背景</td></tr></tbody></table><p>几种不通的显示方式:</p><table><thead><tr><th>显示方式</th><th>意义</th></tr></thead><tbody><tr><td>0</td><td>终端默认设置</td></tr><tr><td>1</td><td>高亮显示</td></tr><tr><td>4</td><td>使用下划线</td></tr><tr><td>5</td><td>闪烁</td></tr><tr><td>7</td><td>反白显示</td></tr><tr><td>8</td><td>不可见</td></tr></tbody></table><p>几种输出的例子:</p><ul><li><p>\033[0;31;1m<br> 0 当前背景,31红色,1 高亮显示</p></li><li><p>\033[0;32;1m<br> 0 当前背景,32绿色,1 高亮显示</p></li><li><p>\033[0;31;5m<br> 0 当前背景,31红色,5 闪烁显示</p></li></ul><ul><li>\033[0m<br> 采用终端默认设置，即取消颜色设置</li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;输出以下的格式 \033[背景色;前景色;显示方式m&lt;/p&gt;
-&lt;p&gt;各颜色编码说明：&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;前景色&lt;/th&gt;
-&lt;th&gt;背景色&lt;/th&gt;
-&lt;th&gt;颜色&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td
-      
-    
-    </summary>
-    
-      <category term="开发" scheme="https://xsec.7ever.cn/categories/%E5%BC%80%E5%8F%91/"/>
-    
-    
-      <category term="echo" scheme="https://xsec.7ever.cn/tags/echo/"/>
-    
-      <category term="shell" scheme="https://xsec.7ever.cn/tags/shell/"/>
     
   </entry>
   
