@@ -96,18 +96,18 @@
 
 
 
-<meta name="description" content="常见的几个sql:  创建表：  12345678CREATE TABLE excmdb (    asset_number character varying(128),    ips text[],    product character varying(128),    administrator character varying(64),    rack character varyi">
+<meta name="description" content="常见的几个sql:  创建表：  123456789CREATE TABLE excmdb (    asset_number character varying(128),    ips text[],    product character varying(128),    administrator character varying(64),    rack character vary">
 <meta name="keywords" content="PostgreSQL">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一些常用的PostgreSQL-sql">
 <meta property="og:url" content="https://xsec.7ever.cn/2017/12/04/some-PostgreSQL-sql/index.html">
 <meta property="og:site_name" content="Simple Xsec World">
-<meta property="og:description" content="常见的几个sql:  创建表：  12345678CREATE TABLE excmdb (    asset_number character varying(128),    ips text[],    product character varying(128),    administrator character varying(64),    rack character varyi">
+<meta property="og:description" content="常见的几个sql:  创建表：  123456789CREATE TABLE excmdb (    asset_number character varying(128),    ips text[],    product character varying(128),    administrator character varying(64),    rack character vary">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-04T06:50:46.623Z">
+<meta property="og:updated_time" content="2017-12-05T08:57:58.967Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一些常用的PostgreSQL-sql">
-<meta name="twitter:description" content="常见的几个sql:  创建表：  12345678CREATE TABLE excmdb (    asset_number character varying(128),    ips text[],    product character varying(128),    administrator character varying(64),    rack character varyi">
+<meta name="twitter:description" content="常见的几个sql:  创建表：  123456789CREATE TABLE excmdb (    asset_number character varying(128),    ips text[],    product character varying(128),    administrator character varying(64),    rack character vary">
 
 
 
@@ -378,16 +378,19 @@
 <ul>
 <li>创建表：</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">CREATE TABLE excmdb (</div><div class="line">    asset_number character varying(128),</div><div class="line">    ips text[],</div><div class="line">    product character varying(128),</div><div class="line">    administrator character varying(64),</div><div class="line">    rack character varying(128),</div><div class="line">	manifest character varying(32)</div><div class="line">);</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">CREATE TABLE excmdb (</div><div class="line">    asset_number character varying(128),</div><div class="line">    ips text[],</div><div class="line">    product character varying(128),</div><div class="line">    administrator character varying(64),</div><div class="line">    rack character varying(128),</div><div class="line">	manifest character varying(32),</div><div class="line">	constraint pk_tbl_primary_asset_manifest primary key (asset_number,manifest)</div><div class="line">);</div></pre></td></tr></table></figure>
 <ul>
 <li><p>导出表结构:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> pg_dump -h localhost -U cmdb -s cmdb</span></div><div class="line"><span class="meta">$</span><span class="bash"> pg_dump -h localhost -U cmdb cmdb -t excmdb   <span class="comment">#导出数据</span></span></div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> pg_dump -h localhost -U cmdb -s cmdb</div><div class="line"><span class="meta">$</span> pg_dump -h localhost -U cmdb cmdb -t excmdb   #导出数据</div></pre></td></tr></table></figure>
 </li>
 <li><p>执行sql文件:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">\i data.sql;</div></pre></td></tr></table></figure>
 </li>
 <li><p>查看描述:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">\dt #查看表list</div><div class="line">\d excmdb #查看表结构</div></pre></td></tr></table></figure>
+</li>
+<li><p>数组操作:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">select sample where ips @&gt; '&#123;127.0.0.1&#125;' # 查看数组包含</div><div class="line">update sample set ips = ips || '&#123;127.0.0.1&#125;' # 添加元素</div><div class="line">UPDATE excmdb SET ips = array_remove(ips,'10.13.2.144') WHERE asset_number = 'D10075981'; #删除元素</div></pre></td></tr></table></figure>
 </li>
 </ul>
 
