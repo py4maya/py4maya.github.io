@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xsec.7ever.cn/"/>
-  <updated>2017-12-06T06:05:29.123Z</updated>
+  <updated>2017-12-08T07:56:49.382Z</updated>
   <id>https://xsec.7ever.cn/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>centos7 修改dns</title>
+    <link href="https://xsec.7ever.cn/2017/12/08/centos7-change-dns/"/>
+    <id>https://xsec.7ever.cn/2017/12/08/centos7-change-dns/</id>
+    <published>2017-12-08T07:55:13.000Z</published>
+    <updated>2017-12-08T07:56:49.382Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li>修改系统配置 /etc/resolv.conf:</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">nameserver 10.210.12.10</div><div class="line">nameserver 172.16.105.248</div></pre></td></tr></table></figure><ul><li>重启系统网络:</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl restart NetworkManager.service</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;ul&gt;
+&lt;li&gt;修改系统配置 /etc/resolv.conf:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;di
+      
+    
+    </summary>
+    
+      <category term="系统" scheme="https://xsec.7ever.cn/categories/%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+      <category term="dns" scheme="https://xsec.7ever.cn/tags/dns/"/>
+    
+      <category term="centos" scheme="https://xsec.7ever.cn/tags/centos/"/>
+    
+  </entry>
   
   <entry>
     <title>快速创建大文件</title>
@@ -497,7 +527,7 @@
     <published>2017-10-05T09:00:33.000Z</published>
     <updated>2017-10-07T13:49:49.000Z</updated>
     
-    <content type="html"><![CDATA[<p>配置如下的expect脚本:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash">!/usr/bin/expect</span></div><div class="line"></div><div class="line">set timeout 3600</div><div class="line"></div><div class="line">trap &#123;</div><div class="line"> set rows [stty rows]</div><div class="line"> set cols [stty columns]</div><div class="line"> stty rows $rows columns $cols &lt; $spawn_out(slave,name)</div><div class="line">&#125; WINCH</div><div class="line"></div><div class="line">set mode [lindex $argv 0]</div><div class="line"></div><div class="line">switch $mode &#123;</div><div class="line"></div><div class="line">"" &#123;</div><div class="line">set user xingyue</div><div class="line">set ip "ip1"</div><div class="line">set port 9022</div><div class="line">set auth key</div><div class="line">&#125;</div><div class="line"></div><div class="line">"mini" &#123;</div><div class="line">set user xingyue</div><div class="line">set ip "ip2"</div><div class="line">set pwd "your_pwd"</div><div class="line">set port 22</div><div class="line">set auth pwd</div><div class="line">&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">switch $auth &#123;</div><div class="line"></div><div class="line">"key" &#123;</div><div class="line">spawn ssh $user@$ip -p $port</div><div class="line">interact</div><div class="line">&#125;</div><div class="line"></div><div class="line">"pwd" &#123;</div><div class="line">spawn ssh $user@$ip -p $port</div><div class="line">expect "*password:"</div><div class="line">send "$pwd\r"</div><div class="line">interact</div><div class="line">&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>]]></content>
+    <content type="html"><![CDATA[<p>配置如下的expect脚本:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span>!/usr/bin/expect</div><div class="line"></div><div class="line">set timeout 3600</div><div class="line"></div><div class="line">trap &#123;</div><div class="line"> set rows [stty rows]</div><div class="line"> set cols [stty columns]</div><div class="line"> stty rows $rows columns $cols &lt; $spawn_out(slave,name)</div><div class="line">&#125; WINCH</div><div class="line"></div><div class="line">set mode [lindex $argv 0]</div><div class="line"></div><div class="line">switch $mode &#123;</div><div class="line"></div><div class="line">"" &#123;</div><div class="line">set user xingyue</div><div class="line">set ip "ip1"</div><div class="line">set port 9022</div><div class="line">set auth key</div><div class="line">&#125;</div><div class="line"></div><div class="line">"mini" &#123;</div><div class="line">set user xingyue</div><div class="line">set ip "ip2"</div><div class="line">set pwd "your_pwd"</div><div class="line">set port 22</div><div class="line">set auth pwd</div><div class="line">&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">switch $auth &#123;</div><div class="line"></div><div class="line">"key" &#123;</div><div class="line">spawn ssh $user@$ip -p $port</div><div class="line">interact</div><div class="line">&#125;</div><div class="line"></div><div class="line">"pwd" &#123;</div><div class="line">spawn ssh $user@$ip -p $port</div><div class="line">expect "*password:"</div><div class="line">send "$pwd\r"</div><div class="line">interact</div><div class="line">&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>]]></content>
     
     <summary type="html">
     
@@ -562,35 +592,6 @@
     
       <category term="开发" scheme="https://xsec.7ever.cn/categories/%E5%BC%80%E5%8F%91/"/>
     
-    
-      <category term="pip" scheme="https://xsec.7ever.cn/tags/pip/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>使用pandas做数据分析</title>
-    <link href="https://xsec.7ever.cn/2017/10/03/pandas-data-sight/"/>
-    <id>https://xsec.7ever.cn/2017/10/03/pandas-data-sight/</id>
-    <published>2017-10-03T01:01:58.000Z</published>
-    <updated>2017-10-25T06:47:47.000Z</updated>
-    
-    <content type="html"><![CDATA[<h4 id="安装"><a href="#安装" class="headerlink" title="安装:"></a>安装:</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> pip install pandas</span></div></pre></td></tr></table></figure><p>安装完成，系统中会包含三个包:numpy, pytz, pandas,主要使用的pandas,numpy 是一个扩展的数组</p><h4 id="引入类库"><a href="#引入类库" class="headerlink" title="引入类库:"></a>引入类库:</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">from</span> pandas <span class="keyword">import</span> Series, DataFrame</div></pre></td></tr></table></figure><h4 id="Series-一个hash索引的数组，比普通的dict，map-计算更方便快捷"><a href="#Series-一个hash索引的数组，比普通的dict，map-计算更方便快捷" class="headerlink" title="Series 一个hash索引的数组，比普通的dict，map 计算更方便快捷:"></a>Series 一个hash索引的数组，比普通的dict，map 计算更方便快捷:</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#初始化</span></div><div class="line">ser = Series([<span class="number">6</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">9</span>,<span class="number">2</span>],index=[<span class="string">'A'</span>,<span class="string">'B'</span>,<span class="string">'C'</span>,<span class="string">'D'</span>,<span class="string">'E'</span>])</div></pre></td></tr></table></figure><p>将得到一个以A,B,C,D,E为键，值为6,5,4,9,2的数组</p><h5 id="计算"><a href="#计算" class="headerlink" title="计算"></a>计算</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">nser = ser[ser &lt; <span class="number">5</span>] <span class="comment">#将得到小于5的数组</span></div><div class="line">nser = nser + <span class="number">10</span> <span class="comment">#将所有的值都添加10</span></div><div class="line">nser = nser &lt; <span class="number">10</span> <span class="comment">#转成boolean</span></div><div class="line"><span class="string">'A'</span> <span class="keyword">in</span> nser <span class="comment">#判断包含关系</span></div><div class="line">A = Series([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>])</div><div class="line">B = Series([<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>])</div><div class="line">C = A + B <span class="comment">#相加</span></div></pre></td></tr></table></figure><h4 id="二维检索计算的基本单位DataFrame"><a href="#二维检索计算的基本单位DataFrame" class="headerlink" title="二维检索计算的基本单位DataFrame"></a>二维检索计算的基本单位DataFrame</h4><h5 id="数据加载构成DataFrame"><a href="#数据加载构成DataFrame" class="headerlink" title="数据加载构成DataFrame"></a>数据加载构成DataFrame</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">df=pd.read_csv(<span class="string">"/Users/vbabu/Documents/personal/MyGitWork/csv/mls-salaries-2016.csv"</span>)</div><div class="line">df=pd.read_json(<span class="string">"/Users/vbabu/Documents/personal/MyGitWork/csv/mls-salaries-2016.json"</span>)</div></pre></td></tr></table></figure><h5 id="获取头，尾的数据"><a href="#获取头，尾的数据" class="headerlink" title="获取头，尾的数据:"></a>获取头，尾的数据:</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">df.head(count)</div><div class="line">df.tail(count)</div><div class="line">df.info() <span class="comment">#获取DataFrame的相关存储设置</span></div><div class="line">df[<span class="string">'index_name'</span>].head(count) <span class="comment"># 获取某一列的头数据</span></div><div class="line">df[<span class="string">'new_name'</span>] = df[new_name + <span class="number">10</span>] <span class="comment">#添加新列，并且赋值</span></div><div class="line"><span class="keyword">del</span> df[<span class="string">'name'</span>] <span class="comment">#删除列</span></div><div class="line">df.fillna(<span class="string">'5'</span>) <span class="comment">#填充null的数据</span></div></pre></td></tr></table></figure><h5 id="简单计算"><a href="#简单计算" class="headerlink" title="简单计算:"></a>简单计算:</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">df.sum(axis=<span class="number">1</span>)</div><div class="line">df.sum(axis=<span class="number">0</span>)</div><div class="line">df.min(axis=<span class="number">0</span>) <span class="comment">#求最小值</span></div><div class="line">df.max(axis=<span class="number">0</span>) <span class="comment">#求最小值</span></div><div class="line">df.groupby([<span class="string">'name'</span>]).count().sort_values().head() <span class="comment">#相当于graylog里边的quick values</span></div></pre></td></tr></table></figure><h5 id="数据删减"><a href="#数据删减" class="headerlink" title="数据删减"></a>数据删减</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">dframe.drop(<span class="string">'B'</span>) <span class="comment">#删除数据</span></div><div class="line">dframe.append([]) <span class="comment">#添加数据</span></div><div class="line">df = dframe[ <span class="string">'B'</span> &gt; <span class="number">10</span>] <span class="comment">#数据筛选</span></div></pre></td></tr></table></figure><h5 id="数据排序"><a href="#数据排序" class="headerlink" title="数据排序:"></a>数据排序:</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">df.sort_values(ascending=<span class="keyword">True</span>|<span class="keyword">False</span>)</div></pre></td></tr></table></figure><h5 id="数据类型转换"><a href="#数据类型转换" class="headerlink" title="数据类型转换:"></a>数据类型转换:</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">df[<span class="string">'col2'</span>] = df[<span class="string">'col2'</span>].astype(<span class="string">'int'</span>)</div><div class="line"><span class="keyword">print</span> <span class="string">'-----------'</span></div><div class="line"><span class="keyword">print</span> df.dtypes</div><div class="line"></div><div class="line">df[<span class="string">'col2'</span>] = df[<span class="string">'col2'</span>].astype(<span class="string">'float64'</span>)</div><div class="line"><span class="keyword">print</span> <span class="string">'-----------'</span></div><div class="line"><span class="keyword">print</span> df.dtypes</div></pre></td></tr></table></figure><p><a href="https://kanoki.org/2017/07/16/pandas-in-a-nutshell/#Selecting-Index" target="_blank" rel="external">数据翻译来源https://kanoki.org/2017/07/16/pandas-in-a-nutshell/#Selecting-Index</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h4 id=&quot;安装&quot;&gt;&lt;a href=&quot;#安装&quot; class=&quot;headerlink&quot; title=&quot;安装:&quot;&gt;&lt;/a&gt;安装:&lt;/h4&gt;&lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div
-      
-    
-    </summary>
-    
-      <category term="数据分析" scheme="https://xsec.7ever.cn/categories/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"/>
-    
-    
-      <category term="pandas" scheme="https://xsec.7ever.cn/tags/pandas/"/>
-    
-      <category term="python" scheme="https://xsec.7ever.cn/tags/python/"/>
     
       <category term="pip" scheme="https://xsec.7ever.cn/tags/pip/"/>
     
