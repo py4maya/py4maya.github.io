@@ -552,7 +552,7 @@
     <link href="https://xsec.7ever.cn/2017/10/05/centos7-fix-ipaddress/"/>
     <id>https://xsec.7ever.cn/2017/10/05/centos7-fix-ipaddress/</id>
     <published>2017-10-05T08:55:14.000Z</published>
-    <updated>2017-10-05T08:58:29.000Z</updated>
+    <updated>2017-12-08T07:58:35.209Z</updated>
     
     <content type="html"><![CDATA[<p>配置文件 /etc/sysconfig/network-scripts/ifcfg-xxxxx :<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">BOOTPROTO="static" #dhcp改为static   </div><div class="line">ONBOOT="yes" #开机启用本配置  </div><div class="line">IPADDR=192.168.7.106 #静态IP  </div><div class="line">GATEWAY=192.168.7.1 #默认网关  </div><div class="line">NETMASK=255.255.255.0 #子网掩码  </div><div class="line">DNS1=192.168.7.1 #DNS 配置  </div><div class="line"></div><div class="line"></div><div class="line"><span class="meta">#</span>#修改为:</div><div class="line">BOOTPROTO=static</div><div class="line">IPADDR=192.168.122.216</div><div class="line">GATEWAY=192.168.122.1</div><div class="line">NETMASK=255.255.255.0</div><div class="line">DNS1=192.168.122.1 </div><div class="line">DNS2=192.168.122.2</div></pre></td></tr></table></figure></p>]]></content>
     
@@ -568,7 +568,7 @@
       <category term="系统" scheme="https://xsec.7ever.cn/categories/%E7%B3%BB%E7%BB%9F/"/>
     
     
-      <category term="centos7" scheme="https://xsec.7ever.cn/tags/centos7/"/>
+      <category term="centos" scheme="https://xsec.7ever.cn/tags/centos/"/>
     
   </entry>
   
