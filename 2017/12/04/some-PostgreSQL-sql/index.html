@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="Simple Xsec World">
 <meta property="og:description" content="常见的几个sql:  创建表：  123456789CREATE TABLE excmdb (    asset_number character varying(128),    ips text[],    product character varying(128),    administrator character varying(64),    rack character vary">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-11T07:12:47.238Z">
+<meta property="og:updated_time" content="2017-12-11T07:30:52.283Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一些常用的PostgreSQL-sql">
 <meta name="twitter:description" content="常见的几个sql:  创建表：  123456789CREATE TABLE excmdb (    asset_number character varying(128),    ips text[],    product character varying(128),    administrator character varying(64),    rack character vary">
@@ -381,7 +381,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">CREATE TABLE excmdb (</div><div class="line">    asset_number character varying(128),</div><div class="line">    ips text[],</div><div class="line">    product character varying(128),</div><div class="line">    administrator character varying(64),</div><div class="line">    rack character varying(128),</div><div class="line">	manifest character varying(32),</div><div class="line">	constraint pk_tbl_primary_asset_manifest primary key (asset_number,manifest)</div><div class="line">);</div></pre></td></tr></table></figure>
 <ul>
 <li><p>导出表结构:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> pg_dump -h localhost -U cmdb -s cmdb</div><div class="line"><span class="meta">$</span> pg_dump -h localhost -U cmdb cmdb -t excmdb   #导出数据</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> pg_dump -h localhost -U cmdb -s cmdb</span></div><div class="line"><span class="meta">$</span><span class="bash"> pg_dump -h localhost -U cmdb cmdb -t excmdb   <span class="comment">#导出数据</span></span></div></pre></td></tr></table></figure>
 </li>
 <li><p>执行sql文件:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">\i data.sql;</div></pre></td></tr></table></figure>
@@ -545,7 +545,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">34</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

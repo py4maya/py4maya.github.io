@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xsec.7ever.cn/"/>
-  <updated>2017-12-08T07:56:49.382Z</updated>
+  <updated>2017-12-16T11:55:26.355Z</updated>
   <id>https://xsec.7ever.cn/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>一些常用的rpm命令</title>
+    <link href="https://xsec.7ever.cn/2017/12/16/rpm-useful-command/"/>
+    <id>https://xsec.7ever.cn/2017/12/16/rpm-useful-command/</id>
+    <published>2017-12-16T11:54:00.000Z</published>
+    <updated>2017-12-16T11:55:26.355Z</updated>
+    
+    <content type="html"><![CDATA[<p>查看安装的rpm包:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rpm -qa</div></pre></td></tr></table></figure><p>查看一个rpm包包含的文件:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rpm -ql rsyslog</div></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;查看安装的rpm包:&lt;/p&gt;
+&lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;p
+      
+    
+    </summary>
+    
+      <category term="系统" scheme="https://xsec.7ever.cn/categories/%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+      <category term="linux" scheme="https://xsec.7ever.cn/tags/linux/"/>
+    
+      <category term="rpm" scheme="https://xsec.7ever.cn/tags/rpm/"/>
+    
+  </entry>
   
   <entry>
     <title>centos7 修改dns</title>
@@ -40,9 +68,9 @@
       <category term="系统" scheme="https://xsec.7ever.cn/categories/%E7%B3%BB%E7%BB%9F/"/>
     
     
-      <category term="dns" scheme="https://xsec.7ever.cn/tags/dns/"/>
-    
       <category term="centos" scheme="https://xsec.7ever.cn/tags/centos/"/>
+    
+      <category term="dns" scheme="https://xsec.7ever.cn/tags/dns/"/>
     
   </entry>
   
@@ -74,9 +102,9 @@
     <link href="https://xsec.7ever.cn/2017/12/04/some-PostgreSQL-sql/"/>
     <id>https://xsec.7ever.cn/2017/12/04/some-PostgreSQL-sql/</id>
     <published>2017-12-04T06:44:07.000Z</published>
-    <updated>2017-12-11T07:12:47.238Z</updated>
+    <updated>2017-12-11T07:30:52.283Z</updated>
     
-    <content type="html"><![CDATA[<p>常见的几个sql:</p><ul><li>创建表：</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">CREATE TABLE excmdb (</div><div class="line">    asset_number character varying(128),</div><div class="line">    ips text[],</div><div class="line">    product character varying(128),</div><div class="line">    administrator character varying(64),</div><div class="line">    rack character varying(128),</div><div class="line">manifest character varying(32),</div><div class="line">constraint pk_tbl_primary_asset_manifest primary key (asset_number,manifest)</div><div class="line">);</div></pre></td></tr></table></figure><ul><li><p>导出表结构:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> pg_dump -h localhost -U cmdb -s cmdb</div><div class="line"><span class="meta">$</span> pg_dump -h localhost -U cmdb cmdb -t excmdb   #导出数据</div></pre></td></tr></table></figure></li><li><p>执行sql文件:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">\i data.sql;</div></pre></td></tr></table></figure></li><li><p>查看描述:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">\dt #查看表list</div><div class="line">\d excmdb #查看表结构</div></pre></td></tr></table></figure></li><li><p>数组操作:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">select sample where ips @&gt; '&#123;127.0.0.1&#125;' # 查看数组包含</div><div class="line">update sample set ips = ips || '&#123;127.0.0.1&#125;' # 添加元素</div><div class="line">UPDATE excmdb SET ips = array_remove(ips,'10.13.2.144') WHERE asset_number = 'D10075981'; #删除元素</div><div class="line">select sample where ips ||  '&#123;127.0.0.1&#125;' # 数组元素的in查询</div></pre></td></tr></table></figure></li></ul>]]></content>
+    <content type="html"><![CDATA[<p>常见的几个sql:</p><ul><li>创建表：</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">CREATE TABLE excmdb (</div><div class="line">    asset_number character varying(128),</div><div class="line">    ips text[],</div><div class="line">    product character varying(128),</div><div class="line">    administrator character varying(64),</div><div class="line">    rack character varying(128),</div><div class="line">manifest character varying(32),</div><div class="line">constraint pk_tbl_primary_asset_manifest primary key (asset_number,manifest)</div><div class="line">);</div></pre></td></tr></table></figure><ul><li><p>导出表结构:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> pg_dump -h localhost -U cmdb -s cmdb</span></div><div class="line"><span class="meta">$</span><span class="bash"> pg_dump -h localhost -U cmdb cmdb -t excmdb   <span class="comment">#导出数据</span></span></div></pre></td></tr></table></figure></li><li><p>执行sql文件:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">\i data.sql;</div></pre></td></tr></table></figure></li><li><p>查看描述:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">\dt #查看表list</div><div class="line">\d excmdb #查看表结构</div></pre></td></tr></table></figure></li><li><p>数组操作:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">select sample where ips @&gt; '&#123;127.0.0.1&#125;' # 查看数组包含</div><div class="line">update sample set ips = ips || '&#123;127.0.0.1&#125;' # 添加元素</div><div class="line">UPDATE excmdb SET ips = array_remove(ips,'10.13.2.144') WHERE asset_number = 'D10075981'; #删除元素</div><div class="line">select sample where ips ||  '&#123;127.0.0.1&#125;' # 数组元素的in查询</div></pre></td></tr></table></figure></li></ul>]]></content>
     
     <summary type="html">
     
@@ -140,7 +168,7 @@
     <published>2017-11-23T11:06:31.000Z</published>
     <updated>2017-11-23T11:10:21.265Z</updated>
     
-    <content type="html"><![CDATA[<p>容器中配置的是ubuntu的基础系统.<br>安装syslog-ng</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">apt-get install syslog-ng</div></pre></td></tr></table></figure><p>然后 启动 syslog-ng </p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">service syslog-ng start</div></pre></td></tr></table></figure><ul><li>报错1<br>syslog-ng: Error setting capabilities</li></ul><p>按照如下的代码修改启动参数<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cat /etc/default/syslog-ng</div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment">#添加这一行,注释打开</span></span></div><div class="line">SYSLOGNG_OPTS="--no-caps"</div></pre></td></tr></table></figure></p><ul><li>报错2 </li></ul><p>Error opening file for reading; filename=’/proc/kmsg’, error=’Operation not permitted (1)’</p><p>去掉syslog-ng配置中的system()</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">source s_src &#123;</div><div class="line"><span class="meta">#</span><span class="bash">       system();</span></div><div class="line">       internal();</div><div class="line">&#125;;</div></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<p>容器中配置的是ubuntu的基础系统.<br>安装syslog-ng</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">apt-get install syslog-ng</div></pre></td></tr></table></figure><p>然后 启动 syslog-ng </p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">service syslog-ng start</div></pre></td></tr></table></figure><ul><li>报错1<br>syslog-ng: Error setting capabilities</li></ul><p>按照如下的代码修改启动参数<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cat /etc/default/syslog-ng</div><div class="line"></div><div class="line"><span class="meta">#</span>#添加这一行,注释打开</div><div class="line">SYSLOGNG_OPTS="--no-caps"</div></pre></td></tr></table></figure></p><ul><li>报错2 </li></ul><p>Error opening file for reading; filename=’/proc/kmsg’, error=’Operation not permitted (1)’</p><p>去掉syslog-ng配置中的system()</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">source s_src &#123;</div><div class="line"><span class="meta">#</span>       system();</div><div class="line">       internal();</div><div class="line">&#125;;</div></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
@@ -426,7 +454,7 @@
     <published>2017-10-13T06:05:54.000Z</published>
     <updated>2017-12-13T09:35:57.385Z</updated>
     
-    <content type="html"><![CDATA[<p>原由:查看一个proxy系统客户端的请求内容，该系统为nginx proxy 搭建。</p><p>方案:</p><ul><li>部署新的nginx </li><li>内容请求部分添加lua 拦截请求</li><li>根据nginx lua api 分离http(s) 的请求内容</li></ul><p>编译nginx时需要添加lua支持:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">#</span>##注，忒别重要</div><div class="line">export LUAJIT_LIB=/data1/luajit/lib</div><div class="line">export LUAJIT_INC=/data1/luajit/include/luajit-2.0</div><div class="line"></div><div class="line">./configure --prefix=/data0/nginx/ \</div><div class="line">--with-stream \</div><div class="line">--with-http_ssl_module \</div><div class="line">--with-stream_ssl_module \</div><div class="line">--with-ld-opt=-Wl,-rpath,/data0/luajit/lib \</div><div class="line">--add-module=../lua-nginx-module</div></pre></td></tr></table></figure><p>配置正常的nginx模块,添加lua解析:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line"></div><div class="line">listen 80;</div><div class="line">location / &#123;</div><div class="line"> access_by_lua_file /data0/nginx/conf/vhost/access.lua;</div><div class="line"> proxy_pass http://$http_host;</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p><p>lua的内容:<br><figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">ngx.req.read_body()</div><div class="line"></div><div class="line"><span class="keyword">local</span> ip = ngx.var.remote_addr</div><div class="line"><span class="keyword">local</span> logfile = <span class="built_in">io</span>.<span class="built_in">open</span>(<span class="string">"/tmp/data.log"</span>,<span class="string">"a"</span>);</div><div class="line"></div><div class="line"><span class="keyword">local</span> method = ngx.req.get_method()</div><div class="line"><span class="keyword">local</span> body = ngx.req.get_body_data()</div><div class="line"></div><div class="line"><span class="keyword">if</span> (body == <span class="literal">nil</span>)</div><div class="line"><span class="keyword">then</span></div><div class="line">    body = <span class="string">''</span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line">logfile:<span class="built_in">write</span>(<span class="string">"\n ============================  "</span> .. method .. <span class="string">" ========================== "</span> .. <span class="string">"\n"</span>)</div><div class="line">logfile:<span class="built_in">write</span>(ngx.req.raw_header() .. <span class="string">"\n"</span>)</div><div class="line">logfile:<span class="built_in">write</span>(body ..  <span class="string">"\n"</span>)</div><div class="line"></div><div class="line"></div><div class="line">logfile:<span class="built_in">flush</span>()</div><div class="line">logfile:<span class="built_in">close</span>()</div></pre></td></tr></table></figure></p>]]></content>
+    <content type="html"><![CDATA[<p>原由:查看一个proxy系统客户端的请求内容，该系统为nginx proxy 搭建。</p><p>方案:</p><ul><li>部署新的nginx </li><li>内容请求部分添加lua 拦截请求</li><li>根据nginx lua api 分离http(s) 的请求内容</li></ul><p>编译nginx时需要添加lua支持:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment">##注，忒别重要</span></span></div><div class="line">export LUAJIT_LIB=/data1/luajit/lib</div><div class="line">export LUAJIT_INC=/data1/luajit/include/luajit-2.0</div><div class="line"></div><div class="line">./configure --prefix=/data0/nginx/ \</div><div class="line">--with-stream \</div><div class="line">--with-http_ssl_module \</div><div class="line">--with-stream_ssl_module \</div><div class="line">--with-ld-opt=-Wl,-rpath,/data0/luajit/lib \</div><div class="line">--add-module=../lua-nginx-module</div></pre></td></tr></table></figure><p>配置正常的nginx模块,添加lua解析:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line"></div><div class="line">listen 80;</div><div class="line">location / &#123;</div><div class="line"> access_by_lua_file /data0/nginx/conf/vhost/access.lua;</div><div class="line"> proxy_pass http://$http_host;</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p><p>lua的内容:<br><figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">ngx.req.read_body()</div><div class="line"></div><div class="line"><span class="keyword">local</span> ip = ngx.var.remote_addr</div><div class="line"><span class="keyword">local</span> logfile = <span class="built_in">io</span>.<span class="built_in">open</span>(<span class="string">"/tmp/data.log"</span>,<span class="string">"a"</span>);</div><div class="line"></div><div class="line"><span class="keyword">local</span> method = ngx.req.get_method()</div><div class="line"><span class="keyword">local</span> body = ngx.req.get_body_data()</div><div class="line"></div><div class="line"><span class="keyword">if</span> (body == <span class="literal">nil</span>)</div><div class="line"><span class="keyword">then</span></div><div class="line">    body = <span class="string">''</span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line">logfile:<span class="built_in">write</span>(<span class="string">"\n ============================  "</span> .. method .. <span class="string">" ========================== "</span> .. <span class="string">"\n"</span>)</div><div class="line">logfile:<span class="built_in">write</span>(ngx.req.raw_header() .. <span class="string">"\n"</span>)</div><div class="line">logfile:<span class="built_in">write</span>(body ..  <span class="string">"\n"</span>)</div><div class="line"></div><div class="line"></div><div class="line">logfile:<span class="built_in">flush</span>()</div><div class="line">logfile:<span class="built_in">close</span>()</div></pre></td></tr></table></figure></p>]]></content>
     
     <summary type="html">
     
@@ -476,13 +504,13 @@
       <category term="开发" scheme="https://xsec.7ever.cn/categories/%E5%BC%80%E5%8F%91/"/>
     
     
-      <category term="hello" scheme="https://xsec.7ever.cn/tags/hello/"/>
-    
       <category term="ios" scheme="https://xsec.7ever.cn/tags/ios/"/>
     
       <category term="oc" scheme="https://xsec.7ever.cn/tags/oc/"/>
     
       <category term="pods" scheme="https://xsec.7ever.cn/tags/pods/"/>
+    
+      <category term="hello" scheme="https://xsec.7ever.cn/tags/hello/"/>
     
   </entry>
   
@@ -569,31 +597,6 @@
     
     
       <category term="centos" scheme="https://xsec.7ever.cn/tags/centos/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>pip配置可用的其他更新源</title>
-    <link href="https://xsec.7ever.cn/2017/10/05/pip-aliyun-https/"/>
-    <id>https://xsec.7ever.cn/2017/10/05/pip-aliyun-https/</id>
-    <published>2017-10-05T08:28:26.000Z</published>
-    <updated>2017-10-05T08:36:23.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>创建当前用户目录下的.pip子目录(~/.pip/),创建文本文件: <em>pip.conf</em> ，写入内容为:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[global]</div><div class="line">trusted-host=mirrors.aliyun.com</div><div class="line">index-url=http://mirrors.aliyun.com/pypi/simple/</div></pre></td></tr></table></figure></p><hr><h2 id="注意-一定要在当前用户目录下创建对应的文件"><a href="#注意-一定要在当前用户目录下创建对应的文件" class="headerlink" title=" 注意 一定要在当前用户目录下创建对应的文件"></a> <em>注意</em> 一定要在当前用户目录下创建对应的文件</h2>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;创建当前用户目录下的.pip子目录(~/.pip/),创建文本文件: &lt;em&gt;pip.conf&lt;/em&gt; ，写入内容为:&lt;br&gt;&lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div c
-      
-    
-    </summary>
-    
-      <category term="开发" scheme="https://xsec.7ever.cn/categories/%E5%BC%80%E5%8F%91/"/>
-    
-    
-      <category term="pip" scheme="https://xsec.7ever.cn/tags/pip/"/>
     
   </entry>
   
