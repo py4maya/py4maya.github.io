@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xsec.7ever.cn/"/>
-  <updated>2017-12-16T12:21:49.740Z</updated>
+  <updated>2017-12-16T13:54:34.674Z</updated>
   <id>https://xsec.7ever.cn/</id>
   
   <author>
@@ -17,11 +17,40 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>关于javascript this 的几点讨论</title>
+    <link href="https://xsec.7ever.cn/2017/12/16/javascript-function-this/"/>
+    <id>https://xsec.7ever.cn/2017/12/16/javascript-function-this/</id>
+    <published>2017-12-16T13:31:25.000Z</published>
+    <updated>2017-12-16T13:54:34.674Z</updated>
+    
+    <content type="html"><![CDATA[<p>javascript 函数中调用的this，一般去寻找对象本身， .语法之前的对象，如果没发现，那么this 即为全局对象。</p><p>几个例子如下:</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params">a,b</span>)</span>&#123;</div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">this</span>,a,b);</div><div class="line">&#125;</div><div class="line"></div><div class="line">fn(<span class="number">1</span>,<span class="number">2</span>); <span class="comment">// this 输出的值为window</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> a = &#123;&#125;;</div><div class="line">a.method = fn;</div><div class="line">a.method(<span class="number">1</span>,<span class="number">2</span>); <span class="comment">// this 输出的值为 a</span></div></pre></td></tr></table></figure><p>另外，必要的情况下，我们需要改变this的绑定关系,这时候需要函数的call或者apply方法:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params">a,b</span>)</span>&#123;</div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">this</span>,a,b);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> this_obj = &#123;&#125;;</div><div class="line">fn.call(this_obj,<span class="number">1</span>,<span class="number">2</span>); <span class="comment">// 输出的this,即为this_obj</span></div><div class="line">fn.apply(this_obj,[<span class="number">1</span>,<span class="number">2</span>]); <span class="comment">//区别于call，参数可以传递为一个数组</span></div></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;javascript 函数中调用的this，一般去寻找对象本身， .语法之前的对象，如果没发现，那么this 即为全局对象。&lt;/p&gt;
+&lt;p&gt;几个例子如下:&lt;/p&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td cla
+      
+    
+    </summary>
+    
+      <category term="开发" scheme="https://xsec.7ever.cn/categories/%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="javascript" scheme="https://xsec.7ever.cn/tags/javascript/"/>
+    
+      <category term="this" scheme="https://xsec.7ever.cn/tags/this/"/>
+    
+  </entry>
+  
+  <entry>
     <title>使用rsyslog 转发文件日志</title>
     <link href="https://xsec.7ever.cn/2017/12/16/rsyslog-transferlog/"/>
     <id>https://xsec.7ever.cn/2017/12/16/rsyslog-transferlog/</id>
     <published>2017-12-16T12:21:03.000Z</published>
-    <updated>2017-12-16T12:21:49.740Z</updated>
+    <updated>2017-12-16T12:22:38.627Z</updated>
     
     <content type="html"><![CDATA[<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">module(load="imfile")</div><div class="line"></div><div class="line">ruleset(name="graylog-remote") &#123;</div><div class="line">    action(type="omfwd"</div><div class="line">        Protocol="udp"</div><div class="line">        Target="10.211.101.93"</div><div class="line">        Port="521")</div><div class="line">    stop</div><div class="line">&#125;</div><div class="line"></div><div class="line">input(</div><div class="line">    type="imfile"</div><div class="line">    File="/data0/nginx/logs/radius_ac.log"</div><div class="line">    Facility="user"</div><div class="line">    Severity="notice"</div><div class="line">    Tag=""</div><div class="line">    PersistStateInterval="1"</div><div class="line">    Ruleset="graylog-remote"</div><div class="line">)</div></pre></td></tr></table></figure>]]></content>
     
@@ -309,7 +338,7 @@
     <published>2017-11-20T01:29:04.000Z</published>
     <updated>2017-11-20T01:34:08.037Z</updated>
     
-    <content type="html"><![CDATA[<ul><li>拉取脚本:</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> docker pull daocloud.io/daocloud/influxdb:latest</span></div></pre></td></tr></table></figure><ul><li>基础运行脚本</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">lip=172.16.7.1 ##只暴露端口给内网的IP</div><div class="line">name=influxdb</div><div class="line">port=" -p $lip:8086:8086 -p $lip:2003:2003 -p $lip:8083:8083 "</div><div class="line"></div><div class="line">docker run -it $&#123;port&#125; --name $&#123;name&#125;  daocloud.io/daocloud/influxdb</div></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<ul><li>拉取脚本:</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> docker pull daocloud.io/daocloud/influxdb:latest</div></pre></td></tr></table></figure><ul><li>基础运行脚本</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">lip=172.16.7.1 ##只暴露端口给内网的IP</div><div class="line">name=influxdb</div><div class="line">port=" -p $lip:8086:8086 -p $lip:2003:2003 -p $lip:8083:8083 "</div><div class="line"></div><div class="line">docker run -it $&#123;port&#125; --name $&#123;name&#125;  daocloud.io/daocloud/influxdb</div></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
@@ -572,33 +601,6 @@
       <category term="python" scheme="https://xsec.7ever.cn/tags/python/"/>
     
       <category term="tail" scheme="https://xsec.7ever.cn/tags/tail/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>expect 脚本自动登录ssh服务器</title>
-    <link href="https://xsec.7ever.cn/2017/10/05/expect-ssh-login/"/>
-    <id>https://xsec.7ever.cn/2017/10/05/expect-ssh-login/</id>
-    <published>2017-10-05T09:00:33.000Z</published>
-    <updated>2017-10-07T13:49:49.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>配置如下的expect脚本:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span>!/usr/bin/expect</div><div class="line"></div><div class="line">set timeout 3600</div><div class="line"></div><div class="line">trap &#123;</div><div class="line"> set rows [stty rows]</div><div class="line"> set cols [stty columns]</div><div class="line"> stty rows $rows columns $cols &lt; $spawn_out(slave,name)</div><div class="line">&#125; WINCH</div><div class="line"></div><div class="line">set mode [lindex $argv 0]</div><div class="line"></div><div class="line">switch $mode &#123;</div><div class="line"></div><div class="line">"" &#123;</div><div class="line">set user xingyue</div><div class="line">set ip "ip1"</div><div class="line">set port 9022</div><div class="line">set auth key</div><div class="line">&#125;</div><div class="line"></div><div class="line">"mini" &#123;</div><div class="line">set user xingyue</div><div class="line">set ip "ip2"</div><div class="line">set pwd "your_pwd"</div><div class="line">set port 22</div><div class="line">set auth pwd</div><div class="line">&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">switch $auth &#123;</div><div class="line"></div><div class="line">"key" &#123;</div><div class="line">spawn ssh $user@$ip -p $port</div><div class="line">interact</div><div class="line">&#125;</div><div class="line"></div><div class="line">"pwd" &#123;</div><div class="line">spawn ssh $user@$ip -p $port</div><div class="line">expect "*password:"</div><div class="line">send "$pwd\r"</div><div class="line">interact</div><div class="line">&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;配置如下的expect脚本:&lt;br&gt;&lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;d
-      
-    
-    </summary>
-    
-      <category term="系统" scheme="https://xsec.7ever.cn/categories/%E7%B3%BB%E7%BB%9F/"/>
-    
-    
-      <category term="expect" scheme="https://xsec.7ever.cn/tags/expect/"/>
-    
-      <category term="ssh" scheme="https://xsec.7ever.cn/tags/ssh/"/>
     
   </entry>
   
