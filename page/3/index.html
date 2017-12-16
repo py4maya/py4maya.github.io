@@ -282,6 +282,155 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2017/11/20/influxdb-use-indocker/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xingyue">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Simple Xsec World">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/20/influxdb-use-indocker/" itemprop="url">docker中使用influxdb</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-20T09:29:04+08:00">
+                2017-11-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/系统/" itemprop="url" rel="index">
+                    <span itemprop="name">系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li>拉取脚本:</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> docker pull daocloud.io/daocloud/influxdb:latest</span></div></pre></td></tr></table></figure>
+<ul>
+<li>基础运行脚本</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">lip=172.16.7.1 	##只暴露端口给内网的IP</div><div class="line">name=influxdb</div><div class="line">port=" -p $lip:8086:8086 -p $lip:2003:2003 -p $lip:8083:8083 "</div><div class="line"></div><div class="line">docker run -it $&#123;port&#125; --name $&#123;name&#125;  daocloud.io/daocloud/influxdb</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2017/11/10/docker-use-as-machine/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -382,12 +531,12 @@
 <ul>
 <li><p>创建系统初始化脚本,其中包含了，如果对系统做了修改，保存相应的镜像:<br>绑定一两个需要对外服务的端口，注意，如果你的机器有公网IP,那么慎用0.0.0.0作为转换IP<br>友情提示,使用内网的IP地址监听</p>
 <p>脚本会创建一个以$name为名字的镜像及容器<br>首次运行会提示不存在对应的容器，镜像等直接忽略就可以了</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></div><div class="line"></div><div class="line">lip=172.16.7.57 ##只暴露端口给内网的IP</div><div class="line">name=xbox</div><div class="line">p=" -p $&#123;lip&#125;:8080:8080 -p $&#123;lip&#125;:9090:9090 -p &#123;$lip&#125;:5678:5678"</div><div class="line"></div><div class="line"></div><div class="line">docker commit $&#123;name&#125; $&#123;name&#125;</div><div class="line">docker stop $&#123;name&#125;</div><div class="line">docker rm $&#123;name&#125;</div><div class="line"></div><div class="line">docker run -it -p $&#123;lip&#125;:8080:8080 -p $&#123;lip&#125;:9090:9090 --name $&#123;name&#125; ubuntu /bin/bash</div><div class="line">docker start $&#123;name&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span>!/bin/bash</div><div class="line"></div><div class="line">lip=172.16.7.57 ##只暴露端口给内网的IP</div><div class="line">name=xbox</div><div class="line">p=" -p $&#123;lip&#125;:8080:8080 -p $&#123;lip&#125;:9090:9090 -p &#123;$lip&#125;:5678:5678"</div><div class="line"></div><div class="line"></div><div class="line">docker commit $&#123;name&#125; $&#123;name&#125;</div><div class="line">docker stop $&#123;name&#125;</div><div class="line">docker rm $&#123;name&#125;</div><div class="line"></div><div class="line">docker run -it -p $&#123;lip&#125;:8080:8080 -p $&#123;lip&#125;:9090:9090 --name $&#123;name&#125; ubuntu /bin/bash</div><div class="line">docker start $&#123;name&#125;</div></pre></td></tr></table></figure>
 </li>
 <li><p>系统的进入脚本，相当于ssh 到对应的虚拟主机:<br>直接用-it 模式运行/bin/bash 就可以</p>
 </li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></div><div class="line">docker exec -it xbox /bin/bash</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span>!/bin/bash</div><div class="line">docker exec -it xbox /bin/bash</div></pre></td></tr></table></figure>
 <ul>
 <li>建议安装的脚本:</li>
 </ul>
@@ -873,157 +1022,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2017/10/28/ios-uiview/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xingyue">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Simple Xsec World">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/28/ios-uiview/" itemprop="url">ios UIView 基本操作</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-28T17:44:54+08:00">
-                2017-10-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/开发/" itemprop="url" rel="index">
-                    <span itemprop="name">开发</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h5 id="简单的知识点"><a href="#简单的知识点" class="headerlink" title="简单的知识点:"></a>简单的知识点:</h5><ul>
-<li>获取屏幕尺寸 : [UIScreen mainScreen].bounds.size </li>
-<li>bounds 和 frame 的区别, bounds 又叫做线宽，x,y 永远为0 </li>
-<li>UIView 可以设置不同的tag属性，建议唯一 , 父视图的 viewWithTag 方法可以获取到指定tag的UIView</li>
-<li>层级关系: bringSubviewToFront UIView 移动到最前, sendSubviewToBack , UIView 移动到最下层</li>
-<li>exchangeSubviewAtIndex 可以用来交换不同层的组件</li>
-<li>遍历子视图 subviews 可以获取到一个NSArray 其中成员都是UIView </li>
-</ul>
-<h5 id="实例代码"><a href="#实例代码" class="headerlink" title="实例代码:"></a>实例代码:</h5><hr>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//UIView 坐标根据父视图来设置，</span></div><div class="line">  <span class="comment">//距离上下左右各为x像素的UIView</span></div><div class="line">  <span class="comment">//其中20 为顶部的状态栏</span></div><div class="line">  <span class="comment">//frame bounds 区别 bounds中x,y永远为0</span></div><div class="line">  <span class="comment">//center 取view的中心点 x,y</span></div><div class="line">  <span class="comment">//通过获取父视图，设置背景</span></div><div class="line">  CGRect screen = [UIScreen mainScreen].bounds;</div><div class="line">  NSInteger x = <span class="number">20</span>;</div><div class="line">  CGPoint center = self.view.center;</div><div class="line">  UIView *xv = [[UIView alloc]initWithFrame:CGRectMake(x, x + <span class="number">20</span> , screen.size.width - x * <span class="number">2</span>   , screen.size.height - x * <span class="number">2</span> - <span class="number">20</span> )];</div><div class="line">  xv.backgroundColor = [UIColor blueColor];</div><div class="line">  xv.tag = <span class="number">0</span>;</div><div class="line"></div><div class="line">  NSLog(@<span class="string">" center is  : %f , %f "</span>,center.x,center.y);</div><div class="line">  </div><div class="line">  [self.view addSubview:xv];</div><div class="line">  </div><div class="line">  UIView *superView = xv.superview;</div><div class="line">  superView.backgroundColor = [UIColor blackColor];</div><div class="line">  </div><div class="line">  <span class="comment">//遍历子视图，根据不同类型设置不同操作</span></div><div class="line">  NSArray *childViews = [self.view subviews];</div><div class="line">  <span class="keyword">for</span> (UIView *sub in childViews) &#123;</div><div class="line">      <span class="keyword">switch</span> (sub.tag) &#123;</div><div class="line">          <span class="keyword">case</span> <span class="number">0</span>:</div><div class="line">              NSLog(@<span class="string">"type 0 view"</span>);</div><div class="line">              <span class="keyword">break</span>;</div><div class="line">          <span class="keyword">default</span>:</div><div class="line">              NSLog(@<span class="string">"no type view"</span>);</div><div class="line">              <span class="keyword">break</span>;</div><div class="line">      &#125;</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  <span class="comment">//通过tag 获取view</span></div><div class="line">  UIView *v = [self.view viewWithTag:<span class="number">1</span>];</div><div class="line">  <span class="keyword">if</span>(v) &#123;</div><div class="line">      v.backgroundColor = [UIColor greenColor];</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  <span class="comment">//交换不同层的组件</span></div><div class="line">  [self.view exchangeSubviewAtIndex:<span class="number">2</span> withSubviewAtIndex:<span class="number">3</span>];</div><div class="line">  <span class="comment">//指定层添加组件,可以添加到最上边，最下边</span></div><div class="line">  [self.view insertSubview:v atIndex:<span class="number">10</span>];</div><div class="line">  </div><div class="line">  <span class="comment">//移到最底层</span></div><div class="line">  [self.view sendSubviewToBack:v];</div><div class="line">  <span class="comment">//移动到最顶层</span></div><div class="line">  [self.view bringSubviewToFront:v];</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1074,7 +1072,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-count">35</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1096,7 +1094,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">49</span>
+                <span class="site-state-item-count">50</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
