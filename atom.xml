@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xsec.7ever.cn/"/>
-  <updated>2017-12-17T05:04:30.684Z</updated>
+  <updated>2017-12-20T06:57:00.812Z</updated>
   <id>https://xsec.7ever.cn/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用lua 扩展nginx 的一个简单模板</title>
+    <link href="https://xsec.7ever.cn/2017/12/20/nginx-lua-config-tools/"/>
+    <id>https://xsec.7ever.cn/2017/12/20/nginx-lua-config-tools/</id>
+    <published>2017-12-20T06:51:51.000Z</published>
+    <updated>2017-12-20T06:57:00.812Z</updated>
+    
+    <content type="html"><![CDATA[<p>nginx 配置文件先加入require的路径标识:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">lua_package_path '/data1/nginx/lua/?.lua;';</div><div class="line">lua_package_cpath '/usr/local/lib/lua/5.1/?.so;';</div></pre></td></tr></table></figure><p>vhost 部分配置:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">    listen 10.13.8.75:9000;</div><div class="line">default_type  text/plain;</div><div class="line">location /login &#123;</div><div class="line">content_by_lua_block &#123;</div><div class="line">local tools = require('tools')</div><div class="line">tools.content_by_lua('login')</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line">location /  &#123;</div><div class="line">set_by_lua_block $proxy_addr&#123;</div><div class="line">local tools = require('tools')</div><div class="line">return tools.set_by_lua('proxy_addr')</div><div class="line">&#125;</div><div class="line">access_by_lua_block &#123;</div><div class="line">local tools = require('tools')</div><div class="line">tools.access_by_lua()</div><div class="line">&#125;</div><div class="line">rewrite_by_lua_block &#123;</div><div class="line">local tools = require('tools')</div><div class="line">tools.rewrite_by_lua()</div><div class="line">&#125;</div><div class="line">header_filter_by_lua_block &#123;</div><div class="line">local tools = require('tools')</div><div class="line">tools.header_filter_by_lua()</div><div class="line">&#125;</div><div class="line">body_filter_by_lua_block &#123;</div><div class="line">local tools = require('tools')</div><div class="line">tools.body_filter_by_lua()</div><div class="line">&#125;</div><div class="line"><span class="meta">#</span><span class="bash">proxy_pass http://127.0.0.1:9000;</span></div><div class="line">proxy_pass $proxy_addr;</div><div class="line">proxy_http_version 1.1;</div><div class="line">proxy_set_header Upgrade $http_upgrade;</div><div class="line">proxy_set_header Connection "upgrade";</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p><p>对应的lua 代码集中的地方:<br><figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">local</span> M = &#123;&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">M.set_by_lua</span><span class="params">(name)</span></span> </div><div class="line"><span class="keyword">if</span> ( name == <span class="string">'proxy_addr'</span> )</div><div class="line"><span class="keyword">then</span></div><div class="line"><span class="keyword">return</span> <span class="string">"http://127.0.0.1:9000"</span></div><div class="line"><span class="keyword">elseif</span> (name == <span class="string">"another_name"</span>)</div><div class="line"><span class="keyword">then</span></div><div class="line"><span class="keyword">return</span> <span class="string">"bye bye "</span></div><div class="line"><span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">M.access_by_lua</span><span class="params">()</span></span> </div><div class="line"><span class="comment">--- returnngx.exit(ngx.HTTP_FORBIDDEN) </span></div><div class="line"><span class="keyword">return</span> </div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">M.rewrite_by_lua</span><span class="params">()</span></span></div><div class="line"><span class="comment">--- ngx.exec("/login")</span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">M.content_by_lua</span><span class="params">(name)</span></span></div><div class="line">ngx.say(<span class="string">"hello login page page from lua : "</span> .. name)</div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">M.header_filter_by_lua</span><span class="params">(name)</span></span></div><div class="line"></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">M.body_filter_by_lua</span><span class="params">(name)</span></span></div><div class="line"></div><div class="line"><span class="keyword">end</span></div><div class="line"><span class="keyword">return</span> M</div></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;nginx 配置文件先加入require的路径标识:&lt;/p&gt;
+&lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;li
+      
+    
+    </summary>
+    
+      <category term="系统" scheme="https://xsec.7ever.cn/categories/%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+      <category term="lua" scheme="https://xsec.7ever.cn/tags/lua/"/>
+    
+      <category term="nginx" scheme="https://xsec.7ever.cn/tags/nginx/"/>
+    
+  </entry>
   
   <entry>
     <title>关于javascript this 的几点讨论</title>
@@ -124,9 +152,9 @@
       <category term="系统" scheme="https://xsec.7ever.cn/categories/%E7%B3%BB%E7%BB%9F/"/>
     
     
-      <category term="dns" scheme="https://xsec.7ever.cn/tags/dns/"/>
-    
       <category term="centos" scheme="https://xsec.7ever.cn/tags/centos/"/>
+    
+      <category term="dns" scheme="https://xsec.7ever.cn/tags/dns/"/>
     
   </entry>
   
@@ -529,9 +557,9 @@
       <category term="系统" scheme="https://xsec.7ever.cn/categories/%E7%B3%BB%E7%BB%9F/"/>
     
     
-      <category term="nginx" scheme="https://xsec.7ever.cn/tags/nginx/"/>
-    
       <category term="lua" scheme="https://xsec.7ever.cn/tags/lua/"/>
+    
+      <category term="nginx" scheme="https://xsec.7ever.cn/tags/nginx/"/>
     
       <category term="http" scheme="https://xsec.7ever.cn/tags/http/"/>
     
@@ -567,40 +595,6 @@
       <category term="oc" scheme="https://xsec.7ever.cn/tags/oc/"/>
     
       <category term="pods" scheme="https://xsec.7ever.cn/tags/pods/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>使用python实现tail</title>
-    <link href="https://xsec.7ever.cn/2017/10/09/python-tail/"/>
-    <id>https://xsec.7ever.cn/2017/10/09/python-tail/</id>
-    <published>2017-10-09T10:38:58.000Z</published>
-    <updated>2017-10-12T01:29:57.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>关键点:</p><ul><li>打开指定文件</li><li>每隔一段时间尝试readline ，有内容print , 否则sleep </li><li>移动文件指针到文件末尾</li></ul><p>关键代码:</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">#coding=utf-8</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> sys</div><div class="line"><span class="keyword">import</span> time</div><div class="line"><span class="keyword">import</span> re</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">watchFile</span><span class="params">(fname,**kwargs)</span> :</span></div><div class="line"></div><div class="line"><span class="string">"""</span></div><div class="line"><span class="string">watchFile(fname,delay=1,reg=False,handler=None,last_pos=0,last_size=0)</span></div><div class="line"><span class="string">用来监控文件的变化，可能有少量的数据缺失</span></div><div class="line"><span class="string">"""</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">echoHandler</span><span class="params">(items)</span>:</span></div><div class="line"><span class="keyword">print</span> items</div><div class="line"></div><div class="line">offset,where = kwargs.get(<span class="string">'last_pos'</span>,(<span class="number">0</span>,<span class="number">2</span>))</div><div class="line">last_size = kwargs.get(<span class="string">'last_size'</span>,<span class="number">0</span>)</div><div class="line">handler = kwargs.get(<span class="string">'handler'</span>,echoHandler)</div><div class="line">delay = kwargs.get(<span class="string">'delay'</span>,<span class="number">1</span>)</div><div class="line">reg = kwargs.get(<span class="string">'reg'</span>,<span class="keyword">False</span>)</div><div class="line">last_pos = <span class="number">0</span></div><div class="line"></div><div class="line"><span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line"><span class="keyword">try</span> :</div><div class="line"><span class="keyword">with</span> open(fname,<span class="string">'r'</span>) <span class="keyword">as</span> f:</div><div class="line"><span class="keyword">if</span> last_pos == <span class="number">0</span> :</div><div class="line">f.seek(offset,where)</div><div class="line"><span class="keyword">else</span> :</div><div class="line">f.seek(last_pos)</div><div class="line">line = f.readline()</div><div class="line"><span class="keyword">if</span> line != <span class="keyword">None</span> <span class="keyword">and</span> line != <span class="string">''</span>: </div><div class="line"><span class="keyword">if</span> reg != <span class="keyword">False</span> :</div><div class="line">items = reg.findall(line)</div><div class="line"><span class="keyword">else</span> :</div><div class="line">items = [line.strip()]</div><div class="line"><span class="keyword">if</span> len(items) != <span class="number">0</span> :</div><div class="line">handler(items)</div><div class="line">n_pos = f.tell()</div><div class="line">last_pos = n_pos</div><div class="line">f.seek(<span class="number">0</span>,<span class="number">2</span>)</div><div class="line">file_size = f.tell()</div><div class="line"><span class="keyword">if</span> file_size &lt; last_size :</div><div class="line">last_pos = <span class="number">0</span></div><div class="line">last_size = file_size</div><div class="line"><span class="keyword">except</span> Exception,e:</div><div class="line"><span class="keyword">pass</span></div><div class="line">time.sleep(delay)</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span> :</div><div class="line"><span class="keyword">if</span> len(sys.argv) &lt; <span class="number">2</span> :</div><div class="line"><span class="keyword">print</span> <span class="string">"python -u tail.py &lt;file&gt;"</span></div><div class="line">exit()</div><div class="line">fname = sys.argv[<span class="number">1</span>]</div><div class="line">reg_ = re.compile(<span class="string">"(error)|(disconnect)|(blocked)"</span>)</div><div class="line">watchFile(fname,reg=reg_)</div></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;关键点:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;打开指定文件&lt;/li&gt;
-&lt;li&gt;每隔一段时间尝试readline ，有内容print , 否则sleep &lt;/li&gt;
-&lt;li&gt;移动文件指针到文件末尾&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;关键代码:&lt;/p&gt;
-&lt;figure class=&quot;highl
-      
-    
-    </summary>
-    
-      <category term="开发" scheme="https://xsec.7ever.cn/categories/%E5%BC%80%E5%8F%91/"/>
-    
-    
-      <category term="python" scheme="https://xsec.7ever.cn/tags/python/"/>
-    
-      <category term="tail" scheme="https://xsec.7ever.cn/tags/tail/"/>
     
   </entry>
   
