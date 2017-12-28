@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="Simple Xsec World">
 <meta property="og:description" content="nginx 配置文件先加入require的路径标识: 123456lua_package_path &apos;/data1/nginx/lua/?.lua;&apos;;lua_package_cpath &apos;/usr/local/lib/lua/5.1/?.so;&apos;;###代码中可以使用tools对象,及ngx.shared.server （table对象）init_by_lua &apos;tools = require">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-27T09:07:39.640Z">
+<meta property="og:updated_time" content="2017-12-28T02:50:48.117Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用lua 扩展nginx 的一个简单模板">
 <meta name="twitter:description" content="nginx 配置文件先加入require的路径标识: 123456lua_package_path &apos;/data1/nginx/lua/?.lua;&apos;;lua_package_cpath &apos;/usr/local/lib/lua/5.1/?.so;&apos;;###代码中可以使用tools对象,及ngx.shared.server （table对象）init_by_lua &apos;tools = require">
@@ -378,6 +378,17 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">lua_package_path '/data1/nginx/lua/?.lua;';</div><div class="line">lua_package_cpath '/usr/local/lib/lua/5.1/?.so;';</div><div class="line"></div><div class="line"><span class="meta">#</span>##代码中可以使用tools对象,及ngx.shared.server （table对象）</div><div class="line">init_by_lua 'tools = require "tools"';</div><div class="line">lua_shared_dict server 5m;</div></pre></td></tr></table></figure>
 <p>vhost 部分配置:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">server &#123;</div><div class="line">    listen 10.13.8.75:80;</div><div class="line">	server_name webide.sina.com.cn;</div><div class="line">	default_type  text/html;</div><div class="line"></div><div class="line">	location /login &#123;</div><div class="line">		content_by_lua "tools.content_by_lua('login')";</div><div class="line">		header_filter_by_lua "tools.header_filter_by_lua('login')";</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	location / &#123;</div><div class="line">		proxy_pass http://127.0.0.1:9000;</div><div class="line">		proxy_http_version 1.1;</div><div class="line">		proxy_set_header Upgrade $http_upgrade;</div><div class="line">		proxy_set_header Connection "upgrade";</div><div class="line">		rewrite_by_lua "tools.rewrite_by_lua()";</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>对应的lua 代码集中的地方:<br><figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">local</span> M = &#123;&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">M.set_by_lua</span><span class="params">(name)</span></span> </div><div class="line">	<span class="keyword">if</span> ( name == <span class="string">'proxy_addr'</span> )</div><div class="line">	<span class="keyword">then</span></div><div class="line">		<span class="keyword">return</span> <span class="string">"http://127.0.0.1:9000"</span></div><div class="line">	<span class="keyword">elseif</span> (name == <span class="string">"another_name"</span>)</div><div class="line">	<span class="keyword">then</span></div><div class="line">		<span class="keyword">return</span> <span class="string">"bye bye "</span></div><div class="line">	<span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">M.access_by_lua</span><span class="params">()</span></span> </div><div class="line">	<span class="comment">--- return	ngx.exit(ngx.HTTP_FORBIDDEN) </span></div><div class="line">	<span class="keyword">return</span> </div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">M.rewrite_by_lua</span><span class="params">()</span></span></div><div class="line">	<span class="comment">--- ngx.exec("/login")</span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">M.content_by_lua</span><span class="params">(name)</span></span></div><div class="line">	ngx.say(<span class="string">"hello login page page from lua : "</span> .. name)</div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">M.header_filter_by_lua</span><span class="params">(name)</span></span></div><div class="line">	</div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">M.body_filter_by_lua</span><span class="params">(name)</span></span></div><div class="line">	</div><div class="line"><span class="keyword">end</span></div><div class="line"><span class="keyword">return</span> M</div></pre></td></tr></table></figure></p>
+<h4 id="根据不同的server-name-做不同的proxy-pass"><a href="#根据不同的server-name-做不同的proxy-pass" class="headerlink" title="根据不同的server_name 做不同的proxy_pass"></a>根据不同的server_name 做不同的proxy_pass</h4><ul>
+<li><p>nginx 做泛域名绑定:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">server_name *.webide.sina.com.cn;</div></pre></td></tr></table></figure>
+</li>
+<li><p>lua 获取需要转发的地址:</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">M.set_pass_addr</span><span class="params">()</span></span></div><div class="line">    <span class="keyword">local</span> server_name = ngx.var.host </div><div class="line">    <span class="keyword">local</span> first_pt = <span class="built_in">string</span>.<span class="built_in">find</span>(server_name,<span class="string">'%.'</span>) - <span class="number">1</span> </div><div class="line">    <span class="keyword">local</span> first_segment = <span class="built_in">string</span>.<span class="built_in">sub</span>(server_name,<span class="number">0</span>,first_pt)</div><div class="line">    <span class="keyword">local</span> _type = <span class="built_in">string</span>.<span class="built_in">sub</span>(first_segment,<span class="number">0</span>,<span class="number">1</span>)</div><div class="line">    <span class="keyword">local</span> _port = <span class="built_in">string</span>.<span class="built_in">sub</span>(first_segment,<span class="number">2</span>,<span class="number">10</span>)</div><div class="line">    <span class="keyword">return</span> <span class="string">"http://127.0.0.1:"</span> .. _port</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>nginx 根据返回的变量做proxy_pass</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">set_by_lua $p_pass_addr  "return tools.set_pass_addr()";</div><div class="line">proxy_pass $p_pass_addr;</div></pre></td></tr></table></figure>
+</li>
+</ul>
 
       
     </div>
@@ -516,8 +527,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -604,6 +624,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#根据不同的server-name-做不同的proxy-pass"><span class="nav-number">1.</span> <span class="nav-text">根据不同的server_name 做不同的proxy_pass</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
