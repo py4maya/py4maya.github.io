@@ -653,6 +653,9 @@
 <li><p>nginx 根据返回的变量做proxy_pass</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">set_by_lua $p_pass_addr  "return tools.set_pass_addr()";</div><div class="line">proxy_pass $p_pass_addr;</div></pre></td></tr></table></figure>
 </li>
+<li><p>开发阶段建议把 <strong>lua_cache</strong> 打开:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lua_code_cache 'off';</div></pre></td></tr></table></figure>
+</li>
 </ul>
 
           
