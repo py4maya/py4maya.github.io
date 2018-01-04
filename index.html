@@ -282,6 +282,160 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2018/01/04/rabbitmq-python-sample/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xingyue">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Simple Xsec World">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/04/rabbitmq-python-sample/" itemprop="url">python 使用rabbitmq的简单代码</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-04T10:17:51+08:00">
+                2018-01-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li>安装pika处理rabbitmq协议</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install pika</div></pre></td></tr></table></figure>
+<ul>
+<li><p>发送数据到rabbitmq</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> pika                                                                                                                                                                </div><div class="line">                                                                                                                                                                           </div><div class="line">credentials = pika.PlainCredentials(<span class="string">''</span>,<span class="string">''</span>)                                                                                                                    </div><div class="line">connection = pika.BlockingConnection(                                                                                                                                      </div><div class="line">        pika.ConnectionParameters(<span class="string">''</span>,<span class="number">5672</span>,<span class="string">'/'</span>,credentials)                                                                                                       </div><div class="line">)                                                                                                                                                                          </div><div class="line">channel = connection.channel()                                                                                                                                             </div><div class="line">channel.queue_declare(queue=<span class="string">'hello'</span>)                                                                                                                                       </div><div class="line"><span class="comment">#发送数据到exchange,exchange保存为空，将发送数据到声明的queue</span></div><div class="line">channel.basic_publish(                                                                                                                                                     </div><div class="line">		exchange=<span class="string">'jira_publish'</span>,                                                                                                                                   </div><div class="line">        routing_key=<span class="string">'ajira'</span>,                                                                                                                                               </div><div class="line">        body=<span class="string">'Hello World!'</span>                                                                                                                                                </div><div class="line">)                                                                                                                                                                          </div><div class="line"><span class="keyword">print</span> <span class="string">" [x] Sent 'Hello World!'"</span>                                                                                                                                           </div><div class="line">connection.close()</div></pre></td></tr></table></figure>
+</li>
+<li><p>接收数据:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> pika                                                                                                                                                                </div><div class="line">                                                                                                                                                                           </div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">callback</span><span class="params">(ch, method, properties, body)</span>:</span>                                                                                                                                </div><div class="line">        <span class="keyword">print</span> body                                                                                                                                                         </div><div class="line">                                                                                                                                                                           </div><div class="line">credentials = pika.PlainCredentials(<span class="string">''</span>,<span class="string">''</span>)                                                                                                                    </div><div class="line">connection = pika.BlockingConnection(                                                                                                                                      </div><div class="line">        pika.ConnectionParameters(<span class="string">''</span>,<span class="number">5672</span>,<span class="string">'/'</span>,credentials)                                                                                                       </div><div class="line">)                                                                                                                                                                          </div><div class="line">channel = connection.channel()                                                                                                                                             </div><div class="line">channel.basic_consume(callback,queue=<span class="string">'hello'</span>,no_ack=<span class="keyword">True</span>)                                                                                                                  </div><div class="line">channel.start_consuming()</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>如此就完成了一个基本的消息异步处理流程</strong></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2017/12/26/sweetalert-use-custom-content-elment/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -640,7 +794,7 @@
         
           
             <p>nginx 配置文件先加入require的路径标识:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">lua_package_path '/data1/nginx/lua/?.lua;';</div><div class="line">lua_package_cpath '/usr/local/lib/lua/5.1/?.so;';</div><div class="line"></div><div class="line"><span class="meta">#</span>##代码中可以使用tools对象,及ngx.shared.server （table对象）</div><div class="line">init_by_lua 'tools = require "tools"';</div><div class="line">lua_shared_dict server 5m;</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">lua_package_path '/data1/nginx/lua/?.lua;';</div><div class="line">lua_package_cpath '/usr/local/lib/lua/5.1/?.so;';</div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment">##代码中可以使用tools对象,及ngx.shared.server （table对象）</span></span></div><div class="line">init_by_lua 'tools = require "tools"';</div><div class="line">lua_shared_dict server 5m;</div></pre></td></tr></table></figure>
 <p>vhost 部分配置:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">server &#123;</div><div class="line">    listen 10.13.8.75:80;</div><div class="line">	server_name webide.sina.com.cn;</div><div class="line">	default_type  text/html;</div><div class="line"></div><div class="line">	location /login &#123;</div><div class="line">		content_by_lua "tools.content_by_lua('login')";</div><div class="line">		header_filter_by_lua "tools.header_filter_by_lua('login')";</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	location / &#123;</div><div class="line">		proxy_pass http://127.0.0.1:9000;</div><div class="line">		proxy_http_version 1.1;</div><div class="line">		proxy_set_header Upgrade $http_upgrade;</div><div class="line">		proxy_set_header Connection "upgrade";</div><div class="line">		rewrite_by_lua "tools.rewrite_by_lua()";</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>对应的lua 代码集中的地方:<br><figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">local</span> M = &#123;&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">M.set_by_lua</span><span class="params">(name)</span></span> </div><div class="line">	<span class="keyword">if</span> ( name == <span class="string">'proxy_addr'</span> )</div><div class="line">	<span class="keyword">then</span></div><div class="line">		<span class="keyword">return</span> <span class="string">"http://127.0.0.1:9000"</span></div><div class="line">	<span class="keyword">elseif</span> (name == <span class="string">"another_name"</span>)</div><div class="line">	<span class="keyword">then</span></div><div class="line">		<span class="keyword">return</span> <span class="string">"bye bye "</span></div><div class="line">	<span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">M.access_by_lua</span><span class="params">()</span></span> </div><div class="line">	<span class="comment">--- return	ngx.exit(ngx.HTTP_FORBIDDEN) </span></div><div class="line">	<span class="keyword">return</span> </div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">M.rewrite_by_lua</span><span class="params">()</span></span></div><div class="line">	<span class="comment">--- ngx.exec("/login")</span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">M.content_by_lua</span><span class="params">(name)</span></span></div><div class="line">	ngx.say(<span class="string">"hello login page page from lua : "</span> .. name)</div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">M.header_filter_by_lua</span><span class="params">(name)</span></span></div><div class="line">	</div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">M.body_filter_by_lua</span><span class="params">(name)</span></span></div><div class="line">	</div><div class="line"><span class="keyword">end</span></div><div class="line"><span class="keyword">return</span> M</div></pre></td></tr></table></figure></p>
 <h4 id="根据不同的server-name-做不同的proxy-pass"><a href="#根据不同的server-name-做不同的proxy-pass" class="headerlink" title="根据不同的server_name 做不同的proxy_pass"></a>根据不同的server_name 做不同的proxy_pass</h4><ul>
@@ -841,148 +995,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2017/12/16/rsyslog-transferlog/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xingyue">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Simple Xsec World">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/16/rsyslog-transferlog/" itemprop="url">使用rsyslog 转发文件日志</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-16T20:21:03+08:00">
-                2017-12-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/系统/" itemprop="url" rel="index">
-                    <span itemprop="name">系统</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">module(load="imfile")</div><div class="line"></div><div class="line">ruleset(name="graylog-remote") &#123;</div><div class="line">    action(type="omfwd"</div><div class="line">        Protocol="udp"</div><div class="line">        Target="10.211.101.93"</div><div class="line">        Port="521")</div><div class="line">    stop</div><div class="line">&#125;</div><div class="line"></div><div class="line">input(</div><div class="line">    type="imfile"</div><div class="line">    File="/data0/nginx/logs/radius_ac.log"</div><div class="line">    Facility="user"</div><div class="line">    Severity="notice"</div><div class="line">    Tag=""</div><div class="line">    PersistStateInterval="1"</div><div class="line">    Ruleset="graylog-remote"</div><div class="line">)</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1033,7 +1045,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-count">40</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1055,7 +1067,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">54</span>
+                <span class="site-state-item-count">55</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -1122,7 +1134,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
