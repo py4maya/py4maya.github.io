@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xsec.7ever.cn/"/>
-  <updated>2018-01-04T03:02:59.791Z</updated>
+  <updated>2018-01-10T09:54:33.599Z</updated>
   <id>https://xsec.7ever.cn/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>比nginx自己更好用的ip 访问控制</title>
+    <link href="https://xsec.7ever.cn/2018/01/10/nginx-lua-better-access-control/"/>
+    <id>https://xsec.7ever.cn/2018/01/10/nginx-lua-better-access-control/</id>
+    <published>2018-01-10T09:46:19.000Z</published>
+    <updated>2018-01-10T09:54:33.599Z</updated>
+    
+    <content type="html"><![CDATA[<p>nginx 自己的ip访问控制大家应该都用过，就是下边的这种写法:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">allow ip1;</div><div class="line">allow ip2;</div><div class="line">allow ip3;</div><div class="line">deny all;</div><div class="line">...</div></pre></td></tr></table></figure><p>当你有一堆IP需要控制的时候，就是一件比较难受的事情了。<br>所以，使用lua 写了这么一段lua代码。</p><p>nginx 自己需要配置支持 lua 去翻其他的代码吧:</p><figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">M.access_by_net</span><span class="params">(name)</span></span> </div><div class="line">    <span class="keyword">local</span> client_ip =  ngx.var.remote_addr <span class="keyword">or</span> <span class="string">"0.0.0.0"</span></div><div class="line">    <span class="keyword">local</span> pts,pts_len = U.findAll(client_ip,<span class="string">'%.'</span>)</div><div class="line">    <span class="keyword">if</span> pts_len == <span class="number">3</span> <span class="keyword">then</span></div><div class="line">        <span class="keyword">local</span> network = <span class="built_in">string</span>.<span class="built_in">sub</span>(client_ip,<span class="number">0</span>,pts[<span class="number">3</span>])</div><div class="line">        <span class="keyword">local</span> allow_hosts = &#123;&#125;</div><div class="line">        <span class="keyword">local</span> allow_nets = &#123;&#125;</div><div class="line"></div><div class="line"><span class="comment">--- 这部分就可以自己定义了</span></div><div class="line">        <span class="keyword">if</span> name == <span class="string">"sec"</span> <span class="keyword">then</span></div><div class="line">            allow_nets = &#123;<span class="string">"10.222.28."</span>&#125;</div><div class="line">        <span class="keyword">elseif</span> name == <span class="string">"es"</span> <span class="keyword">then</span></div><div class="line">            allow_nets = &#123;&#125;</div><div class="line">            allow_hosts = &#123;<span class="string">"10.210.12.17"</span>&#125;</div><div class="line">        <span class="keyword">end</span> </div><div class="line"></div><div class="line">        <span class="keyword">if</span> U.inArray(allow_hosts,client_ip) <span class="keyword">or</span> U.inArray(allow_nets,network) <span class="keyword">then</span></div><div class="line">            <span class="keyword">return</span> <span class="literal">true</span></div><div class="line">        <span class="keyword">end</span> </div><div class="line">    <span class="keyword">end</span> </div><div class="line">    <span class="keyword">return</span> ngx.<span class="built_in">exit</span>(<span class="number">403</span>)</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure><p>nginx 自己里边配置就比较简单了:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">access_by_lua "tools.access_by_net('es')";</div></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;nginx 自己的ip访问控制大家应该都用过，就是下边的这种写法:&lt;/p&gt;
+&lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div cl
+      
+    
+    </summary>
+    
+      <category term="系统" scheme="https://xsec.7ever.cn/categories/%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+      <category term="lua" scheme="https://xsec.7ever.cn/tags/lua/"/>
+    
+      <category term="nginx" scheme="https://xsec.7ever.cn/tags/nginx/"/>
+    
+  </entry>
   
   <entry>
     <title>python 使用rabbitmq的简单代码</title>
@@ -550,34 +578,6 @@
       <category term="UIImage" scheme="https://xsec.7ever.cn/tags/UIImage/"/>
     
       <category term="UIImageView" scheme="https://xsec.7ever.cn/tags/UIImageView/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ios UILabel 使用</title>
-    <link href="https://xsec.7ever.cn/2017/10/28/ios-uilabel/"/>
-    <id>https://xsec.7ever.cn/2017/10/28/ios-uilabel/</id>
-    <published>2017-10-28T11:10:51.000Z</published>
-    <updated>2017-10-28T11:16:53.000Z</updated>
-    
-    <content type="html"><![CDATA[<h5 id="简单知识点介绍"><a href="#简单知识点介绍" class="headerlink" title="简单知识点介绍 :"></a>简单知识点介绍 :</h5><ul><li>UIColor 相关, RGB 模式中,各个值的范围是0~1 , clearColor 为透明色</li><li>文本对齐方式, label 的 textAlignment 属性，值为 NSTextAlignmentCenter </li><li>多行显示文本 numberOfLines 设置文本显示的行数, 0|-1 为不控制显示行数,行数多少 不会超过label的高度</li><li>自动计算文本所占的宽高， 用字符串的 sizeWithFont 方法</li></ul><h5 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码 :"></a>示例代码 :</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//尺寸，颜色 clearColor 为透明色</span></div><div class="line">   <span class="comment">//对齐方式设置label的textAlignment 值为  NSTextAlignmentCenter ,</span></div><div class="line">   <span class="comment">//colorWithRed用RGB的方式设置颜色，注：R,G,B,alpha的值都是0~1</span></div><div class="line">   <span class="comment">//字体设置，设置UIFont的特殊值</span></div><div class="line">   CGRect xsize = [UIScreen mainScreen].bounds;</div><div class="line">   UILabel *l = [[UILabel alloc]initWithFrame:CGRectMake(<span class="number">20</span>, <span class="number">50</span> , xsize.size.width - <span class="number">40</span> , <span class="number">30</span> )];</div><div class="line">   l.backgroundColor = [UIColor clearColor];</div><div class="line">   l.text = @<span class="string">"Hello This is Big World!"</span>;</div><div class="line">   l.textColor = [UIColor colorWithRed:<span class="number">0.8</span> green:<span class="number">0</span> blue:<span class="number">0</span> alpha:<span class="number">1</span>];</div><div class="line">   l.textAlignment = NSTextAlignmentCenter;</div><div class="line">   l.font = [UIFont systemFontOfSize:<span class="number">18</span>];</div><div class="line">   </div><div class="line">   l.shadowColor = [UIColor greenColor];</div><div class="line">   l.shadowOffset = CGSizeMake(<span class="number">0</span>, <span class="number">1</span>);</div><div class="line">   </div><div class="line">   UILabel *bl = [[UILabel alloc]initWithFrame:CGRectMake(<span class="number">20</span>, <span class="number">100</span>, xsize.size.width - <span class="number">40</span>, <span class="number">200</span>)];</div><div class="line">   bl.text = @<span class="string">"      这是一个特别长的文字这是一个特别长的文字这是一个特别长的文字这是一个特别长的文字这是一个特别长的文字这是一个特别长的文字这是一个特别长的文字这是一个特别长的文字这是一个特别长的文字这是一个特别长的文字这是一个特别长的文字这是一个特别长的文字这是一个特别长的文字这是一个特别长的文字这是一个特别长的文字这是一个特别长的文字这是一个特别长的文字这是一个特别长的文字"</span>;</div><div class="line">   </div><div class="line">   <span class="comment">//显示行数，0 或者 -1 不设置</span></div><div class="line">   bl.numberOfLines = <span class="number">0</span>;</div><div class="line">   </div><div class="line">   <span class="comment">//计算文字所占的size</span></div><div class="line">   CGSize textSize = [bl.text sizeWithFont:bl.font constrainedToSize:CGSizeMake(xsize.size.width - <span class="number">40</span>, <span class="number">50000</span>)];</div><div class="line">   bl.frame = CGRectMake(<span class="number">20</span>, <span class="number">100</span>, textSize.width, textSize.height);</div><div class="line"></div><div class="line"></div><div class="line">   </div><div class="line">   [self.view addSubview:bl];</div><div class="line">   [self.view addSubview:l];</div></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h5 id=&quot;简单知识点介绍&quot;&gt;&lt;a href=&quot;#简单知识点介绍&quot; class=&quot;headerlink&quot; title=&quot;简单知识点介绍 :&quot;&gt;&lt;/a&gt;简单知识点介绍 :&lt;/h5&gt;&lt;ul&gt;
-&lt;li&gt;UIColor 相关, RGB 模式中,各个值的范围是0~1 , clearCo
-      
-    
-    </summary>
-    
-      <category term="开发" scheme="https://xsec.7ever.cn/categories/%E5%BC%80%E5%8F%91/"/>
-    
-    
-      <category term="ios" scheme="https://xsec.7ever.cn/tags/ios/"/>
-    
-      <category term="UILabel" scheme="https://xsec.7ever.cn/tags/UILabel/"/>
     
   </entry>
   
