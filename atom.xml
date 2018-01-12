@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xsec.7ever.cn/"/>
-  <updated>2018-01-11T13:01:24.411Z</updated>
+  <updated>2018-01-12T02:05:57.796Z</updated>
   <id>https://xsec.7ever.cn/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>通过https 站点分发ipa 安装包</title>
+    <link href="https://xsec.7ever.cn/2018/01/12/ipa-publish-https/"/>
+    <id>https://xsec.7ever.cn/2018/01/12/ipa-publish-https/</id>
+    <published>2018-01-12T02:01:07.000Z</published>
+    <updated>2018-01-12T02:05:57.796Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li><p>配置下载页:</p><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"itms-services://?action=download-manifest&amp;url=https://......./test.plist"</span>&gt;</span>下载测试版<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div></pre></td></tr></table></figure></li><li><p>编写plist文件:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</div><div class="line">&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;</div><div class="line">&lt;plist version="1.0"&gt;</div><div class="line">&lt;dict&gt;</div><div class="line">&lt;key&gt;items&lt;/key&gt;</div><div class="line">&lt;array&gt;</div><div class="line">&lt;dict&gt;</div><div class="line">&lt;key&gt;assets&lt;/key&gt;</div><div class="line">&lt;array&gt;</div><div class="line">&lt;dict&gt;</div><div class="line">&lt;key&gt;kind&lt;/key&gt;</div><div class="line">&lt;string&gt;software-package&lt;/string&gt;</div><div class="line">&lt;key&gt;url&lt;/key&gt;</div><div class="line">&lt;string&gt;https://.....................ipa&lt;/string&gt;</div><div class="line">&lt;/dict&gt;</div><div class="line">&lt;dict&gt;</div><div class="line">&lt;key&gt;kind&lt;/key&gt;</div><div class="line">&lt;string&gt;full-size-image&lt;/string&gt;</div><div class="line">&lt;key&gt;needs-shine&lt;/key&gt;</div><div class="line">&lt;false/&gt;</div><div class="line">&lt;key&gt;url&lt;/key&gt;</div><div class="line">&lt;string&gt;https://............................icon.png&lt;/string&gt;</div><div class="line">&lt;/dict&gt;</div><div class="line">&lt;dict&gt;</div><div class="line">&lt;key&gt;kind&lt;/key&gt;</div><div class="line">&lt;string&gt;display-image&lt;/string&gt;</div><div class="line">&lt;key&gt;needs-shine&lt;/key&gt;</div><div class="line">&lt;false/&gt;</div><div class="line">&lt;key&gt;url&lt;/key&gt;</div><div class="line">&lt;string&gt;https://...........................icon@2x.png&lt;/string&gt;</div><div class="line">&lt;/dict&gt;</div><div class="line">&lt;/array&gt;</div><div class="line">&lt;key&gt;metadata&lt;/key&gt;</div><div class="line">&lt;dict&gt;</div><div class="line">&lt;key&gt;bundle-identifier&lt;/key&gt;</div><div class="line">&lt;string&gt;com.package.yours&lt;/string&gt;</div><div class="line">&lt;key&gt;bundle-version&lt;/key&gt;</div><div class="line">&lt;string&gt;2.0.2&lt;/string&gt;</div><div class="line">&lt;key&gt;kind&lt;/key&gt;</div><div class="line">&lt;string&gt;software&lt;/string&gt;</div><div class="line">&lt;key&gt;subtitle&lt;/key&gt;</div><div class="line">&lt;string&gt;测试ipa&lt;/string&gt;</div><div class="line">&lt;key&gt;title&lt;/key&gt;</div><div class="line">&lt;string&gt;测试ipa安装&lt;/string&gt;</div><div class="line">&lt;/dict&gt;</div><div class="line">&lt;/dict&gt;</div><div class="line">&lt;/array&gt;</div><div class="line">&lt;/dict&gt;</div><div class="line">&lt;/plist&gt;</div></pre></td></tr></table></figure></li><li><p>最后放好你的ipa，用ios 手机 safri 浏览器打开你的 发布页，点击 下载测试版 就可以安装了.</p></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;ul&gt;
+&lt;li&gt;&lt;p&gt;配置下载页:&lt;/p&gt;
+&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code
+      
+    
+    </summary>
+    
+      <category term="开发" scheme="https://xsec.7ever.cn/categories/%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="https" scheme="https://xsec.7ever.cn/tags/https/"/>
+    
+      <category term="ipa" scheme="https://xsec.7ever.cn/tags/ipa/"/>
+    
+  </entry>
   
   <entry>
     <title>最简单的ES6开发编译环境</title>
@@ -290,9 +319,9 @@
       <category term="系统" scheme="https://xsec.7ever.cn/categories/%E7%B3%BB%E7%BB%9F/"/>
     
     
-      <category term="dns" scheme="https://xsec.7ever.cn/tags/dns/"/>
-    
       <category term="centos" scheme="https://xsec.7ever.cn/tags/centos/"/>
+    
+      <category term="dns" scheme="https://xsec.7ever.cn/tags/dns/"/>
     
   </entry>
   
@@ -416,7 +445,7 @@
     <published>2017-11-22T03:09:12.000Z</published>
     <updated>2017-11-23T06:14:43.541Z</updated>
     
-    <content type="html"><![CDATA[<ul><li><p>依赖于 docker-compose </p></li><li><p>创建储存graylog的目录:</p></li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mkdir -p ./graylog/data/journal</div><div class="line">mkdir -p ./graylog/config</div></pre></td></tr></table></figure><ul><li><p>编写docker-compose.yml</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">version: '2'</div><div class="line">services:</div><div class="line">  mongo:</div><div class="line">    image: "index.alauda.cn/library/mongo:3"</div><div class="line">  elasticsearch:</div><div class="line">    image: "index.alauda.cn/library/elasticsearch:2.3.2"</div><div class="line">    command: "elasticsearch -Des.cluster.name='graylog'"</div><div class="line">  elasticsearch1:</div><div class="line">    image: "index.alauda.cn/library/elasticsearch:2.3.2"</div><div class="line">    command: "elasticsearch -Des.cluster.name='graylog'"</div><div class="line">  graylog:</div><div class="line">    image: graylog2/server:2.1.0-1</div><div class="line">    environment:</div><div class="line">      GRAYLOG_PASSWORD_SECRET: xsofdnasdfsgolwa</div><div class="line">      #echo -ne "koudai@a1@38t" | sha256sum</div><div class="line">      GRAYLOG_ROOT_PASSWORD_SHA2: 8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918 </div><div class="line">      GRAYLOG_REST_TRANSPORT_URI: http://172.16.7.58:12900</div><div class="line">    depends_on:</div><div class="line">      - mongo</div><div class="line">      - elasticsearch</div><div class="line">      - elasticsearch1</div><div class="line">    ports:</div><div class="line">      - "172.16.7.58:9002:9000"</div><div class="line">      - "172.16.7.58:12900:12900"</div><div class="line">      - "172.16.7.58:8514:8514/udp"</div><div class="line">    volumes:</div><div class="line">      - "./graylog/data/journal:/usr/share/graylog/data/journal"</div><div class="line">      #- "./graylog/config:/usr/share/graylog/data/config"</div></pre></td></tr></table></figure></li><li><p>使用docker-compose启动服务:</p></li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker-compose up -d</div></pre></td></tr></table></figure><ul><li>注:在配置文件中修改graylog的默认用户名密码:</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">$</span> echo -ne "admin" | sha256sum</div></pre></td></tr></table></figure><ul><li>从容器中copy出 graylog.conf 配置文件 到 ./graylog/config/graylog.conf  ，然后修改,重新启动<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker cp graylog_graylog_1:/usr/share/graylog/data/config graylog/</div></pre></td></tr></table></figure></li></ul>]]></content>
+    <content type="html"><![CDATA[<ul><li><p>依赖于 docker-compose </p></li><li><p>创建储存graylog的目录:</p></li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mkdir -p ./graylog/data/journal</div><div class="line">mkdir -p ./graylog/config</div></pre></td></tr></table></figure><ul><li><p>编写docker-compose.yml</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">version: '2'</div><div class="line">services:</div><div class="line">  mongo:</div><div class="line">    image: "index.alauda.cn/library/mongo:3"</div><div class="line">  elasticsearch:</div><div class="line">    image: "index.alauda.cn/library/elasticsearch:2.3.2"</div><div class="line">    command: "elasticsearch -Des.cluster.name='graylog'"</div><div class="line">  elasticsearch1:</div><div class="line">    image: "index.alauda.cn/library/elasticsearch:2.3.2"</div><div class="line">    command: "elasticsearch -Des.cluster.name='graylog'"</div><div class="line">  graylog:</div><div class="line">    image: graylog2/server:2.1.0-1</div><div class="line">    environment:</div><div class="line">      GRAYLOG_PASSWORD_SECRET: xsofdnasdfsgolwa</div><div class="line">      #echo -ne "koudai@a1@38t" | sha256sum</div><div class="line">      GRAYLOG_ROOT_PASSWORD_SHA2: 8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918 </div><div class="line">      GRAYLOG_REST_TRANSPORT_URI: http://172.16.7.58:12900</div><div class="line">    depends_on:</div><div class="line">      - mongo</div><div class="line">      - elasticsearch</div><div class="line">      - elasticsearch1</div><div class="line">    ports:</div><div class="line">      - "172.16.7.58:9002:9000"</div><div class="line">      - "172.16.7.58:12900:12900"</div><div class="line">      - "172.16.7.58:8514:8514/udp"</div><div class="line">    volumes:</div><div class="line">      - "./graylog/data/journal:/usr/share/graylog/data/journal"</div><div class="line">      #- "./graylog/config:/usr/share/graylog/data/config"</div></pre></td></tr></table></figure></li><li><p>使用docker-compose启动服务:</p></li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker-compose up -d</div></pre></td></tr></table></figure><ul><li>注:在配置文件中修改graylog的默认用户名密码:</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">echo</span> -ne <span class="string">"admin"</span> | sha256sum</span></div></pre></td></tr></table></figure><ul><li>从容器中copy出 graylog.conf 配置文件 到 ./graylog/config/graylog.conf  ，然后修改,重新启动<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker cp graylog_graylog_1:/usr/share/graylog/data/config graylog/</div></pre></td></tr></table></figure></li></ul>]]></content>
     
     <summary type="html">
     
@@ -551,35 +580,6 @@
       <category term="docker" scheme="https://xsec.7ever.cn/tags/docker/"/>
     
       <category term="graph" scheme="https://xsec.7ever.cn/tags/graph/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>python nmap 库的简单实用</title>
-    <link href="https://xsec.7ever.cn/2017/11/09/python-nmap/"/>
-    <id>https://xsec.7ever.cn/2017/11/09/python-nmap/</id>
-    <published>2017-11-09T07:06:18.000Z</published>
-    <updated>2018-01-04T03:04:26.018Z</updated>
-    
-    <content type="html"><![CDATA[<h6 id="实用nmap之前可以借助fping-来踩点，查找存活的主机"><a href="#实用nmap之前可以借助fping-来踩点，查找存活的主机" class="headerlink" title="实用nmap之前可以借助fping 来踩点，查找存活的主机:"></a>实用nmap之前可以借助fping 来踩点，查找存活的主机:</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">yum install fping</div><div class="line">fping -g 1.1.1.1/24</div></pre></td></tr></table></figure><h6 id="nmap-安装"><a href="#nmap-安装" class="headerlink" title="nmap 安装"></a>nmap 安装</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">yum install nmap</div><div class="line">easy_install pip</div><div class="line">pip install python-nmap</div></pre></td></tr></table></figure><h5 id="扫描脚本"><a href="#扫描脚本" class="headerlink" title="扫描脚本"></a>扫描脚本</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#coding=utf-8</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> json</div><div class="line"><span class="keyword">import</span> nmap</div><div class="line"></div><div class="line">nm = nmap.PortScanner()</div><div class="line">ret = nm.scan(<span class="string">'----'</span>,<span class="string">'22'</span>)</div><div class="line"></div><div class="line">next_ips = []</div><div class="line"><span class="keyword">for</span> ip <span class="keyword">in</span> ret[<span class="string">'scan'</span>] :</div><div class="line">status = ret[<span class="string">'scan'</span>][ip][<span class="string">'tcp'</span>][<span class="number">22</span>][<span class="string">'state'</span>]</div><div class="line"><span class="keyword">if</span> status == <span class="string">'open'</span> :</div><div class="line">next_ips.append(ip)</div><div class="line"></div><div class="line"><span class="keyword">for</span> ip <span class="keyword">in</span> next_ips :</div><div class="line"><span class="keyword">print</span> <span class="string">"-----"</span></div><div class="line"><span class="keyword">print</span> ip</div><div class="line">ret = nm.scan(ip,<span class="string">'0-65535'</span>)</div><div class="line"><span class="keyword">for</span> port <span class="keyword">in</span> ret[<span class="string">'scan'</span>][ip][<span class="string">'tcp'</span>] :</div><div class="line">x = ret[<span class="string">'scan'</span>][ip][<span class="string">'tcp'</span>][port]</div><div class="line"><span class="keyword">if</span> x.get(<span class="string">'state'</span>) == <span class="string">'open'</span> :</div><div class="line"><span class="comment">## x 是这样一个dict : &#123;"product": "", "state": "open", "version": "", "name": "ssh", "conf": "10", "extrainfo": "protocol 2.0", "reason": "syn-ack", "cpe": ""&#125;</span></div><div class="line"><span class="keyword">print</span> json.dumps(x)</div></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h6 id=&quot;实用nmap之前可以借助fping-来踩点，查找存活的主机&quot;&gt;&lt;a href=&quot;#实用nmap之前可以借助fping-来踩点，查找存活的主机&quot; class=&quot;headerlink&quot; title=&quot;实用nmap之前可以借助fping 来踩点，查找存活的主机:&quot;&gt;&lt;/
-      
-    
-    </summary>
-    
-      <category term="开发" scheme="https://xsec.7ever.cn/categories/%E5%BC%80%E5%8F%91/"/>
-    
-    
-      <category term="python" scheme="https://xsec.7ever.cn/tags/python/"/>
-    
-      <category term="nmap" scheme="https://xsec.7ever.cn/tags/nmap/"/>
-    
-      <category term="fping" scheme="https://xsec.7ever.cn/tags/fping/"/>
     
   </entry>
   

@@ -272,6 +272,170 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2017/11/22/graylog-docker/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xingyue">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Simple Xsec World">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/22/graylog-docker/" itemprop="url">graylog 安装docker中</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-22T11:09:12+08:00">
+                2017-11-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/系统/" itemprop="url" rel="index">
+                    <span itemprop="name">系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li><p>依赖于 docker-compose </p>
+</li>
+<li><p>创建储存graylog的目录:</p>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mkdir -p ./graylog/data/journal</div><div class="line">mkdir -p ./graylog/config</div></pre></td></tr></table></figure>
+<ul>
+<li><p>编写docker-compose.yml</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">version: '2'</div><div class="line">services:</div><div class="line">  mongo:</div><div class="line">    image: "index.alauda.cn/library/mongo:3"</div><div class="line">  elasticsearch:</div><div class="line">    image: "index.alauda.cn/library/elasticsearch:2.3.2"</div><div class="line">    command: "elasticsearch -Des.cluster.name='graylog'"</div><div class="line">  elasticsearch1:</div><div class="line">    image: "index.alauda.cn/library/elasticsearch:2.3.2"</div><div class="line">    command: "elasticsearch -Des.cluster.name='graylog'"</div><div class="line">  graylog:</div><div class="line">    image: graylog2/server:2.1.0-1</div><div class="line">    environment:</div><div class="line">      GRAYLOG_PASSWORD_SECRET: xsofdnasdfsgolwa</div><div class="line">      #echo -ne "koudai@a1@38t" | sha256sum</div><div class="line">      GRAYLOG_ROOT_PASSWORD_SHA2: 8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918 </div><div class="line">      GRAYLOG_REST_TRANSPORT_URI: http://172.16.7.58:12900</div><div class="line">    depends_on:</div><div class="line">      - mongo</div><div class="line">      - elasticsearch</div><div class="line">      - elasticsearch1</div><div class="line">    ports:</div><div class="line">      - "172.16.7.58:9002:9000"</div><div class="line">      - "172.16.7.58:12900:12900"</div><div class="line">      - "172.16.7.58:8514:8514/udp"</div><div class="line">    volumes:</div><div class="line">      - "./graylog/data/journal:/usr/share/graylog/data/journal"</div><div class="line">      #- "./graylog/config:/usr/share/graylog/data/config"</div></pre></td></tr></table></figure>
+</li>
+<li><p>使用docker-compose启动服务:</p>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker-compose up -d</div></pre></td></tr></table></figure>
+<ul>
+<li>注:在配置文件中修改graylog的默认用户名密码:</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">echo</span> -ne <span class="string">"admin"</span> | sha256sum</span></div></pre></td></tr></table></figure>
+<ul>
+<li>从容器中copy出 graylog.conf 配置文件 到 ./graylog/config/graylog.conf  ，然后修改,重新启动<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker cp graylog_graylog_1:/usr/share/graylog/data/config graylog/</div></pre></td></tr></table></figure>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2017/11/22/docker-compose-install/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -864,150 +1028,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2017/11/09/python-nmap/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xingyue">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Simple Xsec World">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/11/09/python-nmap/" itemprop="url">python nmap 库的简单实用</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-09T15:06:18+08:00">
-                2017-11-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/开发/" itemprop="url" rel="index">
-                    <span itemprop="name">开发</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h6 id="实用nmap之前可以借助fping-来踩点，查找存活的主机"><a href="#实用nmap之前可以借助fping-来踩点，查找存活的主机" class="headerlink" title="实用nmap之前可以借助fping 来踩点，查找存活的主机:"></a>实用nmap之前可以借助fping 来踩点，查找存活的主机:</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">yum install fping</div><div class="line">fping -g 1.1.1.1/24</div></pre></td></tr></table></figure>
-<h6 id="nmap-安装"><a href="#nmap-安装" class="headerlink" title="nmap 安装"></a>nmap 安装</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">yum install nmap</div><div class="line">easy_install pip</div><div class="line">pip install python-nmap</div></pre></td></tr></table></figure>
-<h5 id="扫描脚本"><a href="#扫描脚本" class="headerlink" title="扫描脚本"></a>扫描脚本</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#coding=utf-8</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> json</div><div class="line"><span class="keyword">import</span> nmap</div><div class="line"></div><div class="line">nm = nmap.PortScanner()</div><div class="line">ret = nm.scan(<span class="string">'----'</span>,<span class="string">'22'</span>)</div><div class="line"></div><div class="line">next_ips = []</div><div class="line"><span class="keyword">for</span> ip <span class="keyword">in</span> ret[<span class="string">'scan'</span>] :</div><div class="line">	status = ret[<span class="string">'scan'</span>][ip][<span class="string">'tcp'</span>][<span class="number">22</span>][<span class="string">'state'</span>]</div><div class="line">	<span class="keyword">if</span> status == <span class="string">'open'</span> :</div><div class="line">		next_ips.append(ip)</div><div class="line"></div><div class="line"><span class="keyword">for</span> ip <span class="keyword">in</span> next_ips :</div><div class="line">	<span class="keyword">print</span> <span class="string">"-----"</span></div><div class="line">	<span class="keyword">print</span> ip</div><div class="line">	ret = nm.scan(ip,<span class="string">'0-65535'</span>)</div><div class="line">	<span class="keyword">for</span> port <span class="keyword">in</span> ret[<span class="string">'scan'</span>][ip][<span class="string">'tcp'</span>] :</div><div class="line">		x = ret[<span class="string">'scan'</span>][ip][<span class="string">'tcp'</span>][port]</div><div class="line">		<span class="keyword">if</span> x.get(<span class="string">'state'</span>) == <span class="string">'open'</span> :</div><div class="line">			<span class="comment">## x 是这样一个dict : &#123;"product": "", "state": "open", "version": "", "name": "ssh", "conf": "10", "extrainfo": "protocol 2.0", "reason": "syn-ack", "cpe": ""&#125;</span></div><div class="line">			<span class="keyword">print</span> json.dumps(x)</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1058,7 +1078,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">42</span>
+                <span class="site-state-item-count">43</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1080,7 +1100,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">58</span>
+                <span class="site-state-item-count">60</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
