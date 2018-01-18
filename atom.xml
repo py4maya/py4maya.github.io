@@ -385,9 +385,9 @@
     <link href="https://xsec.7ever.cn/2017/12/06/shell-create-bigfile-quick/"/>
     <id>https://xsec.7ever.cn/2017/12/06/shell-create-bigfile-quick/</id>
     <published>2017-12-06T06:04:59.000Z</published>
-    <updated>2017-12-06T06:05:29.123Z</updated>
+    <updated>2018-01-18T02:27:15.533Z</updated>
     
-    <content type="html"><![CDATA[<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> dd <span class="keyword">if</span>=/dev/zero of=<span class="built_in">test</span> bs=1M count=1000</span></div></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> dd if=/dev/zero of=test bs=1M count=1000</div></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
@@ -400,6 +400,8 @@
     
     
       <category term="shell" scheme="https://xsec.7ever.cn/tags/shell/"/>
+    
+      <category term="dd" scheme="https://xsec.7ever.cn/tags/dd/"/>
     
   </entry>
   
