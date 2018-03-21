@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xsec.7ever.cn/"/>
-  <updated>2018-02-20T02:47:36.105Z</updated>
+  <updated>2018-03-14T02:02:50.187Z</updated>
   <id>https://xsec.7ever.cn/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>centos7源码安装mysql 5.6</title>
+    <link href="https://xsec.7ever.cn/2018/03/14/centos7-install-mysql-5-6/"/>
+    <id>https://xsec.7ever.cn/2018/03/14/centos7-install-mysql-5-6/</id>
+    <published>2018-03-14T01:54:44.000Z</published>
+    <updated>2018-03-14T02:02:50.187Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li>下载源代码，去官网找吧</li><li>安装cmake</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> yum install cmake -y</div></pre></td></tr></table></figure><ul><li><p>生成Makefile :</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">MYSQL_PREFIX=/data0/mysql</div><div class="line"></div><div class="line">cmake \</div><div class="line">-DDOWNLOAD_BOOST=1 \</div><div class="line">-DCMAKE_INSTALL_PREFIX=$MYSQL_PREFIX \</div><div class="line">-DDEFAULT_CHARSET=utf8 \</div><div class="line">-DDEFAULT_COLLATION=utf8_general_ci \</div><div class="line">-DWITH_EXTRA_CHARSETS=all \</div><div class="line">-DWITH_MYISAM_STORAGE_ENGINE=1 \</div><div class="line">-DWITH_INNOBASE_STORAGE_ENGINE=1 \</div><div class="line">-DWITH_ZLIB=bundled \</div><div class="line">-DWITH_READLINE=1 \</div><div class="line">-DWITH_DEBUG=OFF \</div><div class="line">-DENABLED_LOCAL_INFILE=1 \</div><div class="line">-DENABLED_PROFILING=1 \</div><div class="line">-DMYSQL_MAINTAINER_MODE=0 \</div><div class="line">-DMYSQL_TCP_PORT=3306 \</div><div class="line">-DMYSQL_DATADIR=$MYSQL_PREFIX/data \</div><div class="line">-DMYSQL_UNIX_ADDR=$MYSQL_PREFIX/data/mysql.sock</div></pre></td></tr></table></figure></li><li><p>初始化数据库:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> ./scripts/mysql_install_db --basedir=/data0/mysql/ --datadir=/data0/mysql/data</div><div class="line"><span class="meta">$</span> ru</div><div class="line"><span class="meta">$</span>  chown mysql:mysql -R data/</div></pre></td></tr></table></figure></li><li><p>启动数据库吧:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span></div></pre></td></tr></table></figure></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;ul&gt;
+&lt;li&gt;下载源代码，去官网找吧&lt;/li&gt;
+&lt;li&gt;安装cmake&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div
+      
+    
+    </summary>
+    
+      <category term="系统" scheme="https://xsec.7ever.cn/categories/%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+      <category term="mysql" scheme="https://xsec.7ever.cn/tags/mysql/"/>
+    
+      <category term="centos7" scheme="https://xsec.7ever.cn/tags/centos7/"/>
+    
+  </entry>
   
   <entry>
     <title>webpack中打包bootstrap css 资源</title>
@@ -552,39 +583,6 @@
     
     
       <category term="syslog-ng" scheme="https://xsec.7ever.cn/tags/syslog-ng/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>graylog 安装docker中</title>
-    <link href="https://xsec.7ever.cn/2017/11/22/graylog-docker/"/>
-    <id>https://xsec.7ever.cn/2017/11/22/graylog-docker/</id>
-    <published>2017-11-22T03:09:12.000Z</published>
-    <updated>2017-11-23T06:14:43.540Z</updated>
-    
-    <content type="html"><![CDATA[<ul><li><p>依赖于 docker-compose </p></li><li><p>创建储存graylog的目录:</p></li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mkdir -p ./graylog/data/journal</div><div class="line">mkdir -p ./graylog/config</div></pre></td></tr></table></figure><ul><li><p>编写docker-compose.yml</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">version: '2'</div><div class="line">services:</div><div class="line">  mongo:</div><div class="line">    image: "index.alauda.cn/library/mongo:3"</div><div class="line">  elasticsearch:</div><div class="line">    image: "index.alauda.cn/library/elasticsearch:2.3.2"</div><div class="line">    command: "elasticsearch -Des.cluster.name='graylog'"</div><div class="line">  elasticsearch1:</div><div class="line">    image: "index.alauda.cn/library/elasticsearch:2.3.2"</div><div class="line">    command: "elasticsearch -Des.cluster.name='graylog'"</div><div class="line">  graylog:</div><div class="line">    image: graylog2/server:2.1.0-1</div><div class="line">    environment:</div><div class="line">      GRAYLOG_PASSWORD_SECRET: xsofdnasdfsgolwa</div><div class="line">      #echo -ne "koudai@a1@38t" | sha256sum</div><div class="line">      GRAYLOG_ROOT_PASSWORD_SHA2: 8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918 </div><div class="line">      GRAYLOG_REST_TRANSPORT_URI: http://172.16.7.58:12900</div><div class="line">    depends_on:</div><div class="line">      - mongo</div><div class="line">      - elasticsearch</div><div class="line">      - elasticsearch1</div><div class="line">    ports:</div><div class="line">      - "172.16.7.58:9002:9000"</div><div class="line">      - "172.16.7.58:12900:12900"</div><div class="line">      - "172.16.7.58:8514:8514/udp"</div><div class="line">    volumes:</div><div class="line">      - "./graylog/data/journal:/usr/share/graylog/data/journal"</div><div class="line">      #- "./graylog/config:/usr/share/graylog/data/config"</div></pre></td></tr></table></figure></li><li><p>使用docker-compose启动服务:</p></li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker-compose up -d</div></pre></td></tr></table></figure><ul><li>注:在配置文件中修改graylog的默认用户名密码:</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">$</span> echo -ne "admin" | sha256sum</div></pre></td></tr></table></figure><ul><li>从容器中copy出 graylog.conf 配置文件 到 ./graylog/config/graylog.conf  ，然后修改,重新启动<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker cp graylog_graylog_1:/usr/share/graylog/data/config graylog/</div></pre></td></tr></table></figure></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;依赖于 docker-compose &lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;创建储存graylog的目录:&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutte
-      
-    
-    </summary>
-    
-      <category term="系统" scheme="https://xsec.7ever.cn/categories/%E7%B3%BB%E7%BB%9F/"/>
-    
-    
-      <category term="docker" scheme="https://xsec.7ever.cn/tags/docker/"/>
-    
-      <category term="graylog" scheme="https://xsec.7ever.cn/tags/graylog/"/>
     
   </entry>
   
