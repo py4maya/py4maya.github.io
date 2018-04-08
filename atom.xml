@@ -70,9 +70,9 @@
       <category term="系统" scheme="https://xsec.7ever.cn/categories/%E7%B3%BB%E7%BB%9F/"/>
     
     
-      <category term="centos7" scheme="https://xsec.7ever.cn/tags/centos7/"/>
-    
       <category term="mysql" scheme="https://xsec.7ever.cn/tags/mysql/"/>
+    
+      <category term="centos7" scheme="https://xsec.7ever.cn/tags/centos7/"/>
     
   </entry>
   
@@ -130,9 +130,9 @@
       <category term="开发" scheme="https://xsec.7ever.cn/categories/%E5%BC%80%E5%8F%91/"/>
     
     
-      <category term="nginx" scheme="https://xsec.7ever.cn/tags/nginx/"/>
-    
       <category term="lua" scheme="https://xsec.7ever.cn/tags/lua/"/>
+    
+      <category term="nginx" scheme="https://xsec.7ever.cn/tags/nginx/"/>
     
   </entry>
   
@@ -244,11 +244,11 @@
       <category term="开发" scheme="https://xsec.7ever.cn/categories/%E5%BC%80%E5%8F%91/"/>
     
     
+      <category term="npm" scheme="https://xsec.7ever.cn/tags/npm/"/>
+    
       <category term="ES6" scheme="https://xsec.7ever.cn/tags/ES6/"/>
     
       <category term="node" scheme="https://xsec.7ever.cn/tags/node/"/>
-    
-      <category term="npm" scheme="https://xsec.7ever.cn/tags/npm/"/>
     
   </entry>
   
@@ -274,9 +274,9 @@
       <category term="系统" scheme="https://xsec.7ever.cn/categories/%E7%B3%BB%E7%BB%9F/"/>
     
     
-      <category term="nginx" scheme="https://xsec.7ever.cn/tags/nginx/"/>
-    
       <category term="lua" scheme="https://xsec.7ever.cn/tags/lua/"/>
+    
+      <category term="nginx" scheme="https://xsec.7ever.cn/tags/nginx/"/>
     
   </entry>
   
@@ -380,9 +380,9 @@
       <category term="系统" scheme="https://xsec.7ever.cn/categories/%E7%B3%BB%E7%BB%9F/"/>
     
     
-      <category term="nginx" scheme="https://xsec.7ever.cn/tags/nginx/"/>
-    
       <category term="lua" scheme="https://xsec.7ever.cn/tags/lua/"/>
+    
+      <category term="nginx" scheme="https://xsec.7ever.cn/tags/nginx/"/>
     
   </entry>
   
@@ -494,9 +494,9 @@
       <category term="系统" scheme="https://xsec.7ever.cn/categories/%E7%B3%BB%E7%BB%9F/"/>
     
     
-      <category term="centos" scheme="https://xsec.7ever.cn/tags/centos/"/>
-    
       <category term="dns" scheme="https://xsec.7ever.cn/tags/dns/"/>
+    
+      <category term="centos" scheme="https://xsec.7ever.cn/tags/centos/"/>
     
   </entry>
   
