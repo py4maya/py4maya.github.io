@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="Simple Xsec World">
 <meta property="og:description" content="安装firewalld ，设置为开机启动，启动之: 123$ yum install firewalld$ systemctl enable firewalld$ systemctl start firewalld  查看zones  1$ firewall-cmd --get-zones  创建新的zone : 1$ firewall-cmd --new-zone=goaway --perma">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-12T02:18:53.896Z">
+<meta property="og:updated_time" content="2018-04-12T02:27:59.600Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="centos7下使用firewalld基本指南">
 <meta name="twitter:description" content="安装firewalld ，设置为开机启动，启动之: 123$ yum install firewalld$ systemctl enable firewalld$ systemctl start firewalld  查看zones  1$ firewall-cmd --get-zones  创建新的zone : 1$ firewall-cmd --new-zone=goaway --perma">
@@ -385,6 +385,9 @@
 </li>
 <li><p>修改zones文件以后，重新加载:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> firewall-cmd --reload</div></pre></td></tr></table></figure>
+</li>
+<li><p>复杂规则的添加删除:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> firewall-cmd --permanent --remove-rich-rule="rule family="ipv4" source address="192.168.142.166" port protocol="tcp" port="11300" accept"</div><div class="line"><span class="meta">$</span> firewall-cmd --permanent --add-rich-rule="rule family="ipv4" source address="192.168.142.166" port protocol="tcp" port="11300" accept"</div></pre></td></tr></table></figure>
 </li>
 </ul>
 
