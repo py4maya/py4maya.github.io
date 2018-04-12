@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="Simple Xsec World">
 <meta property="og:description" content="安装firewalld ，设置为开机启动，启动之: 123$ yum install firewalld$ systemctl enable firewalld$ systemctl start firewalld  查看zones  1$ firewall-cmd --get-zones  创建新的zone : 1$ firewall-cmd --new-zone=goaway --perma">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-12T02:17:02.386Z">
+<meta property="og:updated_time" content="2018-04-12T02:18:53.896Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="centos7下使用firewalld基本指南">
 <meta name="twitter:description" content="安装firewalld ，设置为开机启动，启动之: 123$ yum install firewalld$ systemctl enable firewalld$ systemctl start firewalld  查看zones  1$ firewall-cmd --get-zones  创建新的zone : 1$ firewall-cmd --new-zone=goaway --perma">
@@ -375,10 +375,10 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> firewall-cmd --new-zone=goaway --permanent</div></pre></td></tr></table></figure>
 </li>
 <li><p>添加简单的服务，端口:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> firewall-cmd --zone --add-port=80/tcp --permanent</div><div class="line"><span class="meta">$</span> firewall-cmd --zone --add-port=53/udp --permanent</div><div class="line"><span class="meta">$</span> firewall-cmd --zone --add-service=ssh --permanent</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> firewall-cmd --zone=goaway --add-port=80/tcp --permanent</div><div class="line"><span class="meta">$</span> firewall-cmd --zone=goaway --add-port=53/udp --permanent</div><div class="line"><span class="meta">$</span> firewall-cmd --zone=goaway --add-service=ssh --permanent</div></pre></td></tr></table></figure>
 </li>
 <li><p>删除简单的服务，端口:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> firewall-cmd --zone --remove-port=80/tcp --permanent</div><div class="line"><span class="meta">$</span> firewall-cmd --zone --remove-port=53/udp --permanent</div><div class="line"><span class="meta">$</span> firewall-cmd --zone --remove-service=ssh --permanent</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> firewall-cmd --zone=goaway --remove-port=80/tcp --permanent</div><div class="line"><span class="meta">$</span> firewall-cmd --zone=goaway --remove-port=53/udp --permanent</div><div class="line"><span class="meta">$</span> firewall-cmd --zone=goaway --remove-service=ssh --permanent</div></pre></td></tr></table></figure>
 </li>
 <li><p>设置新的默认zone</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> firewall-cmd --set-default-zone=goaway</div></pre></td></tr></table></figure>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xsec.7ever.cn/"/>
-  <updated>2018-04-12T02:17:02.386Z</updated>
+  <updated>2018-04-12T02:18:53.896Z</updated>
   <id>https://xsec.7ever.cn/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="https://xsec.7ever.cn/2018/04/12/centos7-firewalld-basic/"/>
     <id>https://xsec.7ever.cn/2018/04/12/centos7-firewalld-basic/</id>
     <published>2018-04-12T02:08:24.000Z</published>
-    <updated>2018-04-12T02:17:02.386Z</updated>
+    <updated>2018-04-12T02:18:53.896Z</updated>
     
-    <content type="html"><![CDATA[<ul><li><p>安装firewalld ，设置为开机启动，启动之:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> yum install firewalld</div><div class="line"><span class="meta">$</span> systemctl enable firewalld</div><div class="line"><span class="meta">$</span> systemctl start firewalld</div></pre></td></tr></table></figure></li><li><p>查看zones </p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> firewall-cmd --get-zones</div></pre></td></tr></table></figure></li><li><p>创建新的zone :</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> firewall-cmd --new-zone=goaway --permanent</div></pre></td></tr></table></figure></li><li><p>添加简单的服务，端口:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> firewall-cmd --zone --add-port=80/tcp --permanent</div><div class="line"><span class="meta">$</span> firewall-cmd --zone --add-port=53/udp --permanent</div><div class="line"><span class="meta">$</span> firewall-cmd --zone --add-service=ssh --permanent</div></pre></td></tr></table></figure></li><li><p>删除简单的服务，端口:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> firewall-cmd --zone --remove-port=80/tcp --permanent</div><div class="line"><span class="meta">$</span> firewall-cmd --zone --remove-port=53/udp --permanent</div><div class="line"><span class="meta">$</span> firewall-cmd --zone --remove-service=ssh --permanent</div></pre></td></tr></table></figure></li><li><p>设置新的默认zone</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> firewall-cmd --set-default-zone=goaway</div></pre></td></tr></table></figure></li><li><p>修改zones文件以后，重新加载:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> firewall-cmd --reload</div></pre></td></tr></table></figure></li></ul>]]></content>
+    <content type="html"><![CDATA[<ul><li><p>安装firewalld ，设置为开机启动，启动之:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> yum install firewalld</div><div class="line"><span class="meta">$</span> systemctl enable firewalld</div><div class="line"><span class="meta">$</span> systemctl start firewalld</div></pre></td></tr></table></figure></li><li><p>查看zones </p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> firewall-cmd --get-zones</div></pre></td></tr></table></figure></li><li><p>创建新的zone :</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> firewall-cmd --new-zone=goaway --permanent</div></pre></td></tr></table></figure></li><li><p>添加简单的服务，端口:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> firewall-cmd --zone=goaway --add-port=80/tcp --permanent</div><div class="line"><span class="meta">$</span> firewall-cmd --zone=goaway --add-port=53/udp --permanent</div><div class="line"><span class="meta">$</span> firewall-cmd --zone=goaway --add-service=ssh --permanent</div></pre></td></tr></table></figure></li><li><p>删除简单的服务，端口:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> firewall-cmd --zone=goaway --remove-port=80/tcp --permanent</div><div class="line"><span class="meta">$</span> firewall-cmd --zone=goaway --remove-port=53/udp --permanent</div><div class="line"><span class="meta">$</span> firewall-cmd --zone=goaway --remove-service=ssh --permanent</div></pre></td></tr></table></figure></li><li><p>设置新的默认zone</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> firewall-cmd --set-default-zone=goaway</div></pre></td></tr></table></figure></li><li><p>修改zones文件以后，重新加载:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> firewall-cmd --reload</div></pre></td></tr></table></figure></li></ul>]]></content>
     
     <summary type="html">
     
@@ -79,7 +79,7 @@
     <published>2018-03-14T01:54:44.000Z</published>
     <updated>2018-03-14T02:02:50.187Z</updated>
     
-    <content type="html"><![CDATA[<ul><li>下载源代码，去官网找吧</li><li>安装cmake</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> yum install cmake -y</span></div></pre></td></tr></table></figure><ul><li><p>生成Makefile :</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">MYSQL_PREFIX=/data0/mysql</div><div class="line"></div><div class="line">cmake \</div><div class="line">-DDOWNLOAD_BOOST=1 \</div><div class="line">-DCMAKE_INSTALL_PREFIX=$MYSQL_PREFIX \</div><div class="line">-DDEFAULT_CHARSET=utf8 \</div><div class="line">-DDEFAULT_COLLATION=utf8_general_ci \</div><div class="line">-DWITH_EXTRA_CHARSETS=all \</div><div class="line">-DWITH_MYISAM_STORAGE_ENGINE=1 \</div><div class="line">-DWITH_INNOBASE_STORAGE_ENGINE=1 \</div><div class="line">-DWITH_ZLIB=bundled \</div><div class="line">-DWITH_READLINE=1 \</div><div class="line">-DWITH_DEBUG=OFF \</div><div class="line">-DENABLED_LOCAL_INFILE=1 \</div><div class="line">-DENABLED_PROFILING=1 \</div><div class="line">-DMYSQL_MAINTAINER_MODE=0 \</div><div class="line">-DMYSQL_TCP_PORT=3306 \</div><div class="line">-DMYSQL_DATADIR=$MYSQL_PREFIX/data \</div><div class="line">-DMYSQL_UNIX_ADDR=$MYSQL_PREFIX/data/mysql.sock</div></pre></td></tr></table></figure></li><li><p>初始化数据库:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> ./scripts/mysql_install_db --basedir=/data0/mysql/ --datadir=/data0/mysql/data</span></div><div class="line"><span class="meta">$</span><span class="bash"> ru</span></div><div class="line"><span class="meta">$</span><span class="bash">  chown mysql:mysql -R data/</span></div></pre></td></tr></table></figure></li><li><p>启动数据库吧:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"></span></div></pre></td></tr></table></figure></li></ul>]]></content>
+    <content type="html"><![CDATA[<ul><li>下载源代码，去官网找吧</li><li>安装cmake</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> yum install cmake -y</div></pre></td></tr></table></figure><ul><li><p>生成Makefile :</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">MYSQL_PREFIX=/data0/mysql</div><div class="line"></div><div class="line">cmake \</div><div class="line">-DDOWNLOAD_BOOST=1 \</div><div class="line">-DCMAKE_INSTALL_PREFIX=$MYSQL_PREFIX \</div><div class="line">-DDEFAULT_CHARSET=utf8 \</div><div class="line">-DDEFAULT_COLLATION=utf8_general_ci \</div><div class="line">-DWITH_EXTRA_CHARSETS=all \</div><div class="line">-DWITH_MYISAM_STORAGE_ENGINE=1 \</div><div class="line">-DWITH_INNOBASE_STORAGE_ENGINE=1 \</div><div class="line">-DWITH_ZLIB=bundled \</div><div class="line">-DWITH_READLINE=1 \</div><div class="line">-DWITH_DEBUG=OFF \</div><div class="line">-DENABLED_LOCAL_INFILE=1 \</div><div class="line">-DENABLED_PROFILING=1 \</div><div class="line">-DMYSQL_MAINTAINER_MODE=0 \</div><div class="line">-DMYSQL_TCP_PORT=3306 \</div><div class="line">-DMYSQL_DATADIR=$MYSQL_PREFIX/data \</div><div class="line">-DMYSQL_UNIX_ADDR=$MYSQL_PREFIX/data/mysql.sock</div></pre></td></tr></table></figure></li><li><p>初始化数据库:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> ./scripts/mysql_install_db --basedir=/data0/mysql/ --datadir=/data0/mysql/data</div><div class="line"><span class="meta">$</span> ru</div><div class="line"><span class="meta">$</span>  chown mysql:mysql -R data/</div></pre></td></tr></table></figure></li><li><p>启动数据库吧:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span></div></pre></td></tr></table></figure></li></ul>]]></content>
     
     <summary type="html">
     
@@ -157,9 +157,9 @@
       <category term="开发" scheme="https://xsec.7ever.cn/categories/%E5%BC%80%E5%8F%91/"/>
     
     
-      <category term="nginx" scheme="https://xsec.7ever.cn/tags/nginx/"/>
-    
       <category term="lua" scheme="https://xsec.7ever.cn/tags/lua/"/>
+    
+      <category term="nginx" scheme="https://xsec.7ever.cn/tags/nginx/"/>
     
   </entry>
   
@@ -301,9 +301,9 @@
       <category term="系统" scheme="https://xsec.7ever.cn/categories/%E7%B3%BB%E7%BB%9F/"/>
     
     
-      <category term="nginx" scheme="https://xsec.7ever.cn/tags/nginx/"/>
-    
       <category term="lua" scheme="https://xsec.7ever.cn/tags/lua/"/>
+    
+      <category term="nginx" scheme="https://xsec.7ever.cn/tags/nginx/"/>
     
   </entry>
   
@@ -407,9 +407,9 @@
       <category term="系统" scheme="https://xsec.7ever.cn/categories/%E7%B3%BB%E7%BB%9F/"/>
     
     
-      <category term="nginx" scheme="https://xsec.7ever.cn/tags/nginx/"/>
-    
       <category term="lua" scheme="https://xsec.7ever.cn/tags/lua/"/>
+    
+      <category term="nginx" scheme="https://xsec.7ever.cn/tags/nginx/"/>
     
   </entry>
   
