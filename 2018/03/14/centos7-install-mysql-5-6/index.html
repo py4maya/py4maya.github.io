@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="mysql,centos7," />
+  <meta name="keywords" content="centos7,mysql," />
 
 
 
@@ -97,7 +97,7 @@
 
 
 <meta name="description" content="下载源代码，去官网找吧 安装cmake  1$ yum install cmake -y  生成Makefile : 12345678910111213141516171819MYSQL_PREFIX=/data0/mysqlcmake \-DDOWNLOAD_BOOST=1 \-DCMAKE_INSTALL_PREFIX=$MYSQL_PREFIX \-DDEFAULT_CHARSET=utf">
-<meta name="keywords" content="mysql,centos7">
+<meta name="keywords" content="centos7,mysql">
 <meta property="og:type" content="article">
 <meta property="og:title" content="centos7源码安装mysql 5.6">
 <meta property="og:url" content="https://xsec.7ever.cn/2018/03/14/centos7-install-mysql-5-6/index.html">
@@ -368,16 +368,16 @@
 <li>下载源代码，去官网找吧</li>
 <li>安装cmake</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> yum install cmake -y</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> yum install cmake -y</span></div></pre></td></tr></table></figure>
 <ul>
 <li><p>生成Makefile :</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">MYSQL_PREFIX=/data0/mysql</div><div class="line"></div><div class="line">cmake \</div><div class="line">-DDOWNLOAD_BOOST=1 \</div><div class="line">-DCMAKE_INSTALL_PREFIX=$MYSQL_PREFIX \</div><div class="line">-DDEFAULT_CHARSET=utf8 \</div><div class="line">-DDEFAULT_COLLATION=utf8_general_ci \</div><div class="line">-DWITH_EXTRA_CHARSETS=all \</div><div class="line">-DWITH_MYISAM_STORAGE_ENGINE=1 \</div><div class="line">-DWITH_INNOBASE_STORAGE_ENGINE=1 \</div><div class="line">-DWITH_ZLIB=bundled \</div><div class="line">-DWITH_READLINE=1 \</div><div class="line">-DWITH_DEBUG=OFF \</div><div class="line">-DENABLED_LOCAL_INFILE=1 \</div><div class="line">-DENABLED_PROFILING=1 \</div><div class="line">-DMYSQL_MAINTAINER_MODE=0 \</div><div class="line">-DMYSQL_TCP_PORT=3306 \</div><div class="line">-DMYSQL_DATADIR=$MYSQL_PREFIX/data \</div><div class="line">-DMYSQL_UNIX_ADDR=$MYSQL_PREFIX/data/mysql.sock</div></pre></td></tr></table></figure>
 </li>
 <li><p>初始化数据库:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> ./scripts/mysql_install_db --basedir=/data0/mysql/ --datadir=/data0/mysql/data</div><div class="line"><span class="meta">$</span> ru</div><div class="line"><span class="meta">$</span>  chown mysql:mysql -R data/</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> ./scripts/mysql_install_db --basedir=/data0/mysql/ --datadir=/data0/mysql/data</span></div><div class="line"><span class="meta">$</span><span class="bash"> ru</span></div><div class="line"><span class="meta">$</span><span class="bash">  chown mysql:mysql -R data/</span></div></pre></td></tr></table></figure>
 </li>
 <li><p>启动数据库吧:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span></div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"></span></div></pre></td></tr></table></figure>
 </li>
 </ul>
 
@@ -439,9 +439,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/mysql/" rel="tag"># mysql</a>
-          
             <a href="/tags/centos7/" rel="tag"># centos7</a>
+          
+            <a href="/tags/mysql/" rel="tag"># mysql</a>
           
         </div>
       
@@ -534,7 +534,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">49</span>
+                <span class="site-state-item-count">50</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -556,7 +556,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">69</span>
+                <span class="site-state-item-count">70</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
