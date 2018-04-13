@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xsec.7ever.cn/"/>
-  <updated>2018-04-12T02:27:59.600Z</updated>
+  <updated>2018-04-13T09:45:45.176Z</updated>
   <id>https://xsec.7ever.cn/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>cython 环境下使用Makefile 编译简单的包</title>
+    <link href="https://xsec.7ever.cn/2018/04/13/cython-makefile-simple/"/>
+    <id>https://xsec.7ever.cn/2018/04/13/cython-makefile-simple/</id>
+    <published>2018-04-13T09:39:27.000Z</published>
+    <updated>2018-04-13T09:45:45.176Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li><p>安装cython</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> pip install cython</div></pre></td></tr></table></figure></li><li><p>创建一个文件夹，用来放要写的包里的文件(简单的包，只限单层)</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> make sample</div></pre></td></tr></table></figure></li><li><p>试着编写几个py脚本，当然你可以按照规则编写pyx 文件，后缀而已，不用担心:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> cat a.py</div><div class="line"></div><div class="line">def infoa():</div><div class="line">    print "info a "</div><div class="line"></div><div class="line"><span class="meta">$</span> cat b.py</div><div class="line"></div><div class="line"></div><div class="line">def infob():</div><div class="line">    print "info b "</div></pre></td></tr></table></figure></li><li><p>编写一个简单的<strong>init</strong>.py 用来包含你生成的so文件:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> cat __init__.py</div><div class="line"></div><div class="line">import a</div><div class="line">import b</div><div class="line">__all__ = [a,b]</div></pre></td></tr></table></figure></li><li><p>写入这个Makefile吧:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span>### http://www.ruanyifeng.com/blog/2015/02/make.html</div><div class="line"><span class="meta">#</span>### make package=&lt;name&gt;</div><div class="line">.PHONY: clean all</div><div class="line"></div><div class="line">sofiles=$(shell ls *.py | grep -v "__init__")</div><div class="line"></div><div class="line">ifndef package</div><div class="line">package="build"</div><div class="line">endif</div><div class="line"></div><div class="line">all : build</div><div class="line">mkdir -p $(package)</div><div class="line">cp __init__.py $(package)</div><div class="line">cp *.so $(package)</div><div class="line"></div><div class="line">build : $(sofiles:.py=.so)</div><div class="line"></div><div class="line"><span class="meta">%</span>.c : %.py</div><div class="line">cython $&lt;</div><div class="line"></div><div class="line"><span class="meta">%</span>.o : %.c</div><div class="line"><span class="meta">$</span>(CC) -c -fPIC $&lt; `python-config --libs` `python-config --includes`</div><div class="line"></div><div class="line"><span class="meta">%</span>.so : %.o</div><div class="line"><span class="meta">$</span>(CC) -o $@ $&lt; -fPIC  --shared `python-config --libs`</div><div class="line"></div><div class="line">clean:</div><div class="line">rm *.c *.o *.so</div></pre></td></tr></table></figure></li><li><p>然后执行,make package=<name> 就会生成一个<name>的文件夹，把他copy到需要的地方,就可以了用了.</name></name></p></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;ul&gt;
+&lt;li&gt;&lt;p&gt;安装cython&lt;/p&gt;
+&lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;c
+      
+    
+    </summary>
+    
+      <category term="开发" scheme="https://xsec.7ever.cn/categories/%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="cython" scheme="https://xsec.7ever.cn/tags/cython/"/>
+    
+      <category term="makefile" scheme="https://xsec.7ever.cn/tags/makefile/"/>
+    
+  </entry>
   
   <entry>
     <title>centos7下使用firewalld基本指南</title>
@@ -549,35 +578,6 @@
       <category term="shell" scheme="https://xsec.7ever.cn/tags/shell/"/>
     
       <category term="dd" scheme="https://xsec.7ever.cn/tags/dd/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>一些常用的PostgreSQL-sql</title>
-    <link href="https://xsec.7ever.cn/2017/12/04/some-PostgreSQL-sql/"/>
-    <id>https://xsec.7ever.cn/2017/12/04/some-PostgreSQL-sql/</id>
-    <published>2017-12-04T06:44:07.000Z</published>
-    <updated>2017-12-11T07:30:52.283Z</updated>
-    
-    <content type="html"><![CDATA[<p>常见的几个sql:</p><ul><li>创建表：</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">CREATE TABLE excmdb (</div><div class="line">    asset_number character varying(128),</div><div class="line">    ips text[],</div><div class="line">    product character varying(128),</div><div class="line">    administrator character varying(64),</div><div class="line">    rack character varying(128),</div><div class="line">manifest character varying(32),</div><div class="line">constraint pk_tbl_primary_asset_manifest primary key (asset_number,manifest)</div><div class="line">);</div></pre></td></tr></table></figure><ul><li><p>导出表结构:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> pg_dump -h localhost -U cmdb -s cmdb</span></div><div class="line"><span class="meta">$</span><span class="bash"> pg_dump -h localhost -U cmdb cmdb -t excmdb   <span class="comment">#导出数据</span></span></div></pre></td></tr></table></figure></li><li><p>执行sql文件:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">\i data.sql;</div></pre></td></tr></table></figure></li><li><p>查看描述:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">\dt #查看表list</div><div class="line">\d excmdb #查看表结构</div></pre></td></tr></table></figure></li><li><p>数组操作:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">select sample where ips @&gt; '&#123;127.0.0.1&#125;' # 查看数组包含</div><div class="line">update sample set ips = ips || '&#123;127.0.0.1&#125;' # 添加元素</div><div class="line">UPDATE excmdb SET ips = array_remove(ips,'10.13.2.144') WHERE asset_number = 'D10075981'; #删除元素</div><div class="line">select sample where ips ||  '&#123;127.0.0.1&#125;' # 数组元素的in查询</div></pre></td></tr></table></figure></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;常见的几个sql:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;创建表：&lt;/li&gt;
-&lt;/ul&gt;
-&lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div c
-      
-    
-    </summary>
-    
-      <category term="系统" scheme="https://xsec.7ever.cn/categories/%E7%B3%BB%E7%BB%9F/"/>
-    
-    
-      <category term="PostgreSQL" scheme="https://xsec.7ever.cn/tags/PostgreSQL/"/>
     
   </entry>
   
