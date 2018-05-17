@@ -979,6 +979,8 @@
 <li>nginx 配置文件加入require的路径标识:</li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">lua_package_path '/data1/nginx/lua/?.lua;';</div><div class="line">lua_package_cpath '/usr/local/lib/lua/5.1/?.so;';</div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment">##代码中可以使用tools对象,及ngx.shared.server （table对象）</span></span></div><div class="line">init_by_lua 'tools = require "tools"';</div><div class="line">lua_shared_dict server 5m;</div></pre></td></tr></table></figure>
+<p><strong> 注意一点 </strong> </p>
+<p>配置更新的地址:<br>/data0/luajit/share/lua/5.1/luarocks/cfg.lua:198 去掉不通的地址.</p>
 
           
         
