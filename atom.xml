@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xsec.7ever.cn/"/>
-  <updated>2018-05-04T01:52:20.964Z</updated>
+  <updated>2018-07-02T07:02:50.575Z</updated>
   <id>https://xsec.7ever.cn/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>golang 使用flag 传递参数</title>
+    <link href="https://xsec.7ever.cn/2018/07/02/golang-use-flag-with-skip/"/>
+    <id>https://xsec.7ever.cn/2018/07/02/golang-use-flag-with-skip/</id>
+    <published>2018-07-02T06:59:45.000Z</published>
+    <updated>2018-07-02T07:02:50.575Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight golang"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="keyword">import</span> (</div><div class="line"><span class="string">"flag"</span></div><div class="line"><span class="string">"fmt"</span></div><div class="line"><span class="string">"os"</span></div><div class="line">)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">ok := flag.Bool(<span class="string">"ok"</span>, <span class="literal">false</span>, <span class="string">"is ok"</span>)</div><div class="line">flag.CommandLine.Parse(os.Args[<span class="number">2</span>:])</div><div class="line">action := os.Args[<span class="number">1</span>]</div><div class="line">fmt.Println(<span class="string">"Action: "</span>, action)</div><div class="line">fmt.Println(*ok)</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure><h2 id="运行参数"><a href="#运行参数" class="headerlink" title="运行参数:"></a>运行参数:</h2><figure class="highlight golang"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ./flag &lt;action&gt; --ok</div></pre></td></tr></table></figure><h2 id="传递参数的方法"><a href="#传递参数的方法" class="headerlink" title="传递参数的方法:"></a>传递参数的方法:</h2><figure class="highlight golang"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">./flag &lt;action&gt; -ok</div><div class="line">./flag &lt;action&gt; --ok</div><div class="line">./flag &lt;action&gt; --ok=<span class="literal">true</span></div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;figure class=&quot;highlight golang&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/d
+      
+    
+    </summary>
+    
+      <category term="开发" scheme="https://xsec.7ever.cn/categories/%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="golang" scheme="https://xsec.7ever.cn/tags/golang/"/>
+    
+      <category term="flag" scheme="https://xsec.7ever.cn/tags/flag/"/>
+    
+  </entry>
   
   <entry>
     <title>一些git的基本操作</title>
@@ -180,9 +207,9 @@
       <category term="系统" scheme="https://xsec.7ever.cn/categories/%E7%B3%BB%E7%BB%9F/"/>
     
     
-      <category term="mysql" scheme="https://xsec.7ever.cn/tags/mysql/"/>
-    
       <category term="centos7" scheme="https://xsec.7ever.cn/tags/centos7/"/>
+    
+      <category term="mysql" scheme="https://xsec.7ever.cn/tags/mysql/"/>
     
   </entry>
   
@@ -549,34 +576,6 @@
       <category term="linux" scheme="https://xsec.7ever.cn/tags/linux/"/>
     
       <category term="rsyslog" scheme="https://xsec.7ever.cn/tags/rsyslog/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>一些常用的rpm命令</title>
-    <link href="https://xsec.7ever.cn/2017/12/16/rpm-useful-command/"/>
-    <id>https://xsec.7ever.cn/2017/12/16/rpm-useful-command/</id>
-    <published>2017-12-16T11:54:00.000Z</published>
-    <updated>2017-12-16T11:55:26.354Z</updated>
-    
-    <content type="html"><![CDATA[<p>查看安装的rpm包:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rpm -qa</div></pre></td></tr></table></figure><p>查看一个rpm包包含的文件:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rpm -ql rsyslog</div></pre></td></tr></table></figure></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;查看安装的rpm包:&lt;/p&gt;
-&lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;p
-      
-    
-    </summary>
-    
-      <category term="系统" scheme="https://xsec.7ever.cn/categories/%E7%B3%BB%E7%BB%9F/"/>
-    
-    
-      <category term="linux" scheme="https://xsec.7ever.cn/tags/linux/"/>
-    
-      <category term="rpm" scheme="https://xsec.7ever.cn/tags/rpm/"/>
     
   </entry>
   
