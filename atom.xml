@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xsec.7ever.cn/"/>
-  <updated>2018-07-02T07:02:50.575Z</updated>
+  <updated>2018-07-04T05:31:35.885Z</updated>
   <id>https://xsec.7ever.cn/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>golang使用yaml做配置信息</title>
+    <link href="https://xsec.7ever.cn/2018/07/04/golang-use-yaml/"/>
+    <id>https://xsec.7ever.cn/2018/07/04/golang-use-yaml/</id>
+    <published>2018-07-04T05:30:55.000Z</published>
+    <updated>2018-07-04T05:31:35.885Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight golang"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/****</span></div><div class="line"><span class="comment"></span></div><div class="line"><span class="comment">yaml document content:</span></div><div class="line"><span class="comment"></span></div><div class="line"><span class="comment">enable: true</span></div><div class="line"><span class="comment">path: /usr/local</span></div><div class="line"><span class="comment">#white: [ hello world, one item, two items ]</span></div><div class="line"><span class="comment">white:</span></div><div class="line"><span class="comment">- 1</span></div><div class="line"><span class="comment">- 2</span></div><div class="line"><span class="comment">- 3</span></div><div class="line"><span class="comment">- 4</span></div><div class="line"><span class="comment">item:</span></div><div class="line"><span class="comment">    name: aries</span></div><div class="line"><span class="comment">    port: 22</span></div><div class="line"><span class="comment">black:</span></div><div class="line"><span class="comment">-</span></div><div class="line"><span class="comment">  name: 10.210.12.17</span></div><div class="line"><span class="comment">  port: 6379</span></div><div class="line"><span class="comment">-</span></div><div class="line"><span class="comment">  name: 10.210.12.18</span></div><div class="line"><span class="comment">  port: 3306</span></div><div class="line"><span class="comment"></span></div><div class="line"><span class="comment">*****/</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> (</div><div class="line"><span class="string">"gopkg.in/yaml.v2"</span></div><div class="line"><span class="string">"io/ioutil"</span></div><div class="line"><span class="string">"log"</span></div><div class="line">)</div><div class="line"></div><div class="line"><span class="keyword">type</span> ConfigType <span class="keyword">struct</span> &#123;</div><div class="line">Enabled <span class="keyword">bool</span>                <span class="string">`yaml:"enabled"`</span></div><div class="line">Path    <span class="keyword">string</span>              <span class="string">`yaml:"path"`</span></div><div class="line">White   []<span class="keyword">string</span>            <span class="string">`yaml:white`</span></div><div class="line">Black   []<span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">string</span> <span class="string">`yaml:black`</span></div><div class="line">Item    <span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">string</span>   <span class="string">`yaml:item`</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> (</div><div class="line">Config ConfigType</div><div class="line">)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">init</span><span class="params">()</span></span> &#123;</div><div class="line">yamlFile, err := ioutil.ReadFile(<span class="string">"conf.yaml"</span>)</div><div class="line"><span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</div><div class="line">log.Printf(<span class="string">"yamlFile.Get err   #%v "</span>, err)</div><div class="line">&#125;</div><div class="line">err = yaml.Unmarshal(yamlFile, &amp;Config)</div><div class="line"><span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</div><div class="line">log.Fatalf(<span class="string">"Unmarshal: %v"</span>, err)</div><div class="line">&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;figure class=&quot;highlight golang&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/d
+      
+    
+    </summary>
+    
+    
+      <category term="golang" scheme="https://xsec.7ever.cn/tags/golang/"/>
+    
+      <category term="yaml" scheme="https://xsec.7ever.cn/tags/yaml/"/>
+    
+  </entry>
   
   <entry>
     <title>golang 使用flag 传递参数</title>
@@ -207,9 +232,9 @@
       <category term="系统" scheme="https://xsec.7ever.cn/categories/%E7%B3%BB%E7%BB%9F/"/>
     
     
-      <category term="centos7" scheme="https://xsec.7ever.cn/tags/centos7/"/>
-    
       <category term="mysql" scheme="https://xsec.7ever.cn/tags/mysql/"/>
+    
+      <category term="centos7" scheme="https://xsec.7ever.cn/tags/centos7/"/>
     
   </entry>
   
@@ -549,33 +574,6 @@
       <category term="javascript" scheme="https://xsec.7ever.cn/tags/javascript/"/>
     
       <category term="this" scheme="https://xsec.7ever.cn/tags/this/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>使用rsyslog 转发文件日志</title>
-    <link href="https://xsec.7ever.cn/2017/12/16/rsyslog-transferlog/"/>
-    <id>https://xsec.7ever.cn/2017/12/16/rsyslog-transferlog/</id>
-    <published>2017-12-16T12:21:03.000Z</published>
-    <updated>2017-12-16T12:22:38.626Z</updated>
-    
-    <content type="html"><![CDATA[<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">module(load="imfile")</div><div class="line"></div><div class="line">ruleset(name="graylog-remote") &#123;</div><div class="line">    action(type="omfwd"</div><div class="line">        Protocol="udp"</div><div class="line">        Target="10.211.101.93"</div><div class="line">        Port="521")</div><div class="line">    stop</div><div class="line">&#125;</div><div class="line"></div><div class="line">input(</div><div class="line">    type="imfile"</div><div class="line">    File="/data0/nginx/logs/radius_ac.log"</div><div class="line">    Facility="user"</div><div class="line">    Severity="notice"</div><div class="line">    Tag=""</div><div class="line">    PersistStateInterval="1"</div><div class="line">    Ruleset="graylog-remote"</div><div class="line">)</div></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/di
-      
-    
-    </summary>
-    
-      <category term="系统" scheme="https://xsec.7ever.cn/categories/%E7%B3%BB%E7%BB%9F/"/>
-    
-    
-      <category term="linux" scheme="https://xsec.7ever.cn/tags/linux/"/>
-    
-      <category term="rsyslog" scheme="https://xsec.7ever.cn/tags/rsyslog/"/>
     
   </entry>
   
