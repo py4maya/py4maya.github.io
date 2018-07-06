@@ -272,6 +272,156 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2018/02/06/nginx-stream-lua-install/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xingyue">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Simple Xsec World">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/02/06/nginx-stream-lua-install/" itemprop="url">安装nginx lua 控制stream</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-06T15:48:53+08:00">
+                2018-02-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>编译前提:</p>
+<ul>
+<li>luajit </li>
+<li>ngx_devel_kit </li>
+<li>lua-nginx-module 控制http 的lua 模块</li>
+<li>stream-lua-nginx-module  git clone <a href="https://github.com/openresty/stream-lua-nginx-module" target="_blank" rel="noopener">https://github.com/openresty/stream-lua-nginx-module</a></li>
+</ul>
+<p>编译参数:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></div><div class="line"></div><div class="line">export LUAJIT_LIB=/data0/luajit/lib</div><div class="line">export LUAJIT_INC=/data0/luajit/include/luajit-2.0/</div><div class="line"></div><div class="line"></div><div class="line">./configure \</div><div class="line">--prefix=/data0/nginx/ \</div><div class="line">--with-stream \</div><div class="line">--with-http_ssl_module  \</div><div class="line">--with-stream_ssl_module \</div><div class="line">--with-ld-opt="-Wl,-rpath,/data0/luajit/lib " \</div><div class="line">--add-module="../ngx_devel_kit-0.3.0" \</div><div class="line">--add-module="../lua-nginx-module" \</div><div class="line">--add-module="../stream-lua-nginx-module" \</div><div class="line"></div><div class="line">make -j4</div><div class="line">make install</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2018/01/18/python2-7-charset-utf-8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -867,158 +1017,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2018/01/10/nginx-lua-better-access-control/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xingyue">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Simple Xsec World">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/10/nginx-lua-better-access-control/" itemprop="url">比nginx自己更好用的ip 访问控制</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-10T17:46:19+08:00">
-                2018-01-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/系统/" itemprop="url" rel="index">
-                    <span itemprop="name">系统</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>nginx 自己的ip访问控制大家应该都用过，就是下边的这种写法:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">allow ip1;</div><div class="line">allow ip2;</div><div class="line">allow ip3;</div><div class="line">deny all;</div><div class="line">...</div></pre></td></tr></table></figure>
-<p>当你有一堆IP需要控制的时候，就是一件比较难受的事情了。<br>所以，使用lua 写了这么一段lua代码。</p>
-<p>nginx 自己需要配置支持 lua 去翻其他的代码吧:</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">M.access_by_net</span><span class="params">(name)</span></span> </div><div class="line">    <span class="keyword">local</span> client_ip =  ngx.var.remote_addr <span class="keyword">or</span> <span class="string">"0.0.0.0"</span></div><div class="line">    <span class="keyword">local</span> pts,pts_len = U.findAll(client_ip,<span class="string">'%.'</span>)</div><div class="line">    <span class="keyword">if</span> pts_len == <span class="number">3</span> <span class="keyword">then</span></div><div class="line">        <span class="keyword">local</span> network = <span class="built_in">string</span>.<span class="built_in">sub</span>(client_ip,<span class="number">0</span>,pts[<span class="number">3</span>])</div><div class="line">        <span class="keyword">local</span> allow_hosts = &#123;&#125;</div><div class="line">        <span class="keyword">local</span> allow_nets = &#123;&#125;</div><div class="line"></div><div class="line">		<span class="comment">--- 这部分就可以自己定义了</span></div><div class="line">        <span class="keyword">if</span> name == <span class="string">"sec"</span> <span class="keyword">then</span></div><div class="line">            allow_nets = &#123;<span class="string">"10.222.28."</span>&#125;</div><div class="line">        <span class="keyword">elseif</span> name == <span class="string">"es"</span> <span class="keyword">then</span></div><div class="line">            allow_nets = &#123;&#125;</div><div class="line">            allow_hosts = &#123;<span class="string">"10.210.12.17"</span>&#125;</div><div class="line">        <span class="keyword">end</span> </div><div class="line"></div><div class="line">        <span class="keyword">if</span> U.inArray(allow_hosts,client_ip) <span class="keyword">or</span> U.inArray(allow_nets,network) <span class="keyword">then</span></div><div class="line">            <span class="keyword">return</span> <span class="literal">true</span></div><div class="line">        <span class="keyword">end</span> </div><div class="line">    <span class="keyword">end</span> </div><div class="line">    <span class="keyword">return</span> ngx.<span class="built_in">exit</span>(<span class="number">403</span>)</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
-<p>nginx 自己里边配置就比较简单了:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">access_by_lua "tools.access_by_net('es')";</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1064,7 +1067,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">55</span>
+                <span class="site-state-item-count">56</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1086,7 +1089,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">78</span>
+                <span class="site-state-item-count">79</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
