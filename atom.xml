@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xsec.7ever.cn/"/>
-  <updated>2018-07-11T08:55:46.776Z</updated>
+  <updated>2018-07-16T03:21:34.330Z</updated>
   <id>https://xsec.7ever.cn/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>python解析指定dns附加timeout</title>
+    <link href="https://xsec.7ever.cn/2018/07/16/python-query-dns/"/>
+    <id>https://xsec.7ever.cn/2018/07/16/python-query-dns/</id>
+    <published>2018-07-16T03:20:43.000Z</published>
+    <updated>2018-07-16T03:21:34.330Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">import</span> dns.resolver</div><div class="line"></div><div class="line">Resolver = dns.resolver.Resolver()</div><div class="line">Resolver.timeout = <span class="number">0.2</span></div><div class="line">Resolver.lifetime = <span class="number">0.2</span></div><div class="line">Resolver.nameservers = [<span class="string">"10.210.3.100"</span>]</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">Query</span><span class="params">(domain,type_=<span class="string">"A"</span>)</span>:</span></div><div class="line">   <span class="keyword">return</span> Resolver.query(domain,type_).response.answer</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">foolQueryIps</span><span class="params">(domain,default=[])</span>:</span></div><div class="line">    queryIps = []</div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        result = Query(domain)</div><div class="line">        <span class="keyword">for</span> item <span class="keyword">in</span> result:</div><div class="line">            <span class="keyword">for</span> item_ <span class="keyword">in</span> item:</div><div class="line">                queryIps.append(item_.address)</div><div class="line">    <span class="keyword">except</span> Exception,ex:</div><div class="line">        queryIps = default</div><div class="line">    <span class="keyword">return</span> queryIps</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span> :</div><div class="line">    domain = <span class="string">"slavemysql.newaaa.sec.intra.sina.com.cn"</span></div><div class="line">    <span class="keyword">print</span> foolQueryIps(domain)</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/d
+      
+    
+    </summary>
+    
+    
+      <category term="dnspython" scheme="https://xsec.7ever.cn/tags/dnspython/"/>
+    
+  </entry>
   
   <entry>
     <title>centos 下一个安装superset 的shell</title>
@@ -281,9 +304,9 @@
       <category term="系统" scheme="https://xsec.7ever.cn/categories/%E7%B3%BB%E7%BB%9F/"/>
     
     
-      <category term="centos7" scheme="https://xsec.7ever.cn/tags/centos7/"/>
-    
       <category term="mysql" scheme="https://xsec.7ever.cn/tags/mysql/"/>
+    
+      <category term="centos7" scheme="https://xsec.7ever.cn/tags/centos7/"/>
     
   </entry>
   
@@ -341,9 +364,9 @@
       <category term="开发" scheme="https://xsec.7ever.cn/categories/%E5%BC%80%E5%8F%91/"/>
     
     
-      <category term="nginx" scheme="https://xsec.7ever.cn/tags/nginx/"/>
-    
       <category term="lua" scheme="https://xsec.7ever.cn/tags/lua/"/>
+    
+      <category term="nginx" scheme="https://xsec.7ever.cn/tags/nginx/"/>
     
   </entry>
   
@@ -438,7 +461,7 @@
     <published>2018-01-11T12:53:47.000Z</published>
     <updated>2018-01-13T07:30:35.159Z</updated>
     
-    <content type="html"><![CDATA[<ul><li>安装全局的babel-cli,用来转换ES6代码</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> npm install -g babel-cli</div></pre></td></tr></table></figure><ul><li><p>初始化你的项目目录:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> mkdir sample &amp;&amp; cd sample</div><div class="line"><span class="meta">$</span> mkdir src</div><div class="line"><span class="meta">$</span> mkdir dist</div><div class="line"><span class="meta">$</span> npm init -y # 一路初始化自己的项目</div></pre></td></tr></table></figure></li><li><p>创建静态文件:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> cat index.html</div><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html lang="en"&gt;</div><div class="line">    &lt;head&gt;</div><div class="line">        &lt;title&gt;&lt;/title&gt;</div><div class="line">        &lt;meta charset="UTF-8"&gt;</div><div class="line">        &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;</div><div class="line">        &lt;script src="./dist/index.js"&gt;&lt;/script&gt;</div><div class="line">    &lt;/head&gt;</div><div class="line">    &lt;body&gt;</div><div class="line">        Hello ECMA Script 6</div><div class="line">&lt;script src="./dist/index.js"&gt;&lt;/script&gt;</div><div class="line">    &lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure></li><li><p>npm 安装转换器，及依赖</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> npm install --save-dev babel-preset-es2015 babel-cli</div></pre></td></tr></table></figure></li><li><p>创建babel 使用配置</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> cat .babelrc</div><div class="line"></div><div class="line">&#123;</div><div class="line">    "presets":[</div><div class="line">        "es2015"</div><div class="line">    ],</div><div class="line">    "plugins":[]</div><div class="line">&#125;</div></pre></td></tr></table></figure></li><li><p>package.json 中添加 转换命令:</p></li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">....</div><div class="line">    "build": "babel src -d dist"</div><div class="line">....</div></pre></td></tr></table></figure><ul><li>一个完整版的package.json 如下,理论上说package.json + .babelrc 就可以配置基础的环境了:</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  "name": "xes6",</div><div class="line">  "version": "1.0.0",</div><div class="line">  "description": "",</div><div class="line">  "main": "index.js",</div><div class="line">  "scripts": &#123;</div><div class="line">    "test": "echo \"Error: no test specified\" &amp;&amp; exit 1",</div><div class="line">    "build": "babel src -d dist --watch"</div><div class="line">  &#125;,</div><div class="line">  "keywords": [],</div><div class="line">  "author": "",</div><div class="line">  "license": "ISC",</div><div class="line">  "devDependencies": &#123;</div><div class="line">    "babel-cli": "^6.26.0",</div><div class="line">    "babel-preset-es2015": "^6.24.1"</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure><ul><li>试一下吧：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm run build</div></pre></td></tr></table></figure></li></ul>]]></content>
+    <content type="html"><![CDATA[<ul><li>安装全局的babel-cli,用来转换ES6代码</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> npm install -g babel-cli</span></div></pre></td></tr></table></figure><ul><li><p>初始化你的项目目录:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> mkdir sample &amp;&amp; <span class="built_in">cd</span> sample</span></div><div class="line"><span class="meta">$</span><span class="bash"> mkdir src</span></div><div class="line"><span class="meta">$</span><span class="bash"> mkdir dist</span></div><div class="line"><span class="meta">$</span><span class="bash"> npm init -y <span class="comment"># 一路初始化自己的项目</span></span></div></pre></td></tr></table></figure></li><li><p>创建静态文件:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> cat index.html</span></div><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html lang="en"&gt;</div><div class="line">    &lt;head&gt;</div><div class="line">        &lt;title&gt;&lt;/title&gt;</div><div class="line">        &lt;meta charset="UTF-8"&gt;</div><div class="line">        &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;</div><div class="line">        &lt;script src="./dist/index.js"&gt;&lt;/script&gt;</div><div class="line">    &lt;/head&gt;</div><div class="line">    &lt;body&gt;</div><div class="line">        Hello ECMA Script 6</div><div class="line">&lt;script src="./dist/index.js"&gt;&lt;/script&gt;</div><div class="line">    &lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure></li><li><p>npm 安装转换器，及依赖</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> npm install --save-dev babel-preset-es2015 babel-cli</span></div></pre></td></tr></table></figure></li><li><p>创建babel 使用配置</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> cat .babelrc</span></div><div class="line"></div><div class="line">&#123;</div><div class="line">    "presets":[</div><div class="line">        "es2015"</div><div class="line">    ],</div><div class="line">    "plugins":[]</div><div class="line">&#125;</div></pre></td></tr></table></figure></li><li><p>package.json 中添加 转换命令:</p></li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">....</div><div class="line">    "build": "babel src -d dist"</div><div class="line">....</div></pre></td></tr></table></figure><ul><li>一个完整版的package.json 如下,理论上说package.json + .babelrc 就可以配置基础的环境了:</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  "name": "xes6",</div><div class="line">  "version": "1.0.0",</div><div class="line">  "description": "",</div><div class="line">  "main": "index.js",</div><div class="line">  "scripts": &#123;</div><div class="line">    "test": "echo \"Error: no test specified\" &amp;&amp; exit 1",</div><div class="line">    "build": "babel src -d dist --watch"</div><div class="line">  &#125;,</div><div class="line">  "keywords": [],</div><div class="line">  "author": "",</div><div class="line">  "license": "ISC",</div><div class="line">  "devDependencies": &#123;</div><div class="line">    "babel-cli": "^6.26.0",</div><div class="line">    "babel-preset-es2015": "^6.24.1"</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure><ul><li>试一下吧：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm run build</div></pre></td></tr></table></figure></li></ul>]]></content>
     
     <summary type="html">
     
@@ -455,11 +478,11 @@
       <category term="开发" scheme="https://xsec.7ever.cn/categories/%E5%BC%80%E5%8F%91/"/>
     
     
+      <category term="npm" scheme="https://xsec.7ever.cn/tags/npm/"/>
+    
       <category term="ES6" scheme="https://xsec.7ever.cn/tags/ES6/"/>
     
       <category term="node" scheme="https://xsec.7ever.cn/tags/node/"/>
-    
-      <category term="npm" scheme="https://xsec.7ever.cn/tags/npm/"/>
     
   </entry>
   
@@ -485,9 +508,9 @@
       <category term="系统" scheme="https://xsec.7ever.cn/categories/%E7%B3%BB%E7%BB%9F/"/>
     
     
-      <category term="nginx" scheme="https://xsec.7ever.cn/tags/nginx/"/>
-    
       <category term="lua" scheme="https://xsec.7ever.cn/tags/lua/"/>
+    
+      <category term="nginx" scheme="https://xsec.7ever.cn/tags/nginx/"/>
     
   </entry>
   
@@ -543,29 +566,6 @@
     
     
       <category term="SweetAlert" scheme="https://xsec.7ever.cn/tags/SweetAlert/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>使用wget下载整站资源</title>
-    <link href="https://xsec.7ever.cn/2017/12/22/wget-download-site/"/>
-    <id>https://xsec.7ever.cn/2017/12/22/wget-download-site/</id>
-    <published>2017-12-22T02:15:21.000Z</published>
-    <updated>2017-12-22T02:16:16.819Z</updated>
-    
-    <content type="html"><![CDATA[<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget -r -p -np -k https://docs.zivadynamics.com/vfx/</div></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;lin
-      
-    
-    </summary>
-    
-    
-      <category term="wget" scheme="https://xsec.7ever.cn/tags/wget/"/>
     
   </entry>
   
