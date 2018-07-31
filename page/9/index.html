@@ -272,6 +272,172 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2017/10/13/nginx-lua-see-http/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xingyue">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Simple Xsec World">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/13/nginx-lua-see-http/" itemprop="url">使用lua查看http(s)中的请求内容</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-13T14:05:54+08:00">
+                2017-10-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/系统/" itemprop="url" rel="index">
+                    <span itemprop="name">系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>原由:查看一个proxy系统客户端的请求内容，该系统为nginx proxy 搭建。</p>
+<p>方案:</p>
+<ul>
+<li>部署新的nginx </li>
+<li>内容请求部分添加lua 拦截请求</li>
+<li>根据nginx lua api 分离http(s) 的请求内容</li>
+</ul>
+<p>编译nginx时需要添加lua支持:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment">##注，忒别重要</span></span></div><div class="line">export LUAJIT_LIB=/data1/luajit/lib</div><div class="line">export LUAJIT_INC=/data1/luajit/include/luajit-2.0</div><div class="line"></div><div class="line">./configure --prefix=/data0/nginx/ \</div><div class="line">--with-stream \</div><div class="line">--with-http_ssl_module \</div><div class="line">--with-stream_ssl_module \</div><div class="line">--with-ld-opt=-Wl,-rpath,/data0/luajit/lib \</div><div class="line">--add-module=../lua-nginx-module</div><div class="line">--add-module=../ngx_devel_kit</div></pre></td></tr></table></figure>
+<p>配置正常的nginx模块,添加lua解析:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line"></div><div class="line">	listen 80;</div><div class="line">	location / &#123;</div><div class="line">		 access_by_lua_file /data0/nginx/conf/vhost/access.lua;</div><div class="line">		 proxy_pass http://$http_host;	</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>lua的内容:<br><figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">ngx.req.read_body()</div><div class="line"></div><div class="line"><span class="keyword">local</span> ip = ngx.var.remote_addr</div><div class="line"><span class="keyword">local</span> logfile = <span class="built_in">io</span>.<span class="built_in">open</span>(<span class="string">"/tmp/data.log"</span>,<span class="string">"a"</span>);</div><div class="line"></div><div class="line"><span class="keyword">local</span> method = ngx.req.get_method()</div><div class="line"><span class="keyword">local</span> body = ngx.req.get_body_data()</div><div class="line"></div><div class="line"><span class="keyword">if</span> (body == <span class="literal">nil</span>)</div><div class="line"><span class="keyword">then</span></div><div class="line">    body = <span class="string">''</span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line">logfile:<span class="built_in">write</span>(<span class="string">"\n ============================  "</span> .. method .. <span class="string">" ========================== "</span> .. <span class="string">"\n"</span>)</div><div class="line">logfile:<span class="built_in">write</span>(ngx.req.raw_header() .. <span class="string">"\n"</span>)</div><div class="line">logfile:<span class="built_in">write</span>(body ..  <span class="string">"\n"</span>)</div><div class="line"></div><div class="line"></div><div class="line">logfile:<span class="built_in">flush</span>()</div><div class="line">logfile:<span class="built_in">close</span>()</div></pre></td></tr></table></figure></p>
+<ul>
+<li><p>添加必要的lua模块，请使用如下脚本安装LuaRocks</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">wget http://luarocks.org/releases/luarocks-2.0.13.tar.gz</div><div class="line">tar -xzvf luarocks-2.0.13.tar.gz</div><div class="line">cd luarocks-2.0.13/</div><div class="line">./configure --prefix=/usr/local/openresty/luajit \</div><div class="line">    --with-lua=/usr/local/openresty/luajit/ \</div><div class="line">    --lua-suffix=jit \</div><div class="line">    --with-lua-include=/usr/local/openresty/luajit/include/luajit-2.1</div><div class="line">make</div><div class="line">sudo make install</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>谨记，谨记</strong> 需要把luarocks 对应的PATH 添加到环境变量中:</p>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">luarocks path</div></pre></td></tr></table></figure>
+<ul>
+<li>nginx 配置文件加入require的路径标识:</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">lua_package_path '/data1/nginx/lua/?.lua;';</div><div class="line">lua_package_cpath '/usr/local/lib/lua/5.1/?.so;';</div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment">##代码中可以使用tools对象,及ngx.shared.server （table对象）</span></span></div><div class="line">init_by_lua 'tools = require "tools"';</div><div class="line">lua_shared_dict server 5m;</div></pre></td></tr></table></figure>
+<p><strong> 注意一点 </strong> </p>
+<p>配置更新的地址:<br>/data0/luajit/share/lua/5.1/luarocks/cfg.lua:198 去掉不通的地址.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2017/10/12/ios-hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -843,149 +1009,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2017/10/05/pip-aliyun-https/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xingyue">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Simple Xsec World">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/05/pip-aliyun-https/" itemprop="url">pip配置可用的其他更新源</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-05T16:28:26+08:00">
-                2017-10-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/开发/" itemprop="url" rel="index">
-                    <span itemprop="name">开发</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>创建当前用户目录下的.pip子目录(~/.pip/),创建文本文件: <em>pip.conf</em> ，写入内容为:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[global]</div><div class="line">trusted-host=mirrors.aliyun.com</div><div class="line">index-url=http://mirrors.aliyun.com/pypi/simple/</div></pre></td></tr></table></figure></p>
-<hr>
-<h2 id="注意-一定要在当前用户目录下创建对应的文件"><a href="#注意-一定要在当前用户目录下创建对应的文件" class="headerlink" title=" 注意 一定要在当前用户目录下创建对应的文件"></a> <em>注意</em> 一定要在当前用户目录下创建对应的文件</h2>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1036,7 +1059,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">58</span>
+                <span class="site-state-item-count">59</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1058,7 +1081,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">81</span>
+                <span class="site-state-item-count">82</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
