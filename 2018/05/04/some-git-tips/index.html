@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="Simple Xsec World">
 <meta property="og:description" content="创建分支:git checkout -b   切换分支:git checkout   对比分支的变化:git log branch1 ^branch2    ##查看branch1 中包含，但是branch2中没有的变化  不明确的分支变化:git log branch1…branch2    ##对比两个branch的变化  查看某次提交的详细变化:git show   合并某次变化到当前分支">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-14T03:58:30.085Z">
+<meta property="og:updated_time" content="2018-09-14T04:06:53.260Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一些git的基本操作">
 <meta name="twitter:description" content="创建分支:git checkout -b   切换分支:git checkout   对比分支的变化:git log branch1 ^branch2    ##查看branch1 中包含，但是branch2中没有的变化  不明确的分支变化:git log branch1…branch2    ##对比两个branch的变化  查看某次提交的详细变化:git show   合并某次变化到当前分支">
@@ -376,6 +376,11 @@
 <li><p>查看某次提交的详细变化:<br>git show <change_name></change_name></p>
 </li>
 <li><p>合并某次变化到当前分支:<br>git log –oneline <branch_name><br>git cherry-pick commit-id   ### 合并某次提交到当前分支<br>git push origin upstream  </branch_name></p>
+</li>
+<li><p>删除远程分支:<br>git branch -d <dev_banch> # 删除本地分支<br>git push origin –delete <del_branch> #删除远程分支</del_branch></dev_banch></p>
+</li>
+<li><p>删除远程commits，谨记，错误提交加密信息到github时候需要:<br> 操作还是很麻烦的，不小心就丢了代码了，所以小心，小心再小心操作</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">git checkout -b &lt;n_branch&gt;   ## 创建临时分支</div><div class="line">git reset --hard &lt;commit_id&gt; ## 退回到之前的版本</div><div class="line">git push -b origin &lt;n_branch&gt;   # 推送一个远程分支</div><div class="line">git cherry-pick                 # 合并指定提交</div><div class="line">git branch -d master            #master 分支出错，先删除远程分支</div><div class="line">git push origin --delete master #删除master的远程分支</div><div class="line">git git checkout -b master      #重新生成master 分支</div><div class="line">git push -b origin master       #推送本地master分支到远程</div></pre></td></tr></table></figure>
 </li>
 </ul>
 
