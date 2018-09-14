@@ -171,9 +171,9 @@
     <link href="https://xsec.7ever.cn/2018/05/04/some-git-tips/"/>
     <id>https://xsec.7ever.cn/2018/05/04/some-git-tips/</id>
     <published>2018-05-04T01:37:06.000Z</published>
-    <updated>2018-05-04T01:52:20.000Z</updated>
+    <updated>2018-09-14T03:58:30.085Z</updated>
     
-    <content type="html"><![CDATA[<ul><li><p>创建分支:<br>git checkout -b <branch_name></branch_name></p></li><li><p>切换分支:<br>git checkout <branch_name></branch_name></p></li><li><p>对比分支的变化:<br>git log branch1 ^branch2    ##查看branch1 中包含，但是branch2中没有的变化</p></li><li><p>不明确的分支变化:<br>git log branch1…branch2    ##对比两个branch的变化</p></li><li><p>查看某次提交的详细变化:<br>git show <change_name></change_name></p></li><li><p>合并某次变化到当前分支:</p></li></ul>]]></content>
+    <content type="html"><![CDATA[<ul><li><p>创建分支:<br>git checkout -b <branch_name></branch_name></p></li><li><p>切换分支:<br>git checkout <branch_name></branch_name></p></li><li><p>对比分支的变化:<br>git log branch1 ^branch2    ##查看branch1 中包含，但是branch2中没有的变化</p></li><li><p>不明确的分支变化:<br>git log branch1…branch2    ##对比两个branch的变化</p></li><li><p>查看某次提交的详细变化:<br>git show <change_name></change_name></p></li><li><p>合并某次变化到当前分支:<br>git log –oneline <branch_name><br>git cherry-pick commit-id   ### 合并某次提交到当前分支<br>git push origin upstream  </branch_name></p></li></ul>]]></content>
     
     <summary type="html">
     
@@ -330,9 +330,9 @@
       <category term="系统" scheme="https://xsec.7ever.cn/categories/%E7%B3%BB%E7%BB%9F/"/>
     
     
-      <category term="centos7" scheme="https://xsec.7ever.cn/tags/centos7/"/>
-    
       <category term="mysql" scheme="https://xsec.7ever.cn/tags/mysql/"/>
+    
+      <category term="centos7" scheme="https://xsec.7ever.cn/tags/centos7/"/>
     
   </entry>
   
