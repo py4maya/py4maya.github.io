@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xsec.7ever.cn/"/>
-  <updated>2018-10-17T06:21:43.348Z</updated>
+  <updated>2018-10-25T05:05:33.849Z</updated>
   <id>https://xsec.7ever.cn/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>多logstash 消费同一个kafka 做队列数据转发</title>
+    <link href="https://xsec.7ever.cn/2018/10/25/many-logstash-one-kafka/"/>
+    <id>https://xsec.7ever.cn/2018/10/25/many-logstash-one-kafka/</id>
+    <published>2018-10-25T05:02:20.000Z</published>
+    <updated>2018-10-25T05:05:33.849Z</updated>
+    
+    <content type="html"><![CDATA[<p>logstash-2.4.0 </p><h3 id="修改如下的代码"><a href="#修改如下的代码" class="headerlink" title="修改如下的代码:"></a>修改如下的代码:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">vendor/bundle/jruby/1.9/gems/jruby-kafka-1.5.0-java/lib/jruby-kafka/group.rb</div><div class="line"></div><div class="line">run 部分的代码:  大约163行</div><div class="line">if @reset_beginning == &apos;from-beginning&apos;</div><div class="line">    #Java::kafka::utils::ZkUtils.maybeDeletePath(@zk_connect, &quot;/consumers/#&#123;@group_id&#125;&quot;)</div><div class="line">end</div></pre></td></tr></table></figure><h3 id="批量创建配置文件的脚本"><a href="#批量创建配置文件的脚本" class="headerlink" title="批量创建配置文件的脚本:"></a>批量创建配置文件的脚本:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line"></div><div class="line">rm -f conf/*</div><div class="line">num=10</div><div class="line"></div><div class="line">for((in=0;in&lt;$num;in++))</div><div class="line">do</div><div class="line">    cat hflow.conf  | sed &quot;s/&lt;data_num&gt;/$&#123;in&#125;/g&quot; &gt; conf/hflow_$&#123;in&#125;.conf</div><div class="line">done</div></pre></td></tr></table></figure><h3 id="hflow-conf-的模板"><a href="#hflow-conf-的模板" class="headerlink" title="hflow.conf 的模板:"></a>hflow.conf 的模板:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">input &#123;</div><div class="line">    kafka &#123;</div><div class="line">        zk_connect =&gt; &quot;zk.your.own.com:2181/kafka/k1001&quot;</div><div class="line">        topic_id =&gt; &quot;&quot;</div><div class="line">        group_id =&gt; &quot;&quot;</div><div class="line">        reset_beginning =&gt; true</div><div class="line">        consumer_threads =&gt; 1</div><div class="line">        decorate_events =&gt; false </div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">    </div><div class="line">output &#123;</div><div class="line"></div><div class="line">    file&#123;</div><div class="line">        path =&gt; &quot;/data0/logstash/logstash-2.4.0/data/hflow_%&#123;+YYYY-MM-dd&#125;_&lt;data_num&gt;.log&quot;    </div><div class="line">    &#125;</div><div class="line"></div><div class="line">    file&#123;</div><div class="line">        path =&gt; &quot;/data0/logstash/logstash-2.4.0/data/all_%&#123;+YYYY-MM-dd&#125;.log&quot;    </div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure><h3 id="supervisor-配置"><a href="#supervisor-配置" class="headerlink" title="supervisor 配置:"></a>supervisor 配置:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">[program:starflow]</div><div class="line">process_name=%(program_name)s_%(process_num)01d;</div><div class="line">numprocs=10</div><div class="line">command=/data0/logstash/logstash-2.4.0/bin/logstash -f /data0/logstash/logstash-2.4.0/conf/hflow_%(process_num)01d.conf</div><div class="line">directory=/data0/logstash/logstash-2.4.0</div><div class="line">autostart=true</div><div class="line">startsecs=1</div><div class="line">startretries=5</div><div class="line">user=root</div><div class="line">redirect_stderr=true</div><div class="line">stdout_logfile=/data0/logstash/logstash-2.4.0/logs/stdout.log</div><div class="line">stdout_logfile_maxbytes=1024MB</div><div class="line">stdout_logfile_backups=10</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;logstash-2.4.0 &lt;/p&gt;
+&lt;h3 id=&quot;修改如下的代码&quot;&gt;&lt;a href=&quot;#修改如下的代码&quot; class=&quot;headerlink&quot; title=&quot;修改如下的代码:&quot;&gt;&lt;/a&gt;修改如下的代码:&lt;/h3&gt;&lt;figure class=&quot;highlight pla
+      
+    
+    </summary>
+    
+    
+      <category term="logstash" scheme="https://xsec.7ever.cn/tags/logstash/"/>
+    
+      <category term="kafka" scheme="https://xsec.7ever.cn/tags/kafka/"/>
+    
+  </entry>
   
   <entry>
     <title>lsattr chattr</title>
@@ -41,11 +67,11 @@
       <category term="linux" scheme="https://xsec.7ever.cn/categories/linux/"/>
     
     
+      <category term="linux" scheme="https://xsec.7ever.cn/tags/linux/"/>
+    
       <category term="lsattr" scheme="https://xsec.7ever.cn/tags/lsattr/"/>
     
       <category term="chattr" scheme="https://xsec.7ever.cn/tags/chattr/"/>
-    
-      <category term="linux" scheme="https://xsec.7ever.cn/tags/linux/"/>
     
   </entry>
   
@@ -542,34 +568,6 @@
       <category term="node" scheme="https://xsec.7ever.cn/tags/node/"/>
     
       <category term="npm" scheme="https://xsec.7ever.cn/tags/npm/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>比nginx自己更好用的ip 访问控制</title>
-    <link href="https://xsec.7ever.cn/2018/01/10/nginx-lua-better-access-control/"/>
-    <id>https://xsec.7ever.cn/2018/01/10/nginx-lua-better-access-control/</id>
-    <published>2018-01-10T09:46:19.000Z</published>
-    <updated>2018-01-10T09:54:33.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>nginx 自己的ip访问控制大家应该都用过，就是下边的这种写法:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">allow ip1;</div><div class="line">allow ip2;</div><div class="line">allow ip3;</div><div class="line">deny all;</div><div class="line">...</div></pre></td></tr></table></figure><p>当你有一堆IP需要控制的时候，就是一件比较难受的事情了。<br>所以，使用lua 写了这么一段lua代码。</p><p>nginx 自己需要配置支持 lua 去翻其他的代码吧:</p><figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">M.access_by_net</span><span class="params">(name)</span></span> </div><div class="line">    <span class="keyword">local</span> client_ip =  ngx.var.remote_addr <span class="keyword">or</span> <span class="string">"0.0.0.0"</span></div><div class="line">    <span class="keyword">local</span> pts,pts_len = U.findAll(client_ip,<span class="string">'%.'</span>)</div><div class="line">    <span class="keyword">if</span> pts_len == <span class="number">3</span> <span class="keyword">then</span></div><div class="line">        <span class="keyword">local</span> network = <span class="built_in">string</span>.<span class="built_in">sub</span>(client_ip,<span class="number">0</span>,pts[<span class="number">3</span>])</div><div class="line">        <span class="keyword">local</span> allow_hosts = &#123;&#125;</div><div class="line">        <span class="keyword">local</span> allow_nets = &#123;&#125;</div><div class="line"></div><div class="line"><span class="comment">--- 这部分就可以自己定义了</span></div><div class="line">        <span class="keyword">if</span> name == <span class="string">"sec"</span> <span class="keyword">then</span></div><div class="line">            allow_nets = &#123;<span class="string">"10.222.28."</span>&#125;</div><div class="line">        <span class="keyword">elseif</span> name == <span class="string">"es"</span> <span class="keyword">then</span></div><div class="line">            allow_nets = &#123;&#125;</div><div class="line">            allow_hosts = &#123;<span class="string">"10.210.12.17"</span>&#125;</div><div class="line">        <span class="keyword">end</span> </div><div class="line"></div><div class="line">        <span class="keyword">if</span> U.inArray(allow_hosts,client_ip) <span class="keyword">or</span> U.inArray(allow_nets,network) <span class="keyword">then</span></div><div class="line">            <span class="keyword">return</span> <span class="literal">true</span></div><div class="line">        <span class="keyword">end</span> </div><div class="line">    <span class="keyword">end</span> </div><div class="line">    <span class="keyword">return</span> ngx.<span class="built_in">exit</span>(<span class="number">403</span>)</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure><p>nginx 自己里边配置就比较简单了:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">access_by_lua "tools.access_by_net('es')";</div></pre></td></tr></table></figure></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;nginx 自己的ip访问控制大家应该都用过，就是下边的这种写法:&lt;/p&gt;
-&lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div cl
-      
-    
-    </summary>
-    
-      <category term="系统" scheme="https://xsec.7ever.cn/categories/%E7%B3%BB%E7%BB%9F/"/>
-    
-    
-      <category term="lua" scheme="https://xsec.7ever.cn/tags/lua/"/>
-    
-      <category term="nginx" scheme="https://xsec.7ever.cn/tags/nginx/"/>
     
   </entry>
   
