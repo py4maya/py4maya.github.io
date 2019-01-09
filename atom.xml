@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xsec.7ever.cn/"/>
-  <updated>2018-12-03T08:27:17.144Z</updated>
+  <updated>2019-01-09T07:06:06.352Z</updated>
   <id>https://xsec.7ever.cn/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>修改运行起来的docker 容器的端口参数</title>
+    <link href="https://xsec.7ever.cn/2019/01/09/docker-container-port-modify/"/>
+    <id>https://xsec.7ever.cn/2019/01/09/docker-container-port-modify/</id>
+    <published>2019-01-09T07:00:24.000Z</published>
+    <updated>2019-01-09T07:06:06.352Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">起因: 一台带公网IP的docker服务器，同事费了半天劲，折腾出来一个容器,（不可逆，不能重新创建）。端口监听到了0.0.0.0。</div><div class="line">改也不是，不改也不是。</div></pre></td></tr></table></figure><h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案:"></a>解决方案:</h3><ul><li>先找到对应的容器ID </li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker ps -a</div></pre></td></tr></table></figure><p>拿到一串字符ID 。去对应的docker 运行目录中，找containers 目录,然后按照前缀找到对应的文件件。</p><p>没错，这个文件件就是运行起来的容器。</p><ul><li>关闭docker 服务， </li></ul><p><em>关闭前做好善后工作，记录好运行了哪些容器，确保你了解那些容器的运行参数</em></p><ul><li><p>修改下配置吧:</p><p>修改这个容器的hostconfig.json文件中的端口（原帖有人提到，如果config.v2.json里面也记录了端口，也要修改）</p></li><li><p>然后重新启动docker 服务</p></li><li><p>最后docker ps -a 看到对应的端口信息改了吧 </p></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;c
+      
+    
+    </summary>
+    
+      <category term="开发" scheme="https://xsec.7ever.cn/categories/%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="docker" scheme="https://xsec.7ever.cn/tags/docker/"/>
+    
+  </entry>
   
   <entry>
     <title>python3 使用click 构建入口程序</title>
@@ -92,11 +117,11 @@
       <category term="linux" scheme="https://xsec.7ever.cn/categories/linux/"/>
     
     
+      <category term="linux" scheme="https://xsec.7ever.cn/tags/linux/"/>
+    
       <category term="lsattr" scheme="https://xsec.7ever.cn/tags/lsattr/"/>
     
       <category term="chattr" scheme="https://xsec.7ever.cn/tags/chattr/"/>
-    
-      <category term="linux" scheme="https://xsec.7ever.cn/tags/linux/"/>
     
   </entry>
   
@@ -532,35 +557,6 @@
     
     </summary>
     
-    
-  </entry>
-  
-  <entry>
-    <title>通过https 站点分发ipa 安装包</title>
-    <link href="https://xsec.7ever.cn/2018/01/12/ipa-publish-https/"/>
-    <id>https://xsec.7ever.cn/2018/01/12/ipa-publish-https/</id>
-    <published>2018-01-12T02:01:07.000Z</published>
-    <updated>2018-01-12T02:05:57.000Z</updated>
-    
-    <content type="html"><![CDATA[<ul><li><p>配置下载页:</p><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"itms-services://?action=download-manifest&amp;url=https://......./test.plist"</span>&gt;</span>下载测试版<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div></pre></td></tr></table></figure></li><li><p>编写plist文件:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</div><div class="line">&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;</div><div class="line">&lt;plist version="1.0"&gt;</div><div class="line">&lt;dict&gt;</div><div class="line">&lt;key&gt;items&lt;/key&gt;</div><div class="line">&lt;array&gt;</div><div class="line">&lt;dict&gt;</div><div class="line">&lt;key&gt;assets&lt;/key&gt;</div><div class="line">&lt;array&gt;</div><div class="line">&lt;dict&gt;</div><div class="line">&lt;key&gt;kind&lt;/key&gt;</div><div class="line">&lt;string&gt;software-package&lt;/string&gt;</div><div class="line">&lt;key&gt;url&lt;/key&gt;</div><div class="line">&lt;string&gt;https://.....................ipa&lt;/string&gt;</div><div class="line">&lt;/dict&gt;</div><div class="line">&lt;dict&gt;</div><div class="line">&lt;key&gt;kind&lt;/key&gt;</div><div class="line">&lt;string&gt;full-size-image&lt;/string&gt;</div><div class="line">&lt;key&gt;needs-shine&lt;/key&gt;</div><div class="line">&lt;false/&gt;</div><div class="line">&lt;key&gt;url&lt;/key&gt;</div><div class="line">&lt;string&gt;https://............................icon.png&lt;/string&gt;</div><div class="line">&lt;/dict&gt;</div><div class="line">&lt;dict&gt;</div><div class="line">&lt;key&gt;kind&lt;/key&gt;</div><div class="line">&lt;string&gt;display-image&lt;/string&gt;</div><div class="line">&lt;key&gt;needs-shine&lt;/key&gt;</div><div class="line">&lt;false/&gt;</div><div class="line">&lt;key&gt;url&lt;/key&gt;</div><div class="line">&lt;string&gt;https://...........................icon@2x.png&lt;/string&gt;</div><div class="line">&lt;/dict&gt;</div><div class="line">&lt;/array&gt;</div><div class="line">&lt;key&gt;metadata&lt;/key&gt;</div><div class="line">&lt;dict&gt;</div><div class="line">&lt;key&gt;bundle-identifier&lt;/key&gt;</div><div class="line">&lt;string&gt;com.package.yours&lt;/string&gt;</div><div class="line">&lt;key&gt;bundle-version&lt;/key&gt;</div><div class="line">&lt;string&gt;2.0.2&lt;/string&gt;</div><div class="line">&lt;key&gt;kind&lt;/key&gt;</div><div class="line">&lt;string&gt;software&lt;/string&gt;</div><div class="line">&lt;key&gt;subtitle&lt;/key&gt;</div><div class="line">&lt;string&gt;测试ipa&lt;/string&gt;</div><div class="line">&lt;key&gt;title&lt;/key&gt;</div><div class="line">&lt;string&gt;测试ipa安装&lt;/string&gt;</div><div class="line">&lt;/dict&gt;</div><div class="line">&lt;/dict&gt;</div><div class="line">&lt;/array&gt;</div><div class="line">&lt;/dict&gt;</div><div class="line">&lt;/plist&gt;</div></pre></td></tr></table></figure></li><li><p>最后放好你的ipa，用ios 手机 safri 浏览器打开你的 发布页，点击 下载测试版 就可以安装了.</p></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;配置下载页:&lt;/p&gt;
-&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code
-      
-    
-    </summary>
-    
-      <category term="开发" scheme="https://xsec.7ever.cn/categories/%E5%BC%80%E5%8F%91/"/>
-    
-    
-      <category term="https" scheme="https://xsec.7ever.cn/tags/https/"/>
-    
-      <category term="ipa" scheme="https://xsec.7ever.cn/tags/ipa/"/>
     
   </entry>
   

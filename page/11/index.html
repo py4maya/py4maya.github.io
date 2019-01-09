@@ -272,6 +272,160 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2017/10/03/pandas-data-sight/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xingyue">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Simple Xsec World">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/03/pandas-data-sight/" itemprop="url">使用pandas做数据分析</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-03T09:01:58+08:00">
+                2017-10-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据分析/" itemprop="url" rel="index">
+                    <span itemprop="name">数据分析</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="安装"><a href="#安装" class="headerlink" title="安装:"></a>安装:</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> pip install pandas</span></div></pre></td></tr></table></figure>
+<p>安装完成，系统中会包含三个包:numpy, pytz, pandas,主要使用的pandas,numpy 是一个扩展的数组</p>
+<h4 id="引入类库"><a href="#引入类库" class="headerlink" title="引入类库:"></a>引入类库:</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">from</span> pandas <span class="keyword">import</span> Series, DataFrame</div></pre></td></tr></table></figure>
+<h4 id="Series-一个hash索引的数组，比普通的dict，map-计算更方便快捷"><a href="#Series-一个hash索引的数组，比普通的dict，map-计算更方便快捷" class="headerlink" title="Series 一个hash索引的数组，比普通的dict，map 计算更方便快捷:"></a>Series 一个hash索引的数组，比普通的dict，map 计算更方便快捷:</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#初始化</span></div><div class="line">ser = Series([<span class="number">6</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">9</span>,<span class="number">2</span>],index=[<span class="string">'A'</span>,<span class="string">'B'</span>,<span class="string">'C'</span>,<span class="string">'D'</span>,<span class="string">'E'</span>])</div></pre></td></tr></table></figure>
+<p>将得到一个以A,B,C,D,E为键，值为6,5,4,9,2的数组</p>
+<h5 id="计算"><a href="#计算" class="headerlink" title="计算"></a>计算</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">nser = ser[ser &lt; <span class="number">5</span>] <span class="comment">#将得到小于5的数组</span></div><div class="line">nser = nser + <span class="number">10</span> <span class="comment">#将所有的值都添加10</span></div><div class="line">nser = nser &lt; <span class="number">10</span> <span class="comment">#转成boolean</span></div><div class="line"><span class="string">'A'</span> <span class="keyword">in</span> nser <span class="comment">#判断包含关系</span></div><div class="line">A = Series([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>])</div><div class="line">B = Series([<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>])</div><div class="line">C = A + B <span class="comment">#相加</span></div></pre></td></tr></table></figure>
+<h4 id="二维检索计算的基本单位DataFrame"><a href="#二维检索计算的基本单位DataFrame" class="headerlink" title="二维检索计算的基本单位DataFrame"></a>二维检索计算的基本单位DataFrame</h4><h5 id="数据加载构成DataFrame"><a href="#数据加载构成DataFrame" class="headerlink" title="数据加载构成DataFrame"></a>数据加载构成DataFrame</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">df=pd.read_csv(<span class="string">"/Users/vbabu/Documents/personal/MyGitWork/csv/mls-salaries-2016.csv"</span>)</div><div class="line">df=pd.read_json(<span class="string">"/Users/vbabu/Documents/personal/MyGitWork/csv/mls-salaries-2016.json"</span>)</div></pre></td></tr></table></figure>
+<h5 id="获取头，尾的数据"><a href="#获取头，尾的数据" class="headerlink" title="获取头，尾的数据:"></a>获取头，尾的数据:</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">df.head(count)</div><div class="line">df.tail(count)</div><div class="line">df.info() <span class="comment">#获取DataFrame的相关存储设置</span></div><div class="line">df[<span class="string">'index_name'</span>].head(count) <span class="comment"># 获取某一列的头数据</span></div><div class="line">df[<span class="string">'new_name'</span>] = df[new_name + <span class="number">10</span>] <span class="comment">#添加新列，并且赋值</span></div><div class="line"><span class="keyword">del</span> df[<span class="string">'name'</span>] <span class="comment">#删除列</span></div><div class="line">df.fillna(<span class="string">'5'</span>) <span class="comment">#填充null的数据</span></div></pre></td></tr></table></figure>
+<h5 id="简单计算"><a href="#简单计算" class="headerlink" title="简单计算:"></a>简单计算:</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">df.sum(axis=<span class="number">1</span>)</div><div class="line">df.sum(axis=<span class="number">0</span>)</div><div class="line">df.min(axis=<span class="number">0</span>) <span class="comment">#求最小值</span></div><div class="line">df.max(axis=<span class="number">0</span>) <span class="comment">#求最小值</span></div><div class="line">df.groupby([<span class="string">'name'</span>]).count().sort_values().head() <span class="comment">#相当于graylog里边的quick values</span></div></pre></td></tr></table></figure>
+<h5 id="数据删减"><a href="#数据删减" class="headerlink" title="数据删减"></a>数据删减</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">dframe.drop(<span class="string">'B'</span>) <span class="comment">#删除数据</span></div><div class="line">dframe.append([]) <span class="comment">#添加数据</span></div><div class="line">df = dframe[ <span class="string">'B'</span> &gt; <span class="number">10</span>] <span class="comment">#数据筛选</span></div></pre></td></tr></table></figure>
+<h5 id="数据排序"><a href="#数据排序" class="headerlink" title="数据排序:"></a>数据排序:</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">df.sort_values(ascending=<span class="keyword">True</span>|<span class="keyword">False</span>)</div></pre></td></tr></table></figure>
+<h5 id="数据类型转换"><a href="#数据类型转换" class="headerlink" title="数据类型转换:"></a>数据类型转换:</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">df[<span class="string">'col2'</span>] = df[<span class="string">'col2'</span>].astype(<span class="string">'int'</span>)</div><div class="line"><span class="keyword">print</span> <span class="string">'-----------'</span></div><div class="line"><span class="keyword">print</span> df.dtypes</div><div class="line"></div><div class="line">df[<span class="string">'col2'</span>] = df[<span class="string">'col2'</span>].astype(<span class="string">'float64'</span>)</div><div class="line"><span class="keyword">print</span> <span class="string">'-----------'</span></div><div class="line"><span class="keyword">print</span> df.dtypes</div></pre></td></tr></table></figure>
+<p><a href="https://kanoki.org/2017/07/16/pandas-in-a-nutshell/#Selecting-Index" target="_blank" rel="noopener">数据翻译来源https://kanoki.org/2017/07/16/pandas-in-a-nutshell/#Selecting-Index</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2017/09/28/tcp-replay/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -962,152 +1116,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2017/09/23/nginx-stream-proxy/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xingyue">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Simple Xsec World">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/23/nginx-stream-proxy/" itemprop="url">使用nginx做后端tcp,udp的proxy</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-23T07:51:16+08:00">
-                2017-09-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/系统/" itemprop="url" rel="index">
-                    <span itemprop="name">系统</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>安装参数:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">./configure \</div><div class="line">--prefix=/data1/mginx/ \</div><div class="line">--with-stream \</div><div class="line">--with-stream_realip_module \</div><div class="line">--with-stream_ssl_module \</div><div class="line">--without-http \</div><div class="line"></div><div class="line">make -j4</div><div class="line">make install</div></pre></td></tr></table></figure></p>
-<p>stream的配置文件，在nginx主配置文件中添加容器stream<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">''''</div><div class="line">stream &#123;</div><div class="line">	upstream sample_stream &#123;</div><div class="line">		server 127.0.0.1:5800 max_fails=3 fail_timeout=5s;	</div><div class="line">		server 127.0.0.1:5801 max_fails=3 fail_timeout=5s;	</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	server &#123; </div><div class="line">		listen 1812 ; # 可以用指定ip 或者指定协议,比如 listen 10.211.61.88 1812 ; 比如  listen 10.211.61.88 1812 udp;	</div><div class="line">		proxy_pass radius_upstream_onetime; #数据转发</div><div class="line">		allow 10.210.12.17; #指定基于ip的访问控制</div><div class="line">		deny all;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">http&#123;</div><div class="line">&#125;</div><div class="line">''''</div></pre></td></tr></table></figure></p>
-<p>stream 中可以添加lua控制，这样就可以方便的用lua编写tcp，udp 程序,在编译参数中添加stream_lua组件:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">--with-ld-opt="-Wl,-rpath,/data1/luajit/lib" \</div><div class="line">--add-module="../stream-lua-nginx-module" \</div></pre></td></tr></table></figure></p>
-<p>设置stream中生成lua控制:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">content_by_lua_file /data1/code/lua/streams/echo.lua;</div></pre></td></tr></table></figure></p>
-<p>lua脚本控制，配置一个echo协议，即输入什么返回什么:<br><figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">local</span> sock = <span class="built_in">assert</span>(ngx.req.socket(<span class="literal">true</span>))</div><div class="line"><span class="keyword">local</span> ip = ngx.var.remote_addr</div><div class="line"><span class="keyword">local</span> data </div><div class="line"></div><div class="line"><span class="keyword">while</span>(<span class="number">1</span> == <span class="number">1</span>)</div><div class="line"><span class="keyword">do</span></div><div class="line">	data = sock:receive()  </div><div class="line">	ngx.say(data)</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1158,7 +1166,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-count">63</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1247,7 +1255,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
