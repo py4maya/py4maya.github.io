@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xsec.7ever.cn/"/>
-  <updated>2019-01-09T07:06:06.352Z</updated>
+  <updated>2019-01-23T00:28:42.429Z</updated>
   <id>https://xsec.7ever.cn/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>golang.org 下载失败问题解决</title>
+    <link href="https://xsec.7ever.cn/2019/01/23/golang-org-bad/"/>
+    <id>https://xsec.7ever.cn/2019/01/23/golang-org-bad/</id>
+    <published>2019-01-23T00:27:33.000Z</published>
+    <updated>2019-01-23T00:28:42.429Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="第一步："><a href="#第一步：" class="headerlink" title="第一步："></a>第一步：</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/golang/net.git $GOPATH/src/github.com/golang/net</div><div class="line">git clone https://github.com/golang/sys.git $GOPATH/src/github.com/golang/sys</div><div class="line">git clone https://github.com/golang/tools.git $GOPATH/src/github.com/golang/tools</div></pre></td></tr></table></figure><h4 id="第二步："><a href="#第二步：" class="headerlink" title="第二步："></a>第二步：</h4><p>将net、sys、tools三个文件夹放到$GOPATH/src/golang.org/x目录下。 或者Linux下可以创建软连接：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ln -s $GOPATH/src/github.com/golang $GOPATH/src/golang.org/x</div></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;第一步：&quot;&gt;&lt;a href=&quot;#第一步：&quot; class=&quot;headerlink&quot; title=&quot;第一步：&quot;&gt;&lt;/a&gt;第一步：&lt;/h4&gt;&lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pr
+      
+    
+    </summary>
+    
+    
+      <category term="golang" scheme="https://xsec.7ever.cn/tags/golang/"/>
+    
+  </entry>
   
   <entry>
     <title>修改运行起来的docker 容器的端口参数</title>
@@ -117,11 +140,11 @@
       <category term="linux" scheme="https://xsec.7ever.cn/categories/linux/"/>
     
     
-      <category term="linux" scheme="https://xsec.7ever.cn/tags/linux/"/>
-    
       <category term="lsattr" scheme="https://xsec.7ever.cn/tags/lsattr/"/>
     
       <category term="chattr" scheme="https://xsec.7ever.cn/tags/chattr/"/>
+    
+      <category term="linux" scheme="https://xsec.7ever.cn/tags/linux/"/>
     
   </entry>
   
@@ -499,9 +522,9 @@
       <category term="开发" scheme="https://xsec.7ever.cn/categories/%E5%BC%80%E5%8F%91/"/>
     
     
-      <category term="lua" scheme="https://xsec.7ever.cn/tags/lua/"/>
-    
       <category term="nginx" scheme="https://xsec.7ever.cn/tags/nginx/"/>
+    
+      <category term="lua" scheme="https://xsec.7ever.cn/tags/lua/"/>
     
   </entry>
   
@@ -528,35 +551,6 @@
     
     
       <category term="python" scheme="https://xsec.7ever.cn/tags/python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>mac 忘记开机密码</title>
-    <link href="https://xsec.7ever.cn/2018/01/12/mac-forget-password/"/>
-    <id>https://xsec.7ever.cn/2018/01/12/mac-forget-password/</id>
-    <published>2018-01-12T08:59:21.000Z</published>
-    <updated>2018-01-12T09:00:33.000Z</updated>
-    
-    <content type="html"><![CDATA[<ul><li><p>在单用户模式下启动 Mac 设备。</p></li><li><p>打开终端窗口，然后输入以下命令：</p></li></ul><p>mount -uw /</p><ul><li>Capitan 或 Yosemite 系统用户分别输入以下两个命令：</li></ul><p>launchcti load /System/Library/LaunchDaemons/com.apple.taskgated.plist<br>launchctl load /System/Library/LaunchDaemons/com.apple.opendirectoryd.plist</p><p>而 Mavericks、Mountain Lion 或 Lion 系统用户则输入以下命令：</p><p>launchctl load /System/Library/LaunchDaemons/com.apple.opendirectoryd.plist</p><p>需要注意的是，如果你不知道用户的短名称，可以输入以下命令来获取用户列表(短名称位于左侧，完整名称位于右侧)：</p><p>dscl localonly ls /Local/Default/Users realname</p><ul><li>输入以下命令，并将 shortname 替换为管理员用户的短名称(用户个人文件夹的名称)：</li></ul><p>passwd shortname</p><p>系统提示时，输入新的帐户密码，但是你可能看不到任何表明正在键入的指示。</p><ul><li>输入 reboot 命令以重新启动 Mac。</li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;在单用户模式下启动 Mac 设备。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;打开终端窗口，然后输入以下命令：&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;mount -uw /&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Capitan 或 Yosemite 系统用户分别输入以下两个命
-      
-    
-    </summary>
-    
     
   </entry>
   
