@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xsec.7ever.cn/"/>
-  <updated>2019-01-23T00:28:42.429Z</updated>
+  <updated>2019-01-23T00:30:18.580Z</updated>
   <id>https://xsec.7ever.cn/</id>
   
   <author>
@@ -21,15 +21,15 @@
     <link href="https://xsec.7ever.cn/2019/01/23/golang-org-bad/"/>
     <id>https://xsec.7ever.cn/2019/01/23/golang-org-bad/</id>
     <published>2019-01-23T00:27:33.000Z</published>
-    <updated>2019-01-23T00:28:42.429Z</updated>
+    <updated>2019-01-23T00:30:18.580Z</updated>
     
-    <content type="html"><![CDATA[<h4 id="第一步："><a href="#第一步：" class="headerlink" title="第一步："></a>第一步：</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/golang/net.git $GOPATH/src/github.com/golang/net</div><div class="line">git clone https://github.com/golang/sys.git $GOPATH/src/github.com/golang/sys</div><div class="line">git clone https://github.com/golang/tools.git $GOPATH/src/github.com/golang/tools</div></pre></td></tr></table></figure><h4 id="第二步："><a href="#第二步：" class="headerlink" title="第二步："></a>第二步：</h4><p>将net、sys、tools三个文件夹放到$GOPATH/src/golang.org/x目录下。 或者Linux下可以创建软连接：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ln -s $GOPATH/src/github.com/golang $GOPATH/src/golang.org/x</div></pre></td></tr></table></figure></p>]]></content>
+    <content type="html"><![CDATA[<h4 id="第一步：-从github-com-下载对应的镜像包"><a href="#第一步：-从github-com-下载对应的镜像包" class="headerlink" title="第一步： 从github.com 下载对应的镜像包:"></a>第一步： 从github.com 下载对应的镜像包:</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/golang/net.git $GOPATH/src/github.com/golang/net</div><div class="line">git clone https://github.com/golang/sys.git $GOPATH/src/github.com/golang/sys</div><div class="line">git clone https://github.com/golang/tools.git $GOPATH/src/github.com/golang/tools</div></pre></td></tr></table></figure><h4 id="第二步："><a href="#第二步：" class="headerlink" title="第二步："></a>第二步：</h4><p>将net、sys、tools三个文件夹放到$GOPATH/src/golang.org/x目录下。 或者Linux下可以创建软连接：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ln -s $GOPATH/src/github.com/golang $GOPATH/src/golang.org/x</div></pre></td></tr></table></figure></p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h4 id=&quot;第一步：&quot;&gt;&lt;a href=&quot;#第一步：&quot; class=&quot;headerlink&quot; title=&quot;第一步：&quot;&gt;&lt;/a&gt;第一步：&lt;/h4&gt;&lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pr
+        &lt;h4 id=&quot;第一步：-从github-com-下载对应的镜像包&quot;&gt;&lt;a href=&quot;#第一步：-从github-com-下载对应的镜像包&quot; class=&quot;headerlink&quot; title=&quot;第一步： 从github.com 下载对应的镜像包:&quot;&gt;&lt;/a&gt;第一步： 从gith
       
     
     </summary>
@@ -522,9 +522,9 @@
       <category term="开发" scheme="https://xsec.7ever.cn/categories/%E5%BC%80%E5%8F%91/"/>
     
     
-      <category term="nginx" scheme="https://xsec.7ever.cn/tags/nginx/"/>
-    
       <category term="lua" scheme="https://xsec.7ever.cn/tags/lua/"/>
+    
+      <category term="nginx" scheme="https://xsec.7ever.cn/tags/nginx/"/>
     
   </entry>
   
