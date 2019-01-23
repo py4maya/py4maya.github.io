@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xsec.7ever.cn/"/>
-  <updated>2019-01-23T00:30:18.580Z</updated>
+  <updated>2019-01-23T23:22:42.337Z</updated>
   <id>https://xsec.7ever.cn/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>nginx vim 设置语法高亮</title>
+    <link href="https://xsec.7ever.cn/2019/01/24/nginx-vim/"/>
+    <id>https://xsec.7ever.cn/2019/01/24/nginx-vim/</id>
+    <published>2019-01-23T23:21:11.000Z</published>
+    <updated>2019-01-23T23:22:42.337Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="下载文件语法插件"><a href="#下载文件语法插件" class="headerlink" title="下载文件语法插件:"></a>下载文件语法插件:</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cd /usr/share/vim/vim74/syntax &amp;&amp; wget -O nginx.vim https://vim.sourceforge.io/scripts/download_script.php?src_id=19394</div></pre></td></tr></table></figure><h4 id="设置文件类型："><a href="#设置文件类型：" class="headerlink" title="设置文件类型："></a>设置文件类型：</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">vim /usr/share/vim/vim74/filetype.vim </div><div class="line">au BufNewFile,BufRead nginx_path    setf nginx</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;下载文件语法插件&quot;&gt;&lt;a href=&quot;#下载文件语法插件&quot; class=&quot;headerlink&quot; title=&quot;下载文件语法插件:&quot;&gt;&lt;/a&gt;下载文件语法插件:&lt;/h4&gt;&lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td 
+      
+    
+    </summary>
+    
+    
+      <category term="nginx" scheme="https://xsec.7ever.cn/tags/nginx/"/>
+    
+      <category term="vim" scheme="https://xsec.7ever.cn/tags/vim/"/>
+    
+  </entry>
   
   <entry>
     <title>golang.org 下载失败问题解决</title>
@@ -140,11 +165,11 @@
       <category term="linux" scheme="https://xsec.7ever.cn/categories/linux/"/>
     
     
+      <category term="linux" scheme="https://xsec.7ever.cn/tags/linux/"/>
+    
       <category term="lsattr" scheme="https://xsec.7ever.cn/tags/lsattr/"/>
     
       <category term="chattr" scheme="https://xsec.7ever.cn/tags/chattr/"/>
-    
-      <category term="linux" scheme="https://xsec.7ever.cn/tags/linux/"/>
     
   </entry>
   
@@ -522,35 +547,9 @@
       <category term="开发" scheme="https://xsec.7ever.cn/categories/%E5%BC%80%E5%8F%91/"/>
     
     
-      <category term="lua" scheme="https://xsec.7ever.cn/tags/lua/"/>
-    
       <category term="nginx" scheme="https://xsec.7ever.cn/tags/nginx/"/>
     
-  </entry>
-  
-  <entry>
-    <title>python2.7中字符编码的解决办法</title>
-    <link href="https://xsec.7ever.cn/2018/01/18/python2-7-charset-utf-8/"/>
-    <id>https://xsec.7ever.cn/2018/01/18/python2-7-charset-utf-8/</id>
-    <published>2018-01-18T02:00:03.000Z</published>
-    <updated>2018-01-18T02:25:38.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>不想给自己找编码问题麻烦的话，加上如下的代码吧,程序入口处加就可以:</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">import</span> sys </div><div class="line">reload(sys)</div><div class="line">sys.setdefaultencoding(<span class="string">"utf-8"</span>)</div></pre></td></tr></table></figure><p>然后，你就可以彻底的跟 字符编码问题bye bye 了。。。。</p><p><strong> 添加上这几行代码后，不会对以前写好的encode有影响，所以，你可以放心大胆的把你之前写过的代码也加上这几行吧  </strong></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;不想给自己找编码问题麻烦的话，加上如下的代码吧,程序入口处加就可以:&lt;/p&gt;
-&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div 
-      
-    
-    </summary>
-    
-      <category term="开发" scheme="https://xsec.7ever.cn/categories/%E5%BC%80%E5%8F%91/"/>
-    
-    
-      <category term="python" scheme="https://xsec.7ever.cn/tags/python/"/>
+      <category term="lua" scheme="https://xsec.7ever.cn/tags/lua/"/>
     
   </entry>
   
