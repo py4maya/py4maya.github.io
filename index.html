@@ -272,6 +272,148 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2019/02/15/git-clone-disconnect/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xingyue">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Simple Xsec World">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/02/15/git-clone-disconnect/" itemprop="url">git 断点clone</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-15T17:30:11+08:00">
+                2019-02-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="断点续传下载代码"><a href="#断点续传下载代码" class="headerlink" title="断点续传下载代码:"></a>断点续传下载代码:</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">$</span> mkdir git/dir</div><div class="line"><span class="meta">$</span> cd git/dir </div><div class="line"><span class="meta">$</span> git init </div><div class="line"><span class="meta">$</span> git fetch https://github.com/docker/distribution.git </div><div class="line"><span class="meta">$</span> git checkout FETCH_HEAD -b master</div><div class="line"><span class="meta">$</span> git remote add origin https://github.com/docker/distribution.git</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2019/01/24/nginx-vim/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -782,135 +924,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2018/10/25/many-logstash-one-kafka/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xingyue">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Simple Xsec World">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/25/many-logstash-one-kafka/" itemprop="url">多logstash 消费同一个kafka 做队列数据转发</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-25T13:02:20+08:00">
-                2018-10-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>logstash-2.4.0 </p>
-<h3 id="修改如下的代码"><a href="#修改如下的代码" class="headerlink" title="修改如下的代码:"></a>修改如下的代码:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">vendor/bundle/jruby/1.9/gems/jruby-kafka-1.5.0-java/lib/jruby-kafka/group.rb</div><div class="line"></div><div class="line">run 部分的代码:  大约163行</div><div class="line">if @reset_beginning == &apos;from-beginning&apos;</div><div class="line">    #Java::kafka::utils::ZkUtils.maybeDeletePath(@zk_connect, &quot;/consumers/#&#123;@group_id&#125;&quot;)</div><div class="line">end</div></pre></td></tr></table></figure>
-<h3 id="批量创建配置文件的脚本"><a href="#批量创建配置文件的脚本" class="headerlink" title="批量创建配置文件的脚本:"></a>批量创建配置文件的脚本:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line"></div><div class="line">rm -f conf/*</div><div class="line">num=10</div><div class="line"></div><div class="line">for((in=0;in&lt;$num;in++))</div><div class="line">do</div><div class="line">    cat hflow.conf  | sed &quot;s/&lt;data_num&gt;/$&#123;in&#125;/g&quot; &gt; conf/hflow_$&#123;in&#125;.conf</div><div class="line">done</div></pre></td></tr></table></figure>
-<h3 id="hflow-conf-的模板"><a href="#hflow-conf-的模板" class="headerlink" title="hflow.conf 的模板:"></a>hflow.conf 的模板:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">input &#123;</div><div class="line">    kafka &#123;</div><div class="line">        zk_connect =&gt; &quot;zk.your.own.com:2181/kafka/k1001&quot;</div><div class="line">        topic_id =&gt; &quot;&quot;</div><div class="line">        group_id =&gt; &quot;&quot;</div><div class="line">        reset_beginning =&gt; true</div><div class="line">        consumer_threads =&gt; 1</div><div class="line">        decorate_events =&gt; false </div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">    </div><div class="line">output &#123;</div><div class="line"></div><div class="line">    file&#123;</div><div class="line">        path =&gt; &quot;/data0/logstash/logstash-2.4.0/data/hflow_%&#123;+YYYY-MM-dd&#125;_&lt;data_num&gt;.log&quot;    </div><div class="line">    &#125;</div><div class="line"></div><div class="line">    file&#123;</div><div class="line">        path =&gt; &quot;/data0/logstash/logstash-2.4.0/data/all_%&#123;+YYYY-MM-dd&#125;.log&quot;    </div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="supervisor-配置"><a href="#supervisor-配置" class="headerlink" title="supervisor 配置:"></a>supervisor 配置:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">[program:starflow]</div><div class="line">process_name=%(program_name)s_%(process_num)01d;</div><div class="line">numprocs=10</div><div class="line">command=/data0/logstash/logstash-2.4.0/bin/logstash -f /data0/logstash/logstash-2.4.0/conf/hflow_%(process_num)01d.conf</div><div class="line">directory=/data0/logstash/logstash-2.4.0</div><div class="line">autostart=true</div><div class="line">startsecs=1</div><div class="line">startretries=5</div><div class="line">user=root</div><div class="line">redirect_stderr=true</div><div class="line">stdout_logfile=/data0/logstash/logstash-2.4.0/logs/stdout.log</div><div class="line">stdout_logfile_maxbytes=1024MB</div><div class="line">stdout_logfile_backups=10</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -956,7 +974,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">65</span>
+                <span class="site-state-item-count">66</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
