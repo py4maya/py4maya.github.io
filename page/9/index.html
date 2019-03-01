@@ -383,7 +383,7 @@
 <ul>
 <li>注:在配置文件中修改graylog的默认用户名密码:</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">$</span> echo -ne "admin" | sha256sum</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">echo</span> -ne <span class="string">"admin"</span> | sha256sum</span></div></pre></td></tr></table></figure>
 <ul>
 <li>从容器中copy出 graylog.conf 配置文件 到 ./graylog/config/graylog.conf  ，然后修改,重新启动<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker cp graylog_graylog_1:/usr/share/graylog/data/config graylog/</div></pre></td></tr></table></figure>
 </li>
