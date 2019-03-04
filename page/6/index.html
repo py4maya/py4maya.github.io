@@ -272,6 +272,148 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2018/01/12/mac-forget-password/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xingyue">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Simple Xsec World">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/12/mac-forget-password/" itemprop="url">mac 忘记开机密码</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-12T16:59:21+08:00">
+                2018-01-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li><p>在单用户模式下启动 Mac 设备。</p>
+</li>
+<li><p>打开终端窗口，然后输入以下命令：</p>
+</li>
+</ul>
+<p>mount -uw /</p>
+<ul>
+<li>Capitan 或 Yosemite 系统用户分别输入以下两个命令：</li>
+</ul>
+<p>launchcti load /System/Library/LaunchDaemons/com.apple.taskgated.plist<br>launchctl load /System/Library/LaunchDaemons/com.apple.opendirectoryd.plist</p>
+<p>而 Mavericks、Mountain Lion 或 Lion 系统用户则输入以下命令：</p>
+<p>launchctl load /System/Library/LaunchDaemons/com.apple.opendirectoryd.plist</p>
+<p>需要注意的是，如果你不知道用户的短名称，可以输入以下命令来获取用户列表(短名称位于左侧，完整名称位于右侧)：</p>
+<p>dscl localonly ls /Local/Default/Users realname</p>
+<ul>
+<li>输入以下命令，并将 shortname 替换为管理员用户的短名称(用户个人文件夹的名称)：</li>
+</ul>
+<p>passwd shortname</p>
+<p>系统提示时，输入新的帐户密码，但是你可能看不到任何表明正在键入的指示。</p>
+<ul>
+<li>输入 reboot 命令以重新启动 Mac。</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2018/01/12/ipa-publish-https/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -881,150 +1023,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2017/12/26/sweetalert-use-custom-content-elment/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xingyue">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Simple Xsec World">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/26/sweetalert-use-custom-content-elment/" itemprop="url">SweetAlert 使用 自定义弹出框内容</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-26T19:42:05+08:00">
-                2017-12-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/开发/" itemprop="url" rel="index">
-                    <span itemprop="name">开发</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><a href="https://sweetalert.js.org/guides/#installation" target="_blank" rel="noopener">说明地址:(https://sweetalert.js.org/guides/#installation)</a><br>wget  <a href="https://unpkg.com/sweetalert/dist/sweetalert.min.js" target="_blank" rel="noopener">https://unpkg.com/sweetalert/dist/sweetalert.min.js</a></p>
-<p>自定义内容方法:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">swal(&#123;</div><div class="line">  content: &#123;</div><div class="line">    element: <span class="string">"div"</span>,</div><div class="line">    attributes: &#123;</div><div class="line">        innerHTML:<span class="string">"&lt;b&gt;ONE&lt;/b&gt;"</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1075,7 +1073,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">68</span>
+                <span class="site-state-item-count">69</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1097,7 +1095,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">91</span>
+                <span class="site-state-item-count">92</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

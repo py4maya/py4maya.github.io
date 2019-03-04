@@ -272,6 +272,154 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2019/03/04/sphinx-python-document/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xingyue">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Simple Xsec World">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/04/sphinx-python-document/" itemprop="url">使用sphinx 生成python 包的注释文档</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-04T15:30:11+08:00">
+                2019-03-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="安装shpinx"><a href="#安装shpinx" class="headerlink" title="安装shpinx"></a>安装shpinx</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> pip install sphinx</span></div></pre></td></tr></table></figure>
+<h3 id="创建代码目录，或者切换到代码目录-初始化sphinx-配置"><a href="#创建代码目录，或者切换到代码目录-初始化sphinx-配置" class="headerlink" title="创建代码目录，或者切换到代码目录,初始化sphinx 配置"></a>创建代码目录，或者切换到代码目录,初始化sphinx 配置</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash">  sphinx-quickstart</span></div></pre></td></tr></table></figure>
+<h3 id="修改-source-conf-py"><a href="#修改-source-conf-py" class="headerlink" title="修改 source/conf.py"></a>修改 source/conf.py</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">import</span> os</div><div class="line"><span class="keyword">import</span> sys</div><div class="line">sys.path.insert(<span class="number">0</span>, os.path.abspath(<span class="string">'../'</span>))</div></pre></td></tr></table></figure>
+<h3 id="生成rst-文件"><a href="#生成rst-文件" class="headerlink" title="生成rst 文件:"></a>生成rst 文件:</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sphinx-apidoc -o  ./source code</div></pre></td></tr></table></figure>
+<h3 id="生成Html-文档"><a href="#生成Html-文档" class="headerlink" title="生成Html 文档:"></a>生成Html 文档:</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">make html</div></pre></td></tr></table></figure>
+<p><em>Makefile 修改</em></p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment"># Minimal makefile for Sphinx documentation</span></div><div class="line"><span class="comment">#</span></div><div class="line"></div><div class="line"><span class="comment"># You can set these variables from the command line.</span></div><div class="line">SPHINXOPTS    =</div><div class="line">SPHINXBUILD   = sphinx-build</div><div class="line">SOURCEDIR     = source</div><div class="line">BUILDDIR      = build</div><div class="line"></div><div class="line"><span class="comment"># Put it first so that "make" without argument is like "make help".</span></div><div class="line"><span class="section">help:</span></div><div class="line">	@<span class="variable">$(SPHINXBUILD)</span> -M help <span class="string">"<span class="variable">$(SOURCEDIR)</span>"</span> <span class="string">"<span class="variable">$(BUILDDIR)</span>"</span> <span class="variable">$(SPHINXOPTS)</span> <span class="variable">$(O)</span></div><div class="line"></div><div class="line"><span class="meta"><span class="meta-keyword">.PHONY</span>: help Makefile</span></div><div class="line"></div><div class="line"><span class="comment"># Catch-all target: route all unknown targets to Sphinx using the new</span></div><div class="line"><span class="comment"># "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).</span></div><div class="line"><span class="section">%: Makefile</span></div><div class="line">	sphinx-apidoc -o  ./source xsdk</div><div class="line">	@<span class="variable">$(SPHINXBUILD)</span> -M <span class="variable">$@</span> <span class="string">"<span class="variable">$(SOURCEDIR)</span>"</span> <span class="string">"<span class="variable">$(BUILDDIR)</span>"</span> <span class="variable">$(SPHINXOPTS)</span> <span class="variable">$(O)</span></div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2019/02/22/shell-color-script/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -630,7 +778,7 @@
       
         
           
-            <h3 id="断点续传下载代码"><a href="#断点续传下载代码" class="headerlink" title="断点续传下载代码:"></a>断点续传下载代码:</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">$</span><span class="bash"> mkdir git/dir</span></div><div class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> git/dir </span></div><div class="line"><span class="meta">$</span><span class="bash"> git init </span></div><div class="line"><span class="meta">$</span><span class="bash"> git fetch https://github.com/docker/distribution.git </span></div><div class="line"><span class="meta">$</span><span class="bash"> git checkout FETCH_HEAD -b master</span></div><div class="line"><span class="meta">$</span><span class="bash"> git remote add origin https://github.com/docker/distribution.git</span></div></pre></td></tr></table></figure>
+            <h3 id="断点续传下载代码"><a href="#断点续传下载代码" class="headerlink" title="断点续传下载代码:"></a>断点续传下载代码:</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">$</span> mkdir git/dir</div><div class="line"><span class="meta">$</span> cd git/dir </div><div class="line"><span class="meta">$</span> git init </div><div class="line"><span class="meta">$</span> git fetch https://github.com/docker/distribution.git </div><div class="line"><span class="meta">$</span> git checkout FETCH_HEAD -b master</div><div class="line"><span class="meta">$</span> git remote add origin https://github.com/docker/distribution.git</div></pre></td></tr></table></figure>
 
           
         
@@ -787,127 +935,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2019/01/23/golang-org-bad/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xingyue">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Simple Xsec World">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/23/golang-org-bad/" itemprop="url">golang.org 下载失败问题解决</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-23T08:27:33+08:00">
-                2019-01-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="第一步：-从github-com-下载对应的镜像包"><a href="#第一步：-从github-com-下载对应的镜像包" class="headerlink" title="第一步： 从github.com 下载对应的镜像包:"></a>第一步： 从github.com 下载对应的镜像包:</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/golang/net.git $GOPATH/src/github.com/golang/net</div><div class="line">git clone https://github.com/golang/sys.git $GOPATH/src/github.com/golang/sys</div><div class="line">git clone https://github.com/golang/tools.git $GOPATH/src/github.com/golang/tools</div></pre></td></tr></table></figure>
-<h4 id="第二步："><a href="#第二步：" class="headerlink" title="第二步："></a>第二步：</h4><p>将net、sys、tools三个文件夹放到$GOPATH/src/golang.org/x目录下。 或者Linux下可以创建软连接：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ln -s $GOPATH/src/github.com/golang $GOPATH/src/golang.org/x</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -958,7 +985,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">68</span>
+                <span class="site-state-item-count">69</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -980,7 +1007,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">91</span>
+                <span class="site-state-item-count">92</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
