@@ -286,7 +286,7 @@
 used for the</code>any’’ device and for some other device types, the *inbound and <b>outbound</b> qualifiers can be used to specify a desired direction.</p>
 <h4 id="proto"><a href="#proto" class="headerlink" title="proto"></a>proto</h4><p>qualifiers restrict the match to a particular protocol.<br>Possible<br>protos are: <b>ether</b>, <b>fddi</b>, <b>tr</b>, <b>wlan</b>, <b>ip</b>, <b>ip6</b>, <b>arp</b>, <b>rarp</b>, <b>decnet</b>, <b>tcp</b> and <b>udp</b>.<br>E.g., <code>ether src foo&#39;,</code>arp net 128.3’, <code>tcp port 21&#39;,</code>udp portrange 7000-7009’.<br>If there is no proto qualifier, all protocols consistent with the type are assumed.</p>
 <p>E.g., <code>src foo&#39; means</code>(ip or arp or rarp) src foo’<br>(except the latter is not legal syntax), <code>net bar&#39; means</code>(ip or<br>arp or rarp) net bar’ and <code>port 53&#39; means</code>(tcp or udp) port 53’.</p>
-<p><a href="http://biot.com/capstats/bpf.html" target="_blank" rel="noopener">bpf详细介绍</a></p>
+<p><a href="http://biot.com/capstats/bpf.html" target="_blank" rel="external">bpf详细介绍</a></p>
 
         
       </div>
