@@ -193,6 +193,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
@@ -219,16 +229,6 @@
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            关于
           </a>
         </li>
       
@@ -354,11 +354,11 @@
       
 
       
-        <p>安装参数:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">./configure \</div><div class="line">--prefix=/data1/mginx/ \</div><div class="line">--with-stream \</div><div class="line">--with-stream_realip_module \</div><div class="line">--with-stream_ssl_module \</div><div class="line">--without-http \</div><div class="line"></div><div class="line">make -j4</div><div class="line">make install</div></pre></td></tr></table></figure></p>
-<p>stream的配置文件，在nginx主配置文件中添加容器stream<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">''''</div><div class="line">stream &#123;</div><div class="line">	upstream sample_stream &#123;</div><div class="line">		server 127.0.0.1:5800 max_fails=3 fail_timeout=5s;	</div><div class="line">		server 127.0.0.1:5801 max_fails=3 fail_timeout=5s;	</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	server &#123; </div><div class="line">		listen 1812 ; # 可以用指定ip 或者指定协议,比如 listen 10.211.61.88 1812 ; 比如  listen 10.211.61.88 1812 udp;	</div><div class="line">		proxy_pass radius_upstream_onetime; #数据转发</div><div class="line">		allow 10.210.12.17; #指定基于ip的访问控制</div><div class="line">		deny all;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">http&#123;</div><div class="line">&#125;</div><div class="line">''''</div></pre></td></tr></table></figure></p>
-<p>stream 中可以添加lua控制，这样就可以方便的用lua编写tcp，udp 程序,在编译参数中添加stream_lua组件:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">--with-ld-opt="-Wl,-rpath,/data1/luajit/lib" \</div><div class="line">--add-module="../stream-lua-nginx-module" \</div></pre></td></tr></table></figure></p>
-<p>设置stream中生成lua控制:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">content_by_lua_file /data1/code/lua/streams/echo.lua;</div></pre></td></tr></table></figure></p>
-<p>lua脚本控制，配置一个echo协议，即输入什么返回什么:<br><figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">local</span> sock = <span class="built_in">assert</span>(ngx.req.socket(<span class="literal">true</span>))</div><div class="line"><span class="keyword">local</span> ip = ngx.var.remote_addr</div><div class="line"><span class="keyword">local</span> data </div><div class="line"></div><div class="line"><span class="keyword">while</span>(<span class="number">1</span> == <span class="number">1</span>)</div><div class="line"><span class="keyword">do</span></div><div class="line">	data = sock:receive()  </div><div class="line">	ngx.say(data)</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
+        <p>安装参数:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">./configure \</span><br><span class="line">--prefix=/data1/mginx/ \</span><br><span class="line">--with-stream \</span><br><span class="line">--with-stream_realip_module \</span><br><span class="line">--with-stream_ssl_module \</span><br><span class="line">--without-http \</span><br><span class="line"></span><br><span class="line">make -j4</span><br><span class="line">make install</span><br></pre></td></tr></table></figure></p>
+<p>stream的配置文件，在nginx主配置文件中添加容器stream<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">''''</span><br><span class="line">stream &#123;</span><br><span class="line">	upstream sample_stream &#123;</span><br><span class="line">		server 127.0.0.1:5800 max_fails=3 fail_timeout=5s;	</span><br><span class="line">		server 127.0.0.1:5801 max_fails=3 fail_timeout=5s;	</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	server &#123; </span><br><span class="line">		listen 1812 ; # 可以用指定ip 或者指定协议,比如 listen 10.211.61.88 1812 ; 比如  listen 10.211.61.88 1812 udp;	</span><br><span class="line">		proxy_pass radius_upstream_onetime; #数据转发</span><br><span class="line">		allow 10.210.12.17; #指定基于ip的访问控制</span><br><span class="line">		deny all;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">http&#123;</span><br><span class="line">&#125;</span><br><span class="line">''''</span><br></pre></td></tr></table></figure></p>
+<p>stream 中可以添加lua控制，这样就可以方便的用lua编写tcp，udp 程序,在编译参数中添加stream_lua组件:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">--with-ld-opt="-Wl,-rpath,/data1/luajit/lib" \</span><br><span class="line">--add-module="../stream-lua-nginx-module" \</span><br></pre></td></tr></table></figure></p>
+<p>设置stream中生成lua控制:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">content_by_lua_file /data1/code/lua/streams/echo.lua;</span><br></pre></td></tr></table></figure></p>
+<p>lua脚本控制，配置一个echo协议，即输入什么返回什么:<br><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> sock = <span class="built_in">assert</span>(ngx.req.socket(<span class="literal">true</span>))</span><br><span class="line"><span class="keyword">local</span> ip = ngx.var.remote_addr</span><br><span class="line"><span class="keyword">local</span> data </span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(<span class="number">1</span> == <span class="number">1</span>)</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">	data = sock:receive()  </span><br><span class="line">	ngx.say(data)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
 
       
     </div>

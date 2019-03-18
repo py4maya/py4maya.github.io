@@ -193,6 +193,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
@@ -219,16 +229,6 @@
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            关于
           </a>
         </li>
       
@@ -355,10 +355,10 @@
 
       
         <p>使用npm安装bootstrap </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> npm install --save bootstrap</span></div></pre></td></tr></table></figure>
-<p>webpack 入口文件中配置:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> import <span class="string">'bootstrap/dist/css/bootstrap.css'</span></span></div></pre></td></tr></table></figure></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> npm install --save bootstrap</span></span><br></pre></td></tr></table></figure>
+<p>webpack 入口文件中配置:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> import <span class="string">'bootstrap/dist/css/bootstrap.css'</span></span></span><br></pre></td></tr></table></figure></p>
 <p>webpack 打包文件中配置:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">....</div><div class="line"></div><div class="line">loaders: [</div><div class="line">    &#123; <span class="attr">test</span>: <span class="regexp">/\.css$/</span>, <span class="attr">loader</span>: <span class="string">'style-loader!css-loader'</span> &#125;,</div><div class="line">    &#123; <span class="attr">test</span>: <span class="regexp">/\.eot(\?v=\d+\.\d+\.\d+)?$/</span>, <span class="attr">loader</span>: <span class="string">"file"</span> &#125;,</div><div class="line">    &#123; <span class="attr">test</span>: <span class="regexp">/\.(woff|woff2)$/</span>, <span class="attr">loader</span>:<span class="string">"url?prefix=font/&amp;limit=5000"</span> &#125;,</div><div class="line">    &#123; <span class="attr">test</span>: <span class="regexp">/\.ttf(\?v=\d+\.\d+\.\d+)?$/</span>, <span class="attr">loader</span>: <span class="string">"url?limit=10000&amp;mimetype=application/octet-stream"</span> &#125;,</div><div class="line">    &#123; <span class="attr">test</span>: <span class="regexp">/\.svg(\?v=\d+\.\d+\.\d+)?$/</span>, <span class="attr">loader</span>: <span class="string">"url?limit=10000&amp;mimetype=image/svg+xml"</span> &#125;</div><div class="line">]</div><div class="line"></div><div class="line">....</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">....</span><br><span class="line"></span><br><span class="line">loaders: [</span><br><span class="line">    &#123; <span class="attr">test</span>: <span class="regexp">/\.css$/</span>, <span class="attr">loader</span>: <span class="string">'style-loader!css-loader'</span> &#125;,</span><br><span class="line">    &#123; <span class="attr">test</span>: <span class="regexp">/\.eot(\?v=\d+\.\d+\.\d+)?$/</span>, <span class="attr">loader</span>: <span class="string">"file"</span> &#125;,</span><br><span class="line">    &#123; <span class="attr">test</span>: <span class="regexp">/\.(woff|woff2)$/</span>, <span class="attr">loader</span>:<span class="string">"url?prefix=font/&amp;limit=5000"</span> &#125;,</span><br><span class="line">    &#123; <span class="attr">test</span>: <span class="regexp">/\.ttf(\?v=\d+\.\d+\.\d+)?$/</span>, <span class="attr">loader</span>: <span class="string">"url?limit=10000&amp;mimetype=application/octet-stream"</span> &#125;,</span><br><span class="line">    &#123; <span class="attr">test</span>: <span class="regexp">/\.svg(\?v=\d+\.\d+\.\d+)?$/</span>, <span class="attr">loader</span>: <span class="string">"url?limit=10000&amp;mimetype=image/svg+xml"</span> &#125;</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">....</span><br></pre></td></tr></table></figure>
 
       
     </div>

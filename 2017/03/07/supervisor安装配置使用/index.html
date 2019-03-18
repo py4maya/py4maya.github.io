@@ -193,6 +193,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
@@ -219,16 +229,6 @@
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            关于
           </a>
         </li>
       
@@ -355,7 +355,7 @@
 
       
         <ol>
-<li>安装supervisor<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> yum install python-setuptools</span></div><div class="line"><span class="meta">$</span><span class="bash"> easy_install pip</span></div><div class="line"><span class="meta">$</span><span class="bash"> pip install supervisor</span></div></pre></td></tr></table></figure>
+<li>安装supervisor<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> yum install python-setuptools</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> easy_install pip</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> pip install supervisor</span></span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <p>这个工具分为两个命令:</p>
@@ -365,19 +365,19 @@
 </ul>
 <ol>
 <li><p>生成配置文件:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> echo_supervisord_conf &gt; /etc/supervisord.conf</span></div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> echo_supervisord_conf &gt; /etc/supervisord.conf</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>修改配置文件:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">[program:mobsf]</div><div class="line">;process_name = %(program_name)s-%(process_num)d  </div><div class="line">;numprocs = 5</div><div class="line">;command = python /data0/Mobile-Security-Framework-MobSF/manage.py --port=30%(process_num)02d 根据进程设置端口</div><div class="line">command = python /data0/Mobile-Security-Framework-MobSF/manage.py runserver 0.0.0.0:8000</div><div class="line">user = root</div><div class="line">autostart = true</div><div class="line">autorestart = true</div><div class="line">startsecs = 5</div><div class="line">stderr_logfile = /data0/Mobile-Security-Framework-MobSF/logs/run/error.log</div><div class="line">stdout_logfile = /data0/Mobile-Security-Framework-MobSF/logs/run/stdout.log</div><div class="line">; 标准输入，标准输出配置文件大小</div><div class="line">stdout_logfile_maxbytes = 200MB</div><div class="line">stdout_logfile_backups = 50</div><div class="line">stderr_logfile_maxbytes = 200MB</div><div class="line">stderr_logfile_backups = 10</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[program:mobsf]</span><br><span class="line">;process_name = %(program_name)s-%(process_num)d  </span><br><span class="line">;numprocs = 5</span><br><span class="line">;command = python /data0/Mobile-Security-Framework-MobSF/manage.py --port=30%(process_num)02d 根据进程设置端口</span><br><span class="line">command = python /data0/Mobile-Security-Framework-MobSF/manage.py runserver 0.0.0.0:8000</span><br><span class="line">user = root</span><br><span class="line">autostart = true</span><br><span class="line">autorestart = true</span><br><span class="line">startsecs = 5</span><br><span class="line">stderr_logfile = /data0/Mobile-Security-Framework-MobSF/logs/run/error.log</span><br><span class="line">stdout_logfile = /data0/Mobile-Security-Framework-MobSF/logs/run/stdout.log</span><br><span class="line">; 标准输入，标准输出配置文件大小</span><br><span class="line">stdout_logfile_maxbytes = 200MB</span><br><span class="line">stdout_logfile_backups = 50</span><br><span class="line">stderr_logfile_maxbytes = 200MB</span><br><span class="line">stderr_logfile_backups = 10</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>启动命令:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> supervisord -c /etc/supervisord.conf</span></div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> supervisord -c /etc/supervisord.conf</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>查看状态:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> supervisorctl status</span></div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> supervisorctl status</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>修改supervisord.conf以后，重载:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> supervisorctl reload</span></div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> supervisorctl reload</span></span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 
@@ -424,8 +424,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/03/07/hello-world/" rel="prev" title="从头到尾搭建hexo博客">
-                从头到尾搭建hexo博客 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/03/07/centos7升级gcc到4-9-3/" rel="prev" title="centos7升级gcc到4.9.3">
+                centos7升级gcc到4.9.3 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

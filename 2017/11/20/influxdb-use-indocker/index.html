@@ -193,6 +193,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
@@ -219,16 +229,6 @@
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            关于
           </a>
         </li>
       
@@ -357,11 +357,11 @@
         <ul>
 <li>拉取脚本:</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> docker pull daocloud.io/daocloud/influxdb:latest</span></div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker pull daocloud.io/daocloud/influxdb:latest</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>基础运行脚本</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">lip=172.16.7.1 	##只暴露端口给内网的IP</div><div class="line">name=influxdb</div><div class="line">port=" -p $lip:8086:8086 -p $lip:2003:2003 -p $lip:8083:8083 "</div><div class="line"></div><div class="line">docker run -it $&#123;port&#125; --name $&#123;name&#125;  daocloud.io/daocloud/influxdb</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">lip=172.16.7.1 	##只暴露端口给内网的IP</span><br><span class="line">name=influxdb</span><br><span class="line">port=" -p $lip:8086:8086 -p $lip:2003:2003 -p $lip:8083:8083 "</span><br><span class="line"></span><br><span class="line">docker run -it $&#123;port&#125; --name $&#123;name&#125;  daocloud.io/daocloud/influxdb</span><br></pre></td></tr></table></figure>
 
       
     </div>

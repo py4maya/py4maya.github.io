@@ -189,6 +189,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
@@ -215,16 +225,6 @@
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            关于
           </a>
         </li>
       
@@ -333,8 +333,8 @@
         
           
             <ul>
-<li><a href="https://github.com/chriskempson/tomorrow-theme" target="_blank" rel="external">tomorrow-theme</a></li>
-<li><a href="https://github.com/altercation/solarized" target="_blank" rel="external">solarized</a></li>
+<li><a href="https://github.com/chriskempson/tomorrow-theme" target="_blank" rel="noopener">tomorrow-theme</a></li>
+<li><a href="https://github.com/altercation/solarized" target="_blank" rel="noopener">solarized</a></li>
 </ul>
 
           
@@ -477,7 +477,7 @@
       
         
           
-            <h3 id="断点续传下载代码"><a href="#断点续传下载代码" class="headerlink" title="断点续传下载代码:"></a>断点续传下载代码:</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">$</span> mkdir git/dir</div><div class="line"><span class="meta">$</span> cd git/dir </div><div class="line"><span class="meta">$</span> git init </div><div class="line"><span class="meta">$</span> git fetch https://github.com/docker/distribution.git </div><div class="line"><span class="meta">$</span> git checkout FETCH_HEAD -b master</div><div class="line"><span class="meta">$</span> git remote add origin https://github.com/docker/distribution.git</div></pre></td></tr></table></figure>
+            <h3 id="断点续传下载代码"><a href="#断点续传下载代码" class="headerlink" title="断点续传下载代码:"></a>断点续传下载代码:</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">$</span> mkdir git/dir</span><br><span class="line"><span class="meta">$</span> cd git/dir </span><br><span class="line"><span class="meta">$</span> git init </span><br><span class="line"><span class="meta">$</span> git fetch https://github.com/docker/distribution.git </span><br><span class="line"><span class="meta">$</span> git checkout FETCH_HEAD -b master</span><br><span class="line"><span class="meta">$</span> git remote add origin https://github.com/docker/distribution.git</span><br></pre></td></tr></table></figure>
 
           
         
@@ -597,8 +597,8 @@
       
         
           
-            <h4 id="下载文件语法插件"><a href="#下载文件语法插件" class="headerlink" title="下载文件语法插件:"></a>下载文件语法插件:</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cd /usr/share/vim/vim74/syntax &amp;&amp; wget -O nginx.vim https://vim.sourceforge.io/scripts/download_script.php?src_id=19394</div></pre></td></tr></table></figure>
-<h4 id="设置文件类型："><a href="#设置文件类型：" class="headerlink" title="设置文件类型："></a>设置文件类型：</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">vim /usr/share/vim/vim74/filetype.vim </div><div class="line">au BufNewFile,BufRead nginx_path    setf nginx</div></pre></td></tr></table></figure>
+            <h4 id="下载文件语法插件"><a href="#下载文件语法插件" class="headerlink" title="下载文件语法插件:"></a>下载文件语法插件:</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/share/vim/vim74/syntax &amp;&amp; wget -O nginx.vim https://vim.sourceforge.io/scripts/download_script.php?src_id=19394</span><br></pre></td></tr></table></figure>
+<h4 id="设置文件类型："><a href="#设置文件类型：" class="headerlink" title="设置文件类型："></a>设置文件类型：</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">vim /usr/share/vim/vim74/filetype.vim </span><br><span class="line">au BufNewFile,BufRead nginx_path    setf nginx</span><br></pre></td></tr></table></figure>
 
           
         
@@ -718,8 +718,8 @@
       
         
           
-            <h4 id="第一步：-从github-com-下载对应的镜像包"><a href="#第一步：-从github-com-下载对应的镜像包" class="headerlink" title="第一步： 从github.com 下载对应的镜像包:"></a>第一步： 从github.com 下载对应的镜像包:</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/golang/net.git $GOPATH/src/github.com/golang/net</div><div class="line">git clone https://github.com/golang/sys.git $GOPATH/src/github.com/golang/sys</div><div class="line">git clone https://github.com/golang/tools.git $GOPATH/src/github.com/golang/tools</div></pre></td></tr></table></figure>
-<h4 id="第二步："><a href="#第二步：" class="headerlink" title="第二步："></a>第二步：</h4><p>将net、sys、tools三个文件夹放到$GOPATH/src/golang.org/x目录下。 或者Linux下可以创建软连接：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ln -s $GOPATH/src/github.com/golang $GOPATH/src/golang.org/x</div></pre></td></tr></table></figure></p>
+            <h4 id="第一步：-从github-com-下载对应的镜像包"><a href="#第一步：-从github-com-下载对应的镜像包" class="headerlink" title="第一步： 从github.com 下载对应的镜像包:"></a>第一步： 从github.com 下载对应的镜像包:</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/golang/net.git $GOPATH/src/github.com/golang/net</span><br><span class="line">git clone https://github.com/golang/sys.git $GOPATH/src/github.com/golang/sys</span><br><span class="line">git clone https://github.com/golang/tools.git $GOPATH/src/github.com/golang/tools</span><br></pre></td></tr></table></figure>
+<h4 id="第二步："><a href="#第二步：" class="headerlink" title="第二步："></a>第二步：</h4><p>将net、sys、tools三个文件夹放到$GOPATH/src/golang.org/x目录下。 或者Linux下可以创建软连接：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -s $GOPATH/src/github.com/golang $GOPATH/src/golang.org/x</span><br></pre></td></tr></table></figure></p>
 
           
         
@@ -861,11 +861,11 @@
       
         
           
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">起因: 一台带公网IP的docker服务器，同事费了半天劲，折腾出来一个容器,（不可逆，不能重新创建）。端口监听到了0.0.0.0。</div><div class="line">改也不是，不改也不是。</div></pre></td></tr></table></figure>
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">起因: 一台带公网IP的docker服务器，同事费了半天劲，折腾出来一个容器,（不可逆，不能重新创建）。端口监听到了0.0.0.0。</span><br><span class="line">改也不是，不改也不是。</span><br></pre></td></tr></table></figure>
 <h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案:"></a>解决方案:</h3><ul>
 <li>先找到对应的容器ID </li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker ps -a</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps -a</span><br></pre></td></tr></table></figure>
 <p>拿到一串字符ID 。去对应的docker 运行目录中，找containers 目录,然后按照前缀找到对应的文件件。</p>
 <p>没错，这个文件件就是运行起来的容器。</p>
 <ul>

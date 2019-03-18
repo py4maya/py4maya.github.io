@@ -193,6 +193,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
@@ -219,16 +229,6 @@
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            关于
           </a>
         </li>
       
@@ -357,11 +357,11 @@
         <p>手写UI需要删除项目设置中的Storyboard配置:</p>
 <p>General -&gt; Deployment Info -&gt; Main interface 中保持为空</p>
 <p>AppDelegate.m中设置window及显示主ViewController:</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">_window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];</div><div class="line">_window.backgroundColor = [UIColor whiteColor];</div><div class="line">UIViewController *mainController = [[ViewController alloc]init];</div><div class="line">_window.rootViewController = mainController;</div><div class="line">[_window makeKeyAndVisible];</div></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">_window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];</span><br><span class="line">_window.backgroundColor = [UIColor whiteColor];</span><br><span class="line">UIViewController *mainController = [[ViewController alloc]init];</span><br><span class="line">_window.rootViewController = mainController;</span><br><span class="line">[_window makeKeyAndVisible];</span><br></pre></td></tr></table></figure>
 <p>注：需要在AppDelegate.h中引入ViewController.h </p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#import <span class="meta-string">"ViewController.h"</span></span></div></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">"ViewController.h"</span></span></span><br></pre></td></tr></table></figure>
 <p>在ViewController中加载所需的UI 组件:</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">UILabel* label = [[UILabel alloc]init];</div><div class="line">  label.text = @<span class="string">"hello ios world"</span>;</div><div class="line">  [label sizeToFit];</div><div class="line">  label.center = self.view.center;</div><div class="line">  [self.view addSubview: label];</div></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">UILabel* label = [[UILabel alloc]init];</span><br><span class="line">  label.text = @<span class="string">"hello ios world"</span>;</span><br><span class="line">  [label sizeToFit];</span><br><span class="line">  label.center = self.view.center;</span><br><span class="line">  [self.view addSubview: label];</span><br></pre></td></tr></table></figure>
 <p>至此，一个ios的程序基本结构就完成了。结合前边的使用<a href="http://xsec.7ever.cn/2017/09/22/xcode-use-cocoapods/">pods</a>配置依赖，就可以写ios了。</p>
 
       

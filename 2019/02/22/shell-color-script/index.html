@@ -193,6 +193,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
@@ -219,16 +229,6 @@
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            关于
           </a>
         </li>
       
@@ -354,7 +354,7 @@
       
 
       
-        <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">if which tput &gt;/dev/null 2&gt;&amp;1; then</div><div class="line">      ncolors=$(tput colors)</div><div class="line">  fi</div><div class="line">  if [ -t 1 ] &amp;&amp; [ -n "$ncolors" ] &amp;&amp; [ "$ncolors" -ge 8 ]; then</div><div class="line">    RED="$(tput setaf 1)"</div><div class="line">    GREEN="$(tput setaf 2)"</div><div class="line">    YELLOW="$(tput setaf 3)"</div><div class="line">    BLUE="$(tput setaf 4)"</div><div class="line">    BOLD="$(tput bold)"</div><div class="line">    NORMAL="$(tput sgr0)"</div><div class="line">  else</div><div class="line">    RED=""</div><div class="line">    GREEN=""</div><div class="line">    YELLOW=""</div><div class="line">    BLUE=""</div><div class="line">    BOLD=""</div><div class="line">    NORMAL=""</div><div class="line">  fi</div><div class="line"></div><div class="line">echo $&#123;RED&#125;Hello This is color World $&#123;NORMAL&#125;</div></pre></td></tr></table></figure>
+        <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">if which tput &gt;/dev/null 2&gt;&amp;1; then</span><br><span class="line">      ncolors=$(tput colors)</span><br><span class="line">  fi</span><br><span class="line">  if [ -t 1 ] &amp;&amp; [ -n "$ncolors" ] &amp;&amp; [ "$ncolors" -ge 8 ]; then</span><br><span class="line">    RED="$(tput setaf 1)"</span><br><span class="line">    GREEN="$(tput setaf 2)"</span><br><span class="line">    YELLOW="$(tput setaf 3)"</span><br><span class="line">    BLUE="$(tput setaf 4)"</span><br><span class="line">    BOLD="$(tput bold)"</span><br><span class="line">    NORMAL="$(tput sgr0)"</span><br><span class="line">  else</span><br><span class="line">    RED=""</span><br><span class="line">    GREEN=""</span><br><span class="line">    YELLOW=""</span><br><span class="line">    BLUE=""</span><br><span class="line">    BOLD=""</span><br><span class="line">    NORMAL=""</span><br><span class="line">  fi</span><br><span class="line"></span><br><span class="line">echo $&#123;RED&#125;Hello This is color World $&#123;NORMAL&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>

@@ -193,6 +193,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
@@ -219,16 +229,6 @@
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            关于
           </a>
         </li>
       
@@ -332,7 +332,7 @@
       
 
       
-        <h4 id="简单介绍"><a href="#简单介绍" class="headerlink" title="简单介绍:"></a>简单介绍:</h4><p>PostgreSQL的官方网站是：<a href="https://www.postgresql.org/" target="_blank" rel="external">https://www.postgresql.org/</a></p>
+        <h4 id="简单介绍"><a href="#简单介绍" class="headerlink" title="简单介绍:"></a>简单介绍:</h4><p>PostgreSQL的官方网站是：<a href="https://www.postgresql.org/" target="_blank" rel="noopener">https://www.postgresql.org/</a></p>
 <p>简单工具:</p>
 <ul>
 <li><p>psql<br>cli 客户端</p>
@@ -342,26 +342,26 @@
 <li><p>initdb<br>数据库初始化工具</p>
 </li>
 </ul>
-<h4 id="初始化"><a href="#初始化" class="headerlink" title="初始化:"></a>初始化:</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">useradd -g postgres postgres </div><div class="line">mkdir -p /data0/pgsql/data</div><div class="line">chown -R postgres:postgres /data0/pgsql/data</div><div class="line">./initdb -E UNICODE -D /mnt/pgsql/data</div><div class="line">cat postgresql.conf | grep -n listen_addresses</div></pre></td></tr></table></figure>
-<h5 id="pg-ctl-的一些帮助"><a href="#pg-ctl-的一些帮助" class="headerlink" title="pg_ctl 的一些帮助:"></a>pg_ctl 的一些帮助:</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">pg_ctl init[db] [-D DATADIR] [-s] [-o OPTIONS]</div><div class="line">pg_ctl start    [-D DATADIR] [-l FILENAME] [-W] [-t SECS] [-s]</div><div class="line">                [-o OPTIONS] [-p PATH] [-c]</div><div class="line">pg_ctl stop     [-D DATADIR] [-m SHUTDOWN-MODE] [-W] [-t SECS] [-s]</div><div class="line">pg_ctl restart  [-D DATADIR] [-m SHUTDOWN-MODE] [-W] [-t SECS] [-s]</div><div class="line">                [-o OPTIONS] [-c]</div><div class="line">pg_ctl reload   [-D DATADIR] [-s]</div><div class="line">pg_ctl status   [-D DATADIR]</div><div class="line">pg_ctl promote  [-D DATADIR] [-W] [-t SECS] [-s]</div><div class="line">pg_ctl kill     SIGNALNAME PID</div></pre></td></tr></table></figure>
+<h4 id="初始化"><a href="#初始化" class="headerlink" title="初始化:"></a>初始化:</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">useradd -g postgres postgres </span><br><span class="line">mkdir -p /data0/pgsql/data</span><br><span class="line">chown -R postgres:postgres /data0/pgsql/data</span><br><span class="line">./initdb -E UNICODE -D /mnt/pgsql/data</span><br><span class="line">cat postgresql.conf | grep -n listen_addresses</span><br></pre></td></tr></table></figure>
+<h5 id="pg-ctl-的一些帮助"><a href="#pg-ctl-的一些帮助" class="headerlink" title="pg_ctl 的一些帮助:"></a>pg_ctl 的一些帮助:</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">pg_ctl init[db] [-D DATADIR] [-s] [-o OPTIONS]</span><br><span class="line">pg_ctl start    [-D DATADIR] [-l FILENAME] [-W] [-t SECS] [-s]</span><br><span class="line">                [-o OPTIONS] [-p PATH] [-c]</span><br><span class="line">pg_ctl stop     [-D DATADIR] [-m SHUTDOWN-MODE] [-W] [-t SECS] [-s]</span><br><span class="line">pg_ctl restart  [-D DATADIR] [-m SHUTDOWN-MODE] [-W] [-t SECS] [-s]</span><br><span class="line">                [-o OPTIONS] [-c]</span><br><span class="line">pg_ctl reload   [-D DATADIR] [-s]</span><br><span class="line">pg_ctl status   [-D DATADIR]</span><br><span class="line">pg_ctl promote  [-D DATADIR] [-W] [-t SECS] [-s]</span><br><span class="line">pg_ctl kill     SIGNALNAME PID</span><br></pre></td></tr></table></figure>
 <h4 id="简单的工具脚本"><a href="#简单的工具脚本" class="headerlink" title="简单的工具脚本:"></a>简单的工具脚本:</h4><ul>
 <li><p>README 中的一些工具脚本:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">./configure</div><div class="line">make</div><div class="line">su</div><div class="line">make install</div><div class="line">adduser postgres</div><div class="line">mkdir /usr/local/pgsql/data</div><div class="line">chown postgres /usr/local/pgsql/data</div><div class="line">su - postgres</div><div class="line">/usr/local/pgsql/bin/initdb -D /usr/local/pgsql/data</div><div class="line">/usr/local/pgsql/bin/postgres -D /usr/local/pgsql/data &gt;logfile 2&gt;&amp;1 &amp;</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">su</span><br><span class="line">make install</span><br><span class="line">adduser postgres</span><br><span class="line">mkdir /usr/local/pgsql/data</span><br><span class="line">chown postgres /usr/local/pgsql/data</span><br><span class="line">su - postgres</span><br><span class="line">/usr/local/pgsql/bin/initdb -D /usr/local/pgsql/data</span><br><span class="line">/usr/local/pgsql/bin/postgres -D /usr/local/pgsql/data &gt;logfile 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>restart.sh</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">su postgres -c "/opt/postgreql/bin/pg_ctl restart -l /opt/postgreql/run/logs/postgreql.log -D /opt/postgreql/run/data "</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su postgres -c "/opt/postgreql/bin/pg_ctl restart -l /opt/postgreql/run/logs/postgreql.log -D /opt/postgreql/run/data "</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>stop.sh 关闭服务:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">su postgres -c "/opt/postgreql/bin/pg_ctl stop -l /opt/postgreql/run/logs/postgreql.log -D /opt/postgreql/run/data "</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su postgres -c "/opt/postgreql/bin/pg_ctl stop -l /opt/postgreql/run/logs/postgreql.log -D /opt/postgreql/run/data "</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>连接主机脚本:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">psql -U cmdb -h localhost -d cmdb ### 不适用任何配置信息，在本机执行pgsql 则使用超级管理员连接数据库</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">psql -U cmdb -h localhost -d cmdb ### 不适用任何配置信息，在本机执行pgsql 则使用超级管理员连接数据库</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>基本sql:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">CREATE ROLE name;</div><div class="line">CREATE USER name;</div><div class="line">grantall on schema csm_ca to public;</div><div class="line"></div><div class="line">\du;</div><div class="line"></div><div class="line">GRANT UPDATE ON demo TO demo_role; --赋予demo_role demo表的update权限</div><div class="line">GRANT SELECT ON ALL TABLES IN SCHEMA PUBLIC to demo_role; --赋予demo_role所有表的SELECT权限</div><div class="line"></div><div class="line">CREATE DATABASE database_name;</div><div class="line">drop database testdb;</div><div class="line">CREATE TABLE table_name(  </div><div class="line">   column1 datatype,  </div><div class="line">   column2 datatype,  </div><div class="line">   column3 datatype,  </div><div class="line">   .....  </div><div class="line">   columnN datatype,  </div><div class="line">   PRIMARY KEY( one or more columns )  </div><div class="line">);</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">CREATE ROLE name;</span><br><span class="line">CREATE USER name;</span><br><span class="line">grantall on schema csm_ca to public;</span><br><span class="line"></span><br><span class="line">\du;</span><br><span class="line"></span><br><span class="line">GRANT UPDATE ON demo TO demo_role; --赋予demo_role demo表的update权限</span><br><span class="line">GRANT SELECT ON ALL TABLES IN SCHEMA PUBLIC to demo_role; --赋予demo_role所有表的SELECT权限</span><br><span class="line"></span><br><span class="line">CREATE DATABASE database_name;</span><br><span class="line">drop database testdb;</span><br><span class="line">CREATE TABLE table_name(  </span><br><span class="line">   column1 datatype,  </span><br><span class="line">   column2 datatype,  </span><br><span class="line">   column3 datatype,  </span><br><span class="line">   .....  </span><br><span class="line">   columnN datatype,  </span><br><span class="line">   PRIMARY KEY( one or more columns )  </span><br><span class="line">);</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>基于主机授权:<br>pg_hba.conf</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">host    all             all             127.0.0.1/32            trust</div><div class="line">host    all             all             10.210.12.18/32            trust</div><div class="line">host    all             all             10.210.12.17/32            trust</div><div class="line">host    all             all             ::1/128                 trust</div><div class="line">host    replication     all             127.0.0.1/32            trust</div><div class="line">host    replication     all             ::1/128                 trust</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">host    all             all             127.0.0.1/32            trust</span><br><span class="line">host    all             all             10.210.12.18/32            trust</span><br><span class="line">host    all             all             10.210.12.17/32            trust</span><br><span class="line">host    all             all             ::1/128                 trust</span><br><span class="line">host    replication     all             127.0.0.1/32            trust</span><br><span class="line">host    replication     all             ::1/128                 trust</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 

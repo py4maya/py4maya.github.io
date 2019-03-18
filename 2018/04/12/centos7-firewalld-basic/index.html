@@ -193,6 +193,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
@@ -219,16 +229,6 @@
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            关于
           </a>
         </li>
       
@@ -356,28 +356,28 @@
       
         <ul>
 <li><p>安装firewalld ，设置为开机启动，启动之:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> yum install firewalld</div><div class="line"><span class="meta">$</span> systemctl enable firewalld</div><div class="line"><span class="meta">$</span> systemctl start firewalld</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> yum install firewalld</span><br><span class="line"><span class="meta">$</span> systemctl enable firewalld</span><br><span class="line"><span class="meta">$</span> systemctl start firewalld</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>查看zones </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> firewall-cmd --get-zones</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> firewall-cmd --get-zones</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>创建新的zone :</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> firewall-cmd --new-zone=goaway --permanent</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> firewall-cmd --new-zone=goaway --permanent</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>添加简单的服务，端口:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> firewall-cmd --zone=goaway --add-port=80/tcp --permanent</div><div class="line"><span class="meta">$</span> firewall-cmd --zone=goaway --add-port=53/udp --permanent</div><div class="line"><span class="meta">$</span> firewall-cmd --zone=goaway --add-service=ssh --permanent</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> firewall-cmd --zone=goaway --add-port=80/tcp --permanent</span><br><span class="line"><span class="meta">$</span> firewall-cmd --zone=goaway --add-port=53/udp --permanent</span><br><span class="line"><span class="meta">$</span> firewall-cmd --zone=goaway --add-service=ssh --permanent</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>删除简单的服务，端口:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> firewall-cmd --zone=goaway --remove-port=80/tcp --permanent</div><div class="line"><span class="meta">$</span> firewall-cmd --zone=goaway --remove-port=53/udp --permanent</div><div class="line"><span class="meta">$</span> firewall-cmd --zone=goaway --remove-service=ssh --permanent</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> firewall-cmd --zone=goaway --remove-port=80/tcp --permanent</span><br><span class="line"><span class="meta">$</span> firewall-cmd --zone=goaway --remove-port=53/udp --permanent</span><br><span class="line"><span class="meta">$</span> firewall-cmd --zone=goaway --remove-service=ssh --permanent</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>设置新的默认zone</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> firewall-cmd --set-default-zone=goaway</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> firewall-cmd --set-default-zone=goaway</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>修改zones文件以后，重新加载:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> firewall-cmd --reload</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> firewall-cmd --reload</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>复杂规则的添加删除:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> firewall-cmd --permanent --remove-rich-rule="rule family="ipv4" source address="192.168.142.166" port protocol="tcp" port="11300" accept"</div><div class="line"><span class="meta">$</span> firewall-cmd --permanent --add-rich-rule="rule family="ipv4" source address="192.168.142.166" port protocol="tcp" port="11300" accept"</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> firewall-cmd --permanent --remove-rich-rule="rule family="ipv4" source address="192.168.142.166" port protocol="tcp" port="11300" accept"</span><br><span class="line"><span class="meta">$</span> firewall-cmd --permanent --add-rich-rule="rule family="ipv4" source address="192.168.142.166" port protocol="tcp" port="11300" accept"</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 

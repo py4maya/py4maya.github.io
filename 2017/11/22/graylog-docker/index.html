@@ -193,6 +193,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
@@ -219,16 +229,6 @@
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            关于
           </a>
         </li>
       
@@ -360,21 +360,21 @@
 <li><p>创建储存graylog的目录:</p>
 </li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mkdir -p ./graylog/data/journal</div><div class="line">mkdir -p ./graylog/config</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p ./graylog/data/journal</span><br><span class="line">mkdir -p ./graylog/config</span><br></pre></td></tr></table></figure>
 <ul>
 <li><p>编写docker-compose.yml</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">version: '2'</div><div class="line">services:</div><div class="line">  mongo:</div><div class="line">    image: "index.alauda.cn/library/mongo:3"</div><div class="line">  elasticsearch:</div><div class="line">    image: "index.alauda.cn/library/elasticsearch:2.3.2"</div><div class="line">    command: "elasticsearch -Des.cluster.name='graylog'"</div><div class="line">  elasticsearch1:</div><div class="line">    image: "index.alauda.cn/library/elasticsearch:2.3.2"</div><div class="line">    command: "elasticsearch -Des.cluster.name='graylog'"</div><div class="line">  graylog:</div><div class="line">    image: graylog2/server:2.1.0-1</div><div class="line">    environment:</div><div class="line">      GRAYLOG_PASSWORD_SECRET: xsofdnasdfsgolwa</div><div class="line">      #echo -ne "koudai@a1@38t" | sha256sum</div><div class="line">      GRAYLOG_ROOT_PASSWORD_SHA2: 8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918 </div><div class="line">      GRAYLOG_REST_TRANSPORT_URI: http://172.16.7.58:12900</div><div class="line">    depends_on:</div><div class="line">      - mongo</div><div class="line">      - elasticsearch</div><div class="line">      - elasticsearch1</div><div class="line">    ports:</div><div class="line">      - "172.16.7.58:9002:9000"</div><div class="line">      - "172.16.7.58:12900:12900"</div><div class="line">      - "172.16.7.58:8514:8514/udp"</div><div class="line">    volumes:</div><div class="line">      - "./graylog/data/journal:/usr/share/graylog/data/journal"</div><div class="line">      #- "./graylog/config:/usr/share/graylog/data/config"</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">version: '2'</span><br><span class="line">services:</span><br><span class="line">  mongo:</span><br><span class="line">    image: "index.alauda.cn/library/mongo:3"</span><br><span class="line">  elasticsearch:</span><br><span class="line">    image: "index.alauda.cn/library/elasticsearch:2.3.2"</span><br><span class="line">    command: "elasticsearch -Des.cluster.name='graylog'"</span><br><span class="line">  elasticsearch1:</span><br><span class="line">    image: "index.alauda.cn/library/elasticsearch:2.3.2"</span><br><span class="line">    command: "elasticsearch -Des.cluster.name='graylog'"</span><br><span class="line">  graylog:</span><br><span class="line">    image: graylog2/server:2.1.0-1</span><br><span class="line">    environment:</span><br><span class="line">      GRAYLOG_PASSWORD_SECRET: xsofdnasdfsgolwa</span><br><span class="line">      #echo -ne "koudai@a1@38t" | sha256sum</span><br><span class="line">      GRAYLOG_ROOT_PASSWORD_SHA2: 8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918 </span><br><span class="line">      GRAYLOG_REST_TRANSPORT_URI: http://172.16.7.58:12900</span><br><span class="line">    depends_on:</span><br><span class="line">      - mongo</span><br><span class="line">      - elasticsearch</span><br><span class="line">      - elasticsearch1</span><br><span class="line">    ports:</span><br><span class="line">      - "172.16.7.58:9002:9000"</span><br><span class="line">      - "172.16.7.58:12900:12900"</span><br><span class="line">      - "172.16.7.58:8514:8514/udp"</span><br><span class="line">    volumes:</span><br><span class="line">      - "./graylog/data/journal:/usr/share/graylog/data/journal"</span><br><span class="line">      #- "./graylog/config:/usr/share/graylog/data/config"</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>使用docker-compose启动服务:</p>
 </li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker-compose up -d</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
 <ul>
 <li>注:在配置文件中修改graylog的默认用户名密码:</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">echo</span> -ne <span class="string">"admin"</span> | sha256sum</span></div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">$</span> echo -ne "admin" | sha256sum</span><br></pre></td></tr></table></figure>
 <ul>
-<li>从容器中copy出 graylog.conf 配置文件 到 ./graylog/config/graylog.conf  ，然后修改,重新启动<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker cp graylog_graylog_1:/usr/share/graylog/data/config graylog/</div></pre></td></tr></table></figure>
+<li>从容器中copy出 graylog.conf 配置文件 到 ./graylog/config/graylog.conf  ，然后修改,重新启动<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker cp graylog_graylog_1:/usr/share/graylog/data/config graylog/</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 

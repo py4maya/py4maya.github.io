@@ -193,6 +193,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
@@ -219,16 +229,6 @@
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            关于
           </a>
         </li>
       
@@ -354,9 +354,9 @@
       
 
       
-        <figure class="highlight golang"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="keyword">import</span> (</div><div class="line">	<span class="string">"flag"</span></div><div class="line">	<span class="string">"fmt"</span></div><div class="line">	<span class="string">"os"</span></div><div class="line">)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">	ok := flag.Bool(<span class="string">"ok"</span>, <span class="literal">false</span>, <span class="string">"is ok"</span>)</div><div class="line">	flag.CommandLine.Parse(os.Args[<span class="number">2</span>:])</div><div class="line">	action := os.Args[<span class="number">1</span>]</div><div class="line">	fmt.Println(<span class="string">"Action: "</span>, action)</div><div class="line">	fmt.Println(*ok)</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="运行参数"><a href="#运行参数" class="headerlink" title="运行参数:"></a>运行参数:</h2><figure class="highlight golang"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ./flag &lt;action&gt; --ok</div></pre></td></tr></table></figure>
-<h2 id="传递参数的方法"><a href="#传递参数的方法" class="headerlink" title="传递参数的方法:"></a>传递参数的方法:</h2><figure class="highlight golang"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">./flag &lt;action&gt; -ok</div><div class="line">./flag &lt;action&gt; --ok</div><div class="line">./flag &lt;action&gt; --ok=<span class="literal">true</span></div></pre></td></tr></table></figure>
+        <figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"flag"</span></span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"os"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	ok := flag.Bool(<span class="string">"ok"</span>, <span class="literal">false</span>, <span class="string">"is ok"</span>)</span><br><span class="line">	flag.CommandLine.Parse(os.Args[<span class="number">2</span>:])</span><br><span class="line">	action := os.Args[<span class="number">1</span>]</span><br><span class="line">	fmt.Println(<span class="string">"Action: "</span>, action)</span><br><span class="line">	fmt.Println(*ok)</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="运行参数"><a href="#运行参数" class="headerlink" title="运行参数:"></a>运行参数:</h2><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ./flag &lt;action&gt; --ok</span><br></pre></td></tr></table></figure>
+<h2 id="传递参数的方法"><a href="#传递参数的方法" class="headerlink" title="传递参数的方法:"></a>传递参数的方法:</h2><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./flag &lt;action&gt; -ok</span><br><span class="line">./flag &lt;action&gt; --ok</span><br><span class="line">./flag &lt;action&gt; --ok=<span class="literal">true</span></span><br></pre></td></tr></table></figure>
 
       
     </div>

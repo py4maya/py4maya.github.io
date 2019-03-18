@@ -193,6 +193,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
@@ -219,16 +229,6 @@
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            关于
           </a>
         </li>
       
@@ -355,19 +355,19 @@
 
       
         <p>容器中配置的是ubuntu的基础系统.<br>安装syslog-ng</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">apt-get install syslog-ng</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install syslog-ng</span><br></pre></td></tr></table></figure>
 <p>然后 启动 syslog-ng </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">service syslog-ng start</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service syslog-ng start</span><br></pre></td></tr></table></figure>
 <ul>
 <li>报错1<br>syslog-ng: Error setting capabilities</li>
 </ul>
-<p>按照如下的代码修改启动参数<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cat /etc/default/syslog-ng</div><div class="line"></div><div class="line"><span class="meta">#</span>#添加这一行,注释打开</div><div class="line">SYSLOGNG_OPTS="--no-caps"</div></pre></td></tr></table></figure></p>
+<p>按照如下的代码修改启动参数<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/default/syslog-ng</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>#添加这一行,注释打开</span><br><span class="line">SYSLOGNG_OPTS="--no-caps"</span><br></pre></td></tr></table></figure></p>
 <ul>
 <li>报错2 </li>
 </ul>
 <p>Error opening file for reading; filename=’/proc/kmsg’, error=’Operation not permitted (1)’</p>
 <p>去掉syslog-ng配置中的system()</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">source s_src &#123;</div><div class="line"><span class="meta">#</span>       system();</div><div class="line">       internal();</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">source s_src &#123;</span><br><span class="line"><span class="meta">#</span>       system();</span><br><span class="line">       internal();</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
       
     </div>

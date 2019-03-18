@@ -193,6 +193,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
@@ -219,16 +229,6 @@
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            关于
           </a>
         </li>
       
@@ -332,7 +332,7 @@
       
 
       
-        <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></div><div class="line"></div><div class="line">pip install --upgrade setuptools</div><div class="line">yum install gcc python-devel g++ gcc-c++ cyrus-sasl cyrus-sasl-devel -y</div><div class="line"></div><div class="line"></div><div class="line">exit</div><div class="line"></div><div class="line">fabmanager create-admin --app superset</div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"> Initialize the database</span></div><div class="line">superset db upgrade</div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"> Load some data to play with</span></div><div class="line">superset load_examples</div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"> Create default roles and permissions</span></div><div class="line">superset init</div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"> Start the web server on port 8088</span></div><div class="line">superset runserver -p 8088</div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"> To start a development web server, use the -d switch</span></div><div class="line"><span class="meta">#</span><span class="bash"> superset runserver -d</span></div></pre></td></tr></table></figure>
+        <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"></span><br><span class="line">pip install --upgrade setuptools</span><br><span class="line">yum install gcc python-devel g++ gcc-c++ cyrus-sasl cyrus-sasl-devel -y</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">exit</span><br><span class="line"></span><br><span class="line">fabmanager create-admin --app superset</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Initialize the database</span></span><br><span class="line">superset db upgrade</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Load some data to play with</span></span><br><span class="line">superset load_examples</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Create default roles and permissions</span></span><br><span class="line">superset init</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Start the web server on port 8088</span></span><br><span class="line">superset runserver -p 8088</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> To start a development web server, use the -d switch</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> superset runserver -d</span></span><br></pre></td></tr></table></figure>
 
       
     </div>

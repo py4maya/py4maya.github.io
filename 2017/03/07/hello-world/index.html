@@ -193,6 +193,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
@@ -219,16 +229,6 @@
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            关于
           </a>
         </li>
       
@@ -354,18 +354,18 @@
       
 
       
-        <h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2><h3 id="安装nodejs-npm"><a href="#安装nodejs-npm" class="headerlink" title="安装nodejs,npm"></a>安装nodejs,npm</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install -g hexo</div></pre></td></tr></table></figure>
+        <h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2><h3 id="安装nodejs-npm"><a href="#安装nodejs-npm" class="headerlink" title="安装nodejs,npm"></a>安装nodejs,npm</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo</span><br></pre></td></tr></table></figure>
 <p>有的时候，需要在命令前，添加sudo</p>
-<h3 id="创建博客目录-并cd到对应的目录"><a href="#创建博客目录-并cd到对应的目录" class="headerlink" title="创建博客目录,并cd到对应的目录"></a>创建博客目录,并cd到对应的目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ mkdir blog </div><div class="line">$ <span class="built_in">cd</span> `<span class="built_in">pwd</span>`/blog</div><div class="line">$ <span class="built_in">pwd</span></div></pre></td></tr></table></figure>
-<h3 id="生成对应的页面文件"><a href="#生成对应的页面文件" class="headerlink" title="生成对应的页面文件"></a>生成对应的页面文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>查看更多: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">生成页面</a></p>
-<h3 id="部署到github"><a href="#部署到github" class="headerlink" title="部署到github"></a>部署到github</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<h3 id="创建博客目录-并cd到对应的目录"><a href="#创建博客目录-并cd到对应的目录" class="headerlink" title="创建博客目录,并cd到对应的目录"></a>创建博客目录,并cd到对应的目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir blog </span><br><span class="line">$ <span class="built_in">cd</span> `<span class="built_in">pwd</span>`/blog</span><br><span class="line">$ <span class="built_in">pwd</span></span><br></pre></td></tr></table></figure>
+<h3 id="生成对应的页面文件"><a href="#生成对应的页面文件" class="headerlink" title="生成对应的页面文件"></a>生成对应的页面文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>查看更多: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">生成页面</a></p>
+<h3 id="部署到github"><a href="#部署到github" class="headerlink" title="部署到github"></a>部署到github</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 <p>有时候会报错:ERROR Deployer not found: github<br>解决办法如下,运行如下命令:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install hexo-deployer-git --save</div></pre></td></tr></table></figure>
-<h3 id="生成新的文章"><a href="#生成新的文章" class="headerlink" title="生成新的文章:"></a>生成新的文章:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new &lt;layout&gt; &lt;title&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<h3 id="生成新的文章"><a href="#生成新的文章" class="headerlink" title="生成新的文章:"></a>生成新的文章:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new &lt;layout&gt; &lt;title&gt;</span><br></pre></td></tr></table></figure>
 <p>其中layout的值为: post, page, draft 或者其他的内容</p>
 <p>当修改内容以后，需要调用以下命令，重新生成，重新部署:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo g &amp;&amp; hexo d</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -402,8 +402,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/07/supervisor安装配置使用/" rel="next" title="supervisor安装配置使用">
-                <i class="fa fa-chevron-left"></i> supervisor安装配置使用
+              <a href="/2017/03/07/centos7升级gcc到4-9-3/" rel="next" title="centos7升级gcc到4.9.3">
+                <i class="fa fa-chevron-left"></i> centos7升级gcc到4.9.3
               </a>
             
           </div>
@@ -412,8 +412,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/03/07/centos7升级gcc到4-9-3/" rel="prev" title="centos7升级gcc到4.9.3">
-                centos7升级gcc到4.9.3 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/09/21/nginx-proxy/" rel="prev" title="使用nginx制作全代理">
+                使用nginx制作全代理 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

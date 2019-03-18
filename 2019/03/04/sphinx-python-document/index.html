@@ -193,6 +193,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
@@ -219,16 +229,6 @@
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            关于
           </a>
         </li>
       
@@ -354,13 +354,13 @@
       
 
       
-        <h3 id="安装shpinx"><a href="#安装shpinx" class="headerlink" title="安装shpinx"></a>安装shpinx</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> pip install sphinx</span></div></pre></td></tr></table></figure>
-<h3 id="创建代码目录，或者切换到代码目录-初始化sphinx-配置"><a href="#创建代码目录，或者切换到代码目录-初始化sphinx-配置" class="headerlink" title="创建代码目录，或者切换到代码目录,初始化sphinx 配置"></a>创建代码目录，或者切换到代码目录,初始化sphinx 配置</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash">  sphinx-quickstart</span></div></pre></td></tr></table></figure>
-<h3 id="修改-source-conf-py"><a href="#修改-source-conf-py" class="headerlink" title="修改 source/conf.py"></a>修改 source/conf.py</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">import</span> os</div><div class="line"><span class="keyword">import</span> sys</div><div class="line">sys.path.insert(<span class="number">0</span>, os.path.abspath(<span class="string">'../'</span>))</div></pre></td></tr></table></figure>
-<h3 id="生成rst-文件"><a href="#生成rst-文件" class="headerlink" title="生成rst 文件:"></a>生成rst 文件:</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sphinx-apidoc -o  ./source code</div></pre></td></tr></table></figure>
-<h3 id="生成Html-文档"><a href="#生成Html-文档" class="headerlink" title="生成Html 文档:"></a>生成Html 文档:</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">make html</div></pre></td></tr></table></figure>
+        <h3 id="安装shpinx"><a href="#安装shpinx" class="headerlink" title="安装shpinx"></a>安装shpinx</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> pip install sphinx</span></span><br></pre></td></tr></table></figure>
+<h3 id="创建代码目录，或者切换到代码目录-初始化sphinx-配置"><a href="#创建代码目录，或者切换到代码目录-初始化sphinx-配置" class="headerlink" title="创建代码目录，或者切换到代码目录,初始化sphinx 配置"></a>创建代码目录，或者切换到代码目录,初始化sphinx 配置</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">  sphinx-quickstart</span></span><br></pre></td></tr></table></figure>
+<h3 id="修改-source-conf-py"><a href="#修改-source-conf-py" class="headerlink" title="修改 source/conf.py"></a>修改 source/conf.py</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">sys.path.insert(<span class="number">0</span>, os.path.abspath(<span class="string">'../'</span>))</span><br></pre></td></tr></table></figure>
+<h3 id="生成rst-文件"><a href="#生成rst-文件" class="headerlink" title="生成rst 文件:"></a>生成rst 文件:</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sphinx-apidoc -o  ./source code</span><br></pre></td></tr></table></figure>
+<h3 id="生成Html-文档"><a href="#生成Html-文档" class="headerlink" title="生成Html 文档:"></a>生成Html 文档:</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make html</span><br></pre></td></tr></table></figure>
 <p><em>Makefile 修改</em></p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment"># Minimal makefile for Sphinx documentation</span></div><div class="line"><span class="comment">#</span></div><div class="line"></div><div class="line"><span class="comment"># You can set these variables from the command line.</span></div><div class="line">SPHINXOPTS    =</div><div class="line">SPHINXBUILD   = sphinx-build</div><div class="line">SOURCEDIR     = source</div><div class="line">BUILDDIR      = build</div><div class="line"></div><div class="line"><span class="comment"># Put it first so that "make" without argument is like "make help".</span></div><div class="line"><span class="section">help:</span></div><div class="line">	@<span class="variable">$(SPHINXBUILD)</span> -M help <span class="string">"<span class="variable">$(SOURCEDIR)</span>"</span> <span class="string">"<span class="variable">$(BUILDDIR)</span>"</span> <span class="variable">$(SPHINXOPTS)</span> <span class="variable">$(O)</span></div><div class="line"></div><div class="line"><span class="meta"><span class="meta-keyword">.PHONY</span>: help Makefile</span></div><div class="line"></div><div class="line"><span class="comment"># Catch-all target: route all unknown targets to Sphinx using the new</span></div><div class="line"><span class="comment"># "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).</span></div><div class="line"><span class="section">%: Makefile</span></div><div class="line">	sphinx-apidoc -o  ./source xsdk</div><div class="line">	@<span class="variable">$(SPHINXBUILD)</span> -M <span class="variable">$@</span> <span class="string">"<span class="variable">$(SOURCEDIR)</span>"</span> <span class="string">"<span class="variable">$(BUILDDIR)</span>"</span> <span class="variable">$(SPHINXOPTS)</span> <span class="variable">$(O)</span></div></pre></td></tr></table></figure>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># Minimal makefile for Sphinx documentation</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># You can set these variables from the command line.</span></span><br><span class="line">SPHINXOPTS    =</span><br><span class="line">SPHINXBUILD   = sphinx-build</span><br><span class="line">SOURCEDIR     = source</span><br><span class="line">BUILDDIR      = build</span><br><span class="line"></span><br><span class="line"><span class="comment"># Put it first so that "make" without argument is like "make help".</span></span><br><span class="line"><span class="section">help:</span></span><br><span class="line">	@<span class="variable">$(SPHINXBUILD)</span> -M help <span class="string">"<span class="variable">$(SOURCEDIR)</span>"</span> <span class="string">"<span class="variable">$(BUILDDIR)</span>"</span> <span class="variable">$(SPHINXOPTS)</span> <span class="variable">$(O)</span></span><br><span class="line"></span><br><span class="line"><span class="meta"><span class="meta-keyword">.PHONY</span>: help Makefile</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Catch-all target: route all unknown targets to Sphinx using the new</span></span><br><span class="line"><span class="comment"># "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).</span></span><br><span class="line"><span class="section">%: Makefile</span></span><br><span class="line">	sphinx-apidoc -o  ./source xsdk</span><br><span class="line">	@<span class="variable">$(SPHINXBUILD)</span> -M <span class="variable">$@</span> <span class="string">"<span class="variable">$(SOURCEDIR)</span>"</span> <span class="string">"<span class="variable">$(BUILDDIR)</span>"</span> <span class="variable">$(SPHINXOPTS)</span> <span class="variable">$(O)</span></span><br></pre></td></tr></table></figure>
 
       
     </div>

@@ -193,6 +193,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
@@ -219,16 +229,6 @@
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            关于
           </a>
         </li>
       
@@ -355,11 +355,11 @@
 
       
         <p>nginx 自己的ip访问控制大家应该都用过，就是下边的这种写法:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">allow ip1;</div><div class="line">allow ip2;</div><div class="line">allow ip3;</div><div class="line">deny all;</div><div class="line">...</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">allow ip1;</span><br><span class="line">allow ip2;</span><br><span class="line">allow ip3;</span><br><span class="line">deny all;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 <p>当你有一堆IP需要控制的时候，就是一件比较难受的事情了。<br>所以，使用lua 写了这么一段lua代码。</p>
 <p>nginx 自己需要配置支持 lua 去翻其他的代码吧:</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">M.access_by_net</span><span class="params">(name)</span></span> </div><div class="line">    <span class="keyword">local</span> client_ip =  ngx.var.remote_addr <span class="keyword">or</span> <span class="string">"0.0.0.0"</span></div><div class="line">    <span class="keyword">local</span> pts,pts_len = U.findAll(client_ip,<span class="string">'%.'</span>)</div><div class="line">    <span class="keyword">if</span> pts_len == <span class="number">3</span> <span class="keyword">then</span></div><div class="line">        <span class="keyword">local</span> network = <span class="built_in">string</span>.<span class="built_in">sub</span>(client_ip,<span class="number">0</span>,pts[<span class="number">3</span>])</div><div class="line">        <span class="keyword">local</span> allow_hosts = &#123;&#125;</div><div class="line">        <span class="keyword">local</span> allow_nets = &#123;&#125;</div><div class="line"></div><div class="line">		<span class="comment">--- 这部分就可以自己定义了</span></div><div class="line">        <span class="keyword">if</span> name == <span class="string">"sec"</span> <span class="keyword">then</span></div><div class="line">            allow_nets = &#123;<span class="string">"10.222.28."</span>&#125;</div><div class="line">        <span class="keyword">elseif</span> name == <span class="string">"es"</span> <span class="keyword">then</span></div><div class="line">            allow_nets = &#123;&#125;</div><div class="line">            allow_hosts = &#123;<span class="string">"10.210.12.17"</span>&#125;</div><div class="line">        <span class="keyword">end</span> </div><div class="line"></div><div class="line">        <span class="keyword">if</span> U.inArray(allow_hosts,client_ip) <span class="keyword">or</span> U.inArray(allow_nets,network) <span class="keyword">then</span></div><div class="line">            <span class="keyword">return</span> <span class="literal">true</span></div><div class="line">        <span class="keyword">end</span> </div><div class="line">    <span class="keyword">end</span> </div><div class="line">    <span class="keyword">return</span> ngx.<span class="built_in">exit</span>(<span class="number">403</span>)</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
-<p>nginx 自己里边配置就比较简单了:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">access_by_lua "tools.access_by_net('es')";</div></pre></td></tr></table></figure></p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">M.access_by_net</span><span class="params">(name)</span></span> </span><br><span class="line">    <span class="keyword">local</span> client_ip =  ngx.var.remote_addr <span class="keyword">or</span> <span class="string">"0.0.0.0"</span></span><br><span class="line">    <span class="keyword">local</span> pts,pts_len = U.findAll(client_ip,<span class="string">'%.'</span>)</span><br><span class="line">    <span class="keyword">if</span> pts_len == <span class="number">3</span> <span class="keyword">then</span></span><br><span class="line">        <span class="keyword">local</span> network = <span class="built_in">string</span>.<span class="built_in">sub</span>(client_ip,<span class="number">0</span>,pts[<span class="number">3</span>])</span><br><span class="line">        <span class="keyword">local</span> allow_hosts = &#123;&#125;</span><br><span class="line">        <span class="keyword">local</span> allow_nets = &#123;&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">--- 这部分就可以自己定义了</span></span><br><span class="line">        <span class="keyword">if</span> name == <span class="string">"sec"</span> <span class="keyword">then</span></span><br><span class="line">            allow_nets = &#123;<span class="string">"10.222.28."</span>&#125;</span><br><span class="line">        <span class="keyword">elseif</span> name == <span class="string">"es"</span> <span class="keyword">then</span></span><br><span class="line">            allow_nets = &#123;&#125;</span><br><span class="line">            allow_hosts = &#123;<span class="string">"10.210.12.17"</span>&#125;</span><br><span class="line">        <span class="keyword">end</span> </span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> U.inArray(allow_hosts,client_ip) <span class="keyword">or</span> U.inArray(allow_nets,network) <span class="keyword">then</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">        <span class="keyword">end</span> </span><br><span class="line">    <span class="keyword">end</span> </span><br><span class="line">    <span class="keyword">return</span> ngx.<span class="built_in">exit</span>(<span class="number">403</span>)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>nginx 自己里边配置就比较简单了:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">access_by_lua "tools.access_by_net('es')";</span><br></pre></td></tr></table></figure></p>
 
       
     </div>

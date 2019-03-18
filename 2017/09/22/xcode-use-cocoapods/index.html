@@ -193,6 +193,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
@@ -219,16 +229,6 @@
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            关于
           </a>
         </li>
       
@@ -357,18 +357,18 @@
         <ul>
 <li>安装cocoapods:</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">gem sources --remove https://rubygems.org/</div><div class="line">gem sources -a https://gems.ruby-china.org/</div><div class="line">gem sources -l</div><div class="line">sudo gem install cocoapods</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">gem sources --remove https://rubygems.org/</span><br><span class="line">gem sources -a https://gems.ruby-china.org/</span><br><span class="line">gem sources -l</span><br><span class="line">sudo gem install cocoapods</span><br></pre></td></tr></table></figure>
 <ul>
 <li><p>新建xcode project sample 保存到 ~/Documents/samplle</p>
 </li>
 <li><p>新建Podfile 安装相应的库:</p>
 </li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash">Podfile:</span></div><div class="line">platform :ios, '7.0'</div><div class="line">target 'sample' do</div><div class="line">pod 'AFNetworking', '~&gt; 3.1.0'</div><div class="line">end</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">Podfile:</span></span><br><span class="line">platform :ios, '7.0'</span><br><span class="line">target 'sample' do</span><br><span class="line">pod 'AFNetworking', '~&gt; 3.1.0'</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
 <ul>
 <li>执行安装:</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd ~/Documents/sample</div><div class="line">pod install</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ~/Documents/sample</span><br><span class="line">pod install</span><br></pre></td></tr></table></figure>
 
       
     </div>

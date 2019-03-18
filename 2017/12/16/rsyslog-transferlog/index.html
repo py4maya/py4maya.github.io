@@ -193,6 +193,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
@@ -219,16 +229,6 @@
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            关于
           </a>
         </li>
       
@@ -354,7 +354,7 @@
       
 
       
-        <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">module(load="imfile")</div><div class="line"></div><div class="line">ruleset(name="graylog-remote") &#123;</div><div class="line">    action(type="omfwd"</div><div class="line">        Protocol="udp"</div><div class="line">        Target="10.211.101.93"</div><div class="line">        Port="521")</div><div class="line">    stop</div><div class="line">&#125;</div><div class="line"></div><div class="line">input(</div><div class="line">    type="imfile"</div><div class="line">    File="/data0/nginx/logs/radius_ac.log"</div><div class="line">    Facility="user"</div><div class="line">    Severity="notice"</div><div class="line">    Tag=""</div><div class="line">    PersistStateInterval="1"</div><div class="line">    Ruleset="graylog-remote"</div><div class="line">)</div></pre></td></tr></table></figure>
+        <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">module(load="imfile")</span><br><span class="line"></span><br><span class="line">ruleset(name="graylog-remote") &#123;</span><br><span class="line">    action(type="omfwd"</span><br><span class="line">        Protocol="udp"</span><br><span class="line">        Target="10.211.101.93"</span><br><span class="line">        Port="521")</span><br><span class="line">    stop</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">input(</span><br><span class="line">    type="imfile"</span><br><span class="line">    File="/data0/nginx/logs/radius_ac.log"</span><br><span class="line">    Facility="user"</span><br><span class="line">    Severity="notice"</span><br><span class="line">    Tag=""</span><br><span class="line">    PersistStateInterval="1"</span><br><span class="line">    Ruleset="graylog-remote"</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 
       
     </div>

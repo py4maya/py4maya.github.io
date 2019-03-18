@@ -189,6 +189,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
@@ -215,16 +225,6 @@
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            关于
           </a>
         </li>
       
@@ -332,7 +332,7 @@
       
         
           
-            <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> dd <span class="keyword">if</span>=/dev/zero of=<span class="built_in">test</span> bs=1M count=1000</span></div></pre></td></tr></table></figure>
+            <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> dd <span class="keyword">if</span>=/dev/zero of=<span class="built_in">test</span> bs=1M count=1000</span></span><br></pre></td></tr></table></figure>
 
           
         
@@ -478,19 +478,19 @@
 <ul>
 <li>创建表：</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">CREATE TABLE excmdb (</div><div class="line">    asset_number character varying(128),</div><div class="line">    ips text[],</div><div class="line">    product character varying(128),</div><div class="line">    administrator character varying(64),</div><div class="line">    rack character varying(128),</div><div class="line">	manifest character varying(32),</div><div class="line">	constraint pk_tbl_primary_asset_manifest primary key (asset_number,manifest)</div><div class="line">);</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE excmdb (</span><br><span class="line">    asset_number character varying(128),</span><br><span class="line">    ips text[],</span><br><span class="line">    product character varying(128),</span><br><span class="line">    administrator character varying(64),</span><br><span class="line">    rack character varying(128),</span><br><span class="line">	manifest character varying(32),</span><br><span class="line">	constraint pk_tbl_primary_asset_manifest primary key (asset_number,manifest)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
 <ul>
 <li><p>导出表结构:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> pg_dump -h localhost -U cmdb -s cmdb</span></div><div class="line"><span class="meta">$</span><span class="bash"> pg_dump -h localhost -U cmdb cmdb -t excmdb   <span class="comment">#导出数据</span></span></div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> pg_dump -h localhost -U cmdb -s cmdb</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> pg_dump -h localhost -U cmdb cmdb -t excmdb   <span class="comment">#导出数据</span></span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>执行sql文件:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">\i data.sql;</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\i data.sql;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>查看描述:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">\dt #查看表list</div><div class="line">\d excmdb #查看表结构</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">\dt #查看表list</span><br><span class="line">\d excmdb #查看表结构</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>数组操作:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">select sample where ips @&gt; '&#123;127.0.0.1&#125;' # 查看数组包含</div><div class="line">update sample set ips = ips || '&#123;127.0.0.1&#125;' # 添加元素</div><div class="line">UPDATE excmdb SET ips = array_remove(ips,'10.13.2.144') WHERE asset_number = 'D10075981'; #删除元素</div><div class="line">select sample where ips ||  '&#123;127.0.0.1&#125;' # 数组元素的in查询</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">select sample where ips @&gt; '&#123;127.0.0.1&#125;' # 查看数组包含</span><br><span class="line">update sample set ips = ips || '&#123;127.0.0.1&#125;' # 添加元素</span><br><span class="line">UPDATE excmdb SET ips = array_remove(ips,'10.13.2.144') WHERE asset_number = 'D10075981'; #删除元素</span><br><span class="line">select sample where ips ||  '&#123;127.0.0.1&#125;' # 数组元素的in查询</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 
@@ -788,19 +788,19 @@
         
           
             <p>容器中配置的是ubuntu的基础系统.<br>安装syslog-ng</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">apt-get install syslog-ng</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install syslog-ng</span><br></pre></td></tr></table></figure>
 <p>然后 启动 syslog-ng </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">service syslog-ng start</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service syslog-ng start</span><br></pre></td></tr></table></figure>
 <ul>
 <li>报错1<br>syslog-ng: Error setting capabilities</li>
 </ul>
-<p>按照如下的代码修改启动参数<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cat /etc/default/syslog-ng</div><div class="line"></div><div class="line"><span class="meta">#</span>#添加这一行,注释打开</div><div class="line">SYSLOGNG_OPTS="--no-caps"</div></pre></td></tr></table></figure></p>
+<p>按照如下的代码修改启动参数<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/default/syslog-ng</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>#添加这一行,注释打开</span><br><span class="line">SYSLOGNG_OPTS="--no-caps"</span><br></pre></td></tr></table></figure></p>
 <ul>
 <li>报错2 </li>
 </ul>
 <p>Error opening file for reading; filename=’/proc/kmsg’, error=’Operation not permitted (1)’</p>
 <p>去掉syslog-ng配置中的system()</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">source s_src &#123;</div><div class="line"><span class="meta">#</span>       system();</div><div class="line">       internal();</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">source s_src &#123;</span><br><span class="line"><span class="meta">#</span>       system();</span><br><span class="line">       internal();</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
           
         
@@ -948,21 +948,21 @@
 <li><p>创建储存graylog的目录:</p>
 </li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mkdir -p ./graylog/data/journal</div><div class="line">mkdir -p ./graylog/config</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p ./graylog/data/journal</span><br><span class="line">mkdir -p ./graylog/config</span><br></pre></td></tr></table></figure>
 <ul>
 <li><p>编写docker-compose.yml</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">version: '2'</div><div class="line">services:</div><div class="line">  mongo:</div><div class="line">    image: "index.alauda.cn/library/mongo:3"</div><div class="line">  elasticsearch:</div><div class="line">    image: "index.alauda.cn/library/elasticsearch:2.3.2"</div><div class="line">    command: "elasticsearch -Des.cluster.name='graylog'"</div><div class="line">  elasticsearch1:</div><div class="line">    image: "index.alauda.cn/library/elasticsearch:2.3.2"</div><div class="line">    command: "elasticsearch -Des.cluster.name='graylog'"</div><div class="line">  graylog:</div><div class="line">    image: graylog2/server:2.1.0-1</div><div class="line">    environment:</div><div class="line">      GRAYLOG_PASSWORD_SECRET: xsofdnasdfsgolwa</div><div class="line">      #echo -ne "koudai@a1@38t" | sha256sum</div><div class="line">      GRAYLOG_ROOT_PASSWORD_SHA2: 8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918 </div><div class="line">      GRAYLOG_REST_TRANSPORT_URI: http://172.16.7.58:12900</div><div class="line">    depends_on:</div><div class="line">      - mongo</div><div class="line">      - elasticsearch</div><div class="line">      - elasticsearch1</div><div class="line">    ports:</div><div class="line">      - "172.16.7.58:9002:9000"</div><div class="line">      - "172.16.7.58:12900:12900"</div><div class="line">      - "172.16.7.58:8514:8514/udp"</div><div class="line">    volumes:</div><div class="line">      - "./graylog/data/journal:/usr/share/graylog/data/journal"</div><div class="line">      #- "./graylog/config:/usr/share/graylog/data/config"</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">version: '2'</span><br><span class="line">services:</span><br><span class="line">  mongo:</span><br><span class="line">    image: "index.alauda.cn/library/mongo:3"</span><br><span class="line">  elasticsearch:</span><br><span class="line">    image: "index.alauda.cn/library/elasticsearch:2.3.2"</span><br><span class="line">    command: "elasticsearch -Des.cluster.name='graylog'"</span><br><span class="line">  elasticsearch1:</span><br><span class="line">    image: "index.alauda.cn/library/elasticsearch:2.3.2"</span><br><span class="line">    command: "elasticsearch -Des.cluster.name='graylog'"</span><br><span class="line">  graylog:</span><br><span class="line">    image: graylog2/server:2.1.0-1</span><br><span class="line">    environment:</span><br><span class="line">      GRAYLOG_PASSWORD_SECRET: xsofdnasdfsgolwa</span><br><span class="line">      #echo -ne "koudai@a1@38t" | sha256sum</span><br><span class="line">      GRAYLOG_ROOT_PASSWORD_SHA2: 8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918 </span><br><span class="line">      GRAYLOG_REST_TRANSPORT_URI: http://172.16.7.58:12900</span><br><span class="line">    depends_on:</span><br><span class="line">      - mongo</span><br><span class="line">      - elasticsearch</span><br><span class="line">      - elasticsearch1</span><br><span class="line">    ports:</span><br><span class="line">      - "172.16.7.58:9002:9000"</span><br><span class="line">      - "172.16.7.58:12900:12900"</span><br><span class="line">      - "172.16.7.58:8514:8514/udp"</span><br><span class="line">    volumes:</span><br><span class="line">      - "./graylog/data/journal:/usr/share/graylog/data/journal"</span><br><span class="line">      #- "./graylog/config:/usr/share/graylog/data/config"</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>使用docker-compose启动服务:</p>
 </li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker-compose up -d</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
 <ul>
 <li>注:在配置文件中修改graylog的默认用户名密码:</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">echo</span> -ne <span class="string">"admin"</span> | sha256sum</span></div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">$</span> echo -ne "admin" | sha256sum</span><br></pre></td></tr></table></figure>
 <ul>
-<li>从容器中copy出 graylog.conf 配置文件 到 ./graylog/config/graylog.conf  ，然后修改,重新启动<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker cp graylog_graylog_1:/usr/share/graylog/data/config graylog/</div></pre></td></tr></table></figure>
+<li>从容器中copy出 graylog.conf 配置文件 到 ./graylog/config/graylog.conf  ，然后修改,重新启动<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker cp graylog_graylog_1:/usr/share/graylog/data/config graylog/</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 

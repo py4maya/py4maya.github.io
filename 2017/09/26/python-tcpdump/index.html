@@ -193,6 +193,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
@@ -219,16 +229,6 @@
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            关于
           </a>
         </li>
       
@@ -354,8 +354,8 @@
       
 
       
-        <p>libcap-devel 及 pypcap 安装<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> yum install libpcap-devel </span></div><div class="line"><span class="meta">$</span><span class="bash"> pip install pypcap</span></div><div class="line"><span class="meta">$</span><span class="bash"> pip install dpkt</span></div></pre></td></tr></table></figure></p>
-<p>简单的抓取80端口的数据包:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#coding=utf-8</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> pcap</div><div class="line"><span class="keyword">import</span> dpkt</div><div class="line"></div><div class="line">pc = pcap.pcap(<span class="string">'eth0'</span>)</div><div class="line"></div><div class="line">pc.setfilter(<span class="string">'tcp port 80'</span>)</div><div class="line"><span class="keyword">for</span> ptime,pdata <span class="keyword">in</span> pc:</div><div class="line">	frame = dpkt.ethernet.Ethernet(pdata)</div><div class="line">	ip = <span class="string">'%d.%d.%d.%d'</span> % tuple(map(ord,list(frame.data.dst)))</div><div class="line">	transfer = frame.data.data.__class__.__name__</div><div class="line">	<span class="keyword">print</span> ip,transfer</div><div class="line">	<span class="keyword">print</span> frame.data.data</div></pre></td></tr></table></figure></p>
+        <p>libcap-devel 及 pypcap 安装<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> yum install libpcap-devel </span></span><br><span class="line"><span class="meta">$</span><span class="bash"> pip install pypcap</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> pip install dpkt</span></span><br></pre></td></tr></table></figure></p>
+<p>简单的抓取80端口的数据包:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding=utf-8</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> pcap</span><br><span class="line"><span class="keyword">import</span> dpkt</span><br><span class="line"></span><br><span class="line">pc = pcap.pcap(<span class="string">'eth0'</span>)</span><br><span class="line"></span><br><span class="line">pc.setfilter(<span class="string">'tcp port 80'</span>)</span><br><span class="line"><span class="keyword">for</span> ptime,pdata <span class="keyword">in</span> pc:</span><br><span class="line">	frame = dpkt.ethernet.Ethernet(pdata)</span><br><span class="line">	ip = <span class="string">'%d.%d.%d.%d'</span> % tuple(map(ord,list(frame.data.dst)))</span><br><span class="line">	transfer = frame.data.data.__class__.__name__</span><br><span class="line">	<span class="keyword">print</span> ip,transfer</span><br><span class="line">	<span class="keyword">print</span> frame.data.data</span><br></pre></td></tr></table></figure></p>
 <p>数据分析的几个关键点:</p>
 <ul>
 <li>pcap.pcap的参数网卡name 一般是ech0</li>

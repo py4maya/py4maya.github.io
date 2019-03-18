@@ -193,6 +193,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
@@ -219,16 +229,6 @@
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            关于
           </a>
         </li>
       
@@ -354,7 +354,7 @@
       
 
       
-        <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">#coding=utf-8</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> logging</div><div class="line"><span class="keyword">import</span> xlrd</div><div class="line"></div><div class="line">logging.basicConfig(level=logging.DEBUG,format=<span class="string">'%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s'</span>,datefmt=<span class="string">'%a, %d %b %Y %H:%M:%S'</span>)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">xlsLoop</span><span class="params">(xlsName)</span>:</span></div><div class="line">	wb = xlrd.open_workbook(xlsName)</div><div class="line">	names = wb.sheet_names()</div><div class="line">	</div><div class="line">	<span class="keyword">for</span> name <span class="keyword">in</span> names:</div><div class="line">		sheet = wb.sheet_by_name(name)</div><div class="line">		<span class="keyword">for</span> rownum <span class="keyword">in</span> range(sheet.nrows):</div><div class="line">			row = sheet.row_values(rownum)</div><div class="line">			colnum = <span class="number">0</span></div><div class="line">			<span class="keyword">for</span> col <span class="keyword">in</span> row:</div><div class="line">				<span class="comment">#logging.debug("&lt;%s&gt; [%d,%d] %s",name,rownum,colnum,col)</span></div><div class="line">				colnum += <span class="number">1</span> </div><div class="line">				<span class="keyword">yield</span> (name,rownum,colnum,col)</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">for</span> sheet,rownum,colnum,col <span class="keyword">in</span> xlsLoop(<span class="string">'test.xlsx'</span>):</div><div class="line">	logging.info(<span class="string">"%s %s %s %s "</span>,sheet,rownum,colnum,col)</div></pre></td></tr></table></figure>
+        <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#coding=utf-8</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"><span class="keyword">import</span> xlrd</span><br><span class="line"></span><br><span class="line">logging.basicConfig(level=logging.DEBUG,format=<span class="string">'%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s'</span>,datefmt=<span class="string">'%a, %d %b %Y %H:%M:%S'</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">xlsLoop</span><span class="params">(xlsName)</span>:</span></span><br><span class="line">	wb = xlrd.open_workbook(xlsName)</span><br><span class="line">	names = wb.sheet_names()</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span> name <span class="keyword">in</span> names:</span><br><span class="line">		sheet = wb.sheet_by_name(name)</span><br><span class="line">		<span class="keyword">for</span> rownum <span class="keyword">in</span> range(sheet.nrows):</span><br><span class="line">			row = sheet.row_values(rownum)</span><br><span class="line">			colnum = <span class="number">0</span></span><br><span class="line">			<span class="keyword">for</span> col <span class="keyword">in</span> row:</span><br><span class="line">				<span class="comment">#logging.debug("&lt;%s&gt; [%d,%d] %s",name,rownum,colnum,col)</span></span><br><span class="line">				colnum += <span class="number">1</span> </span><br><span class="line">				<span class="keyword">yield</span> (name,rownum,colnum,col)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> sheet,rownum,colnum,col <span class="keyword">in</span> xlsLoop(<span class="string">'test.xlsx'</span>):</span><br><span class="line">	logging.info(<span class="string">"%s %s %s %s "</span>,sheet,rownum,colnum,col)</span><br></pre></td></tr></table></figure>
 
       
     </div>

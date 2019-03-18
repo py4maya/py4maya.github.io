@@ -193,6 +193,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
@@ -219,16 +229,6 @@
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            关于
           </a>
         </li>
       
@@ -357,23 +357,23 @@
         <ul>
 <li>编译nginx,编译脚本:</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">./configure \</div><div class="line">--prefix=/data0/nginx/ \</div><div class="line">--with-stream \</div><div class="line">--with-http_ssl_module  \</div><div class="line">--with-stream_ssl_module \</div><div class="line">make -j4</div><div class="line">make install</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">./configure \</span><br><span class="line">--prefix=/data0/nginx/ \</span><br><span class="line">--with-stream \</span><br><span class="line">--with-http_ssl_module  \</span><br><span class="line">--with-stream_ssl_module \</span><br><span class="line">make -j4</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
 <ul>
 <li>主nginx配置文件：</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">http &#123;</div><div class="line">	resolver 10.212.0.43  valid=3600s;</div><div class="line"></div><div class="line">	include       mime.types;</div><div class="line">	default_type  application/octet-stream;</div><div class="line"></div><div class="line">	log_format  main  '$remote_addr $http_host - $remote_user [$time_local] "$request" '</div><div class="line">		'$status $body_bytes_sent "$http_referer" '</div><div class="line">		'"$http_user_agent" "$http_x_forwarded_for"';</div><div class="line">	sendfile        on; </div><div class="line">	keepalive_timeout  65; </div><div class="line">	gzip  on; </div><div class="line">	include vhost/*.conf;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">	resolver 10.212.0.43  valid=3600s;</span><br><span class="line"></span><br><span class="line">	include       mime.types;</span><br><span class="line">	default_type  application/octet-stream;</span><br><span class="line"></span><br><span class="line">	log_format  main  '$remote_addr $http_host - $remote_user [$time_local] "$request" '</span><br><span class="line">		'$status $body_bytes_sent "$http_referer" '</span><br><span class="line">		'"$http_user_agent" "$http_x_forwarded_for"';</span><br><span class="line">	sendfile        on; </span><br><span class="line">	keepalive_timeout  65; </span><br><span class="line">	gzip  on; </span><br><span class="line">	include vhost/*.conf;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>http代理比较简单:</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash">vhost/proxy.conf</span></div><div class="line">server &#123;</div><div class="line">	listen  80;</div><div class="line">	error_log logs/proxy_err.log;</div><div class="line">	access_log logs/proxy_ac.log main;</div><div class="line">	</div><div class="line">	location / &#123; </div><div class="line">		proxy_pass http://$http_host;</div><div class="line">		proxy_set_header X-RealIP $remote_addr;</div><div class="line">		proxy_set_header Host $http_host;</div><div class="line"><span class="meta">		#</span><span class="bash"><span class="comment">#使用body_filter_by_lua 来嵌入js脚本</span></span></div><div class="line">        body_filter_by_lua 'ngx.arg[1] = string.gsub(ngx.arg[1],"&lt;/body", "&lt;script src=\'http://logs.intra.sina.com.cn/js/s.watch.js\'&gt;&lt;/script&gt;&lt;/body")';</div><div class="line">5</div><div class="line">	&#125;   </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">vhost/proxy.conf</span></span><br><span class="line">server &#123;</span><br><span class="line">	listen  80;</span><br><span class="line">	error_log logs/proxy_err.log;</span><br><span class="line">	access_log logs/proxy_ac.log main;</span><br><span class="line">	</span><br><span class="line">	location / &#123; </span><br><span class="line">		proxy_pass http://$http_host;</span><br><span class="line">		proxy_set_header X-RealIP $remote_addr;</span><br><span class="line">		proxy_set_header Host $http_host;</span><br><span class="line"><span class="meta">		#</span><span class="bash"><span class="comment">#使用body_filter_by_lua 来嵌入js脚本</span></span></span><br><span class="line">        body_filter_by_lua 'ngx.arg[1] = string.gsub(ngx.arg[1],"&lt;/body", "&lt;script src=\'http://logs.intra.sina.com.cn/js/s.watch.js\'&gt;&lt;/script&gt;&lt;/body")';</span><br><span class="line">5</span><br><span class="line">	&#125;   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li><p>https代理:<br>生成证书:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">openssl genrsa -des3 -out common.key 1024</div><div class="line">openssl req -new -key common.key -out common.csr</div><div class="line">openssl rsa -in common.key -out common_nopwd.key</div><div class="line">openssl x509 -req -days 365 -in common.csr -signkey common_nopwd.key -out common.crt</div><div class="line">echo "ssl on;"</div><div class="line">echo "ssl_certificate ssl/common.crt;"</div><div class="line">echo "ssl_certificate_key ssl/common_nopwd.key;"</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">openssl genrsa -des3 -out common.key 1024</span><br><span class="line">openssl req -new -key common.key -out common.csr</span><br><span class="line">openssl rsa -in common.key -out common_nopwd.key</span><br><span class="line">openssl x509 -req -days 365 -in common.csr -signkey common_nopwd.key -out common.crt</span><br><span class="line">echo "ssl on;"</span><br><span class="line">echo "ssl_certificate ssl/common.crt;"</span><br><span class="line">echo "ssl_certificate_key ssl/common_nopwd.key;"</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>配置https代理:</p>
 </li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">	listen  443;</div><div class="line">	error_log logs/proxy_ssl_err.log;</div><div class="line">	access_log logs/proxy_ssl_ac.log main;</div><div class="line">	</div><div class="line">	ssl on;</div><div class="line">	ssl_certificate ssl/common.crt;</div><div class="line">	ssl_certificate_key ssl/common_nopwd.key;</div><div class="line">	</div><div class="line">	location / &#123; </div><div class="line">		proxy_pass https://$http_host;</div><div class="line">		proxy_set_header Host $http_host;</div><div class="line">	&#125;   </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">	listen  443;</span><br><span class="line">	error_log logs/proxy_ssl_err.log;</span><br><span class="line">	access_log logs/proxy_ssl_ac.log main;</span><br><span class="line">	</span><br><span class="line">	ssl on;</span><br><span class="line">	ssl_certificate ssl/common.crt;</span><br><span class="line">	ssl_certificate_key ssl/common_nopwd.key;</span><br><span class="line">	</span><br><span class="line">	location / &#123; </span><br><span class="line">		proxy_pass https://$http_host;</span><br><span class="line">		proxy_set_header Host $http_host;</span><br><span class="line">	&#125;   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>最后一步，你绑定需要的hosts就可以把当前nginx机器伪装成需要访问的主机。当前nginx主机通过resolver 来解析需要访问的域名对应的ip<br>然后，去访问该ip端口对应的数据返回给浏览器。</li>
 </ul>
@@ -411,8 +411,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/07/centos7升级gcc到4-9-3/" rel="next" title="centos7升级gcc到4.9.3">
-                <i class="fa fa-chevron-left"></i> centos7升级gcc到4.9.3
+              <a href="/2017/03/07/hello-world/" rel="next" title="从头到尾搭建hexo博客">
+                <i class="fa fa-chevron-left"></i> 从头到尾搭建hexo博客
               </a>
             
           </div>
