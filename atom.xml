@@ -189,7 +189,7 @@
     <published>2019-02-15T09:30:11.000Z</published>
     <updated>2019-03-14T02:32:24.016Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="断点续传下载代码"><a href="#断点续传下载代码" class="headerlink" title="断点续传下载代码:"></a>断点续传下载代码:</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">$</span> mkdir git/dir</span><br><span class="line"><span class="meta">$</span> cd git/dir </span><br><span class="line"><span class="meta">$</span> git init </span><br><span class="line"><span class="meta">$</span> git fetch https://github.com/docker/distribution.git </span><br><span class="line"><span class="meta">$</span> git checkout FETCH_HEAD -b master</span><br><span class="line"><span class="meta">$</span> git remote add origin https://github.com/docker/distribution.git</span><br></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<h3 id="断点续传下载代码"><a href="#断点续传下载代码" class="headerlink" title="断点续传下载代码:"></a>断点续传下载代码:</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> mkdir git/dir</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> git/dir </span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git init </span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git fetch https://github.com/docker/distribution.git </span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git checkout FETCH_HEAD -b master</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git remote add origin https://github.com/docker/distribution.git</span></span><br></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
@@ -237,9 +237,9 @@
     <link href="https://xsec.7ever.cn/2019/01/23/golang-org-bad/"/>
     <id>https://xsec.7ever.cn/2019/01/23/golang-org-bad/</id>
     <published>2019-01-23T00:27:33.000Z</published>
-    <updated>2019-01-23T00:30:18.580Z</updated>
+    <updated>2019-03-19T07:44:55.293Z</updated>
     
-    <content type="html"><![CDATA[<h4 id="第一步：-从github-com-下载对应的镜像包"><a href="#第一步：-从github-com-下载对应的镜像包" class="headerlink" title="第一步： 从github.com 下载对应的镜像包:"></a>第一步： 从github.com 下载对应的镜像包:</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/golang/net.git $GOPATH/src/github.com/golang/net</span><br><span class="line">git clone https://github.com/golang/sys.git $GOPATH/src/github.com/golang/sys</span><br><span class="line">git clone https://github.com/golang/tools.git $GOPATH/src/github.com/golang/tools</span><br></pre></td></tr></table></figure><h4 id="第二步："><a href="#第二步：" class="headerlink" title="第二步："></a>第二步：</h4><p>将net、sys、tools三个文件夹放到$GOPATH/src/golang.org/x目录下。 或者Linux下可以创建软连接：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -s $GOPATH/src/github.com/golang $GOPATH/src/golang.org/x</span><br></pre></td></tr></table></figure></p>]]></content>
+    <content type="html"><![CDATA[<h4 id="第一步：-从github-com-下载对应的镜像包"><a href="#第一步：-从github-com-下载对应的镜像包" class="headerlink" title="第一步： 从github.com 下载对应的镜像包:"></a>第一步： 从github.com 下载对应的镜像包:</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/golang/net.git $GOPATH/src/github.com/golang/net</span><br><span class="line">git clone https://github.com/golang/sys.git $GOPATH/src/github.com/golang/sys</span><br><span class="line">git clone https://github.com/golang/tools.git $GOPATH/src/github.com/golang/tools</span><br><span class="line">git clone https://github.com/golang/crypto.git $GOPATH/src/github.com/golang/crypto</span><br></pre></td></tr></table></figure><h4 id="第二步："><a href="#第二步：" class="headerlink" title="第二步："></a>第二步：</h4><p>将net、sys、tools三个文件夹放到$GOPATH/src/golang.org/x目录下。 或者Linux下可以创建软连接：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -s $GOPATH/src/github.com/golang $GOPATH/src/golang.org/x</span><br></pre></td></tr></table></figure></p>]]></content>
     
     <summary type="html">
     
@@ -356,11 +356,11 @@
       <category term="linux" scheme="https://xsec.7ever.cn/categories/linux/"/>
     
     
+      <category term="linux" scheme="https://xsec.7ever.cn/tags/linux/"/>
+    
       <category term="lsattr" scheme="https://xsec.7ever.cn/tags/lsattr/"/>
     
       <category term="chattr" scheme="https://xsec.7ever.cn/tags/chattr/"/>
-    
-      <category term="linux" scheme="https://xsec.7ever.cn/tags/linux/"/>
     
   </entry>
   

@@ -98,18 +98,18 @@
 
 
 
-  <meta name="description" content="第一步： 从github.com 下载对应的镜像包:123git clone https://github.com/golang/net.git $GOPATH/src/github.com/golang/netgit clone https://github.com/golang/sys.git $GOPATH/src/github.com/golang/sysgit clone https:/">
+  <meta name="description" content="第一步： 从github.com 下载对应的镜像包:1234git clone https://github.com/golang/net.git $GOPATH/src/github.com/golang/netgit clone https://github.com/golang/sys.git $GOPATH/src/github.com/golang/sysgit clone https:">
 <meta name="keywords" content="golang">
 <meta property="og:type" content="article">
 <meta property="og:title" content="golang.org 下载失败问题解决">
 <meta property="og:url" content="https://xsec.7ever.cn/2019/01/23/golang-org-bad/index.html">
 <meta property="og:site_name" content="Simple Xsec World">
-<meta property="og:description" content="第一步： 从github.com 下载对应的镜像包:123git clone https://github.com/golang/net.git $GOPATH/src/github.com/golang/netgit clone https://github.com/golang/sys.git $GOPATH/src/github.com/golang/sysgit clone https:/">
+<meta property="og:description" content="第一步： 从github.com 下载对应的镜像包:1234git clone https://github.com/golang/net.git $GOPATH/src/github.com/golang/netgit clone https://github.com/golang/sys.git $GOPATH/src/github.com/golang/sysgit clone https:">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-23T00:30:18.580Z">
+<meta property="og:updated_time" content="2019-03-19T07:44:55.293Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="golang.org 下载失败问题解决">
-<meta name="twitter:description" content="第一步： 从github.com 下载对应的镜像包:123git clone https://github.com/golang/net.git $GOPATH/src/github.com/golang/netgit clone https://github.com/golang/sys.git $GOPATH/src/github.com/golang/sysgit clone https:/">
+<meta name="twitter:description" content="第一步： 从github.com 下载对应的镜像包:1234git clone https://github.com/golang/net.git $GOPATH/src/github.com/golang/netgit clone https://github.com/golang/sys.git $GOPATH/src/github.com/golang/sysgit clone https:">
 
 
 
@@ -406,12 +406,24 @@
                 
               
 
-              <time title="Created: 2019-01-23 08:27:33 / Modified: 08:30:18" itemprop="dateCreated datePublished" datetime="2019-01-23T08:27:33+08:00">2019-01-23</time>
+              <time title="Created: 2019-01-23 08:27:33" itemprop="dateCreated datePublished" datetime="2019-01-23T08:27:33+08:00">2019-01-23</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-03-19 15:44:55" itemprop="dateModified" datetime="2019-03-19T15:44:55+08:00">2019-03-19</time>
               
             
           </span>
@@ -445,7 +457,7 @@
       
 
       
-        <h4 id="第一步：-从github-com-下载对应的镜像包"><a href="#第一步：-从github-com-下载对应的镜像包" class="headerlink" title="第一步： 从github.com 下载对应的镜像包:"></a>第一步： 从github.com 下载对应的镜像包:</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/golang/net.git $GOPATH/src/github.com/golang/net</span><br><span class="line">git clone https://github.com/golang/sys.git $GOPATH/src/github.com/golang/sys</span><br><span class="line">git clone https://github.com/golang/tools.git $GOPATH/src/github.com/golang/tools</span><br></pre></td></tr></table></figure>
+        <h4 id="第一步：-从github-com-下载对应的镜像包"><a href="#第一步：-从github-com-下载对应的镜像包" class="headerlink" title="第一步： 从github.com 下载对应的镜像包:"></a>第一步： 从github.com 下载对应的镜像包:</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/golang/net.git $GOPATH/src/github.com/golang/net</span><br><span class="line">git clone https://github.com/golang/sys.git $GOPATH/src/github.com/golang/sys</span><br><span class="line">git clone https://github.com/golang/tools.git $GOPATH/src/github.com/golang/tools</span><br><span class="line">git clone https://github.com/golang/crypto.git $GOPATH/src/github.com/golang/crypto</span><br></pre></td></tr></table></figure>
 <h4 id="第二步："><a href="#第二步：" class="headerlink" title="第二步："></a>第二步：</h4><p>将net、sys、tools三个文件夹放到$GOPATH/src/golang.org/x目录下。 或者Linux下可以创建软连接：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -s $GOPATH/src/github.com/golang $GOPATH/src/golang.org/x</span><br></pre></td></tr></table></figure></p>
 
       
