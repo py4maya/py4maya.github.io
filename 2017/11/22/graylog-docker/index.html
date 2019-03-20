@@ -493,7 +493,7 @@
 <ul>
 <li>注:在配置文件中修改graylog的默认用户名密码:</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">echo</span> -ne <span class="string">"admin"</span> | sha256sum</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">$</span> echo -ne "admin" | sha256sum</span><br></pre></td></tr></table></figure>
 <ul>
 <li>从容器中copy出 graylog.conf 配置文件 到 ./graylog/config/graylog.conf  ，然后修改,重新启动<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker cp graylog_graylog_1:/usr/share/graylog/data/config graylog/</span><br></pre></td></tr></table></figure>
 </li>
@@ -868,6 +868,20 @@
           
 
           
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://medium.com/search?q=golang" title="https://medium.com/search?q=golang" rel="noopener" target="_blank">medium</a>
+                  </li>
+                
+              </ul>
+            </div>
           
 
           
