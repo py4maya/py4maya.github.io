@@ -241,7 +241,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags<span class="badge">95</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags<span class="badge">96</span></a>
 
   </li>
         
@@ -279,7 +279,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives<span class="badge">72</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives<span class="badge">73</span></a>
 
   </li>
         
@@ -343,6 +343,186 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2019/01/09/docker-container-port-modify/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xingyue">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Simple Xsec World">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/01/09/docker-container-port-modify/" class="post-title-link" itemprop="url">修改运行起来的docker 容器的端口参数</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-01-09 15:00:24 / Modified: 15:06:06" itemprop="dateCreated datePublished" datetime="2019-01-09T15:00:24+08:00">2019-01-09</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/开发/" itemprop="url" rel="index"><span itemprop="name">开发</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">起因: 一台带公网IP的docker服务器，同事费了半天劲，折腾出来一个容器,（不可逆，不能重新创建）。端口监听到了0.0.0.0。</span><br><span class="line">改也不是，不改也不是。</span><br></pre></td></tr></table></figure>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案:"></a>解决方案:</h3><ul>
+<li>先找到对应的容器ID </li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps -a</span><br></pre></td></tr></table></figure>
+<p>拿到一串字符ID 。去对应的docker 运行目录中，找containers 目录,然后按照前缀找到对应的文件件。</p>
+<p>没错，这个文件件就是运行起来的容器。</p>
+<ul>
+<li>关闭docker 服务， </li>
+</ul>
+<p><em>关闭前做好善后工作，记录好运行了哪些容器，确保你了解那些容器的运行参数</em></p>
+<ul>
+<li><p>修改下配置吧:</p>
+<p>修改这个容器的hostconfig.json文件中的端口（原帖有人提到，如果config.v2.json里面也记录了端口，也要修改）</p>
+</li>
+<li><p>然后重新启动docker 服务</p>
+</li>
+<li><p>最后docker ps -a 看到对应的端口信息改了吧 </p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -952,149 +1132,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2018/07/16/python-query-dns/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xingyue">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Simple Xsec World">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/07/16/python-query-dns/" class="post-title-link" itemprop="url">python解析指定dns附加timeout</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-07-16 11:20:43 / Modified: 11:21:34" itemprop="dateCreated datePublished" datetime="2018-07-16T11:20:43+08:00">2018-07-16</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> dns.resolver</span><br><span class="line"></span><br><span class="line">Resolver = dns.resolver.Resolver()</span><br><span class="line">Resolver.timeout = <span class="number">0.2</span></span><br><span class="line">Resolver.lifetime = <span class="number">0.2</span></span><br><span class="line">Resolver.nameservers = [<span class="string">"10.210.3.100"</span>]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Query</span><span class="params">(domain,type_=<span class="string">"A"</span>)</span>:</span></span><br><span class="line">   <span class="keyword">return</span> Resolver.query(domain,type_).response.answer</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">foolQueryIps</span><span class="params">(domain,default=[])</span>:</span></span><br><span class="line">    queryIps = []</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        result = Query(domain)</span><br><span class="line">        <span class="keyword">for</span> item <span class="keyword">in</span> result:</span><br><span class="line">            <span class="keyword">for</span> item_ <span class="keyword">in</span> item:</span><br><span class="line">                queryIps.append(item_.address)</span><br><span class="line">    <span class="keyword">except</span> Exception,ex:</span><br><span class="line">        queryIps = default</span><br><span class="line">    <span class="keyword">return</span> queryIps</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span> :</span><br><span class="line">    domain = <span class="string">"slavemysql.newaaa.sec.intra.sina.com.cn"</span></span><br><span class="line">    <span class="keyword">print</span> foolQueryIps(domain)</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1141,7 +1178,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">72</span>
+                    <span class="site-state-item-count">73</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -1377,7 +1414,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">95</span>
+                      
+                    
+                    <span class="site-state-item-count">96</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
