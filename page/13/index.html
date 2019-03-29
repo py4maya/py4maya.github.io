@@ -279,7 +279,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives<span class="badge">74</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives<span class="badge">75</span></a>
 
   </li>
         
@@ -343,6 +343,179 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2017/10/05/centos7-fix-ipaddress/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xingyue">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Simple Xsec World">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/10/05/centos7-fix-ipaddress/" class="post-title-link" itemprop="url">centos7固定ip</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-10-05 16:55:14" itemprop="dateCreated datePublished" datetime="2017-10-05T16:55:14+08:00">2017-10-05</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2017-12-08 15:58:35" itemprop="dateModified" datetime="2017-12-08T15:58:35+08:00">2017-12-08</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/系统/" itemprop="url" rel="index"><span itemprop="name">系统</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>配置文件 /etc/sysconfig/network-scripts/ifcfg-xxxxx :<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">BOOTPROTO="static" #dhcp改为static   </span><br><span class="line">ONBOOT="yes" #开机启用本配置  </span><br><span class="line">IPADDR=192.168.7.106 #静态IP  </span><br><span class="line">GATEWAY=192.168.7.1 #默认网关  </span><br><span class="line">NETMASK=255.255.255.0 #子网掩码  </span><br><span class="line">DNS1=192.168.7.1 #DNS 配置  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>#修改为:</span><br><span class="line">BOOTPROTO=static</span><br><span class="line">IPADDR=192.168.122.216</span><br><span class="line">GATEWAY=192.168.122.1</span><br><span class="line">NETMASK=255.255.255.0</span><br><span class="line">DNS1=192.168.122.1 </span><br><span class="line">DNS2=192.168.122.2</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -1048,283 +1221,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2017/09/25/echo-with-color/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xingyue">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Simple Xsec World">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/09/25/echo-with-color/" class="post-title-link" itemprop="url">终端输出带颜色的字符</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-09-25 11:24:22" itemprop="dateCreated datePublished" datetime="2017-09-25T11:24:22+08:00">2017-09-25</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2017-10-01 11:19:25" itemprop="dateModified" datetime="2017-10-01T11:19:25+08:00">2017-10-01</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/开发/" itemprop="url" rel="index"><span itemprop="name">开发</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>输出以下的格式 \033[背景色;前景色;显示方式m</p>
-<p>各颜色编码说明：</p>
-<table>
-<thead>
-<tr>
-<th>前景色</th>
-<th>背景色</th>
-<th>颜色</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>  30</td>
-<td>40</td>
-<td>黑色</td>
-</tr>
-<tr>
-<td>  31</td>
-<td>41</td>
-<td>红色</td>
-</tr>
-<tr>
-<td>  32</td>
-<td>42</td>
-<td>绿色</td>
-</tr>
-<tr>
-<td>  33</td>
-<td>43</td>
-<td>黃色</td>
-</tr>
-<tr>
-<td>  34</td>
-<td>44</td>
-<td>蓝色</td>
-</tr>
-<tr>
-<td>  35</td>
-<td>45</td>
-<td>紫红色</td>
-</tr>
-<tr>
-<td>  36</td>
-<td>46</td>
-<td>青蓝色</td>
-</tr>
-<tr>
-<td>  37</td>
-<td>47</td>
-<td>白色</td>
-</tr>
-<tr>
-<td>  37</td>
-<td>0</td>
-<td>当前背景</td>
-</tr>
-</tbody>
-</table>
-<p>几种不通的显示方式:</p>
-<table>
-<thead>
-<tr>
-<th>显示方式</th>
-<th>意义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0</td>
-<td>终端默认设置</td>
-</tr>
-<tr>
-<td>1</td>
-<td>高亮显示</td>
-</tr>
-<tr>
-<td>4</td>
-<td>使用下划线</td>
-</tr>
-<tr>
-<td>5</td>
-<td>闪烁</td>
-</tr>
-<tr>
-<td>7</td>
-<td>反白显示</td>
-</tr>
-<tr>
-<td>8</td>
-<td>不可见</td>
-</tr>
-</tbody>
-</table>
-<p>几种输出的例子:</p>
-<ul>
-<li><p>\033[0;31;1m<br> 0 当前背景,31红色,1 高亮显示</p>
-</li>
-<li><p>\033[0;32;1m<br> 0 当前背景,32绿色,1 高亮显示</p>
-</li>
-<li><p>\033[0;31;5m<br> 0 当前背景,31红色,5 闪烁显示</p>
-</li>
-</ul>
-<ul>
-<li>\033[0m<br> 采用终端默认设置，即取消颜色设置</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1371,7 +1267,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">74</span>
+                    <span class="site-state-item-count">75</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

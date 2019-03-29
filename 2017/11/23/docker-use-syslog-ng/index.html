@@ -283,7 +283,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives<span class="badge">74</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives<span class="badge">75</span></a>
 
   </li>
         
@@ -470,13 +470,13 @@
 <ul>
 <li>报错1<br>syslog-ng: Error setting capabilities</li>
 </ul>
-<p>按照如下的代码修改启动参数<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/default/syslog-ng</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>#添加这一行,注释打开</span><br><span class="line">SYSLOGNG_OPTS="--no-caps"</span><br></pre></td></tr></table></figure></p>
+<p>按照如下的代码修改启动参数<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/default/syslog-ng</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#添加这一行,注释打开</span></span></span><br><span class="line">SYSLOGNG_OPTS="--no-caps"</span><br></pre></td></tr></table></figure></p>
 <ul>
 <li>报错2 </li>
 </ul>
 <p>Error opening file for reading; filename=’/proc/kmsg’, error=’Operation not permitted (1)’</p>
 <p>去掉syslog-ng配置中的system()</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">source s_src &#123;</span><br><span class="line"><span class="meta">#</span>       system();</span><br><span class="line">       internal();</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">source s_src &#123;</span><br><span class="line"><span class="meta">#</span><span class="bash">       system();</span></span><br><span class="line">       internal();</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -585,7 +585,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">74</span>
+                    <span class="site-state-item-count">75</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

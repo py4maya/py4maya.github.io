@@ -279,7 +279,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives<span class="badge">74</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives<span class="badge">75</span></a>
 
   </li>
         
@@ -343,6 +343,154 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2018/07/04/golang-use-yaml/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xingyue">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Simple Xsec World">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/07/04/golang-use-yaml/" class="post-title-link" itemprop="url">golang使用yaml做配置信息</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-07-04 13:30:55 / Modified: 14:10:20" itemprop="dateCreated datePublished" datetime="2018-07-04T13:30:55+08:00">2018-07-04</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li>安装 gopkg.in/yaml.v2</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> go get gopkg.in/yaml.v2</span><br></pre></td></tr></table></figure>
+<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="comment">/****</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">yaml document content:</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">enable: true</span></span><br><span class="line"><span class="comment">path: /usr/local</span></span><br><span class="line"><span class="comment">#white: [ hello world, one item, two items ]</span></span><br><span class="line"><span class="comment">white:</span></span><br><span class="line"><span class="comment">- 1</span></span><br><span class="line"><span class="comment">- 2</span></span><br><span class="line"><span class="comment">- 3</span></span><br><span class="line"><span class="comment">- 4</span></span><br><span class="line"><span class="comment">item:</span></span><br><span class="line"><span class="comment">    name: aries</span></span><br><span class="line"><span class="comment">    port: 22</span></span><br><span class="line"><span class="comment">black:</span></span><br><span class="line"><span class="comment">-</span></span><br><span class="line"><span class="comment">  name: 10.210.12.17</span></span><br><span class="line"><span class="comment">  port: 6379</span></span><br><span class="line"><span class="comment">-</span></span><br><span class="line"><span class="comment">  name: 10.210.12.18</span></span><br><span class="line"><span class="comment">  port: 3306</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">nodes:</span></span><br><span class="line"><span class="comment">- &#123; name: 10.210.12.17 , port: 3306&#125;</span></span><br><span class="line"><span class="comment">- &#123; name: 10.210.12.18 , port: 3306&#125;</span></span><br><span class="line"><span class="comment">- &#123; name: 10.211.221.3, port: 3306&#125;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">*****/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"gopkg.in/yaml.v2"</span></span><br><span class="line">	<span class="string">"io/ioutil"</span></span><br><span class="line">	<span class="string">"log"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> ConfigType <span class="keyword">struct</span> &#123;</span><br><span class="line">	Enabled <span class="keyword">bool</span>                <span class="string">`yaml:"enabled"`</span></span><br><span class="line">	Path    <span class="keyword">string</span>              <span class="string">`yaml:"path"`</span></span><br><span class="line">	White   []<span class="keyword">string</span>            <span class="string">`yaml:white`</span></span><br><span class="line">	Black   []<span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">string</span> <span class="string">`yaml:black`</span></span><br><span class="line">	Item    <span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">string</span>   <span class="string">`yaml:item`</span></span><br><span class="line">	Nodes   []<span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">string</span> <span class="string">`yaml:nodes`</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> (</span><br><span class="line">	Config ConfigType</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">init</span><span class="params">()</span></span> &#123;</span><br><span class="line">	yamlFile, err := ioutil.ReadFile(<span class="string">"conf.yaml"</span>)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		log.Printf(<span class="string">"yamlFile.Get err   #%v "</span>, err)</span><br><span class="line">	&#125;</span><br><span class="line">	err = yaml.Unmarshal(yamlFile, &amp;Config)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		log.Fatalf(<span class="string">"Unmarshal: %v"</span>, err)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="http://nodeca.github.io/js-yaml/" target="_blank" rel="noopener">YAML语法预览</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -1050,192 +1198,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2018/04/12/centos7-firewalld-basic/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xingyue">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Simple Xsec World">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/04/12/centos7-firewalld-basic/" class="post-title-link" itemprop="url">centos7下使用firewalld基本指南</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-04-12 10:08:24 / Modified: 10:27:59" itemprop="dateCreated datePublished" datetime="2018-04-12T10:08:24+08:00">2018-04-12</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/系统/" itemprop="url" rel="index"><span itemprop="name">系统</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ul>
-<li><p>安装firewalld ，设置为开机启动，启动之:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> yum install firewalld</span><br><span class="line"><span class="meta">$</span> systemctl enable firewalld</span><br><span class="line"><span class="meta">$</span> systemctl start firewalld</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>查看zones </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> firewall-cmd --get-zones</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>创建新的zone :</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> firewall-cmd --new-zone=goaway --permanent</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>添加简单的服务，端口:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> firewall-cmd --zone=goaway --add-port=80/tcp --permanent</span><br><span class="line"><span class="meta">$</span> firewall-cmd --zone=goaway --add-port=53/udp --permanent</span><br><span class="line"><span class="meta">$</span> firewall-cmd --zone=goaway --add-service=ssh --permanent</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>删除简单的服务，端口:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> firewall-cmd --zone=goaway --remove-port=80/tcp --permanent</span><br><span class="line"><span class="meta">$</span> firewall-cmd --zone=goaway --remove-port=53/udp --permanent</span><br><span class="line"><span class="meta">$</span> firewall-cmd --zone=goaway --remove-service=ssh --permanent</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>设置新的默认zone</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> firewall-cmd --set-default-zone=goaway</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>修改zones文件以后，重新加载:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> firewall-cmd --reload</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>复杂规则的添加删除:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> firewall-cmd --permanent --remove-rich-rule="rule family="ipv4" source address="192.168.142.166" port protocol="tcp" port="11300" accept"</span><br><span class="line"><span class="meta">$</span> firewall-cmd --permanent --add-rich-rule="rule family="ipv4" source address="192.168.142.166" port protocol="tcp" port="11300" accept"</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1282,7 +1244,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">74</span>
+                    <span class="site-state-item-count">75</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

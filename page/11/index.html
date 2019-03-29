@@ -279,7 +279,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives<span class="badge">74</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives<span class="badge">75</span></a>
 
   </li>
         
@@ -343,6 +343,174 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2017/11/20/influxdb-use-indocker/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xingyue">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Simple Xsec World">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/11/20/influxdb-use-indocker/" class="post-title-link" itemprop="url">docker中使用influxdb</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-11-20 09:29:04 / Modified: 09:34:08" itemprop="dateCreated datePublished" datetime="2017-11-20T09:29:04+08:00">2017-11-20</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/系统/" itemprop="url" rel="index"><span itemprop="name">系统</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li>拉取脚本:</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> docker pull daocloud.io/daocloud/influxdb:latest</span><br></pre></td></tr></table></figure>
+<ul>
+<li>基础运行脚本</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">lip=172.16.7.1 	##只暴露端口给内网的IP</span><br><span class="line">name=influxdb</span><br><span class="line">port=" -p $lip:8086:8086 -p $lip:2003:2003 -p $lip:8083:8083 "</span><br><span class="line"></span><br><span class="line">docker run -it $&#123;port&#125; --name $&#123;name&#125;  daocloud.io/daocloud/influxdb</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -1048,176 +1216,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2017/10/28/ios-uiview/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xingyue">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Simple Xsec World">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/10/28/ios-uiview/" class="post-title-link" itemprop="url">ios UIView 基本操作</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-10-28 17:44:54 / Modified: 17:50:23" itemprop="dateCreated datePublished" datetime="2017-10-28T17:44:54+08:00">2017-10-28</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/开发/" itemprop="url" rel="index"><span itemprop="name">开发</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h5 id="简单的知识点"><a href="#简单的知识点" class="headerlink" title="简单的知识点:"></a>简单的知识点:</h5><ul>
-<li>获取屏幕尺寸 : [UIScreen mainScreen].bounds.size </li>
-<li>bounds 和 frame 的区别, bounds 又叫做线宽，x,y 永远为0 </li>
-<li>UIView 可以设置不同的tag属性，建议唯一 , 父视图的 viewWithTag 方法可以获取到指定tag的UIView</li>
-<li>层级关系: bringSubviewToFront UIView 移动到最前, sendSubviewToBack , UIView 移动到最下层</li>
-<li>exchangeSubviewAtIndex 可以用来交换不同层的组件</li>
-<li>遍历子视图 subviews 可以获取到一个NSArray 其中成员都是UIView </li>
-</ul>
-<h5 id="实例代码"><a href="#实例代码" class="headerlink" title="实例代码:"></a>实例代码:</h5><hr>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//UIView 坐标根据父视图来设置，</span></span><br><span class="line">  <span class="comment">//距离上下左右各为x像素的UIView</span></span><br><span class="line">  <span class="comment">//其中20 为顶部的状态栏</span></span><br><span class="line">  <span class="comment">//frame bounds 区别 bounds中x,y永远为0</span></span><br><span class="line">  <span class="comment">//center 取view的中心点 x,y</span></span><br><span class="line">  <span class="comment">//通过获取父视图，设置背景</span></span><br><span class="line">  CGRect screen = [UIScreen mainScreen].bounds;</span><br><span class="line">  NSInteger x = <span class="number">20</span>;</span><br><span class="line">  CGPoint center = self.view.center;</span><br><span class="line">  UIView *xv = [[UIView alloc]initWithFrame:CGRectMake(x, x + <span class="number">20</span> , screen.size.width - x * <span class="number">2</span>   , screen.size.height - x * <span class="number">2</span> - <span class="number">20</span> )];</span><br><span class="line">  xv.backgroundColor = [UIColor blueColor];</span><br><span class="line">  xv.tag = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  NSLog(@<span class="string">" center is  : %f , %f "</span>,center.x,center.y);</span><br><span class="line">  </span><br><span class="line">  [self.view addSubview:xv];</span><br><span class="line">  </span><br><span class="line">  UIView *superView = xv.superview;</span><br><span class="line">  superView.backgroundColor = [UIColor blackColor];</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//遍历子视图，根据不同类型设置不同操作</span></span><br><span class="line">  NSArray *childViews = [self.view subviews];</span><br><span class="line">  <span class="keyword">for</span> (UIView *sub in childViews) &#123;</span><br><span class="line">      <span class="keyword">switch</span> (sub.tag) &#123;</span><br><span class="line">          <span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">              NSLog(@<span class="string">"type 0 view"</span>);</span><br><span class="line">              <span class="keyword">break</span>;</span><br><span class="line">          <span class="keyword">default</span>:</span><br><span class="line">              NSLog(@<span class="string">"no type view"</span>);</span><br><span class="line">              <span class="keyword">break</span>;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//通过tag 获取view</span></span><br><span class="line">  UIView *v = [self.view viewWithTag:<span class="number">1</span>];</span><br><span class="line">  <span class="keyword">if</span>(v) &#123;</span><br><span class="line">      v.backgroundColor = [UIColor greenColor];</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//交换不同层的组件</span></span><br><span class="line">  [self.view exchangeSubviewAtIndex:<span class="number">2</span> withSubviewAtIndex:<span class="number">3</span>];</span><br><span class="line">  <span class="comment">//指定层添加组件,可以添加到最上边，最下边</span></span><br><span class="line">  [self.view insertSubview:v atIndex:<span class="number">10</span>];</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//移到最底层</span></span><br><span class="line">  [self.view sendSubviewToBack:v];</span><br><span class="line">  <span class="comment">//移动到最顶层</span></span><br><span class="line">  [self.view bringSubviewToFront:v];</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1264,7 +1262,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">74</span>
+                    <span class="site-state-item-count">75</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
