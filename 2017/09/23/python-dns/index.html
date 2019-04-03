@@ -99,7 +99,7 @@
 
 
   <meta name="description" content="dns验证主python脚本。运行基本流程如下:  主server 基于gevent.server.DatagramServer ,  核心逻辑方法handle handle中首先通过DnsParser 解析传过来的dns数据包，如果解析失败，直接返回给用户127.0.0.1 query.qname 解析出来的是需要解析的域名，本代码通过正则匹配 domain.A中的配置项,如果解析出来，并且查询">
-<meta name="keywords" content="dns,proxy,python">
+<meta name="keywords" content="dns,python,proxy">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用python 实现一个dns proxy">
 <meta property="og:url" content="https://xsec.7ever.cn/2017/09/23/python-dns/index.html">
@@ -489,6 +489,10 @@
     </div>
 
     
+      
+
+
+    
 
     
     
@@ -509,9 +513,9 @@
           
             <a href="/tags/dns/" rel="tag"># dns</a>
           
-            <a href="/tags/proxy/" rel="tag"># proxy</a>
-          
             <a href="/tags/python/" rel="tag"># python</a>
+          
+            <a href="/tags/proxy/" rel="tag"># proxy</a>
           
         </div>
       
@@ -1102,6 +1106,9 @@ var _hmt = _hmt || [];
       ta.setSelectionRange(0, code.length);
       ta.readOnly = false;
       var result = document.execCommand('copy');
+      
+        if (result) $(this).text('Copied');
+        else $(this).text('Copy failed');
       
       ta.blur(); // For iOS
       $(this).blur();

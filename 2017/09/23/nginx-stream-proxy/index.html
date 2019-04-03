@@ -99,7 +99,7 @@
 
 
   <meta name="description" content="安装参数:12345678910./configure \--prefix=/data1/mginx/ \--with-stream \--with-stream_realip_module \--with-stream_ssl_module \--without-http \make -j4make install stream的配置文件，在nginx主配置文件中添加容器stream123456">
-<meta name="keywords" content="nginx,stream,proxy">
+<meta name="keywords" content="nginx,proxy,stream">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用nginx做后端tcp,udp的proxy">
 <meta property="og:url" content="https://xsec.7ever.cn/2017/09/23/nginx-stream-proxy/index.html">
@@ -473,6 +473,10 @@
     </div>
 
     
+      
+
+
+    
 
     
     
@@ -493,9 +497,9 @@
           
             <a href="/tags/nginx/" rel="tag"># nginx</a>
           
-            <a href="/tags/stream/" rel="tag"># stream</a>
-          
             <a href="/tags/proxy/" rel="tag"># proxy</a>
+          
+            <a href="/tags/stream/" rel="tag"># stream</a>
           
         </div>
       
@@ -1086,6 +1090,9 @@ var _hmt = _hmt || [];
       ta.setSelectionRange(0, code.length);
       ta.readOnly = false;
       var result = document.execCommand('copy');
+      
+        if (result) $(this).text('Copied');
+        else $(this).text('Copy failed');
       
       ta.blur(); // For iOS
       $(this).blur();

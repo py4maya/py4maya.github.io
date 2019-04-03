@@ -502,6 +502,10 @@
     </div>
 
     
+      
+
+
+    
 
     
     
@@ -1111,6 +1115,9 @@ var _hmt = _hmt || [];
       ta.setSelectionRange(0, code.length);
       ta.readOnly = false;
       var result = document.execCommand('copy');
+      
+        if (result) $(this).text('Copied');
+        else $(this).text('Copy failed');
       
       ta.blur(); // For iOS
       $(this).blur();

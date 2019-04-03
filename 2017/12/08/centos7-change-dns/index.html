@@ -99,7 +99,7 @@
 
 
   <meta name="description" content="修改系统配置 /etc/resolv.conf:  12nameserver 10.210.12.10nameserver 172.16.105.248  重启系统网络:  1systemctl restart NetworkManager.service">
-<meta name="keywords" content="dns,centos">
+<meta name="keywords" content="centos,dns">
 <meta property="og:type" content="article">
 <meta property="og:title" content="centos7 修改dns">
 <meta property="og:url" content="https://xsec.7ever.cn/2017/12/08/centos7-change-dns/index.html">
@@ -476,6 +476,10 @@
     </div>
 
     
+      
+
+
+    
 
     
     
@@ -494,9 +498,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/dns/" rel="tag"># dns</a>
-          
             <a href="/tags/centos/" rel="tag"># centos</a>
+          
+            <a href="/tags/dns/" rel="tag"># dns</a>
           
         </div>
       
@@ -1087,6 +1091,9 @@ var _hmt = _hmt || [];
       ta.setSelectionRange(0, code.length);
       ta.readOnly = false;
       var result = document.execCommand('copy');
+      
+        if (result) $(this).text('Copied');
+        else $(this).text('Copy failed');
       
       ta.blur(); // For iOS
       $(this).blur();

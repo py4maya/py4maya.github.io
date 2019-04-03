@@ -64,9 +64,9 @@
       <category term="开发" scheme="https://xsec.7ever.cn/categories/%E5%BC%80%E5%8F%91/"/>
     
     
-      <category term="python" scheme="https://xsec.7ever.cn/tags/python/"/>
-    
       <category term="kafka" scheme="https://xsec.7ever.cn/tags/kafka/"/>
+    
+      <category term="python" scheme="https://xsec.7ever.cn/tags/python/"/>
     
   </entry>
   
@@ -433,9 +433,9 @@
     </summary>
     
     
-      <category term="kafka" scheme="https://xsec.7ever.cn/tags/kafka/"/>
-    
       <category term="logstash" scheme="https://xsec.7ever.cn/tags/logstash/"/>
+    
+      <category term="kafka" scheme="https://xsec.7ever.cn/tags/kafka/"/>
     
   </entry>
   
@@ -464,11 +464,11 @@
       <category term="linux" scheme="https://xsec.7ever.cn/categories/linux/"/>
     
     
-      <category term="linux" scheme="https://xsec.7ever.cn/tags/linux/"/>
-    
       <category term="lsattr" scheme="https://xsec.7ever.cn/tags/lsattr/"/>
     
       <category term="chattr" scheme="https://xsec.7ever.cn/tags/chattr/"/>
+    
+      <category term="linux" scheme="https://xsec.7ever.cn/tags/linux/"/>
     
   </entry>
   

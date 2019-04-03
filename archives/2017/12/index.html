@@ -1115,6 +1115,9 @@ var _hmt = _hmt || [];
       ta.readOnly = false;
       var result = document.execCommand('copy');
       
+        if (result) $(this).text('Copied');
+        else $(this).text('Copy failed');
+      
       ta.blur(); // For iOS
       $(this).blur();
     })).on('mouseleave', function(e) {
