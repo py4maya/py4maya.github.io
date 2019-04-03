@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xsec.7ever.cn/"/>
-  <updated>2019-03-29T05:45:13.008Z</updated>
+  <updated>2019-04-03T06:51:53.887Z</updated>
   <id>https://xsec.7ever.cn/</id>
   
   <author>
@@ -17,13 +17,40 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>yaf 多模块配置</title>
+    <link href="https://xsec.7ever.cn/2019/04/03/yaf-use-module/"/>
+    <id>https://xsec.7ever.cn/2019/04/03/yaf-use-module/</id>
+    <published>2019-04-03T06:48:48.000Z</published>
+    <updated>2019-04-03T06:51:53.887Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="配置选项中，添加当前的模块"><a href="#配置选项中，添加当前的模块" class="headerlink" title="配置选项中，添加当前的模块:"></a>配置选项中，添加当前的模块:</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">application.modules = 'Test,Index'</span><br></pre></td></tr></table></figure><h3 id="创建相应的目录"><a href="#创建相应的目录" class="headerlink" title="创建相应的目录:"></a>创建相应的目录:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@hids application]# tree modules/</span><br><span class="line">modules/</span><br><span class="line">└── Test</span><br><span class="line">    └── controllers</span><br><span class="line">        └── Hello.php</span><br><span class="line"></span><br><span class="line">2 directories, 1 file</span><br></pre></td></tr></table></figure><h3 id="访问地址"><a href="#访问地址" class="headerlink" title="访问地址:"></a>访问地址:</h3><p><a href="http://yourhost/prefix/test/hello/world" target="_blank" rel="noopener">http://yourhost/prefix/test/hello/world</a></p><p>注: 地址去掉prefix 以后超过三段，才会去识别模块</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;配置选项中，添加当前的模块&quot;&gt;&lt;a href=&quot;#配置选项中，添加当前的模块&quot; class=&quot;headerlink&quot; title=&quot;配置选项中，添加当前的模块:&quot;&gt;&lt;/a&gt;配置选项中，添加当前的模块:&lt;/h3&gt;&lt;figure class=&quot;highlight sh
+      
+    
+    </summary>
+    
+      <category term="开发" scheme="https://xsec.7ever.cn/categories/%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="yaf" scheme="https://xsec.7ever.cn/tags/yaf/"/>
+    
+      <category term="php" scheme="https://xsec.7ever.cn/tags/php/"/>
+    
+  </entry>
+  
+  <entry>
     <title>一个空的kafka 接收数据</title>
     <link href="https://xsec.7ever.cn/2019/03/29/kafka-receive/"/>
     <id>https://xsec.7ever.cn/2019/03/29/kafka-receive/</id>
     <published>2019-03-29T05:40:43.000Z</published>
     <updated>2019-03-29T05:45:13.008Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="简单代码实现如下"><a href="#简单代码实现如下" class="headerlink" title="简单代码实现如下:"></a>简单代码实现如下:</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> kafka <span class="keyword">import</span> KafkaConsumer</span><br><span class="line"></span><br><span class="line">consumer = KafkaConsumer(</span><br><span class="line">        <span class="string">'topic-name'</span>,</span><br><span class="line">        bootstrap_servers=<span class="string">'.....com:9092'</span>,</span><br><span class="line">        enable_auto_commit=<span class="keyword">False</span>,</span><br><span class="line">        api_version=(<span class="number">0</span>, <span class="number">8</span>, <span class="number">2</span>, <span class="number">1</span>)</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> msg <span class="keyword">in</span> consumer:</span><br><span class="line">    print(msg)</span><br></pre></td></tr></table></figure><h2 id="运行监控"><a href="#运行监控" class="headerlink" title="运行监控:"></a>运行监控:</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> ./tools/kafka_2.10-0.9.0.1/bin/kafka-consumer-offset-checker.sh --group group_name --zookeeper=zookeeper_server --topic yourtopic</span><br></pre></td></tr></table></figure><h2 id="网卡流量监控"><a href="#网卡流量监控" class="headerlink" title="网卡流量监控:"></a>网卡流量监控:</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> sar -n DEV 10</span><br></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<h2 id="简单代码实现如下"><a href="#简单代码实现如下" class="headerlink" title="简单代码实现如下:"></a>简单代码实现如下:</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> kafka <span class="keyword">import</span> KafkaConsumer</span><br><span class="line"></span><br><span class="line">consumer = KafkaConsumer(</span><br><span class="line">        <span class="string">'topic-name'</span>,</span><br><span class="line">        bootstrap_servers=<span class="string">'.....com:9092'</span>,</span><br><span class="line">        enable_auto_commit=<span class="keyword">False</span>,</span><br><span class="line">        api_version=(<span class="number">0</span>, <span class="number">8</span>, <span class="number">2</span>, <span class="number">1</span>)</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> msg <span class="keyword">in</span> consumer:</span><br><span class="line">    print(msg)</span><br></pre></td></tr></table></figure><h2 id="运行监控"><a href="#运行监控" class="headerlink" title="运行监控:"></a>运行监控:</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ./tools/kafka_2.10-0.9.0.1/bin/kafka-consumer-offset-checker.sh --group group_name --zookeeper=zookeeper_server --topic yourtopic</span></span><br></pre></td></tr></table></figure><h2 id="网卡流量监控"><a href="#网卡流量监控" class="headerlink" title="网卡流量监控:"></a>网卡流量监控:</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sar -n DEV 10</span></span><br></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
@@ -514,29 +541,6 @@
     
     
       <category term="superset" scheme="https://xsec.7ever.cn/tags/superset/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>postgreSQL基本使用指南</title>
-    <link href="https://xsec.7ever.cn/2018/07/06/postgreSQL-basic-usage/"/>
-    <id>https://xsec.7ever.cn/2018/07/06/postgreSQL-basic-usage/</id>
-    <published>2018-07-06T07:49:01.000Z</published>
-    <updated>2018-07-06T08:24:52.000Z</updated>
-    
-    <content type="html"><![CDATA[<h4 id="简单介绍"><a href="#简单介绍" class="headerlink" title="简单介绍:"></a>简单介绍:</h4><p>PostgreSQL的官方网站是：<a href="https://www.postgresql.org/" target="_blank" rel="noopener">https://www.postgresql.org/</a></p><p>简单工具:</p><ul><li><p>psql<br>cli 客户端</p></li><li><p>pg_ctl<br>服务控制工具</p></li><li><p>initdb<br>数据库初始化工具</p></li></ul><h4 id="初始化"><a href="#初始化" class="headerlink" title="初始化:"></a>初始化:</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">useradd -g postgres postgres </span><br><span class="line">mkdir -p /data0/pgsql/data</span><br><span class="line">chown -R postgres:postgres /data0/pgsql/data</span><br><span class="line">./initdb -E UNICODE -D /mnt/pgsql/data</span><br><span class="line">cat postgresql.conf | grep -n listen_addresses</span><br></pre></td></tr></table></figure><h5 id="pg-ctl-的一些帮助"><a href="#pg-ctl-的一些帮助" class="headerlink" title="pg_ctl 的一些帮助:"></a>pg_ctl 的一些帮助:</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">pg_ctl init[db] [-D DATADIR] [-s] [-o OPTIONS]</span><br><span class="line">pg_ctl start    [-D DATADIR] [-l FILENAME] [-W] [-t SECS] [-s]</span><br><span class="line">                [-o OPTIONS] [-p PATH] [-c]</span><br><span class="line">pg_ctl stop     [-D DATADIR] [-m SHUTDOWN-MODE] [-W] [-t SECS] [-s]</span><br><span class="line">pg_ctl restart  [-D DATADIR] [-m SHUTDOWN-MODE] [-W] [-t SECS] [-s]</span><br><span class="line">                [-o OPTIONS] [-c]</span><br><span class="line">pg_ctl reload   [-D DATADIR] [-s]</span><br><span class="line">pg_ctl status   [-D DATADIR]</span><br><span class="line">pg_ctl promote  [-D DATADIR] [-W] [-t SECS] [-s]</span><br><span class="line">pg_ctl kill     SIGNALNAME PID</span><br></pre></td></tr></table></figure><h4 id="简单的工具脚本"><a href="#简单的工具脚本" class="headerlink" title="简单的工具脚本:"></a>简单的工具脚本:</h4><ul><li><p>README 中的一些工具脚本:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">su</span><br><span class="line">make install</span><br><span class="line">adduser postgres</span><br><span class="line">mkdir /usr/local/pgsql/data</span><br><span class="line">chown postgres /usr/local/pgsql/data</span><br><span class="line">su - postgres</span><br><span class="line">/usr/local/pgsql/bin/initdb -D /usr/local/pgsql/data</span><br><span class="line">/usr/local/pgsql/bin/postgres -D /usr/local/pgsql/data &gt;logfile 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure></li><li><p>restart.sh</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su postgres -c "/opt/postgreql/bin/pg_ctl restart -l /opt/postgreql/run/logs/postgreql.log -D /opt/postgreql/run/data "</span><br></pre></td></tr></table></figure></li><li><p>stop.sh 关闭服务:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su postgres -c "/opt/postgreql/bin/pg_ctl stop -l /opt/postgreql/run/logs/postgreql.log -D /opt/postgreql/run/data "</span><br></pre></td></tr></table></figure></li><li><p>连接主机脚本:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">psql -U cmdb -h localhost -d cmdb ### 不适用任何配置信息，在本机执行pgsql 则使用超级管理员连接数据库</span><br></pre></td></tr></table></figure></li><li><p>基本sql:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">CREATE ROLE name;</span><br><span class="line">CREATE USER name;</span><br><span class="line">grantall on schema csm_ca to public;</span><br><span class="line"></span><br><span class="line">\du;</span><br><span class="line"></span><br><span class="line">GRANT UPDATE ON demo TO demo_role; --赋予demo_role demo表的update权限</span><br><span class="line">GRANT SELECT ON ALL TABLES IN SCHEMA PUBLIC to demo_role; --赋予demo_role所有表的SELECT权限</span><br><span class="line"></span><br><span class="line">CREATE DATABASE database_name;</span><br><span class="line">drop database testdb;</span><br><span class="line">CREATE TABLE table_name(  </span><br><span class="line">   column1 datatype,  </span><br><span class="line">   column2 datatype,  </span><br><span class="line">   column3 datatype,  </span><br><span class="line">   .....  </span><br><span class="line">   columnN datatype,  </span><br><span class="line">   PRIMARY KEY( one or more columns )  </span><br><span class="line">);</span><br></pre></td></tr></table></figure></li><li><p>基于主机授权:<br>pg_hba.conf</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">host    all             all             127.0.0.1/32            trust</span><br><span class="line">host    all             all             10.210.12.18/32            trust</span><br><span class="line">host    all             all             10.210.12.17/32            trust</span><br><span class="line">host    all             all             ::1/128                 trust</span><br><span class="line">host    replication     all             127.0.0.1/32            trust</span><br><span class="line">host    replication     all             ::1/128                 trust</span><br></pre></td></tr></table></figure></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h4 id=&quot;简单介绍&quot;&gt;&lt;a href=&quot;#简单介绍&quot; class=&quot;headerlink&quot; title=&quot;简单介绍:&quot;&gt;&lt;/a&gt;简单介绍:&lt;/h4&gt;&lt;p&gt;PostgreSQL的官方网站是：&lt;a href=&quot;https://www.postgresql.org/&quot; targe
-      
-    
-    </summary>
-    
-    
-      <category term="postgreSQL" scheme="https://xsec.7ever.cn/tags/postgreSQL/"/>
     
   </entry>
   

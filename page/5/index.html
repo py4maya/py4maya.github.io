@@ -241,7 +241,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags<span class="badge">97</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags<span class="badge">99</span></a>
 
   </li>
         
@@ -279,7 +279,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives<span class="badge">75</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives<span class="badge">76</span></a>
 
   </li>
         
@@ -343,6 +343,180 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2018/07/06/postgreSQL-basic-usage/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xingyue">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Simple Xsec World">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/07/06/postgreSQL-basic-usage/" class="post-title-link" itemprop="url">postgreSQL基本使用指南</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-07-06 15:49:01 / Modified: 16:24:52" itemprop="dateCreated datePublished" datetime="2018-07-06T15:49:01+08:00">2018-07-06</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="简单介绍"><a href="#简单介绍" class="headerlink" title="简单介绍:"></a>简单介绍:</h4><p>PostgreSQL的官方网站是：<a href="https://www.postgresql.org/" target="_blank" rel="noopener">https://www.postgresql.org/</a></p>
+<p>简单工具:</p>
+<ul>
+<li><p>psql<br>cli 客户端</p>
+</li>
+<li><p>pg_ctl<br>服务控制工具</p>
+</li>
+<li><p>initdb<br>数据库初始化工具</p>
+</li>
+</ul>
+<h4 id="初始化"><a href="#初始化" class="headerlink" title="初始化:"></a>初始化:</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">useradd -g postgres postgres </span><br><span class="line">mkdir -p /data0/pgsql/data</span><br><span class="line">chown -R postgres:postgres /data0/pgsql/data</span><br><span class="line">./initdb -E UNICODE -D /mnt/pgsql/data</span><br><span class="line">cat postgresql.conf | grep -n listen_addresses</span><br></pre></td></tr></table></figure>
+<h5 id="pg-ctl-的一些帮助"><a href="#pg-ctl-的一些帮助" class="headerlink" title="pg_ctl 的一些帮助:"></a>pg_ctl 的一些帮助:</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">pg_ctl init[db] [-D DATADIR] [-s] [-o OPTIONS]</span><br><span class="line">pg_ctl start    [-D DATADIR] [-l FILENAME] [-W] [-t SECS] [-s]</span><br><span class="line">                [-o OPTIONS] [-p PATH] [-c]</span><br><span class="line">pg_ctl stop     [-D DATADIR] [-m SHUTDOWN-MODE] [-W] [-t SECS] [-s]</span><br><span class="line">pg_ctl restart  [-D DATADIR] [-m SHUTDOWN-MODE] [-W] [-t SECS] [-s]</span><br><span class="line">                [-o OPTIONS] [-c]</span><br><span class="line">pg_ctl reload   [-D DATADIR] [-s]</span><br><span class="line">pg_ctl status   [-D DATADIR]</span><br><span class="line">pg_ctl promote  [-D DATADIR] [-W] [-t SECS] [-s]</span><br><span class="line">pg_ctl kill     SIGNALNAME PID</span><br></pre></td></tr></table></figure>
+<h4 id="简单的工具脚本"><a href="#简单的工具脚本" class="headerlink" title="简单的工具脚本:"></a>简单的工具脚本:</h4><ul>
+<li><p>README 中的一些工具脚本:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">su</span><br><span class="line">make install</span><br><span class="line">adduser postgres</span><br><span class="line">mkdir /usr/local/pgsql/data</span><br><span class="line">chown postgres /usr/local/pgsql/data</span><br><span class="line">su - postgres</span><br><span class="line">/usr/local/pgsql/bin/initdb -D /usr/local/pgsql/data</span><br><span class="line">/usr/local/pgsql/bin/postgres -D /usr/local/pgsql/data &gt;logfile 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>restart.sh</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su postgres -c "/opt/postgreql/bin/pg_ctl restart -l /opt/postgreql/run/logs/postgreql.log -D /opt/postgreql/run/data "</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>stop.sh 关闭服务:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su postgres -c "/opt/postgreql/bin/pg_ctl stop -l /opt/postgreql/run/logs/postgreql.log -D /opt/postgreql/run/data "</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>连接主机脚本:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">psql -U cmdb -h localhost -d cmdb ### 不适用任何配置信息，在本机执行pgsql 则使用超级管理员连接数据库</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>基本sql:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">CREATE ROLE name;</span><br><span class="line">CREATE USER name;</span><br><span class="line">grantall on schema csm_ca to public;</span><br><span class="line"></span><br><span class="line">\du;</span><br><span class="line"></span><br><span class="line">GRANT UPDATE ON demo TO demo_role; --赋予demo_role demo表的update权限</span><br><span class="line">GRANT SELECT ON ALL TABLES IN SCHEMA PUBLIC to demo_role; --赋予demo_role所有表的SELECT权限</span><br><span class="line"></span><br><span class="line">CREATE DATABASE database_name;</span><br><span class="line">drop database testdb;</span><br><span class="line">CREATE TABLE table_name(  </span><br><span class="line">   column1 datatype,  </span><br><span class="line">   column2 datatype,  </span><br><span class="line">   column3 datatype,  </span><br><span class="line">   .....  </span><br><span class="line">   columnN datatype,  </span><br><span class="line">   PRIMARY KEY( one or more columns )  </span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>基于主机授权:<br>pg_hba.conf</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">host    all             all             127.0.0.1/32            trust</span><br><span class="line">host    all             all             10.210.12.18/32            trust</span><br><span class="line">host    all             all             10.210.12.17/32            trust</span><br><span class="line">host    all             all             ::1/128                 trust</span><br><span class="line">host    replication     all             127.0.0.1/32            trust</span><br><span class="line">host    replication     all             ::1/128                 trust</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -1010,199 +1184,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2018/04/13/cython-makefile-simple/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xingyue">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Simple Xsec World">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/04/13/cython-makefile-simple/" class="post-title-link" itemprop="url">cython 环境下使用Makefile 编译简单的包</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-04-13 17:39:27 / Modified: 19:43:01" itemprop="dateCreated datePublished" datetime="2018-04-13T17:39:27+08:00">2018-04-13</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/开发/" itemprop="url" rel="index"><span itemprop="name">开发</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ul>
-<li><p>安装cython</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> pip install cython</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>创建一个文件夹，用来放要写的包里的文件(简单的包，只限单层)</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> make sample</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>试着编写几个py脚本，当然你可以按照规则编写pyx 文件，后缀而已，不用担心:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> cat a.py</span><br><span class="line"></span><br><span class="line">def infoa():</span><br><span class="line">    print "info a "</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span> cat b.py</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def infob():</span><br><span class="line">    print "info b "</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编写一个简单的<strong>init</strong>.py 用来包含你生成的so文件:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> cat __init__.py</span><br><span class="line"></span><br><span class="line">import a</span><br><span class="line">import b</span><br><span class="line">__all__ = [a,b]</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>写入这个Makefile吧:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#</span>### http://www.ruanyifeng.com/blog/2015/02/make.html</span><br><span class="line"><span class="meta">#</span>### make package=&lt;name&gt;</span><br><span class="line">.PHONY: clean all</span><br><span class="line">sofiles=$(shell ls *.py | grep -v "__init__")</span><br><span class="line">ifndef package</span><br><span class="line">	package="build"</span><br><span class="line">endif</span><br><span class="line">all : build</span><br><span class="line">	mkdir -p $(package)</span><br><span class="line">	cp __init__.py $(package)</span><br><span class="line">	cp *.so $(package)</span><br><span class="line">build : $(sofiles:.py=.so)</span><br><span class="line"><span class="meta">%</span>.c : %.py</span><br><span class="line">	cython $&lt;</span><br><span class="line"><span class="meta">%</span>.o : %.c</span><br><span class="line"><span class="meta">	$</span>(CC) -c -fPIC $&lt; `python-config --libs` `python-config --includes`</span><br><span class="line"><span class="meta">%</span>.so : %.o</span><br><span class="line"><span class="meta">	$</span>(CC) -o $@ $&lt; -fPIC  --shared `python-config --libs`</span><br><span class="line">clean:</span><br><span class="line">	rm -f *.c *.o *.so</span><br><span class="line">	rm -rf build</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>然后执行,make package=<name> 就会生成一个<name>的文件夹，把他copy到需要的地方,就可以了用了.</name></name></p>
-</li>
-<li><p>多个包的时候可以这样设置目录结构:<br><img src="/images/cython-project.jpg" alt="sapmle picture"><br>简单解释如下:<br>  app.py 用来放置启动的程序，当然，你为了放置繁琐，可以用python -c “import <package> ; package.app.start()” 来运行，默认情况下,程序执行流程如app.py 执行<br>  dist 用来存放编译好的so文件<br>  Makefile 项目总的Makefile 一般是一个模板，内容将在下边给出，会遍历子目录里进行make<br>  README.md 用来写一些说明吧<br>  …. 其他的一些文件夹，就是你写好的python 程序了,注意，每个文件夹里，需要按照以上的结构来设置</package></p>
-</li>
-<li><p>总的Makefile 内容如下:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">.PHONY:all clean</span><br><span class="line">exclude_dirs := Makefile README.md dist app.py</span><br><span class="line">dirs := $(shell ls)</span><br><span class="line">dirs := $(filter-out $(exclude_dirs),$(dirs))</span><br><span class="line">all:</span><br><span class="line"><span class="meta">	$</span>(foreach N,$(dirs),make -C $(N);)</span><br><span class="line">clean:</span><br><span class="line">	rm -rf dist </span><br><span class="line">	rm app</span><br><span class="line">	rm app.c</span><br><span class="line"><span class="meta">	$</span>(foreach N,$(dirs),make -C $(N) clean;)</span><br><span class="line"></span><br><span class="line">dist: all</span><br><span class="line">	mkdir dist</span><br><span class="line">	cython app.py --embed</span><br><span class="line"><span class="meta">	$</span>(CC) -o app app.c `python-config --libs` `python-config --includes`</span><br><span class="line">	cp app dist</span><br><span class="line"><span class="meta">	$</span>(foreach N,$(dirs),cp -R $(N)/build dist/$(N);)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>执行 make dist . 你将获得一个dist 文件夹. 其中就是你编译好的目标文件. dist/app 就是你的可执行文件。<br>然后，你就可以开心的把这些so文件拿到其他地方去运行了,至少隐藏了一部分你的源代码，而且，速度上应该比纯python运行快一点儿</p>
-</li>
-<li><p>要是偷懒的的话，可以直接clone 整理好的这个项目: <a href="https://github.com/qixingyue/cython-starter" target="_blank" rel="noopener">https://github.com/qixingyue/cython-starter</a></p>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1244,7 +1230,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">75</span>
+                    <span class="site-state-item-count">76</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -1486,7 +1472,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">97</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">99</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
