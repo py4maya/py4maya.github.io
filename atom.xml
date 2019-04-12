@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xsec.7ever.cn/"/>
-  <updated>2019-04-03T06:51:53.887Z</updated>
+  <updated>2019-04-12T01:00:00.937Z</updated>
   <id>https://xsec.7ever.cn/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>shell 命令审计</title>
+    <link href="https://xsec.7ever.cn/2019/04/12/bash-audit/"/>
+    <id>https://xsec.7ever.cn/2019/04/12/bash-audit/</id>
+    <published>2019-04-12T00:52:41.000Z</published>
+    <updated>2019-04-12T01:00:00.937Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="提前看"><a href="#提前看" class="headerlink" title="提前看:"></a>提前看:</h3><ul><li>.bash版本至少3.00或以上</li><li>接受审计的登录用户默认shell必须为bash</li></ul><p>配置方法，使用history ，添加固定的 PROMPT_COMMAND 命令格式, HISTTIMEFORMAT 设置history 的格式。<br>(如果其他的shell 也支持类似的变量，也可以用类似的方法解决)</p><h3 id="创建所需文件，及权限限制修改"><a href="#创建所需文件，及权限限制修改" class="headerlink" title="创建所需文件，及权限限制修改:"></a>创建所需文件，及权限限制修改:</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir /var/log/shell_audit</span><br><span class="line">touch /var/log/shell_audit/audit.log</span><br><span class="line">chown nobody:nobody /var/log/shell_audit/audit.log</span><br><span class="line">chmod 002 /var/log/shell_audit/audit.log</span><br><span class="line">chattr +a /var/log/shell_audit/audit.log</span><br></pre></td></tr></table></figure><h3 id="提前设置history-的相关设置"><a href="#提前设置history-的相关设置" class="headerlink" title="提前设置history 的相关设置:"></a>提前设置history 的相关设置:</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 添加如下内容到 bashrc ,保证用户登录及生效</span><br><span class="line">HISTSIZE=2048</span><br><span class="line">HISTTIMEFORMAT="%Y/%m/%d %T   ";export HISTTIMEFORMAT</span><br><span class="line">export HISTORY_FILE=/var/log/shell_audit/audit.log</span><br><span class="line">export PROMPT_COMMAND='&#123; code=$?;thisHistID=`history 1|awk "&#123;print \\$1&#125;"`;lastCommand=`history 1| awk "&#123;\\$1=\"\" ;print&#125;"`;user=`id -un`;whoStr=(`who -u am i`);realUser=$&#123;whoStr[0]&#125;;logDay=$&#123;whoStr[2]&#125;;logTime=$&#123;whoStr[3]&#125;;pid=$&#123;whoStr[5]&#125;;ip=$&#123;whoStr[6]&#125;;if [ $&#123;thisHistID&#125;x != $&#123;lastHistID&#125;x ];then echo -E `date "+%Y/%m/%d %H:%M:%S"` $user\($realUser\)@$ip[PID:$pid][LOGIN:$logDay $logTime] --- [$PWD]$lastCommand [$code];lastHistID=$thisHistID;fi; &#125; &gt;&gt; $HISTORY_FILE'</span><br></pre></td></tr></table></figure><h3 id="添加相应的logrotate-防止日志过大"><a href="#添加相应的logrotate-防止日志过大" class="headerlink" title="添加相应的logrotate 防止日志过大:"></a>添加相应的logrotate 防止日志过大:</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/logrotate.d/shell_audit</span><br><span class="line">/var/log/shell_audit/audit.log &#123;</span><br><span class="line">    weekly</span><br><span class="line">    missingok</span><br><span class="line">    dateext</span><br><span class="line">    rotate 100</span><br><span class="line">    sharedscripts</span><br><span class="line">    prerotate</span><br><span class="line">    /usr/bin/chattr -a /var/log/shell_audit/audit.log</span><br><span class="line">    endscript</span><br><span class="line">    sharedscripts</span><br><span class="line">    postrotate</span><br><span class="line">      /bin/touch /var/log/shell_audit/audit.log</span><br><span class="line">      /bin/chmod 002 /var/log/shell_audit/audit.log</span><br><span class="line">      /bin/chown nobody:nobody /var/log/shell_audit/audit.log</span><br><span class="line">      /usr/bin/chattr +a /var/log/shell_audit/audit.log</span><br><span class="line">    endscript</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="还可以配合rsyslog-传输到-集中的命令日志服务器-添加实时审计监控"><a href="#还可以配合rsyslog-传输到-集中的命令日志服务器-添加实时审计监控" class="headerlink" title="还可以配合rsyslog 传输到 集中的命令日志服务器,添加实时审计监控:"></a>还可以配合rsyslog 传输到 集中的命令日志服务器,添加实时审计监控:</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ruleset(name="rule_rsyslog") &#123;</span><br><span class="line">    action(type="omfwd"</span><br><span class="line">        Protocol="udp"</span><br><span class="line">        Target="10.211.101.93"</span><br><span class="line">        Port="521")</span><br><span class="line">    stop</span><br><span class="line">&#125;</span><br><span class="line">input(</span><br><span class="line">    type="imfile"</span><br><span class="line">    File="/var/log/shell_audit/audit.log"</span><br><span class="line">    Facility="user"</span><br><span class="line">    Severity="notice"</span><br><span class="line">    Tag=""</span><br><span class="line">    PersistStateInterval="1"</span><br><span class="line">    Ruleset="rule_rsyslog"</span><br><span class="line">)</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;提前看&quot;&gt;&lt;a href=&quot;#提前看&quot; class=&quot;headerlink&quot; title=&quot;提前看:&quot;&gt;&lt;/a&gt;提前看:&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;.bash版本至少3.00或以上&lt;/li&gt;
+&lt;li&gt;接受审计的登录用户默认shell必须为bash&lt;/li&gt;
+&lt;/u
+      
+    
+    </summary>
+    
+      <category term="审计" scheme="https://xsec.7ever.cn/categories/%E5%AE%A1%E8%AE%A1/"/>
+    
+    
+      <category term="shell" scheme="https://xsec.7ever.cn/tags/shell/"/>
+    
+      <category term="audit" scheme="https://xsec.7ever.cn/tags/audit/"/>
+    
+  </entry>
   
   <entry>
     <title>yaf 多模块配置</title>
@@ -64,9 +94,9 @@
       <category term="开发" scheme="https://xsec.7ever.cn/categories/%E5%BC%80%E5%8F%91/"/>
     
     
-      <category term="kafka" scheme="https://xsec.7ever.cn/tags/kafka/"/>
-    
       <category term="python" scheme="https://xsec.7ever.cn/tags/python/"/>
+    
+      <category term="kafka" scheme="https://xsec.7ever.cn/tags/kafka/"/>
     
   </entry>
   
@@ -297,7 +327,7 @@
     <published>2019-02-15T09:30:11.000Z</published>
     <updated>2019-03-14T02:32:24.016Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="断点续传下载代码"><a href="#断点续传下载代码" class="headerlink" title="断点续传下载代码:"></a>断点续传下载代码:</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">$</span> mkdir git/dir</span><br><span class="line"><span class="meta">$</span> cd git/dir </span><br><span class="line"><span class="meta">$</span> git init </span><br><span class="line"><span class="meta">$</span> git fetch https://github.com/docker/distribution.git </span><br><span class="line"><span class="meta">$</span> git checkout FETCH_HEAD -b master</span><br><span class="line"><span class="meta">$</span> git remote add origin https://github.com/docker/distribution.git</span><br></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<h3 id="断点续传下载代码"><a href="#断点续传下载代码" class="headerlink" title="断点续传下载代码:"></a>断点续传下载代码:</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> mkdir git/dir</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> git/dir </span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git init </span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git fetch https://github.com/docker/distribution.git </span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git checkout FETCH_HEAD -b master</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git remote add origin https://github.com/docker/distribution.git</span></span><br></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
@@ -433,9 +463,9 @@
     </summary>
     
     
-      <category term="logstash" scheme="https://xsec.7ever.cn/tags/logstash/"/>
-    
       <category term="kafka" scheme="https://xsec.7ever.cn/tags/kafka/"/>
+    
+      <category term="logstash" scheme="https://xsec.7ever.cn/tags/logstash/"/>
     
   </entry>
   
@@ -464,11 +494,11 @@
       <category term="linux" scheme="https://xsec.7ever.cn/categories/linux/"/>
     
     
+      <category term="linux" scheme="https://xsec.7ever.cn/tags/linux/"/>
+    
       <category term="lsattr" scheme="https://xsec.7ever.cn/tags/lsattr/"/>
     
       <category term="chattr" scheme="https://xsec.7ever.cn/tags/chattr/"/>
-    
-      <category term="linux" scheme="https://xsec.7ever.cn/tags/linux/"/>
     
   </entry>
   
@@ -518,29 +548,6 @@
     
     
       <category term="dnspython" scheme="https://xsec.7ever.cn/tags/dnspython/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>centos 下一个安装superset 的shell</title>
-    <link href="https://xsec.7ever.cn/2018/07/11/one-shell-install-superset-centos/"/>
-    <id>https://xsec.7ever.cn/2018/07/11/one-shell-install-superset-centos/</id>
-    <published>2018-07-11T08:55:08.000Z</published>
-    <updated>2018-07-11T08:55:46.000Z</updated>
-    
-    <content type="html"><![CDATA[<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"></span><br><span class="line">pip install --upgrade setuptools</span><br><span class="line">yum install gcc python-devel g++ gcc-c++ cyrus-sasl cyrus-sasl-devel -y</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">exit</span><br><span class="line"></span><br><span class="line">fabmanager create-admin --app superset</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Initialize the database</span></span><br><span class="line">superset db upgrade</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Load some data to play with</span></span><br><span class="line">superset load_examples</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Create default roles and permissions</span></span><br><span class="line">superset init</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Start the web server on port 8088</span></span><br><span class="line">superset runserver -p 8088</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> To start a development web server, use the -d switch</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> superset runserver -d</span></span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class
-      
-    
-    </summary>
-    
-    
-      <category term="superset" scheme="https://xsec.7ever.cn/tags/superset/"/>
     
   </entry>
   
