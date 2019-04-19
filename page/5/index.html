@@ -241,7 +241,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags<span class="badge">100</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags<span class="badge">101</span></a>
 
   </li>
         
@@ -279,7 +279,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives<span class="badge">77</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives<span class="badge">78</span></a>
 
   </li>
         
@@ -343,6 +343,149 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2018/07/16/python-query-dns/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xingyue">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Simple Xsec World">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/07/16/python-query-dns/" class="post-title-link" itemprop="url">python解析指定dns附加timeout</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-07-16 11:20:43 / Modified: 11:21:34" itemprop="dateCreated datePublished" datetime="2018-07-16T11:20:43+08:00">2018-07-16</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> dns.resolver</span><br><span class="line"></span><br><span class="line">Resolver = dns.resolver.Resolver()</span><br><span class="line">Resolver.timeout = <span class="number">0.2</span></span><br><span class="line">Resolver.lifetime = <span class="number">0.2</span></span><br><span class="line">Resolver.nameservers = [<span class="string">"10.210.3.100"</span>]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Query</span><span class="params">(domain,type_=<span class="string">"A"</span>)</span>:</span></span><br><span class="line">   <span class="keyword">return</span> Resolver.query(domain,type_).response.answer</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">foolQueryIps</span><span class="params">(domain,default=[])</span>:</span></span><br><span class="line">    queryIps = []</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        result = Query(domain)</span><br><span class="line">        <span class="keyword">for</span> item <span class="keyword">in</span> result:</span><br><span class="line">            <span class="keyword">for</span> item_ <span class="keyword">in</span> item:</span><br><span class="line">                queryIps.append(item_.address)</span><br><span class="line">    <span class="keyword">except</span> Exception,ex:</span><br><span class="line">        queryIps = default</span><br><span class="line">    <span class="keyword">return</span> queryIps</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span> :</span><br><span class="line">    domain = <span class="string">"slavemysql.newaaa.sec.intra.sina.com.cn"</span></span><br><span class="line">    <span class="keyword">print</span> foolQueryIps(domain)</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -972,200 +1115,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2018/05/04/some-git-tips/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xingyue">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Simple Xsec World">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/05/04/some-git-tips/" class="post-title-link" itemprop="url">一些git的基本操作</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-05-04 09:37:06" itemprop="dateCreated datePublished" datetime="2018-05-04T09:37:06+08:00">2018-05-04</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-03-14 10:34:48" itemprop="dateModified" datetime="2019-03-14T10:34:48+08:00">2019-03-14</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/开发/" itemprop="url" rel="index"><span itemprop="name">开发</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ul>
-<li><p>创建分支:<br>git checkout -b <branch_name></branch_name></p>
-</li>
-<li><p>切换分支:<br>git checkout <branch_name></branch_name></p>
-</li>
-<li><p>对比分支的变化:<br>git log branch1 ^branch2    ##查看branch1 中包含，但是branch2中没有的变化</p>
-</li>
-<li><p>不明确的分支变化:<br>git log branch1…branch2    ##对比两个branch的变化</p>
-</li>
-<li><p>查看某次提交的详细变化:<br>git show <change_name></change_name></p>
-</li>
-<li><p>合并某次变化到当前分支:<br>git log –oneline <branch_name><br>git cherry-pick commit-id   ### 合并某次提交到当前分支<br>git push origin upstream  </branch_name></p>
-</li>
-<li><p>删除远程分支:<br>git branch -d <dev_banch> # 删除本地分支<br>git push origin –delete <del_branch> #删除远程分支</del_branch></dev_banch></p>
-</li>
-<li><p>删除远程commits，谨记，错误提交加密信息到github时候需要:<br> 操作还是很麻烦的，不小心就丢了代码了，所以小心，小心再小心操作</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b &lt;n_branch&gt;   ## 创建临时分支</span><br><span class="line">git reset --hard &lt;commit_id&gt; ## 退回到之前的版本</span><br><span class="line">git push -b origin &lt;n_branch&gt;   # 推送一个远程分支</span><br><span class="line">git cherry-pick                 # 合并指定提交</span><br><span class="line">git branch -d master            #master 分支出错，先删除远程分支</span><br><span class="line">git push origin --delete master #删除master的远程分支</span><br><span class="line">git git checkout -b master      #重新生成master 分支</span><br><span class="line">git push -b origin master       #推送本地master分支到远程</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>合并fork源提交到当前master ，用于fork 的项目:</p>
-</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> git fetch https://github.com/opensec-cn/kunpeng.git master  <span class="comment">## 或者其他分支的名字</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git checkout FETCH_HEAD -b remote <span class="comment"># 或者自己定义的名字</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git checkout master</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git <span class="built_in">log</span> remote ^master</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git cherry-pick commit-id</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git push origin master</span></span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1212,7 +1161,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">77</span>
+                    <span class="site-state-item-count">78</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -1462,7 +1411,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">100</span>
+                      
+                    
+                    <span class="site-state-item-count">101</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>

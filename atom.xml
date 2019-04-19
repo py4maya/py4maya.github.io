@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xsec.7ever.cn/"/>
-  <updated>2019-04-12T01:00:00.937Z</updated>
+  <updated>2019-04-19T03:08:24.276Z</updated>
   <id>https://xsec.7ever.cn/</id>
   
   <author>
@@ -17,11 +17,38 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>golang 生成随机数种子设置</title>
+    <link href="https://xsec.7ever.cn/2019/04/19/golang-random-number/"/>
+    <id>https://xsec.7ever.cn/2019/04/19/golang-random-number/</id>
+    <published>2019-04-19T03:07:38.000Z</published>
+    <updated>2019-04-19T03:08:24.276Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">        <span class="string">"fmt"</span></span><br><span class="line">        <span class="string">"math/rand"</span></span><br><span class="line">        <span class="string">"time"</span></span><br><span class="line">       )</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">i := <span class="number">0</span></span><br><span class="line">       <span class="keyword">for</span> i &lt; <span class="number">10</span> &#123;</span><br><span class="line">           i++</span><br><span class="line">               r := rand.New(rand.NewSource(time.Now().UnixNano()))</span><br><span class="line">               fmt.Println(r.Intn(<span class="number">100</span>))</span><br><span class="line">       &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;figure class=&quot;highlight golang&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span clas
+      
+    
+    </summary>
+    
+      <category term="开发" scheme="https://xsec.7ever.cn/categories/%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="golang" scheme="https://xsec.7ever.cn/tags/golang/"/>
+    
+      <category term="random" scheme="https://xsec.7ever.cn/tags/random/"/>
+    
+  </entry>
+  
+  <entry>
     <title>shell 命令审计</title>
     <link href="https://xsec.7ever.cn/2019/04/12/bash-audit/"/>
     <id>https://xsec.7ever.cn/2019/04/12/bash-audit/</id>
     <published>2019-04-12T00:52:41.000Z</published>
-    <updated>2019-04-12T01:00:00.937Z</updated>
+    <updated>2019-04-12T01:03:03.077Z</updated>
     
     <content type="html"><![CDATA[<h3 id="提前看"><a href="#提前看" class="headerlink" title="提前看:"></a>提前看:</h3><ul><li>.bash版本至少3.00或以上</li><li>接受审计的登录用户默认shell必须为bash</li></ul><p>配置方法，使用history ，添加固定的 PROMPT_COMMAND 命令格式, HISTTIMEFORMAT 设置history 的格式。<br>(如果其他的shell 也支持类似的变量，也可以用类似的方法解决)</p><h3 id="创建所需文件，及权限限制修改"><a href="#创建所需文件，及权限限制修改" class="headerlink" title="创建所需文件，及权限限制修改:"></a>创建所需文件，及权限限制修改:</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir /var/log/shell_audit</span><br><span class="line">touch /var/log/shell_audit/audit.log</span><br><span class="line">chown nobody:nobody /var/log/shell_audit/audit.log</span><br><span class="line">chmod 002 /var/log/shell_audit/audit.log</span><br><span class="line">chattr +a /var/log/shell_audit/audit.log</span><br></pre></td></tr></table></figure><h3 id="提前设置history-的相关设置"><a href="#提前设置history-的相关设置" class="headerlink" title="提前设置history 的相关设置:"></a>提前设置history 的相关设置:</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 添加如下内容到 bashrc ,保证用户登录及生效</span><br><span class="line">HISTSIZE=2048</span><br><span class="line">HISTTIMEFORMAT="%Y/%m/%d %T   ";export HISTTIMEFORMAT</span><br><span class="line">export HISTORY_FILE=/var/log/shell_audit/audit.log</span><br><span class="line">export PROMPT_COMMAND='&#123; code=$?;thisHistID=`history 1|awk "&#123;print \\$1&#125;"`;lastCommand=`history 1| awk "&#123;\\$1=\"\" ;print&#125;"`;user=`id -un`;whoStr=(`who -u am i`);realUser=$&#123;whoStr[0]&#125;;logDay=$&#123;whoStr[2]&#125;;logTime=$&#123;whoStr[3]&#125;;pid=$&#123;whoStr[5]&#125;;ip=$&#123;whoStr[6]&#125;;if [ $&#123;thisHistID&#125;x != $&#123;lastHistID&#125;x ];then echo -E `date "+%Y/%m/%d %H:%M:%S"` $user\($realUser\)@$ip[PID:$pid][LOGIN:$logDay $logTime] --- [$PWD]$lastCommand [$code];lastHistID=$thisHistID;fi; &#125; &gt;&gt; $HISTORY_FILE'</span><br></pre></td></tr></table></figure><h3 id="添加相应的logrotate-防止日志过大"><a href="#添加相应的logrotate-防止日志过大" class="headerlink" title="添加相应的logrotate 防止日志过大:"></a>添加相应的logrotate 防止日志过大:</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/logrotate.d/shell_audit</span><br><span class="line">/var/log/shell_audit/audit.log &#123;</span><br><span class="line">    weekly</span><br><span class="line">    missingok</span><br><span class="line">    dateext</span><br><span class="line">    rotate 100</span><br><span class="line">    sharedscripts</span><br><span class="line">    prerotate</span><br><span class="line">    /usr/bin/chattr -a /var/log/shell_audit/audit.log</span><br><span class="line">    endscript</span><br><span class="line">    sharedscripts</span><br><span class="line">    postrotate</span><br><span class="line">      /bin/touch /var/log/shell_audit/audit.log</span><br><span class="line">      /bin/chmod 002 /var/log/shell_audit/audit.log</span><br><span class="line">      /bin/chown nobody:nobody /var/log/shell_audit/audit.log</span><br><span class="line">      /usr/bin/chattr +a /var/log/shell_audit/audit.log</span><br><span class="line">    endscript</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="还可以配合rsyslog-传输到-集中的命令日志服务器-添加实时审计监控"><a href="#还可以配合rsyslog-传输到-集中的命令日志服务器-添加实时审计监控" class="headerlink" title="还可以配合rsyslog 传输到 集中的命令日志服务器,添加实时审计监控:"></a>还可以配合rsyslog 传输到 集中的命令日志服务器,添加实时审计监控:</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ruleset(name="rule_rsyslog") &#123;</span><br><span class="line">    action(type="omfwd"</span><br><span class="line">        Protocol="udp"</span><br><span class="line">        Target="10.211.101.93"</span><br><span class="line">        Port="521")</span><br><span class="line">    stop</span><br><span class="line">&#125;</span><br><span class="line">input(</span><br><span class="line">    type="imfile"</span><br><span class="line">    File="/var/log/shell_audit/audit.log"</span><br><span class="line">    Facility="user"</span><br><span class="line">    Severity="notice"</span><br><span class="line">    Tag=""</span><br><span class="line">    PersistStateInterval="1"</span><br><span class="line">    Ruleset="rule_rsyslog"</span><br><span class="line">)</span><br></pre></td></tr></table></figure>]]></content>
     
@@ -525,29 +552,6 @@
       <category term="osx" scheme="https://xsec.7ever.cn/tags/osx/"/>
     
       <category term="spotlight" scheme="https://xsec.7ever.cn/tags/spotlight/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>python解析指定dns附加timeout</title>
-    <link href="https://xsec.7ever.cn/2018/07/16/python-query-dns/"/>
-    <id>https://xsec.7ever.cn/2018/07/16/python-query-dns/</id>
-    <published>2018-07-16T03:20:43.000Z</published>
-    <updated>2018-07-16T03:21:34.000Z</updated>
-    
-    <content type="html"><![CDATA[<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> dns.resolver</span><br><span class="line"></span><br><span class="line">Resolver = dns.resolver.Resolver()</span><br><span class="line">Resolver.timeout = <span class="number">0.2</span></span><br><span class="line">Resolver.lifetime = <span class="number">0.2</span></span><br><span class="line">Resolver.nameservers = [<span class="string">"10.210.3.100"</span>]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Query</span><span class="params">(domain,type_=<span class="string">"A"</span>)</span>:</span></span><br><span class="line">   <span class="keyword">return</span> Resolver.query(domain,type_).response.answer</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">foolQueryIps</span><span class="params">(domain,default=[])</span>:</span></span><br><span class="line">    queryIps = []</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        result = Query(domain)</span><br><span class="line">        <span class="keyword">for</span> item <span class="keyword">in</span> result:</span><br><span class="line">            <span class="keyword">for</span> item_ <span class="keyword">in</span> item:</span><br><span class="line">                queryIps.append(item_.address)</span><br><span class="line">    <span class="keyword">except</span> Exception,ex:</span><br><span class="line">        queryIps = default</span><br><span class="line">    <span class="keyword">return</span> queryIps</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span> :</span><br><span class="line">    domain = <span class="string">"slavemysql.newaaa.sec.intra.sina.com.cn"</span></span><br><span class="line">    <span class="keyword">print</span> foolQueryIps(domain)</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span clas
-      
-    
-    </summary>
-    
-    
-      <category term="dnspython" scheme="https://xsec.7ever.cn/tags/dnspython/"/>
     
   </entry>
   
