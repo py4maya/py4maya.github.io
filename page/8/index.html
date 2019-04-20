@@ -648,19 +648,19 @@
             <ul>
 <li>安装全局的babel-cli,用来转换ES6代码</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> npm install -g babel-cli</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> npm install -g babel-cli</span><br></pre></td></tr></table></figure>
 <ul>
 <li><p>初始化你的项目目录:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> mkdir sample &amp;&amp; <span class="built_in">cd</span> sample</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> mkdir src</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> mkdir dist</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> npm init -y <span class="comment"># 一路初始化自己的项目</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> mkdir sample &amp;&amp; cd sample</span><br><span class="line"><span class="meta">$</span> mkdir src</span><br><span class="line"><span class="meta">$</span> mkdir dist</span><br><span class="line"><span class="meta">$</span> npm init -y # 一路初始化自己的项目</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>创建静态文件:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> cat index.html</span></span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang="en"&gt;</span><br><span class="line">    &lt;head&gt;</span><br><span class="line">        &lt;title&gt;&lt;/title&gt;</span><br><span class="line">        &lt;meta charset="UTF-8"&gt;</span><br><span class="line">        &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;</span><br><span class="line">        &lt;script src="./dist/index.js"&gt;&lt;/script&gt;</span><br><span class="line">    &lt;/head&gt;</span><br><span class="line">    &lt;body&gt;</span><br><span class="line">        Hello ECMA Script 6</span><br><span class="line">		&lt;script src="./dist/index.js"&gt;&lt;/script&gt;</span><br><span class="line">    &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> cat index.html</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang="en"&gt;</span><br><span class="line">    &lt;head&gt;</span><br><span class="line">        &lt;title&gt;&lt;/title&gt;</span><br><span class="line">        &lt;meta charset="UTF-8"&gt;</span><br><span class="line">        &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;</span><br><span class="line">        &lt;script src="./dist/index.js"&gt;&lt;/script&gt;</span><br><span class="line">    &lt;/head&gt;</span><br><span class="line">    &lt;body&gt;</span><br><span class="line">        Hello ECMA Script 6</span><br><span class="line">		&lt;script src="./dist/index.js"&gt;&lt;/script&gt;</span><br><span class="line">    &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>npm 安装转换器，及依赖</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> npm install --save-dev babel-preset-es2015 babel-cli</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> npm install --save-dev babel-preset-es2015 babel-cli</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>创建babel 使用配置</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> cat .babelrc</span></span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    "presets":[</span><br><span class="line">        "es2015"</span><br><span class="line">    ],</span><br><span class="line">    "plugins":[]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> cat .babelrc</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    "presets":[</span><br><span class="line">        "es2015"</span><br><span class="line">    ],</span><br><span class="line">    "plugins":[]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>package.json 中添加 转换命令:</p>
 </li>
@@ -1549,6 +1549,14 @@
                 
                   <li class="links-of-blogroll-item">
                     <a href="https://medium.com/search?q=golang" title="https://medium.com/search?q=golang" rel="noopener" target="_blank">medium</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://coolshell.cn" title="https://coolshell.cn" rel="noopener" target="_blank">coolshell</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://github.com/haoel" title="https://github.com/haoel" rel="noopener" target="_blank">haoel</a>
                   </li>
                 
               </ul>
