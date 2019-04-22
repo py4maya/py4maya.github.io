@@ -279,7 +279,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives<span class="badge">79</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives<span class="badge">80</span></a>
 
   </li>
         
@@ -343,6 +343,169 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2019/03/29/kafka-receive/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xingyue">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Simple Xsec World">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/29/kafka-receive/" class="post-title-link" itemprop="url">一个空的kafka 接收数据</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-03-29 13:40:43 / Modified: 13:45:13" itemprop="dateCreated datePublished" datetime="2019-03-29T13:40:43+08:00">2019-03-29</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/开发/" itemprop="url" rel="index"><span itemprop="name">开发</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="简单代码实现如下"><a href="#简单代码实现如下" class="headerlink" title="简单代码实现如下:"></a>简单代码实现如下:</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> kafka <span class="keyword">import</span> KafkaConsumer</span><br><span class="line"></span><br><span class="line">consumer = KafkaConsumer(</span><br><span class="line">        <span class="string">'topic-name'</span>,</span><br><span class="line">        bootstrap_servers=<span class="string">'.....com:9092'</span>,</span><br><span class="line">        enable_auto_commit=<span class="keyword">False</span>,</span><br><span class="line">        api_version=(<span class="number">0</span>, <span class="number">8</span>, <span class="number">2</span>, <span class="number">1</span>)</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> msg <span class="keyword">in</span> consumer:</span><br><span class="line">    print(msg)</span><br></pre></td></tr></table></figure>
+<h2 id="运行监控"><a href="#运行监控" class="headerlink" title="运行监控:"></a>运行监控:</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ./tools/kafka_2.10-0.9.0.1/bin/kafka-consumer-offset-checker.sh --group group_name --zookeeper=zookeeper_server --topic yourtopic</span></span><br></pre></td></tr></table></figure>
+<h2 id="网卡流量监控"><a href="#网卡流量监控" class="headerlink" title="网卡流量监控:"></a>网卡流量监控:</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sar -n DEV 10</span></span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -1081,190 +1244,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2019/03/06/golang-test-code/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xingyue">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Simple Xsec World">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/06/golang-test-code/" class="post-title-link" itemprop="url">golang 编写测试用例</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-03-06 10:22:11 / Modified: 13:54:11" itemprop="dateCreated datePublished" datetime="2019-03-06T10:22:11+08:00">2019-03-06</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/开发/" itemprop="url" rel="index"><span itemprop="name">开发</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>golang 写测试用例，非常简单。如下几步即可:</p>
-<ul>
-<li>普通的包，文件命名必须以 test.go 结尾</li>
-<li>包内必须包含 指定的包，指定的方式定义函数用例:</li>
-</ul>
-<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">"testing"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">TestHello</span><span class="params">(t *testing.T)</span></span> &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>打印日志,通过或者失败:</li>
-</ul>
-<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">t.Logf(<span class="string">"Hello Log Message %s "</span>,<span class="string">"&lt;something&gt;"</span>)</span><br><span class="line">t.Errorf(<span class="string">"One Error Happend %s"</span>,<span class="string">"&lt;badthing&gt;"</span>) <span class="comment">// 只要出现Error 那么就认为该测试用例失败</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>运行测试:</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> go test  # 默认只包含测试不通过的用例，但是成功的也回执行,如果想看所有的日志，那么请用 go test -v </span><br><span class="line"></span><br><span class="line">➜  info go test</span><br><span class="line">--- FAIL: TestArraySlice (0.00s)</span><br><span class="line">	info_test.go:28: 2 7</span><br><span class="line">	info_test.go:29: 3 5</span><br><span class="line">	info_test.go:30: End!</span><br><span class="line">FAIL</span><br><span class="line">exit status 1</span><br><span class="line">FAIL	info	0.002s</span><br></pre></td></tr></table></figure>
-<p>go test 会执行当前包内定义的所有的以 Test 开头的方法定义</p>
-<ul>
-<li>把go test 编译成一个可执行文件(不执行)</li>
-</ul>
-<p>可以使用这个命令生成可以灵活扩展的多入口程序</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> go test -c</span><br></pre></td></tr></table></figure>
-<ul>
-<li>如下是一个编写好的简单测试用例文件:<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">package</span> info</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"testing"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">TestSomething</span><span class="params">(t *testing.T)</span></span> &#123;</span><br><span class="line">	t.Log(<span class="string">"Hello test something!"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">TestGoAround</span><span class="params">(t *testing.T)</span></span> &#123;</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">1</span>; i &lt; <span class="number">10</span>; i++ &#123;</span><br><span class="line">		t.Log(i)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">TestSlice</span><span class="params">(t *testing.T)</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> s []<span class="keyword">int</span></span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">12</span>; i++ &#123;</span><br><span class="line">		s = <span class="built_in">append</span>(s, i+<span class="number">3</span>)</span><br><span class="line">		t.Log(<span class="built_in">len</span>(s), <span class="built_in">cap</span>(s))</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">TestArraySlice</span><span class="params">(t *testing.T)</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> items = [...]<span class="keyword">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>&#125;</span><br><span class="line">	<span class="keyword">var</span> a = items[<span class="number">3</span>:<span class="number">5</span>]</span><br><span class="line">	<span class="keyword">var</span> b = items[<span class="number">5</span>:<span class="number">8</span>]</span><br><span class="line"></span><br><span class="line">	t.Log(<span class="built_in">len</span>(a), <span class="built_in">cap</span>(a))</span><br><span class="line">	t.Log(<span class="built_in">len</span>(b), <span class="built_in">cap</span>(b))</span><br><span class="line">	t.Errorf(<span class="string">"End!"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1311,7 +1290,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">79</span>
+                    <span class="site-state-item-count">80</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

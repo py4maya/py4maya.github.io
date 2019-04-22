@@ -279,7 +279,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives<span class="badge">79</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives<span class="badge">80</span></a>
 
   </li>
         
@@ -343,6 +343,170 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2019/04/22/mysql-slave-config/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xingyue">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Simple Xsec World">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/04/22/mysql-slave-config/" class="post-title-link" itemprop="url">mysql-slave-config</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-04-22 18:06:50 / Modified: 18:07:27" itemprop="dateCreated datePublished" datetime="2019-04-22T18:06:50+08:00">2019-04-22</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/运维/" itemprop="url" rel="index"><span itemprop="name">运维</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="主库mysql-配置"><a href="#主库mysql-配置" class="headerlink" title="主库mysql 配置:"></a>主库mysql 配置:</h3> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">max_connections = 2048</span><br><span class="line">sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES </span><br><span class="line">server_id = 4</span><br><span class="line">relay-log-index=slave-relay-bin.index</span><br><span class="line">relay-log=slave-relay-bin </span><br><span class="line">#slave-skip-errors=all</span><br><span class="line"></span><br><span class="line">log_bin = &quot;/data0/mysql/logs/bin.log&quot;</span><br><span class="line">expire_logs_days = 30</span><br><span class="line">max_binlog_size = 512m</span><br><span class="line">binlog_cache_size       = 4m</span><br><span class="line">max_binlog_cache_size   = 512m</span><br></pre></td></tr></table></figure>
+<h3 id="授权语句"><a href="#授权语句" class="headerlink" title="授权语句:"></a>授权语句:</h3><p>GRANT REPLICATION SLAVE ON <em>.</em> TO ‘rep’@’192.168.%’  IDENTIFIED BY ‘123456’;</p>
+<h4 id="从库配置："><a href="#从库配置：" class="headerlink" title="从库配置："></a>从库配置：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">[mysqld]</span><br><span class="line">max_connections = 2048</span><br><span class="line">sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES </span><br><span class="line">server_id = 3</span><br><span class="line">relay-log-index=slave-relay-bin.index</span><br><span class="line">relay-log=slave-relay-bin</span><br></pre></td></tr></table></figure>
+<h4 id="操作从库语句"><a href="#操作从库语句" class="headerlink" title="操作从库语句:"></a>操作从库语句:</h4><p>CHANGE MASTER TO<br>           -&gt;     MASTER_HOST=’master_host_name’,<br>            -&gt;     MASTER_USER=’replication_user_name’,<br>            -&gt;     MASTER_PASSWORD=’replication_password’,<br>            -&gt;     MASTER_LOG_FILE=’recorded_log_file_name’,<br>            -&gt;     MASTER_LOG_POS=recorded_log_position;</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -999,169 +1163,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2019/03/29/kafka-receive/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xingyue">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Simple Xsec World">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/29/kafka-receive/" class="post-title-link" itemprop="url">一个空的kafka 接收数据</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-03-29 13:40:43 / Modified: 13:45:13" itemprop="dateCreated datePublished" datetime="2019-03-29T13:40:43+08:00">2019-03-29</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/开发/" itemprop="url" rel="index"><span itemprop="name">开发</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="简单代码实现如下"><a href="#简单代码实现如下" class="headerlink" title="简单代码实现如下:"></a>简单代码实现如下:</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> kafka <span class="keyword">import</span> KafkaConsumer</span><br><span class="line"></span><br><span class="line">consumer = KafkaConsumer(</span><br><span class="line">        <span class="string">'topic-name'</span>,</span><br><span class="line">        bootstrap_servers=<span class="string">'.....com:9092'</span>,</span><br><span class="line">        enable_auto_commit=<span class="keyword">False</span>,</span><br><span class="line">        api_version=(<span class="number">0</span>, <span class="number">8</span>, <span class="number">2</span>, <span class="number">1</span>)</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> msg <span class="keyword">in</span> consumer:</span><br><span class="line">    print(msg)</span><br></pre></td></tr></table></figure>
-<h2 id="运行监控"><a href="#运行监控" class="headerlink" title="运行监控:"></a>运行监控:</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ./tools/kafka_2.10-0.9.0.1/bin/kafka-consumer-offset-checker.sh --group group_name --zookeeper=zookeeper_server --topic yourtopic</span></span><br></pre></td></tr></table></figure>
-<h2 id="网卡流量监控"><a href="#网卡流量监控" class="headerlink" title="网卡流量监控:"></a>网卡流量监控:</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sar -n DEV 10</span></span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1208,7 +1209,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">79</span>
+                    <span class="site-state-item-count">80</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
