@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xsec.7ever.cn/"/>
-  <updated>2019-04-19T03:08:24.276Z</updated>
+  <updated>2019-04-22T08:41:52.810Z</updated>
   <id>https://xsec.7ever.cn/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>rsync log 添加服务选项</title>
+    <link href="https://xsec.7ever.cn/2019/04/22/rsync-log-setting/"/>
+    <id>https://xsec.7ever.cn/2019/04/22/rsync-log-setting/</id>
+    <published>2019-04-22T08:40:42.000Z</published>
+    <updated>2019-04-22T08:41:52.810Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">log file = /var/log/rsyncd.log</span><br><span class="line">transfer logging = yes </span><br><span class="line">log format = %t %a %m %f %b</span><br><span class="line">syslog facility = local3</span><br><span class="line">timeout = 300 </span><br><span class="line"></span><br><span class="line">[cold]</span><br><span class="line">hosts allow = 1.1.1.1</span><br><span class="line">read only = no</span><br><span class="line">path = /data1/cold</span><br><span class="line">uid = cold</span><br><span class="line">gid = cold</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class
+      
+    
+    </summary>
+    
+      <category term="开发" scheme="https://xsec.7ever.cn/categories/%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="rsync" scheme="https://xsec.7ever.cn/tags/rsync/"/>
+    
+  </entry>
   
   <entry>
     <title>golang 生成随机数种子设置</title>
@@ -526,32 +551,6 @@
       <category term="lsattr" scheme="https://xsec.7ever.cn/tags/lsattr/"/>
     
       <category term="chattr" scheme="https://xsec.7ever.cn/tags/chattr/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>osx关闭开启spotlight 服务</title>
-    <link href="https://xsec.7ever.cn/2018/08/01/osx-close-open-spotlight/"/>
-    <id>https://xsec.7ever.cn/2018/08/01/osx-close-open-spotlight/</id>
-    <published>2018-07-31T17:36:40.000Z</published>
-    <updated>2018-07-31T17:38:03.682Z</updated>
-    
-    <content type="html"><![CDATA[<p>必要的时候，需要关闭spotlight 服务，节省系统资源.</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mdutil -a -i off</span><br></pre></td></tr></table></figure><p>重新开启服务:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mdutil -a -i on</span><br></pre></td></tr></table></figure></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;必要的时候，需要关闭spotlight 服务，节省系统资源.&lt;/p&gt;
-&lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pr
-      
-    
-    </summary>
-    
-    
-      <category term="osx" scheme="https://xsec.7ever.cn/tags/osx/"/>
-    
-      <category term="spotlight" scheme="https://xsec.7ever.cn/tags/spotlight/"/>
     
   </entry>
   
