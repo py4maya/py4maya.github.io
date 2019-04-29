@@ -106,7 +106,7 @@
 <meta property="og:site_name" content="Simple Xsec World">
 <meta property="og:description" content="安装firewalld ，设置为开机启动，启动之: 123$ yum install firewalld$ systemctl enable firewalld$ systemctl start firewalld  查看zones  1$ firewall-cmd --get-zones  创建新的zone : 1$ firewall-cmd --new-zone=goaway --perma">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-12T02:27:59.000Z">
+<meta property="og:updated_time" content="2019-04-29T10:06:51.041Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="centos7下使用firewalld基本指南">
 <meta name="twitter:description" content="安装firewalld ，设置为开机启动，启动之: 123$ yum install firewalld$ systemctl enable firewalld$ systemctl start firewalld  查看zones  1$ firewall-cmd --get-zones  创建新的zone : 1$ firewall-cmd --new-zone=goaway --perma">
@@ -406,12 +406,24 @@
                 
               
 
-              <time title="Created: 2018-04-12 10:08:24 / Modified: 10:27:59" itemprop="dateCreated datePublished" datetime="2018-04-12T10:08:24+08:00">2018-04-12</time>
+              <time title="Created: 2018-04-12 10:08:24" itemprop="dateCreated datePublished" datetime="2018-04-12T10:08:24+08:00">2018-04-12</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-04-29 18:06:51" itemprop="dateModified" datetime="2019-04-29T18:06:51+08:00">2019-04-29</time>
               
             
           </span>
@@ -489,6 +501,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> firewall-cmd --permanent --remove-rich-rule="rule family="ipv4" source address="192.168.142.166" port protocol="tcp" port="11300" accept"</span><br><span class="line"><span class="meta">$</span> firewall-cmd --permanent --add-rich-rule="rule family="ipv4" source address="192.168.142.166" port protocol="tcp" port="11300" accept"</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
+<p><strong> 最后 谨记一点: 启用firewalld 的时候，一定要保证你的ssh 服务已经添加到了允许范围，不然你得跑一趟机房了</strong></p>
 
       
     </div>
