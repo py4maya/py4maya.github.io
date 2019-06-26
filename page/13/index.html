@@ -241,7 +241,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags<span class="badge">102</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags<span class="badge">103</span></a>
 
   </li>
         
@@ -260,7 +260,7 @@
       
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories<span class="badge">8</span></a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories<span class="badge">9</span></a>
 
   </li>
         
@@ -279,7 +279,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives<span class="badge">81</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives<span class="badge">82</span></a>
 
   </li>
         
@@ -343,6 +343,173 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2017/10/28/ios-uiiamgeview/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xingyue">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Simple Xsec World">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/10/28/ios-uiiamgeview/" class="post-title-link" itemprop="url">ios 通过UIImageView 显示图片</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-10-28 19:18:17 / Modified: 19:27:00" itemprop="dateCreated datePublished" datetime="2017-10-28T19:18:17+08:00">2017-10-28</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/开发/" itemprop="url" rel="index"><span itemprop="name">开发</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h5 id="简单知识点"><a href="#简单知识点" class="headerlink" title="简单知识点:"></a>简单知识点:</h5><ul>
+<li>获取资源所在的目录 : [[NSBundle mainBundle] resourcePath]</li>
+<li>加载图片的方法 initWithContentsOfFile 用路径的方式加载, imageNamed 用named的方法加载（比较占用系统内存）</li>
+<li>图片显示大小跟载体有关系,设置载体的ContentMode 属性 可以显示不同的拉伸，居中等显示方式</li>
+</ul>
+<h5 id="相关代码"><a href="#相关代码" class="headerlink" title="相关代码:"></a>相关代码:</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//当前的资源目录</span></span><br><span class="line">    NSString *path = [[NSBundle mainBundle] resourcePath];</span><br><span class="line">    NSString *imagePath = [NSString stringWithFormat:@<span class="string">"%@/running.png"</span>,path];</span><br><span class="line">    UIImage *image = [[UIImage alloc]initWithContentsOfFile:imagePath];</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//尺寸大小跟载体有关</span></span><br><span class="line"><span class="comment">//    UIImage *image = [UIImage imageNamed:@"running"];</span></span><br><span class="line">    UIImageView *iv = [[UIImageView alloc]initWithFrame:CGRectMake(<span class="number">20</span>, <span class="number">300</span>, <span class="number">300</span>, <span class="number">300</span>)];</span><br><span class="line">    iv.contentMode = UIViewContentModeCenter;</span><br><span class="line">    [iv setImage:image];</span><br><span class="line">    </span><br><span class="line">    [self.view addSubview:iv];</span><br><span class="line">    [self.view sendSubviewToBack:iv];</span><br></pre></td></tr></table></figure>
+<h5 id="显示效果截图"><a href="#显示效果截图" class="headerlink" title="显示效果截图:"></a>显示效果截图:</h5><p><img src="/images/ios_sample_world.png" alt="tiny app board"></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -1059,186 +1226,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2017/10/09/python-tail/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xingyue">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Simple Xsec World">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/10/09/python-tail/" class="post-title-link" itemprop="url">使用python实现tail</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-10-09 18:38:58" itemprop="dateCreated datePublished" datetime="2017-10-09T18:38:58+08:00">2017-10-09</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2017-10-12 09:29:57" itemprop="dateModified" datetime="2017-10-12T09:29:57+08:00">2017-10-12</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/开发/" itemprop="url" rel="index"><span itemprop="name">开发</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>关键点:</p>
-<ul>
-<li>打开指定文件</li>
-<li>每隔一段时间尝试readline ，有内容print , 否则sleep </li>
-<li>移动文件指针到文件末尾</li>
-</ul>
-<p>关键代码:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#coding=utf-8</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">watchFile</span><span class="params">(fname,**kwargs)</span> :</span></span><br><span class="line"></span><br><span class="line">	<span class="string">"""</span></span><br><span class="line"><span class="string">	watchFile(fname,delay=1,reg=False,handler=None,last_pos=0,last_size=0)</span></span><br><span class="line"><span class="string">	用来监控文件的变化，可能有少量的数据缺失</span></span><br><span class="line"><span class="string">	"""</span></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">echoHandler</span><span class="params">(items)</span>:</span></span><br><span class="line">		<span class="keyword">print</span> items</span><br><span class="line"></span><br><span class="line">	offset,where = kwargs.get(<span class="string">'last_pos'</span>,(<span class="number">0</span>,<span class="number">2</span>))</span><br><span class="line">	last_size = kwargs.get(<span class="string">'last_size'</span>,<span class="number">0</span>)</span><br><span class="line">	handler = kwargs.get(<span class="string">'handler'</span>,echoHandler)</span><br><span class="line">	delay = kwargs.get(<span class="string">'delay'</span>,<span class="number">1</span>)</span><br><span class="line">	reg = kwargs.get(<span class="string">'reg'</span>,<span class="keyword">False</span>)</span><br><span class="line">	last_pos = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">		<span class="keyword">try</span> :</span><br><span class="line">			<span class="keyword">with</span> open(fname,<span class="string">'r'</span>) <span class="keyword">as</span> f:</span><br><span class="line">				<span class="keyword">if</span> last_pos == <span class="number">0</span> :</span><br><span class="line">					f.seek(offset,where)</span><br><span class="line">				<span class="keyword">else</span> :</span><br><span class="line">					f.seek(last_pos)</span><br><span class="line">				line = f.readline()</span><br><span class="line">				<span class="keyword">if</span> line != <span class="keyword">None</span> <span class="keyword">and</span> line != <span class="string">''</span>: </span><br><span class="line">					<span class="keyword">if</span> reg != <span class="keyword">False</span> :</span><br><span class="line">						items = reg.findall(line)</span><br><span class="line">					<span class="keyword">else</span> :</span><br><span class="line">						items = [line.strip()]</span><br><span class="line">					<span class="keyword">if</span> len(items) != <span class="number">0</span> :</span><br><span class="line">						handler(items)</span><br><span class="line">				n_pos = f.tell()</span><br><span class="line">				last_pos = n_pos</span><br><span class="line">				f.seek(<span class="number">0</span>,<span class="number">2</span>)</span><br><span class="line">				file_size = f.tell()</span><br><span class="line">				<span class="keyword">if</span> file_size &lt; last_size :</span><br><span class="line">					last_pos = <span class="number">0</span></span><br><span class="line">				last_size = file_size</span><br><span class="line">		<span class="keyword">except</span> Exception,e:</span><br><span class="line">			<span class="keyword">pass</span></span><br><span class="line">		time.sleep(delay)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span> :</span><br><span class="line">	<span class="keyword">if</span> len(sys.argv) &lt; <span class="number">2</span> :</span><br><span class="line">		<span class="keyword">print</span> <span class="string">"python -u tail.py &lt;file&gt;"</span></span><br><span class="line">		exit()</span><br><span class="line">	fname = sys.argv[<span class="number">1</span>]</span><br><span class="line">	reg_ = re.compile(<span class="string">"(error)|(disconnect)|(blocked)"</span>)</span><br><span class="line">	watchFile(fname,reg=reg_)</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1285,7 +1272,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">81</span>
+                    <span class="site-state-item-count">82</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -1318,7 +1305,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">8</span>
+                      
+                    
+                    <span class="site-state-item-count">9</span>
                     <span class="site-state-item-name">categories</span>
                   </a>
                 </div>
@@ -1539,7 +1528,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">102</span>
+                      
+                    
+                    <span class="site-state-item-count">103</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
