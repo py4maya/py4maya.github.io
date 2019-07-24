@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xsec.7ever.cn/"/>
-  <updated>2019-06-28T09:06:15.468Z</updated>
+  <updated>2019-07-24T01:42:18.598Z</updated>
   <id>https://xsec.7ever.cn/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>centos 搭建nfs 运行环境</title>
+    <link href="https://xsec.7ever.cn/2019/07/24/centos-nfs/"/>
+    <id>https://xsec.7ever.cn/2019/07/24/centos-nfs/</id>
+    <published>2019-07-24T01:33:10.000Z</published>
+    <updated>2019-07-24T01:42:18.598Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="centos-服务端搭建基本的nfs-挂载环境"><a href="#centos-服务端搭建基本的nfs-挂载环境" class="headerlink" title="centos 服务端搭建基本的nfs 挂载环境"></a>centos 服务端搭建基本的nfs 挂载环境</h2><ul><li>安装基本的运行环境</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">yum install nfs-utils</span><br><span class="line">systemctl enable rpcbind</span><br><span class="line">systemctl start rpcbind</span><br><span class="line">systemctl enable nfs</span><br><span class="line">systemctl start nfs</span><br></pre></td></tr></table></figure><ul><li>防火墙配置</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --zone=public --permanent --add-service=rpc-bind</span><br><span class="line">firewall-cmd --zone=public --permanent --add-service=mountd</span><br><span class="line">firewall-cmd --zone=public --permanent --add-service=nfs</span><br><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure><ul><li>配置共享目录</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cat  /etc/exports</span><br><span class="line"></span><br><span class="line">/data/     192.168.0.0/24(rw,sync,no_root_squash,no_all_squash)</span><br><span class="line"></span><br><span class="line">systemctl restart nfs</span><br><span class="line">showmount -e localhost # 查看挂载点</span><br></pre></td></tr></table></figure><h2 id="centos-客户端"><a href="#centos-客户端" class="headerlink" title="centos 客户端"></a>centos 客户端</h2><ul><li>单次挂载</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">yum install nfs-utils</span><br><span class="line">systemctl enable rpcbind</span><br><span class="line">systemctl start rpcbind</span><br><span class="line">showmount -e 192.168.0.101 #检查远程挂载点</span><br><span class="line">mkdir /data #创建远程挂载目录</span><br><span class="line">mount -t nfs 192.168.0.101:/data /data</span><br></pre></td></tr></table></figure><ul><li>自动挂载配置</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/fstab</span><br><span class="line"></span><br><span class="line">192.168.0.101:/data      /data                   nfs     defaults        0 0</span><br><span class="line"></span><br><span class="line">systemctl daemon-reload # 重启服务</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;centos-服务端搭建基本的nfs-挂载环境&quot;&gt;&lt;a href=&quot;#centos-服务端搭建基本的nfs-挂载环境&quot; class=&quot;headerlink&quot; title=&quot;centos 服务端搭建基本的nfs 挂载环境&quot;&gt;&lt;/a&gt;centos 服务端搭建基本的nf
+      
+    
+    </summary>
+    
+      <category term="运维" scheme="https://xsec.7ever.cn/categories/%E8%BF%90%E7%BB%B4/"/>
+    
+    
+      <category term="nfs" scheme="https://xsec.7ever.cn/tags/nfs/"/>
+    
+      <category term="centos" scheme="https://xsec.7ever.cn/tags/centos/"/>
+    
+  </entry>
   
   <entry>
     <title>jupyter 配置文件</title>
@@ -228,9 +255,9 @@
       <category term="开发" scheme="https://xsec.7ever.cn/categories/%E5%BC%80%E5%8F%91/"/>
     
     
-      <category term="kafka" scheme="https://xsec.7ever.cn/tags/kafka/"/>
-    
       <category term="python" scheme="https://xsec.7ever.cn/tags/python/"/>
+    
+      <category term="kafka" scheme="https://xsec.7ever.cn/tags/kafka/"/>
     
   </entry>
   
@@ -524,31 +551,6 @@
     
     
       <category term="golang" scheme="https://xsec.7ever.cn/tags/golang/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>修改运行起来的docker 容器的端口参数</title>
-    <link href="https://xsec.7ever.cn/2019/01/09/docker-container-port-modify/"/>
-    <id>https://xsec.7ever.cn/2019/01/09/docker-container-port-modify/</id>
-    <published>2019-01-09T07:00:24.000Z</published>
-    <updated>2019-01-09T07:06:06.352Z</updated>
-    
-    <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">起因: 一台带公网IP的docker服务器，同事费了半天劲，折腾出来一个容器,（不可逆，不能重新创建）。端口监听到了0.0.0.0。</span><br><span class="line">改也不是，不改也不是。</span><br></pre></td></tr></table></figure><h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案:"></a>解决方案:</h3><ul><li>先找到对应的容器ID </li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps -a</span><br></pre></td></tr></table></figure><p>拿到一串字符ID 。去对应的docker 运行目录中，找containers 目录,然后按照前缀找到对应的文件件。</p><p>没错，这个文件件就是运行起来的容器。</p><ul><li>关闭docker 服务， </li></ul><p><em>关闭前做好善后工作，记录好运行了哪些容器，确保你了解那些容器的运行参数</em></p><ul><li><p>修改下配置吧:</p><p>修改这个容器的hostconfig.json文件中的端口（原帖有人提到，如果config.v2.json里面也记录了端口，也要修改）</p></li><li><p>然后重新启动docker 服务</p></li><li><p>最后docker ps -a 看到对应的端口信息改了吧 </p></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;
-      
-    
-    </summary>
-    
-      <category term="开发" scheme="https://xsec.7ever.cn/categories/%E5%BC%80%E5%8F%91/"/>
-    
-    
-      <category term="docker" scheme="https://xsec.7ever.cn/tags/docker/"/>
     
   </entry>
   
