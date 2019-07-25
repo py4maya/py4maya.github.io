@@ -241,7 +241,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags<span class="badge">104</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags<span class="badge">105</span></a>
 
   </li>
         
@@ -279,7 +279,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives<span class="badge">83</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives<span class="badge">84</span></a>
 
   </li>
         
@@ -343,6 +343,201 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2017/11/10/docker-use-as-machine/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xingyue">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Simple Xsec World">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/11/10/docker-use-as-machine/" class="post-title-link" itemprop="url">像使用虚拟机一样使用docker</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-11-10 21:11:02" itemprop="dateCreated datePublished" datetime="2017-11-10T21:11:02+08:00">2017-11-10</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2017-11-23 11:17:16" itemprop="dateModified" datetime="2017-11-23T11:17:16+08:00">2017-11-23</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/系统/" itemprop="url" rel="index"><span itemprop="name">系统</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h5 id="前提，系统中已经包含docker，不管你是ubuntu系统或者centos系统。"><a href="#前提，系统中已经包含docker，不管你是ubuntu系统或者centos系统。" class="headerlink" title="前提，系统中已经包含docker，不管你是ubuntu系统或者centos系统。"></a>前提，系统中已经包含docker，不管你是ubuntu系统或者centos系统。</h5><ul>
+<li>pull需要的系统,本实例中使用ubuntu</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull ubuntu</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>创建系统初始化脚本,其中包含了，如果对系统做了修改，保存相应的镜像:<br>绑定一两个需要对外服务的端口，注意，如果你的机器有公网IP,那么慎用0.0.0.0作为转换IP<br>友情提示,使用内网的IP地址监听</p>
+<p>脚本会创建一个以$name为名字的镜像及容器<br>首次运行会提示不存在对应的容器，镜像等直接忽略就可以了</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line"></span><br><span class="line">lip=172.16.7.57 ##只暴露端口给内网的IP</span><br><span class="line">name=xbox</span><br><span class="line">p=" -p $&#123;lip&#125;:8080:8080 -p $&#123;lip&#125;:9090:9090 -p &#123;$lip&#125;:5678:5678"</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">docker commit $&#123;name&#125; $&#123;name&#125;</span><br><span class="line">docker stop $&#123;name&#125;</span><br><span class="line">docker rm $&#123;name&#125;</span><br><span class="line"></span><br><span class="line">docker run -it -p $&#123;lip&#125;:8080:8080 -p $&#123;lip&#125;:9090:9090 --name $&#123;name&#125; ubuntu /bin/bash</span><br><span class="line">docker start $&#123;name&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>系统的进入脚本，相当于ssh 到对应的虚拟主机:<br>直接用-it 模式运行/bin/bash 就可以</p>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line">docker exec -it xbox /bin/bash</span><br></pre></td></tr></table></figure>
+<ul>
+<li>建议安装的脚本:</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">apt-get update</span><br><span class="line">apt-get install git</span><br><span class="line">apt-get install vim</span><br><span class="line">apt-get install gcc</span><br><span class="line">apt-get install automake</span><br><span class="line">apt-cache search make</span><br><span class="line">apt-get install make</span><br><span class="line">apt-get install pcre</span><br><span class="line">apt-get install libpcre</span><br><span class="line">apt-cache search pcre</span><br><span class="line">apt-get install libpcre3</span><br><span class="line">apt-get install libpcre3-dev</span><br><span class="line">apt-get install zlib</span><br><span class="line">apt-cache search zlib</span><br><span class="line">apt-get install libghc-zlib-dev</span><br><span class="line">apt-cache search zlib</span><br><span class="line">apt-get install lua-zlib-dev</span><br><span class="line">apt-get install zlib1g-dev</span><br></pre></td></tr></table></figure>
+<ul>
+<li>如果你乐意还可以用Dockerfile的方式创建一个基本镜像:</li>
+</ul>
+<p>Dokcerfile 内容如下:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">FROM ubuntu</span><br><span class="line"></span><br><span class="line">RUN apt-get update -y &amp;&amp; apt-get install git -y &amp;&amp; apt-get install vim -y &amp;&amp; apt-get install gcc -y &amp;&amp; apt-get install automake -y &amp;&amp; apt-cache search make -y &amp;&amp; apt-get install make -y &amp;&amp; apt-get install pcre -y &amp;&amp; apt-get install libpcre -y &amp;&amp; apt-cache search pcre -y &amp;&amp; apt-get install libpcre3 -y &amp;&amp; apt-get install libpcre3-dev -y &amp;&amp; apt-get install zlib -y &amp;&amp; apt-cache search zlib -y &amp;&amp; apt-get install libghc-zlib-dev -y &amp;&amp; apt-cache search zlib -y &amp;&amp; apt-get install lua-zlib-dev -y &amp;&amp; apt-get install zlib1g-dev -y </span><br><span class="line"></span><br><span class="line">WROKDIR /root</span><br></pre></td></tr></table></figure></p>
+<p>最后运行 docker build . -t xbox 也可以生成对应的镜像</p>
+<p><em>注:默认的docker目录过于小， 建议修改启动参数中的   –graph=/var/lib/docker 到一个比较大的目录</em></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -1023,203 +1218,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2017/10/13/nginx-lua-see-http/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xingyue">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Simple Xsec World">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/10/13/nginx-lua-see-http/" class="post-title-link" itemprop="url">使用lua查看http(s)中的请求内容</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-10-13 14:05:54" itemprop="dateCreated datePublished" datetime="2017-10-13T14:05:54+08:00">2017-10-13</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-05-17 16:26:05" itemprop="dateModified" datetime="2018-05-17T16:26:05+08:00">2018-05-17</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/系统/" itemprop="url" rel="index"><span itemprop="name">系统</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>原由:查看一个proxy系统客户端的请求内容，该系统为nginx proxy 搭建。</p>
-<p>方案:</p>
-<ul>
-<li>部署新的nginx </li>
-<li>内容请求部分添加lua 拦截请求</li>
-<li>根据nginx lua api 分离http(s) 的请求内容</li>
-</ul>
-<p>编译nginx时需要添加lua支持:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">##注，忒别重要</span></span></span><br><span class="line">export LUAJIT_LIB=/data1/luajit/lib</span><br><span class="line">export LUAJIT_INC=/data1/luajit/include/luajit-2.0</span><br><span class="line"></span><br><span class="line">./configure --prefix=/data0/nginx/ \</span><br><span class="line">--with-stream \</span><br><span class="line">--with-http_ssl_module \</span><br><span class="line">--with-stream_ssl_module \</span><br><span class="line">--with-ld-opt=-Wl,-rpath,/data0/luajit/lib \</span><br><span class="line">--add-module=../lua-nginx-module</span><br><span class="line">--add-module=../ngx_devel_kit</span><br></pre></td></tr></table></figure>
-<p>配置正常的nginx模块,添加lua解析:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line"></span><br><span class="line">	listen 80;</span><br><span class="line">	location / &#123;</span><br><span class="line">		 access_by_lua_file /data0/nginx/conf/vhost/access.lua;</span><br><span class="line">		 proxy_pass http://$http_host;	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>lua的内容:<br><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ngx.req.read_body()</span><br><span class="line"></span><br><span class="line"><span class="keyword">local</span> ip = ngx.var.remote_addr</span><br><span class="line"><span class="keyword">local</span> logfile = <span class="built_in">io</span>.<span class="built_in">open</span>(<span class="string">"/tmp/data.log"</span>,<span class="string">"a"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">local</span> method = ngx.req.get_method()</span><br><span class="line"><span class="keyword">local</span> body = ngx.req.get_body_data()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (body == <span class="literal">nil</span>)</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">    body = <span class="string">''</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">logfile:<span class="built_in">write</span>(<span class="string">"\n ============================  "</span> .. method .. <span class="string">" ========================== "</span> .. <span class="string">"\n"</span>)</span><br><span class="line">logfile:<span class="built_in">write</span>(ngx.req.raw_header() .. <span class="string">"\n"</span>)</span><br><span class="line">logfile:<span class="built_in">write</span>(body ..  <span class="string">"\n"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">logfile:<span class="built_in">flush</span>()</span><br><span class="line">logfile:<span class="built_in">close</span>()</span><br></pre></td></tr></table></figure></p>
-<ul>
-<li><p>添加必要的lua模块，请使用如下脚本安装LuaRocks</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">wget http://luarocks.org/releases/luarocks-2.0.13.tar.gz</span><br><span class="line">tar -xzvf luarocks-2.0.13.tar.gz</span><br><span class="line">cd luarocks-2.0.13/</span><br><span class="line">./configure --prefix=/usr/local/openresty/luajit \</span><br><span class="line">    --with-lua=/usr/local/openresty/luajit/ \</span><br><span class="line">    --lua-suffix=jit \</span><br><span class="line">    --with-lua-include=/usr/local/openresty/luajit/include/luajit-2.1</span><br><span class="line">make</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>谨记，谨记</strong> 需要把luarocks 对应的PATH 添加到环境变量中:</p>
-</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">luarocks path</span><br></pre></td></tr></table></figure>
-<ul>
-<li>nginx 配置文件加入require的路径标识:</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">lua_package_path '/data1/nginx/lua/?.lua;';</span><br><span class="line">lua_package_cpath '/usr/local/lib/lua/5.1/?.so;';</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">##代码中可以使用tools对象,及ngx.shared.server （table对象）</span></span></span><br><span class="line">init_by_lua 'tools = require "tools"';</span><br><span class="line">lua_shared_dict server 5m;</span><br></pre></td></tr></table></figure>
-<p><strong> 注意一点 </strong> </p>
-<p>配置更新的地址:<br>/data0/luajit/share/lua/5.1/luarocks/cfg.lua:198 去掉不通的地址.</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1266,7 +1264,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">83</span>
+                    <span class="site-state-item-count">84</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -1526,7 +1524,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">104</span>
+                      
+                    
+                    <span class="site-state-item-count">105</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>

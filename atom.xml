@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xsec.7ever.cn/"/>
-  <updated>2019-07-24T01:42:18.598Z</updated>
+  <updated>2019-07-25T04:58:56.212Z</updated>
   <id>https://xsec.7ever.cn/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>govendor使用安装</title>
+    <link href="https://xsec.7ever.cn/2019/07/25/govendor/"/>
+    <id>https://xsec.7ever.cn/2019/07/25/govendor/</id>
+    <published>2019-07-25T04:57:06.000Z</published>
+    <updated>2019-07-25T04:58:56.212Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> go get -u -v github.com/kardianos/govendor</span><br></pre></td></tr></table></figure><h2 id="添加依赖"><a href="#添加依赖" class="headerlink" title="添加依赖"></a>添加依赖</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> govendor init</span><br><span class="line"><span class="meta">$</span> govendor fetch project_url_with_out_http </span><br><span class="line"><span class="meta">$</span> cat vendor/vendor.json</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;安装&quot;&gt;&lt;a href=&quot;#安装&quot; class=&quot;headerlink&quot; title=&quot;安装&quot;&gt;&lt;/a&gt;安装&lt;/h2&gt;&lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span 
+      
+    
+    </summary>
+    
+      <category term="开发" scheme="https://xsec.7ever.cn/categories/%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="golang" scheme="https://xsec.7ever.cn/tags/golang/"/>
+    
+      <category term="govendor" scheme="https://xsec.7ever.cn/tags/govendor/"/>
+    
+  </entry>
   
   <entry>
     <title>centos 搭建nfs 运行环境</title>
@@ -528,29 +555,6 @@
       <category term="nginx" scheme="https://xsec.7ever.cn/tags/nginx/"/>
     
       <category term="vim" scheme="https://xsec.7ever.cn/tags/vim/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>golang.org 下载失败问题解决</title>
-    <link href="https://xsec.7ever.cn/2019/01/23/golang-org-bad/"/>
-    <id>https://xsec.7ever.cn/2019/01/23/golang-org-bad/</id>
-    <published>2019-01-23T00:27:33.000Z</published>
-    <updated>2019-03-19T07:44:55.293Z</updated>
-    
-    <content type="html"><![CDATA[<h4 id="第一步：-从github-com-下载对应的镜像包"><a href="#第一步：-从github-com-下载对应的镜像包" class="headerlink" title="第一步： 从github.com 下载对应的镜像包:"></a>第一步： 从github.com 下载对应的镜像包:</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/golang/net.git $GOPATH/src/github.com/golang/net</span><br><span class="line">git clone https://github.com/golang/sys.git $GOPATH/src/github.com/golang/sys</span><br><span class="line">git clone https://github.com/golang/tools.git $GOPATH/src/github.com/golang/tools</span><br><span class="line">git clone https://github.com/golang/crypto.git $GOPATH/src/github.com/golang/crypto</span><br></pre></td></tr></table></figure><h4 id="第二步："><a href="#第二步：" class="headerlink" title="第二步："></a>第二步：</h4><p>将net、sys、tools三个文件夹放到$GOPATH/src/golang.org/x目录下。 或者Linux下可以创建软连接：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -s $GOPATH/src/github.com/golang $GOPATH/src/golang.org/x</span><br></pre></td></tr></table></figure></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h4 id=&quot;第一步：-从github-com-下载对应的镜像包&quot;&gt;&lt;a href=&quot;#第一步：-从github-com-下载对应的镜像包&quot; class=&quot;headerlink&quot; title=&quot;第一步： 从github.com 下载对应的镜像包:&quot;&gt;&lt;/a&gt;第一步： 从gith
-      
-    
-    </summary>
-    
-    
-      <category term="golang" scheme="https://xsec.7ever.cn/tags/golang/"/>
     
   </entry>
   
