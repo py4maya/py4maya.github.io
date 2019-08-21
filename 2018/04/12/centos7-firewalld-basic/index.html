@@ -106,7 +106,7 @@
 <meta property="og:site_name" content="Simple Xsec World">
 <meta property="og:description" content="安装firewalld ，设置为开机启动，启动之: 123$ yum install firewalld$ systemctl enable firewalld$ systemctl start firewalld  查看zones  1$ firewall-cmd --get-zones  创建新的zone : 1$ firewall-cmd --new-zone=goaway --perma">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-21T03:20:44.804Z">
+<meta property="og:updated_time" content="2019-08-21T03:25:11.692Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="centos7下使用firewalld基本指南">
 <meta name="twitter:description" content="安装firewalld ，设置为开机启动，启动之: 123$ yum install firewalld$ systemctl enable firewalld$ systemctl start firewalld  查看zones  1$ firewall-cmd --get-zones  创建新的zone : 1$ firewall-cmd --new-zone=goaway --perma">
@@ -423,7 +423,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-08-21 11:20:44" itemprop="dateModified" datetime="2019-08-21T11:20:44+08:00">2019-08-21</time>
+                <time title="Modified: 2019-08-21 11:25:11" itemprop="dateModified" datetime="2019-08-21T11:25:11+08:00">2019-08-21</time>
               
             
           </span>
@@ -500,10 +500,7 @@
 <li><p>复杂规则的添加删除:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> firewall-cmd --permanent --remove-rich-rule="rule family="ipv4" source address="192.168.142.166" port protocol="tcp" port="11300" accept"</span><br><span class="line"><span class="meta">$</span> firewall-cmd --permanent --add-rich-rule="rule family="ipv4" source address="192.168.142.166" port protocol="tcp" port="11300" accept"</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>按照来源添加限制 </p>
-</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> firewall-cmd --permanent --zone=goaway --add-source=10.41.13.133</span><br><span class="line"><span class="meta">$</span> firewall-cmd --reload</span><br></pre></td></tr></table></figure>
 <p><strong> 最后 谨记一点: 启用firewalld 的时候，一定要保证你的ssh 服务已经添加到了允许范围，不然你得跑一趟机房了</strong></p>
 
       

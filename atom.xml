@@ -114,9 +114,9 @@
       <category term="运维" scheme="https://xsec.7ever.cn/categories/%E8%BF%90%E7%BB%B4/"/>
     
     
-      <category term="centos" scheme="https://xsec.7ever.cn/tags/centos/"/>
-    
       <category term="nfs" scheme="https://xsec.7ever.cn/tags/nfs/"/>
+    
+      <category term="centos" scheme="https://xsec.7ever.cn/tags/centos/"/>
     
   </entry>
   
