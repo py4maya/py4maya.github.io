@@ -241,7 +241,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags<span class="badge">105</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags<span class="badge">106</span></a>
 
   </li>
         
@@ -279,7 +279,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives<span class="badge">85</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives<span class="badge">86</span></a>
 
   </li>
         
@@ -343,6 +343,184 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2019/04/29/graylog-local/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xingyue">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Simple Xsec World">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/04/29/graylog-local/" class="post-title-link" itemprop="url">本地搭建graylog 环境简单注意</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-04-29 16:07:12 / Modified: 16:10:36" itemprop="dateCreated datePublished" datetime="2019-04-29T16:07:12+08:00">2019-04-29</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/系统/" itemprop="url" rel="index"><span itemprop="name">系统</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li>下载文件:</li>
+</ul>
+<p>找一个快速一点儿的机房下载:<br>wget <a href="https://packages.graylog2.org/releases/graylog/graylog-2.5.1.tgz" target="_blank" rel="noopener">https://packages.graylog2.org/releases/graylog/graylog-2.5.1.tgz</a></p>
+<ul>
+<li>编辑修改graylogctl 文件在bin 目录下:</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">GRAYLOGCTL_DIR=$&#123;GRAYLOGCTL_DIR:=$(dirname "$GRAYLOGCTL")&#125;</span><br><span class="line">GRAYLOG_SERVER_JAR=$&#123;GRAYLOG_SERVER_JAR:=graylog.jar&#125;</span><br><span class="line">GRAYLOG_CONF=$&#123;GRAYLOG_CONF:=graylog.conf&#125;</span><br><span class="line">GRAYLOG_PID=$&#123;GRAYLOG_PID:=graylog.pid&#125;</span><br><span class="line">LOG_FILE=$&#123;LOG_FILE:=log/graylog-server.log&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>重命名配置文件:<br>graylog.example.conf<br>修改几个地方:<br>password_secret ： 为自定义的96个字符<br>root_username 超级用户昵称<br>root_password_sha2 超级用户密码</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo -n "Enter Password: " &amp;&amp; head -1 &lt;/dev/stdin | tr -d '\n' | sha256sum | cut -d" " -f1</span><br></pre></td></tr></table></figure>
+<p>rest_listen_uri ， web_listen_uri</p>
+</li>
+<li><p>日志rotate 配置:</p>
+<p>  Configure Index Set -&gt;  Index Rotation Configuration 一般配置以天为单位就好</p>
+</li>
+<li>graylog.conf 中还可以单独配置使用的mongodb , elasticsearch 集群地址等</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -1013,198 +1191,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2019/04/03/yaf-use-module/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xingyue">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Simple Xsec World">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/03/yaf-use-module/" class="post-title-link" itemprop="url">yaf 控制器分层处理</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-04-03 14:48:48" itemprop="dateCreated datePublished" datetime="2019-04-03T14:48:48+08:00">2019-04-03</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-04-28 15:24:16" itemprop="dateModified" datetime="2019-04-28T15:24:16+08:00">2019-04-28</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/开发/" itemprop="url" rel="index"><span itemprop="name">开发</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>主要分两个处理办法:</p>
-<h2 id="分模块处理"><a href="#分模块处理" class="headerlink" title="分模块处理:"></a>分模块处理:</h2><p>配置选项中，添加当前的模块:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">application.modules = 'Test,Index'</span><br></pre></td></tr></table></figure>
-<p>创建相应的目录:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@hids application]# tree modules/</span><br><span class="line">modules/</span><br><span class="line">└── Test</span><br><span class="line">    └── controllers</span><br><span class="line">        └── Hello.php</span><br><span class="line"></span><br><span class="line">2 directories, 1 file</span><br></pre></td></tr></table></figure>
-<p>访问地址:<br><a href="http://yourhost/prefix/test/hello/world" target="_blank" rel="noopener">http://yourhost/prefix/test/hello/world</a></p>
-<ul>
-<li>注: 地址去掉prefix 以后超过三段，才会去识别模块 * </li>
-</ul>
-<h2 id="分文件夹存储"><a href="#分文件夹存储" class="headerlink" title="分文件夹存储:"></a>分文件夹存储:</h2><p>Controller 中创建对应的文件夹:<br>比如 controllers/Flow/Strategy.php</p>
-<p>文件中的类名为 Flow_StrategyController</p>
-<p>URL 的访问对应关系: </p>
-<ul>
-<li><prefix>/flow_strategy/list  -&gt; class listAction 方法</prefix></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1246,7 +1237,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">85</span>
+                    <span class="site-state-item-count">86</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -1510,7 +1501,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">105</span>
+                      
+                    
+                    <span class="site-state-item-count">106</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>

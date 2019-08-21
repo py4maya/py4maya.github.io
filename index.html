@@ -241,7 +241,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags<span class="badge">105</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags<span class="badge">106</span></a>
 
   </li>
         
@@ -279,7 +279,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives<span class="badge">85</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives<span class="badge">86</span></a>
 
   </li>
         
@@ -359,6 +359,149 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2019/08/21/es-timestamp-field-auto/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xingyue">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Simple Xsec World">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/08/21/es-timestamp-field-auto/" class="post-title-link" itemprop="url">elasticsearch 插入自动识别的date类型</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-08-21 10:29:08 / Modified: 10:29:39" itemprop="dateCreated datePublished" datetime="2019-08-21T10:29:08+08:00">2019-08-21</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">DELETE /b_20190821</span><br><span class="line"></span><br><span class="line">POST /b_20190821/_doc/7</span><br><span class="line">&#123;</span><br><span class="line">    "uid": 99,</span><br><span class="line">    "gid": 99,</span><br><span class="line">    "shell": "/sbin/nologin",</span><br><span class="line">    "ip": "10.87.50.181",</span><br><span class="line">    "cat_id": "b7b397fde32729da12a59d5ab09301a0",</span><br><span class="line">    "name": "nobody",</span><br><span class="line">    "comment": "Nobody",</span><br><span class="line">    "timestamp": "2019-08-21T10:00:30+08:00Z",</span><br><span class="line">    "home": "/"</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">GET /b_*/_mapping</span><br><span class="line"></span><br><span class="line">GET /b_20190821/_doc/3</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2019/08/14/rpm-build-and-publish/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -404,7 +547,7 @@
                 
               
 
-              <time title="Created: 2019-08-14 10:29:28 / Modified: 10:35:19" itemprop="dateCreated datePublished" datetime="2019-08-14T10:29:28+08:00">2019-08-14</time>
+              <time title="Created: 2019-08-14 10:29:28 / Modified: 10:47:13" itemprop="dateCreated datePublished" datetime="2019-08-14T10:29:28+08:00">2019-08-14</time>
             
 
             
@@ -463,7 +606,7 @@
       
         
           
-            <h2 id="生成rpmbuild-基础目录"><a href="#生成rpmbuild-基础目录" class="headerlink" title="生成rpmbuild 基础目录"></a>生成rpmbuild 基础目录</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpmbuild # 默认生成在/root/rpmbuild 目录</span><br></pre></td></tr></table></figure>
+            <h2 id="生成rpmbuild-基础目录"><a href="#生成rpmbuild-基础目录" class="headerlink" title="生成rpmbuild 基础目录"></a>生成rpmbuild 基础目录</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum install rpmbuild</span><br><span class="line">yum install rpmdevtools </span><br><span class="line">rpmdev-setuptree # 默认生成在/root/rpmbuild 目录</span><br></pre></td></tr></table></figure>
 <h2 id="一个简单的spec-文件，用来编译rpm"><a href="#一个简单的spec-文件，用来编译rpm" class="headerlink" title="一个简单的spec 文件，用来编译rpm"></a>一个简单的spec 文件，用来编译rpm</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Name:           niffler</span><br><span class="line">Version:        0.2.6</span><br><span class="line">Release:        1%&#123;?dist&#125;</span><br><span class="line">Summary:        niffler</span><br><span class="line">  </span><br><span class="line">Group:          Development/Tools  </span><br><span class="line">License:        GPL  </span><br><span class="line">Source0:        %&#123;name&#125;-%&#123;version&#125;.tar.gz  </span><br><span class="line">  </span><br><span class="line">BuildRequires:    libpcap-devel</span><br><span class="line">Requires:         libpcap-devel</span><br><span class="line">  </span><br><span class="line"><span class="meta">%</span><span class="bash">description  </span></span><br><span class="line">  </span><br><span class="line"><span class="meta">%</span><span class="bash">prep  </span></span><br><span class="line"><span class="meta">%</span><span class="bash">setup -q  </span></span><br><span class="line">  </span><br><span class="line"><span class="meta">%</span><span class="bash">build  </span></span><br><span class="line"></span><br><span class="line"><span class="meta">%</span><span class="bash">install  </span></span><br><span class="line">mkdir -p $&#123;RPM_BUILD_ROOT&#125;/bin</span><br><span class="line">mkdir -p $&#123;RPM_BUILD_ROOT&#125;/etc/</span><br><span class="line">mkdir -p $&#123;RPM_BUILD_ROOT&#125;/etc/init.d/</span><br><span class="line">install -m 755 niffler $&#123;RPM_BUILD_ROOT&#125;/bin/niffler</span><br><span class="line">./niffler echo service &gt; $&#123;RPM_BUILD_ROOT&#125;/etc/init.d/niffler</span><br><span class="line"></span><br><span class="line"><span class="meta">%</span><span class="bash">post</span></span><br><span class="line">if [ -f /etc/niffler.json ] </span><br><span class="line">then</span><br><span class="line">    cp /etc/niffler.json /etc/niffler_old.json</span><br><span class="line">fi</span><br><span class="line">niffler echo config &gt; /etc/niffler.json</span><br><span class="line">chmod 755 $&#123;RPM_BUILD_ROOT&#125;/etc/init.d/niffler</span><br><span class="line">chkconfig --add niffler</span><br><span class="line">killall niffler</span><br><span class="line">service niffler start</span><br><span class="line"></span><br><span class="line"><span class="meta">%</span><span class="bash">clean</span></span><br><span class="line">rm -rf $RPM_BUILD_ROOT</span><br><span class="line"></span><br><span class="line"><span class="meta">%</span><span class="bash">files</span></span><br><span class="line">/bin/niffler</span><br><span class="line">/etc/init.d/niffler</span><br></pre></td></tr></table></figure>
 <h2 id="编译生成rpm"><a href="#编译生成rpm" class="headerlink" title="编译生成rpm"></a>编译生成rpm</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">version=$(cat niffler.spec  | grep Version | awk '&#123;print $2&#125;')</span><br><span class="line">echo "build rpm package version $version"</span><br><span class="line">killall niffler</span><br><span class="line">rm -rf build/*</span><br><span class="line">rpmbuild_dir=/root/rpmbuild</span><br><span class="line">source_dir=`pwd`</span><br><span class="line"></span><br><span class="line">go build -o build/niffler -ldflags "-s -w"</span><br><span class="line">mkdir -p build</span><br><span class="line">rpmdev-setuptree</span><br><span class="line">mkdir -p $&#123;rpmbuild_dir&#125;/SOURCES/niffler-$&#123;version&#125;</span><br><span class="line">cp build/niffler $&#123;rpmbuild_dir&#125;/SOURCES/niffler-$&#123;version&#125;</span><br><span class="line">cd $&#123;rpmbuild_dir&#125;/SOURCES/</span><br><span class="line">tar czvf niffler-$&#123;version&#125;.tar.gz niffler-$&#123;version&#125;</span><br><span class="line">cd $&#123;source_dir&#125;</span><br><span class="line">cp niffler.spec $&#123;rpmbuild_dir&#125;/SPECS/niffler.spec</span><br><span class="line">rpmbuild -bb $&#123;rpmbuild_dir&#125;/SPECS/niffler.spec</span><br><span class="line">cp $&#123;rpmbuild_dir&#125;/RPMS/x86_64/*.rpm build/</span><br><span class="line">rm -rf $&#123;rpmbuild_dir&#125;</span><br><span class="line"></span><br><span class="line">go clean </span><br><span class="line">rm -rf build/niffler</span><br></pre></td></tr></table></figure>
 <h2 id="发布rpm-nginx-配置文件"><a href="#发布rpm-nginx-配置文件" class="headerlink" title="发布rpm,nginx 配置文件"></a>发布rpm,nginx 配置文件</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">location /secrepo &#123;</span><br><span class="line">    autoindex on;  </span><br><span class="line">    root /data0/www/secrepo/public;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -1038,189 +1181,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xsec.7ever.cn/2019/04/29/graylog-local/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xingyue">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Simple Xsec World">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/29/graylog-local/" class="post-title-link" itemprop="url">本地搭建graylog 环境简单注意</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-04-29 16:07:12 / Modified: 16:10:36" itemprop="dateCreated datePublished" datetime="2019-04-29T16:07:12+08:00">2019-04-29</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/系统/" itemprop="url" rel="index"><span itemprop="name">系统</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ul>
-<li>下载文件:</li>
-</ul>
-<p>找一个快速一点儿的机房下载:<br>wget <a href="https://packages.graylog2.org/releases/graylog/graylog-2.5.1.tgz" target="_blank" rel="noopener">https://packages.graylog2.org/releases/graylog/graylog-2.5.1.tgz</a></p>
-<ul>
-<li>编辑修改graylogctl 文件在bin 目录下:</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">GRAYLOGCTL_DIR=$&#123;GRAYLOGCTL_DIR:=$(dirname "$GRAYLOGCTL")&#125;</span><br><span class="line">GRAYLOG_SERVER_JAR=$&#123;GRAYLOG_SERVER_JAR:=graylog.jar&#125;</span><br><span class="line">GRAYLOG_CONF=$&#123;GRAYLOG_CONF:=graylog.conf&#125;</span><br><span class="line">GRAYLOG_PID=$&#123;GRAYLOG_PID:=graylog.pid&#125;</span><br><span class="line">LOG_FILE=$&#123;LOG_FILE:=log/graylog-server.log&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>重命名配置文件:<br>graylog.example.conf<br>修改几个地方:<br>password_secret ： 为自定义的96个字符<br>root_username 超级用户昵称<br>root_password_sha2 超级用户密码</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo -n "Enter Password: " &amp;&amp; head -1 &lt;/dev/stdin | tr -d '\n' | sha256sum | cut -d" " -f1</span><br></pre></td></tr></table></figure>
-<p>rest_listen_uri ， web_listen_uri</p>
-</li>
-<li><p>日志rotate 配置:</p>
-<p>  Configure Index Set -&gt;  Index Rotation Configuration 一般配置以天为单位就好</p>
-</li>
-<li>graylog.conf 中还可以单独配置使用的mongodb , elasticsearch 集群地址等</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1262,7 +1227,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">85</span>
+                    <span class="site-state-item-count">86</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -1526,7 +1491,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">105</span>
+                      
+                    
+                    <span class="site-state-item-count">106</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
